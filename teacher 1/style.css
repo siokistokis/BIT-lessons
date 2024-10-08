@@ -1,0 +1,47 @@
+:root {
+    --blue: #1e90ff;
+    --container-width: 1200px;
+    --trans: all 0.4s;
+    --rabbit-color: #fbf022;
+}
+
+body {
+    margin: 0;
+    font-family: "Oswald", sans-serif;
+}
+
+header {
+    background-color: var(--blue);
+    padding: 30px 20px;
+}
+
+header nav {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    position: relative;
+
+    box-sizing: border-box;
+    padding: 0 20px 0 100px;
+
+}
+
+header nav svg {
+    width: 90px;
+    fill: white;
+    position: absolute;
+    top: -23px;
+    left: 0;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 30px;
+    transition: var(--trans);
+}
+
+header nav a:hover {
+    color: var(--rabbit-color);
+}
