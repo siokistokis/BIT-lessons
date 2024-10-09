@@ -2,3 +2,13 @@ body {
     background-image:url(WOODLANDS_35_1000by667px_1000x.jpg) ;
     background-size: cover;
 }
+
+h1 {
+    color: fuchsia;
+    font: italic;
+}
+
+h3 {
+    color: magenta;
+    font: larger;
+}
