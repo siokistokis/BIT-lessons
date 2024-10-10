@@ -4,6 +4,7 @@
     --trans: all 0.4s;
     --rabbit-color: #fbf022;
 }
+
 * {
     box-sizing: border-box;
 }
@@ -129,13 +130,15 @@ header nav a:hover {
 }
 
 .stats {
-    width: 90px;
+    width: 100%;
     display: flex;
     justify-content: center;
+
 }
 
 .stats-bin {
-    height: 100px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     width: 100%;
     max-width: var(--container-width);
     display: flex;
@@ -145,6 +148,7 @@ header nav a:hover {
     column-gap: 30px;
     row-gap: 50px;
     flex-wrap: wrap;
+    
 }
 
 .stat {
@@ -154,9 +158,9 @@ header nav a:hover {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     padding: 20px;
-    width: 100px;
-
-
+    width: 100%;
+    max-width: 280px;
+    min-width: 230px;
 }
 
 .stats h4 {
@@ -169,6 +173,11 @@ header nav a:hover {
     font-size: 20px;
     color: gray;
     margin: 0;
+    text-align: center;
 }
 
-.content
+
+.box-content-left svg {
+    width: 100px;
+    height: 100px;
+}
