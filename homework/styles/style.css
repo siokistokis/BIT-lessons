@@ -1,0 +1,18 @@
+.header {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+}
+
+.header__logo {
+    height: 5rem;
+}
+
+.icon-language {
+    height: 4rem;
+    margin-left: 1rem;
+}
+
+.header__website-title {
+    text-align: center;
+}
