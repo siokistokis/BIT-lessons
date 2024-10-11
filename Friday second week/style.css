@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
 }
 
 .purpleLine {
@@ -20,5 +20,20 @@
 }
 
 .mainHeader {
-    display: ;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+.navigationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.navigationContainer nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
