@@ -7,8 +7,9 @@
 .purpleLine {
     width: 100%;
     height: 20px;
-    background-color: blueviolet;
+    background-color: #60267F;
     color: white;
+    text-align: center;
     font-size: 12px;
     display: flex;
     align-items: center;
