@@ -176,8 +176,73 @@ header nav a:hover {
     text-align: center;
 }
 
-
 .box-content-left svg {
     width: 100px;
     height: 100px;
+}
+.boxes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.boxes .boxes-bin {
+    width: 100%;
+    max-width: var(--container-width);
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+.boxes .boxes-bin .boxes-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.boxes .boxes-bin .boxes-header h2{
+    font-size: 40px;
+    color: var(--blue);
+    margin: 0;
+    text-align: center;
+}
+
+.boxes .boxes-bin .boxes-header p {
+    font-size: 20px;
+    color: gray;
+    text-align: center;
+}
+
+
+.boxes .boxes-bin .boxes-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 30px;
+}
+
+.boxes .boxes-bin .boxes-content .box {
+    width: 30%;
+    border: 1px solid #dedede;
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.boxes .boxes-bin .boxes-content .box h3 {
+    margin: 10px 0 30px 0;
+    text-align: center;
+    
+}
+
+.boxes .boxes-bin .boxes-content .box .box-content {
+    display: flex;
+    column-gap: 20px;
+}
+
+boxes .boxes-bin .boxes-content .box .box-content .box-content-right {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
 }
