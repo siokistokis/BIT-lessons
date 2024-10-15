@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --lightViolet: #9A54BC;
+    --midViolet: #60267F;
+    --darkViolet: #2B0236;    
+}
+
+body {
+    font-family: "Roboto";
+}
+
 .purpleLine {
     width: 100%;
     height: 20px;
@@ -14,10 +24,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-body {
-    font-family: "Roboto", sans-serif;
 }
 
 .purpleLine a {
@@ -55,7 +61,7 @@ body {
     font-weight: 700;
 }
 
-.navigationContainer nav ul li a: :hover {
+.navigationContainer nav ul li a :hover {
     color: #a60505
 }
 
@@ -74,4 +80,61 @@ body {
 .headerBtn:hover {
     background-color: #9A54BC;
     color: white;
+}
+
+.sectionOneConatainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 40px;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sectionOneText {
+    font-size: 36px;
+    text-align: center;
+    color: #2B0236;
+}
+
+.sectionOneBtn {
+    padding: 20px 30px;
+    background-color: var(--lightViolet);
+    border: var(--lightViolet)1px solid;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+sectionOneBtn:hover {
+    background-color: white;
+    color: var(--lightViolet);
+    box-shadow: 0px 4.4px 8.8px 0px #0000001A;
+}
+
+.ectionTwoEllipseContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 200px;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.smallEllipse {
+    top:-170px;
+}
+.rectangle {
+    top: -160px;
+}
+.ellipselogo {
+    top: -50px;
+}
+.elipseBtn {
+    top: 110px;
 }
