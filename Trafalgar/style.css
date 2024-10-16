@@ -4,7 +4,13 @@
     justify-content: space-between;
     padding: 15px 30px;
     border-bottom: rgba(220, 220, 220, 0.227) 3px solid;
+    flex-direction: column;
 }
+
+.firstHeader {
+    display: inline-flex;
+}
+
 .navigationContainer {
     display: flex;
     justify-content: center;
@@ -31,13 +37,45 @@
 
 .headerSecondContainer {
     display: flex;
+    flex-direction: row;
 }
 
 .headerTextContainer {
     display: flex;
-    ju
 }
 
 .illiustratinContainer {
-    display: flex;
+
+}
+
+.headerText h1 {
+    width: 427px;
+    height: 112px;
+    top: 283px;
+    left: 190px;
+    gap: 0px;
+    opacity: 0px;
+    color: #000000;
+}
+
+.headerText p {
+    width: 445px;
+    height: 96px;
+    top: 420px;
+    left: 190px;
+    gap: 0px;
+    opacity: 0px;
+    color: #7D7987;
+}
+
+.headerBtn {
+    width: 200px;
+    height: 56px;
+    top: 564px;
+    left: 190px;
+    gap: 0px;
+    border-radius: 55px 0px 0px 0px;
+    opacity: 0px;
+    color:#458FF6;
+    ;    
 }
