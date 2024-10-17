@@ -1,5 +1,5 @@
-
-console.log(hello);
+const h1 = document.querySelector("h1")
+console.log("hello");
 
 console.log(4+5*7);
 
@@ -11,3 +11,4 @@ var myFirstAmount = myFirstNumber + mySecondNumber;
 var myFirstAmount = "hello";
 
 console.log(myFirstAmount);
+h1.innerHTML = "hello"

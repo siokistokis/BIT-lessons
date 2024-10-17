@@ -35,7 +35,7 @@
     font-weight: 700;
 }
 
-.headerSecondContainer {
+.secondHeader {
     display: flex;
     flex-direction: row;
 }
@@ -74,8 +74,16 @@
     top: 564px;
     left: 190px;
     gap: 0px;
-    border-radius: 55px 0px 0px 0px;
+    border-radius: 55px;
     opacity: 0px;
-    color:#458FF6;
-    ;    
+    background-color:#458FF6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    
+}
+
+.headerBtn:hover {
+    background-color: pink;
+    color: #000000;
 }
