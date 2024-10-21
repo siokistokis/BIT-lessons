@@ -114,7 +114,6 @@
 
 }
 
-
 .cards {
     display: flex;
     justify-content: center;
@@ -122,4 +121,48 @@
     flex-wrap: wrap;
     gap: 34px;
     margin-bottom: 69px;
+}
+
+.our-servises {
+    display: ruby-base-container;
+    align-items: center;
+}
+
+.servises {
+    display:flexbox;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.box {
+    display: inline-block;
+    width: 350px;
+    height: 350px;
+    text-align: left;
+}
+
+.box div {
+    width: 350px;
+    height: 350px;
+    gap: 2rem;
+    border-radius: 20px;
+    background: #FFFFFF;   
+}
+
+.our-servises-Btn {
+    align-items: center;
+}
+
+.box p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #7D7987;
+}
+
+.box h3 {
+    color: #000000;
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
