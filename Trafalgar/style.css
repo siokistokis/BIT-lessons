@@ -148,21 +148,23 @@
     text-align: left;
 }
 
-.box div {
-   
-}
-
-.our-servises-Btn {
-    
-
-.box p {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: #7D7987;
-}
-
 .box h3 {
     color: #000000;
     font-style: normal;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
+}
+
+.box p {
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #7D7987;
+}
+
+.box div {
+   
+}
+
+.our-servises-Btn  {
+    
 }
