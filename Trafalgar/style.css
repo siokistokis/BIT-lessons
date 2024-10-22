@@ -186,5 +186,20 @@
 }
 
 .our-servises-Btn  {
-    
+    width: 200px;
+    height: 56px;
+    top: 564px;
+    left: 190px;
+    gap: 0px;
+    border-radius: 55px;
+    opacity: 0px;
+    background-color:#458FF6;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
+
+ .our-servises-Btn:hover {
+    background-color: pink;
+    color: #000000;
+ }
