@@ -124,7 +124,8 @@
 }
 
 .our-servises {
-    display: ruby-base-container;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     background-image: url("../big element.svg") url("../element.svg");
     background-size: cover;
@@ -136,25 +137,31 @@
     width: 100%;
 }
 
-.our-servises text {
+.our-servises .text {
     display: flex;
 
-    
 }
 
-.our-servises text p {
+.our-servises .text p {
     text-align: center;
     justify-content: flex-start;
-
-
+    width: 952px;
 }
 
 .servises {
-    display:flexbox;
+    display:flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    background-image: url("./images/bg\ element.svg");
+    position: relative;
 }
+
+ .servises-img {
+    position: absolute;
+    top: right;
+    
+ }
 
 .box {
     padding: 15px;
