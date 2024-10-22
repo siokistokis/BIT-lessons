@@ -309,3 +309,10 @@
     background-color: pink;
     color: #000000;
  }
+
+ .testimonials {
+    display: flex;
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+ }
