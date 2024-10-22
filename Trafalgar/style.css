@@ -44,8 +44,12 @@
     display: flex;
 }
 
+.headerText {
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
-.headerText h1 {
+.headerText .h1 {
     width: 427px;
     height: 112px;
     top: 283px;
@@ -205,6 +209,7 @@
  }
 
  .leading healthcare providers {
+    flex-direction: row;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -214,7 +219,11 @@
     left: 135px;
     gap: 0px;
     opacity: 0px;
-    
+ }
+
+ .lgp-text {
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
 
  .trafalgar-illustration {
@@ -230,5 +239,73 @@
  .lgp-text {
     display: inline-block;
     text-align: left;
-   
+
+ }
+
+ .lgp-text h3 {
+    color: #000000;
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ }
+
+ .lgp-text p {
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #7D7987
+ }
+
+ .lgp-text-Btn {
+    width: 200px;
+    height: 56px;
+    top: 564px;
+    left: 190px;
+    gap: 0px;
+    border-radius: 55px;
+    opacity: 0px;
+    background-color:#458FF6;
+    color: white;
+    border: none;
+    cursor: pointer;
+ }
+
+ .lgp-text-Btn:hover {
+    background-color: pink;
+    color: #000000;
+ }
+
+ .download-our-mobile-apps {
+    flex-direction: row;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1273px;
+    height: 477px;
+    top: 2318px;
+    left: 135px;
+    gap: 0px;
+    opacity: 0px;
+ }
+
+ .doma-text {
+    font-style: normal;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ }
+
+ .doma-text-Btn {
+    width: 200px;
+    height: 56px;
+    top: 564px;
+    left: 190px;
+    gap: 0px;
+    border-radius: 55px;
+    opacity: 0px;
+    background-color:#458FF6;
+    color: white;
+    border: none;
+    cursor: pointer;
+ }
+
+ .doma-text-Btn:hover:hover {
+    background-color: pink;
+    color: #000000;
  }
