@@ -54,7 +54,7 @@
     top: 283px;
     left: 190px;
     gap: 0px;
-    opacity: 0px;
+    opacity: 0;
     color: #000000;
     text-align: left;
     font-style: normal;
@@ -126,6 +126,27 @@
 .our-servises {
     display: ruby-base-container;
     align-items: center;
+    background-image: url("../big element.svg") url("../element.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.our-servises text {
+    display: flex;
+
+    
+}
+
+.our-servises text p {
+    text-align: center;
+    justify-content: flex-start;
+
+
 }
 
 .servises {
@@ -133,14 +154,13 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
 }
 
 .box {
-    padding: 25px;
-    margin: 25px;
-    width: 250px;
-    height: 250px;
+    padding: 15px;
+    margin: 15px;
+    width: 285px;
+    height: 240px;
     border: solid black;
     border-radius: 20px;
     background: #FFFFFF;
