@@ -255,3 +255,43 @@ h2 {
     margin-top: 220px;
     width: 320px;
 }
+
+.fastestSafafestContainer {
+    flex-direction: column;
+    margin-top: 350px;
+    gap: 40px;
+    width: 100%;
+}
+
+.fastestSafafestContainer p {
+    width: 45%;
+    text-align: center;
+}
+
+.collabProjectsDoneContainer {
+    gap: 80px;
+    margin-top: 150px;
+    flex-direction: column;
+}
+
+.projectsDoneContainer {
+    gap: 120px;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-weight: 500;
+}
+
+.card img {
+    width: 300px;
+}
+
+.card span {
+    color: var(--midViolet);
+}
+
+.card span>p {
+    padding: 0 10px;
+}
