@@ -316,7 +316,7 @@
     display: flex;
     font-style: normal;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
-    color: black;
+    color: white;
  }
 
  .testemonials-Container {
@@ -326,6 +326,12 @@
     height: 320px;
     background-image: url("./images/Rectangle\ 13.svg") url("./images/dots.svg");
     border-radius: 10px;
+    position: relative;
+ }
+
+ .onblue{
+    width: 100%;
+    position: absolute;
  }
 
  .testimonials-Head {
@@ -334,49 +340,40 @@
     justify-items: center;
     flex-direction: column;
     width: 55%;
-    margin-bottom: 200px;
+    margin-bottom: 70px;
     column-gap: 10px;
-    
+    position: absolute;
+    left: 20%;   
  }
 
  .testimonials-Expierens {
     display: flex;
     align-items: center;
     justify-items: center;
-    gap: 2.5rem;
-    width: 70%;
+    gap: 3rem;
+    width: 80%;
     flex-wrap: wrap;
+    position: absolute;
+    padding: 13%;    
  }
 
- .testimonials-Expierens {
+ /* .slider {
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-items: center;
-    gap: 2.5rem;
-    width: 70%;
-    flex-wrap: wrap;
- }
-
- .testimonials-Expierens {
+    justify-content: center;
+    margin-bottom: 200px;
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-items: center;
-    gap: 2.5rem;
-    width: 70%;
-    flex-wrap: wrap;
- }
+    display: none;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.slider .slider-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} */
 
 
- .meniu {
-    list-style-type: none;
-    padding-left: 0;
-    margin-left: 0;
- }
- .menu a {
-    text-decoration: none;
- }
-
- .menu li {
-    display: inline;
- }
-
+ 
