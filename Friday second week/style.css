@@ -256,14 +256,14 @@ h2 {
     width: 320px;
 }
 
-.fastestSafafestContainer {
+.fastestSafestContainer {
     flex-direction: column;
     margin-top: 350px;
     gap: 40px;
     width: 100%;
 }
 
-.fastestSafafestContainer p {
+.fastestSafestContainer p {
     width: 45%;
     text-align: center;
 }
@@ -295,3 +295,92 @@ h2 {
 .card span>p {
     padding: 0 10px;
 }
+
+.readyToStartContainer {
+    flex-direction: column;
+    margin-top: 250px;
+}
+
+.readyToStartContainerPara {
+    margin-top: 10px;
+    color: #A79D9D;
+    font-size: 16px;
+}
+
+.monthlyContainer {
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.monthly {
+    font-size: 14px;
+    color: #A79D9D;
+}
+
+.yearly {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.monthlyContainer span {
+    font-size: 12px;
+    background-color: #FFE87A;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.bigCardsContainer {
+    margin-top: 100px;
+    gap: 30px;
+    width: 100%;
+}
+
+.bigCard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 12%;
+    border: 1px solid gainsboro;
+    height: 400px;
+    padding: 30px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.bigCard p {
+    font-weight: 500;
+}
+
+.bigCard button {
+    background-color: white;
+    padding: 15px 30px;
+    color: var(--darkViolet);
+    border: 2px solid var(--darkViolet);
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bigCard ul li {
+    margin-top: 5px;
+}
+
+.bigCard ul li::marker {
+    content: "▶";
+}
+
+.bigCard:hover {
+    background-color: #56E6A5;
+    cursor: grab;
+}
+
+.bigCardsContainer .bigCard .bigCardLastPara {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.bigCard button:hover {
+    background-color: var(--darkViolet);
+    color: white;
+}
+  
