@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM ir IFs</title>
+    <style>
+        section#go8 {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            column-gap: 10px;
+        }
+        section#go8 div {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        section#go8 p,
+        section#go8 h2 {
+            margin: 0;
+        }
+        code {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px 0;
+            display: block;
+        }
+        section#go10 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 200px;
+        }
+        section#go10 div {
+            background-color: skyblue;
+            border: 2px dashed black;
+        }
+    </style>
+</head>
+<body>
+
+    <code>1.</code>
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+    <h4></h4>
+
+    <br/><hr/><br/>
+    <code>2.</code>
+    <div></div><div></div>
+
+    <br/><hr/><br/>
+    <code>3.</code>
+    <section id="go3"><span></span> / <span></span> = <span></span></section>
+
+    <br/><hr/><br/>
+    <code>4.</code>
+    <section id="go4"><div></div><div></div><div></div></section>
+
+    <br/><hr/><br/>
+    <code>5.</code>
+    <section id="go5"><span></span> <span></span> <span></span></section>
+
+    <br/><hr/><br/>
+    <code>6.</code>
+    <section id="go6">
+        <h2>Sąskaita Nr 006</h2>
+        <p data-amount>Žvakių kiekis: <span></span> vnt.</p>
+        <p data-subtotal>Žvakių kaina be nuolaidos: <span></span> eur</p>
+        <p data-discount>Nuolaida: <span></span> %</p>
+        <p data-total>Galutinė kaina: <span></span> eur</p>
+    </section>
+
+    <br/><hr/><br/>
+    <code>7.</code>
+    <section id="go7"><div></div></section>
+
+    <br/><hr/><br/>
+    <code>8.</code>
+    <section id="go8">
+        <div style="background-color: red;"></div>
+        <div style="background-color: blue;"></div>
+        <div style="background-color: green;"></div>
+        <div style="background-color: green;"></div>
+        <div style="background-color: green;"></div>
+        <div style="background-color: red;"></div>
+        <div data-result>
+            <h2>Rezultatas</h2>
+            <p data-green>Žali: <span></span></p>
+            <p data-red>Raudoni: <span></span></p>
+            <p data-blue>Mėlyni: <span></span></p>
+        </div>
+    </section>
+
+    <br/><hr/><br/>
+    <code>9.</code>
+    <section id="go9">
+        <div data-row-1><span>4</span> X <span>5</span> = <span></span></div>
+        <div data-row-2><span>6</span> X <span>1</span> = <span></span></div>
+        <div data-row-3><span>4</span> X <span>3</span> = <span></span></div>
+        <div data-row-4><span>6</span> X <span>5</span> = <span></span></div>
+        <div data-row-5><span>5</span> X <span>4</span> = <span></span></div>
+    </section>
+
+    <br/><hr/><br/>
+    <code>10.</code>
+    <section id="go10">
+        <div data-sq-1 style="width:149px; height:112px;"></div>
+        <div data-sq-2 style="width:171px; height:145px;"></div>
+        <div data-sq-3 style="width:103px; height:55px;"></div>
+        <div data-sq-4 style="width:135px; height:183px;"></div>
+        <div data-sq-5 style="width:85px; height:119px;"></div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
