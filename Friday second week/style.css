@@ -516,3 +516,41 @@ h2 {
     left: 18rem;
     top: 5rem;
 }
+
+.violet-Btn-bock {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-style: normal;
+    position: absolute;    
+}
+
+.background-Block {
+    position: relative;
+    top: 25rem;
+    width: 100%;
+    height: 400px;
+    display: flex; 
+}
+
+.apps-Tytle {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    position: absolute;
+    display: flex;
+    left: 25rem;
+    flex-wrap: wrap; 
+}
+
+.try-Btn {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    position: absolute;
+   flex-direction: row;
+   left: 31rem;
+   column-gap: 2rem;
+   justify-content: space-between;
+}
+  
