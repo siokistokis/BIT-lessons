@@ -383,4 +383,53 @@ h2 {
     background-color: var(--darkViolet);
     color: white;
 }
+
+.feedback {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-style: normal;
+   
+}
+
+.background {
+    width: 100%;
+    position: absolute;
+    position: relative;
+}
+
+.part1 {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 250px;
+    column-gap: 15px;
+    position: absolute;
+    left: 20%;   
+}
+
+.part2 {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 3rem;
+    width: 90%;
+    flex-wrap: wrap;
+    position: absolute;
+    padding: 10%;   
+}
+
+.part3 {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 250px;
+    column-gap: 15px;
+    position: absolute;
+    left: 20%;   
+}
   
