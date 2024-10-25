@@ -434,5 +434,85 @@ h2 {
 }
 
 .Join-us {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-style: normal;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 50px;
+    column-gap: 15px;
+    position: absolute;
+    left: 20%;   
+}
+
+.vector {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 400px;
+    column-gap: 15px;
+    position: absolute;
+    left: 20%;   
+}
+
+.snake {
+    position: relative;
+}
+
+.photos {
+    position: absolute;   
+}
+
+.face1 {
+    position: absolute;
+    right: 18rem;
+    top: 1rem;
+}
+.face2 {
+    position: absolute;
+    right: 13rem;
+    top: 6rem;
+}
+.face3 {
+    position: absolute;
+   right: 7rem;
+   top: 6rem;
+   
+}
+.face4 {
+    position: absolute;
+    right: 1rem;
+    top: 8rem;
     
+}
+.face5 {
+    position: absolute;
+    left: 2rem;
+    top: 8rem;
+    
+}
+.face6 {
+    position: absolute;
+    left: 8rem;
+    top: 7rem;
+}
+.face7 {
+    position: absolute;
+    left: 14rem;
+    top: 8rem;
+
+}
+.face8 {
+    position: absolute;
+    left: 18rem;
+    top: 5rem;
 }
