@@ -518,49 +518,4 @@ h2 {
     top: 5rem;
 }
 
-.violet-Btn-bock {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    font-style: normal;
-    background-color: #9A54BC;
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    position: relative;
-    color: white;    
-}
-
-.background-Block {
-        
-}
-
-.apps-Tytle {
-   margin-bottom: 10rem;
-    position: relative;
-    z-index: 2; 
-}
-
-.try-Btn {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 10rem;
-    z-index: 2;
-    position: absolute;
-    border-radius: 5%;
-    opacity: 1px;
-    color: white;
-    cursor: pointer;
-     background-color: #9A54BC;  
-}
-
-.try-Btn:hover {
-    background-color: white;
-    border: 2px solid;
-    color: white;
-}  
-
- 
 
