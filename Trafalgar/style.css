@@ -317,6 +317,8 @@
     font-style: normal;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
     color: white;
+    flex-direction: column;
+
  }
 
  .testemonials-Container {
@@ -324,15 +326,13 @@
     flex-direction: column;
     width: 900px;
     height: 320px;
-    background-image: url("./images/Rectangle\ 13.svg") url("./images/dots.svg");
+    background: #458FF6;
     border-radius: 10px;
-    position: relative;
+    justify-content: center;
+    align-items: center;
+    
  }
 
- .onblue{
-    width: 100%;
-    position: absolute;
- }
 
  .testimonials-Head {
     display: flex;
@@ -342,8 +342,7 @@
     width: 55%;
     margin-bottom: 70px;
     column-gap: 10px;
-    position: absolute;
-    left: 20%;   
+       
  }
 
  .testimonials-Expierens {
@@ -352,8 +351,7 @@
     justify-items: center;
     gap: 3rem;
     width: 80%;
-    flex-wrap: wrap;
-    position: absolute;
+    flex-wrap: wrap; 
     padding: 13%;    
  }
 
