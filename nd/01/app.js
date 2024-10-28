@@ -113,7 +113,7 @@ if (shape === 'circle') {
 
 // Užduotis 8: Apskritimų spalvų skaičiavimas
 const colors = { green: 0, red: 0, blue: 0 };
-document.querySelectorAll('#go8 div').forEach(div => {
+document.querySelectorAll('#go8 > div').forEach(div => {
     const color = div.style.backgroundColor;
     if (colors[color] !== undefined) colors[color]++;
 });
@@ -122,7 +122,7 @@ document.querySelector('[data-red] span').innerText = colors.red;
 document.querySelector('[data-blue] span').innerText = colors.blue;
 
 // Užduotis 9: Daugybos lentelė
-document.querySelectorAll('#go9 div').forEach(div => {
+document.querySelectorAll('#go9 > div').forEach(div => {
     const spans = div.querySelectorAll('span');
     const result = Number(spans[0].innerText) * Number(spans[1].innerText);
     spans[2].innerText = result;
