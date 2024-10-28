@@ -1,13 +1,13 @@
-const task1 = document.querySelector(".select1");
-const task2 = document.querySelector(".select2");
-const task3 = document.querySelector(".select3");
-const task4 = document.querySelector(".select4");
-const task5 = document.querySelector(".select5");
-const task6 = document.querySelector(".select6");
-const task7 = document.querySelector(".select7");
-const task8 = document.querySelector(".select8");
-const task9 = document.querySelector(".select9");
-const task10 = document.querySelector(".select10");
+const Task1 = document.querySelector(".select1");
+const Task2 = document.querySelector(".select2");
+const Task3 = document.querySelector(".select3");
+const Task4 = document.querySelector(".select4");
+const Task5 = document.querySelector(".select5");
+const Task6 = document.querySelector(".select6");
+const Task7 = document.querySelector(".select7");
+const Task8 = document.querySelector(".select8");
+const Task9 = document.querySelector(".select9");
+const Task10 = document.querySelector(".select10");
 
 
 
@@ -27,15 +27,15 @@ const skaicius = rand(-1000,1000);
 console.log(skaicius);
 
 if (skaicius>0) {
-    task1.innerText = 'Skaicius ${skaicius} yra teigiamas'
+    Task1.innerText = 'Skaicius ${skaicius} yra teigiamas'
 }
 
 else if (skaicius<0) {
-    task1.innerText = 'Skaicius ${sakaicius} yra neigiamas'
+    Task1.innerText = 'Skaicius ${sakaicius} yra neigiamas'
 }
 
 else{
-    task1.innerText = 'Skaicius yra nulis'
+    Task1.innerText = 'Skaicius yra nulis'
 }
 
 //Task2 : Lyginis arba nelyginis skaicius
@@ -47,17 +47,69 @@ const skaicius1 = rand(0,1000)
 console.log(skaicius);
 
 if (skaicius1 % 2 === 0) {
-    task2.innerText = 'Skaicius ${skaicius1} yra lyginis'
+    Task2.innerText = 'Skaicius ${skaicius1} yra lyginis'
 }
 
 else {
-    task2.innerText = 'Skaicius ${skaicius1} yra nelyginis'
-    task2.innerText = 'Mano skaicius ${skaicius1} yra lyginis'
+    Task2.innerText = 'Skaicius ${skaicius1} yra nelyginis'
+    Task2.innerText = 'Mano skaicius ${skaicius1}'
 }
 
 // Task3: temperatures patikrinimas
 //Aprasymas: Sukurk kintamaji temperatura. naudok if, kad patikrintum, ar temperatura zemiau nulio, tarp nulio ir 30, ar virs 30. Atspausdink tinkama pranesima.
 //Pvz.: Jei temperatura = 15, konsoleje turetu atsirasti tekstas "Temperarura yra tarp0 ir 30 laipsniu".
+
+const temp = rand(-30, 100)
+
+if(temp<0) {
+    Task3.innerText = 'temperatura ${temp} yra neigiama' 
+}
+
+else if (temp<=0 && temp<=30) {
+    Task3. innerText = 'temperatura${temp} yra tarp nulio ir trisdesimt'
+}
+
+else {
+    Task3.innerText = 'Its getting hot in here'
+}
+
+//if(temp>0) {
+    //Task3.innerText = 'temperatura ${temp} yra teigiama' 
+//}
+
+//else if (temp<0){
+    //Task3. innerText = 'temperatura${temp} yra neigiama'
+//}
+
+//else {
+    //Task3.innerText = 'temperarura yra nulis'
+//}
+
+//Task4: Amziaus tikrinimas
+//Aprasymas:  Sukurk kintamaji amzius ir patikrink,ar amzius yra mazesnis nei 18, tarp 18 ir ///65, ar virs 65. Atspausdink rezultata.
+//Pvz.: Jei amzius = 70, konsoleje turetu atsirasti tekstas "Asmuo yra pensinio amziaus".
+
+
+//Task5: Skaiciu palyginimas
+//Aprasymas: Sukurk du kintamuosius air break. Naudok if, kad palygintum ju reiksmes ir //atspausdintum, kuris yra didesnis, arba jei jie lygus.
+//Pvz.: Jei a = 10 ir b = 20, konsoleje turetu atsirasti tekstas "Skaicius b yra didesnis".
+
+const skaicius5 = rand(1000, 2000);
+const skaicius50 = rand(1000, 2000);
+
+console.log(skaicius5, skaicius50);
+
+if(skaicius5 >= skaicius50) {
+    Task5.innerText = 'Skaicius ${skaicius5} yra didesnis uz ${skaicius50}'
+}
+
+else if (skaicius50>skaicius5) {
+    Task5.innerText = 'Skaicius ${skaicius50} yra didesnis uz ${skaicius5}'
+}
+
+else {
+    Task5.innerText = 'skaicius ${skaicius5} yra lygus ${skaicius50)'
+}
 
 
 // Task6: Pasiūlymas pirkėjui
