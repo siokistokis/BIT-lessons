@@ -62,7 +62,7 @@ spans3[2].innerText = result;
 
 // Užduotis 4: Trys apskritimai išrikiuoti pagal dydį
 const sizes = [rand(50, 200), rand(50, 200), rand(50, 200)].sort((a, b) => a - b);
-const go4Divs = document.querySelectorAll('#go4 > div');
+const go4Divs = document.querySelectorAll('#go4 div');
 
 go4Divs.forEach((div, i) => {
     div.style.width = `${sizes[i]}px`;
@@ -74,7 +74,7 @@ go4Divs.forEach((div, i) => {
 });
 
 // Užduotis 5: Skaičių spalvinimas pagal ženklą
-const spans = document.querySelectorAll('#go5 > span');
+const spans = document.querySelectorAll('#go5 span');
 spans.forEach(span => {
     const number = rand(-10, 10);
     span.innerText = number;
@@ -84,7 +84,7 @@ spans.forEach(span => {
 // Užduotis 6: Žvakių kainos skaičiavimas su nuolaida
 const candles = rand(5, 3000);
 const price = candles * 1;
-const discount = price > 2000 ? 4 : price > 1000 ? 3 : 0;
+const discount = candles > 2000 ? 4 : candles > 1000 ? 3 : 0;
 const finalPrice = price - (price * discount / 100);
 document.querySelector('[data-amount] span').innerText = candles;
 document.querySelector('[data-subtotal] span').innerText = price;
@@ -94,7 +94,7 @@ document.querySelector('[data-total] span').innerText = finalPrice.toFixed(2);
 // Užduotis 7: Atsitiktinė forma iš apskritimo, keturkampio ar trikampio
 const shapes = ['circle', 'square', 'triangle'];
 const shape = shapes[rand(0, 2)];
-const div = document.querySelector('#go7 > div');
+const div = document.querySelector('#go7 div');
 div.style.width = '100px';
 div.style.height = '100px';
 if (shape === 'circle') {
