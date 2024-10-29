@@ -29,14 +29,49 @@ const C = [
     }
 ];
 
-const cartItemHtml = `
-                        <li>
-                            <img src="${img}" alt="${title}">
-                            <div class="info">
-                                <h3>${title}</h3>
-                                <p>${price.toFixed(2)} €</p>
-                                <p>Quantity: ${quantity}</p>
-                            </div>
-                            <button>X</button>
-                        </li>
-                        `;
+let cartRender = _ => {
+    let cartHtml ='';
+    C.forEach(item => {
+        const { id, img,title,price, quantity} = item;
+        const cartItemHtml = `
+                    <li>
+                        <img src="${img}" alt="${title}">
+                        <div class="info">
+                            <h3>${title}</h3>
+                            <p>${price.toFixed(2)} €</p>
+                            <p>Quantity: ${quantity}</p>
+                        </div>
+                        <button>X</button>
+                    </li>
+                     `;
+        cartHtml += cartItemHtml;
+    });
+    document.querySelector('#mini-cart ul').innerHTML = cartHtml;   
+}
+
+const addEvents = _ => {
+    document.querySelector ('#mini-cart ul')
+    .forEach(li => {
+        const button = li.querySelector('button')
+        button.addEventListener('click', _ => {
+            const id = e.target.dataset.id;
+            C = C.filter(item => item.id !== parseInt(id));
+            cartRender();
+            addEvents();
+        });
+    });
+}
+
+cartRender();
+addEvents();
+
+
+//for (let i = 0; i < C.length; i++) {
+//    const item = C[i];
+//    const img = item.img
+//    const title = item.title;
+//    const price = item.price;
+//    const quantity = item.quantity;
+   
+
+
