@@ -42,17 +42,17 @@ else{
 //Aprastmas:Sukurk kintamaji skaiciu ir priskirk jam reiksme.Naudodamas if, patikrink, ar skacius yra lyginis, ar nelyginis. Atspausdink rezultata.
 //Pvz.: Jei sakiacius = 4, konsoleje turetu atsirastitekstas "skaicius yra lyginis".
 
-const skaicius1 = rand(0,1000)
+const Number1 = rand(0,1000)
 
-console.log(skaicius);
+console.log(Number);
 
-if (skaicius1 % 2 === 0) {
-    Task2.innerText = `Skaicius ${skaicius1} yra lyginis`
+if (Number1 % 2 === 0) {
+    Task2.innerText = `Number ${Number1} even`
 }
 
 else {
-    Task2.innerText = `Skaicius ${skaicius1} yra nelyginis`
-    Task2.innerText = `Mano skaicius ${skaicius1}`
+    Task2.innerText = `Skaicius ${Number1} odd`
+    Task2.innerText = `My Number ${Number1}`
 }
 
 // Task3: temperatures patikrinimas
@@ -124,8 +124,21 @@ else {
 // Aprašymas: Sukurk kintamąjį vardas. Jei vardas yra „Jonas“, atspausdink „Labas, Jonai!“, jei „Ona“ – „Labas, Ona!“, o kitu atveju – „Labas, [vardas]!“.
 // Pavyzdys: Jei vardas = „Ona“, konsolėje turėtų atsirasti tekstas „Labas, Ona!“.
  
- 
- 
+ const name = rand(1, 3);
+
+ let Name1 = 'George';
+ let Name2 = 'Jack';
+ let Name3 = 'Henry';
+
+  if (Name = 1) {
+    Task7.innerText = `Hello ${Name1}`
+  } 
+  else if (Name = 2) {
+    Task7.innerText = `Hello ${Name2}`
+  } 
+  else if (Name = 3) {
+    Task7.innerText = `Hello ${Name3}`
+  }
  
 // Užduotis 8: Egzaminų rezultatas
 // Aprašymas: Sukurk kintamąjį rezultatas. Jei rezultatas didesnis nei 90, parašyk „Puiku!“, jei tarp 60 ir 90 – „Gerai!“, jei žemiau 60 – „Nepakanka!“.
@@ -139,13 +152,28 @@ else {
 // Aprašymas: Sukurk kintamąjį valandos. Jei valandos reikšmė tarp 9 ir 17 (imtinai), parašyk „Dabar darbo laikas“, kitu atveju – „Ne darbo laikas“.
 // Pavyzdys: Jei valandos = 14, konsolėje turėtų atsirasti tekstas „Dabar darbo laikas“.
  
- 
- 
+ const Hour = rand(8, 24);
+
+ if (Hour>= 8 && Hour<=17) {
+    Task9.innerText = `${Hour} working time`
+ }  
+ else {
+    Task9.innerText = `${Hour} closed`
+}
  
 // Užduotis 10: Studentų balai
 // Aprašymas: Sukurk kintamuosius studentas1 ir studentas2. Patikrink, kuris iš jų gavo daugiau balų, ir atspausdink atitinkamą pranešimą.
 // Pavyzdys: Jei studentas1 = 75 ir studentas2 = 85, konsolėje turėtų atsirasti tekstas „Studentas 2 gavo daugiau balų“.
  
+const Student1 = rand (1, 100);
+const Student2 = rand (1, 1000);
+
+if (Student1< Student2) {
+    Task10.innerText = `Student2 got ${Student2}. Student1 got ${Student1}. Student2 got more points`
+} else {
+    Task10.innerText = `Student1 got ${Student1}. Student2 got ${Student2}. Student1 got more points`
+}
+
  
 // Užduotis 4: Amžiaus tikrinimas
 // Aprašymas: Sukurk kintamąjį amzius ir patikrink, ar amžius yra mažesnis nei 18, tarp 18 ir 65, ar virš 65. Atspausdink rezultatą.
