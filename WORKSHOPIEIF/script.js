@@ -27,15 +27,15 @@ const skaicius = rand(-1000,1000);
 console.log(skaicius);
 
 if (skaicius>0) {
-    Task1.innerText = 'Skaicius ${skaicius} yra teigiamas'
+    Task1.innerText = `Skaicius ${skaicius} yra teigiamas`
 }
 
 else if (skaicius<0) {
-    Task1.innerText = 'Skaicius ${sakaicius} yra neigiamas'
+    Task1.innerText = `Skaicius ${skaicius} yra neigiamas`
 }
 
 else{
-    Task1.innerText = 'Skaicius yra nulis'
+    Task1.innerText = `Skaicius yra nulis`
 }
 
 //Task2 : Lyginis arba nelyginis skaicius
@@ -47,12 +47,12 @@ const skaicius1 = rand(0,1000)
 console.log(skaicius);
 
 if (skaicius1 % 2 === 0) {
-    Task2.innerText = 'Skaicius ${skaicius1} yra lyginis'
+    Task2.innerText = `Skaicius ${skaicius1} yra lyginis`
 }
 
 else {
-    Task2.innerText = 'Skaicius ${skaicius1} yra nelyginis'
-    Task2.innerText = 'Mano skaicius ${skaicius1}'
+    Task2.innerText = `Skaicius ${skaicius1} yra nelyginis`
+    Task2.innerText = `Mano skaicius ${skaicius1}`
 }
 
 // Task3: temperatures patikrinimas
@@ -62,15 +62,15 @@ else {
 const temp = rand(-30, 100)
 
 if(temp<0) {
-    Task3.innerText = 'temperatura ${temp} yra neigiama' 
+    Task3.innerText = `temperatura ${temp} yra neigiama` 
 }
 
-else if (temp<=0 && temp<=30) {
-    Task3. innerText = 'temperatura${temp} yra tarp nulio ir trisdesimt'
+else if (temp>=0 && temp<=30) {
+    Task3. innerText = `temperatura${temp} yra tarp nulio ir trisdesimt`
 }
 
 else {
-    Task3.innerText = 'Its getting hot in here'
+    Task3.innerText = `Its getting hot in here`
 }
 
 //if(temp>0) {
@@ -100,15 +100,15 @@ const skaicius50 = rand(1000, 2000);
 console.log(skaicius5, skaicius50);
 
 if(skaicius5 >= skaicius50) {
-    Task5.innerText = 'Skaicius ${skaicius5} yra didesnis uz ${skaicius50}'
+    Task5.innerText = `Skaicius ${skaicius5} yra didesnis uz ${skaicius50}`
 }
 
 else if (skaicius50>skaicius5) {
-    Task5.innerText = 'Skaicius ${skaicius50} yra didesnis uz ${skaicius5}'
+    Task5.innerText = `Skaicius ${skaicius50} yra didesnis uz ${skaicius5}`
 }
 
 else {
-    Task5.innerText = 'skaicius ${skaicius5} yra lygus ${skaicius50)'
+    Task5.innerText = `skaicius ${skaicius5} yra lygus ${skaicius50}`
 }
 
 
