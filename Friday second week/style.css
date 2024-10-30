@@ -438,7 +438,7 @@ h2 {
     align-items: center;
     display: flex;
     font-style: normal;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     width: 100%;
     flex-direction: column;
     gap: 50px;
@@ -458,6 +458,7 @@ h2 {
     width: 50%;
     text-align: center;
 }
+ 
 
 .vector {
     display: flex;
@@ -467,6 +468,19 @@ h2 {
     width: 50%;
     column-gap: 15px;
     position: relative;  
+}
+
+.Join-us-Btn {
+    background-color: #9A54BC;
+    padding: 10px 20px;
+    border: 2px solid ;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Join-us-Btn:hover {
+    color: white;
 }
 
 .snake {
@@ -520,6 +534,35 @@ h2 {
     position: absolute;
     left: 18rem;
     top: 5rem;
+}
+
+.violet-Btn-block {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-style: normal;
+    background-color: #9A54BC;
+    color: white;
+    width: 100%;
+    flex-direction: column;
+    gap: 70px;
+    padding: 50px 0;
+}
+
+.try-Btn button {
+    background-color: #9A54BC;
+    padding: 10px 20px;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 2rem;
+    border: white solid;
+    color: white;
+}
+
+.try-Btn button:hover {
+    background-color: white;
+    color: black;
 }
 
 
