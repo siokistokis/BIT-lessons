@@ -360,7 +360,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
  }
 
  /* .slider {
@@ -451,7 +450,8 @@
 }
 
  .Trafalgar {
-
+    width: 35%;
+    gap: 5rem;
  }
 
  .first-Box-Title {
@@ -467,3 +467,16 @@
  .leter-T {
    
  }
+
+ .footer-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(183.41deg, #67C3F3 -8.57%, #5A98F2 82.96%);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    color: white;
+    gap: 10x;
+    
+ }
+
+
