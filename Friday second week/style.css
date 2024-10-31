@@ -565,4 +565,19 @@ h2 {
     color: black;
 }
 
+.find-Us {
+    justify-content: center;
+    align-items: center;
+    font-style: normal; 
+}
 
+.contacts {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 10%;
+    text-wrap: 50%;
+    line-height: 3rem;
+    
+}

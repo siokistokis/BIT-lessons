@@ -431,6 +431,7 @@
     border: 1px solid;
     border-radius: 20px;
     cursor: pointer;
+    margin-bottom: 3rem;
 }
 
 .wiew-All:hover {
@@ -438,4 +439,31 @@
     cursor: grab;
 }
 
- 
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(183.41deg, #67C3F3 -8.57%, #5A98F2 82.96%);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    color: white;
+    gap: 30px;
+    width: 100%;
+}
+
+ .Trafalgar {
+
+ }
+
+ .first-Box-Title {
+    display: flex;
+    gap: 1rem;
+ }
+
+ .White-Circle {
+  
+   
+ }
+
+ .leter-T {
+   
+ }
