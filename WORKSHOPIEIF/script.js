@@ -32,6 +32,7 @@ if (skaicius>0) {
 
 else if (skaicius<0) {
     Task1.innerText = `Skaicius ${skaicius} yra neigiamas`
+    //Task1.innerText = 'Skaicius ' + skaicius + ' yra neigiamas'
 }
 
 else{

@@ -489,3 +489,11 @@
 .no-bullet {
     list-style-type: none;
 }
+
+.footer-image-element {
+    position: absolute;
+    overflow: hidden;
+    height: 5rem;
+    margin-top: 10rem;
+    margin-left: -70rem;
+}

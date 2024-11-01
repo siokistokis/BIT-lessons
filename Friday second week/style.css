@@ -7,7 +7,7 @@
 :root {
     --lightViolet: #9A54BC;
     --midViolet: #60267F;
-    --darkViolet: #2B0236;    
+    --darkViolet: #2B0236;
 }
 
 body {
@@ -38,12 +38,13 @@ h2 {
 }
 
 .mainHeader {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 30px;
     border-bottom: rgba(220, 220, 220, 0.227) 3px solid;
 }
+
 .navigationContainer {
     gap: 20px;
 }
@@ -55,7 +56,7 @@ h2 {
     gap: 20px;
 }
 
-.navigationContainer nav ul li{
+.navigationContainer nav ul li {
     list-style: none;
     font-size: 14px;
 }
@@ -79,7 +80,7 @@ h2 {
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
-} 
+}
 
 .headerBtn:hover {
     background-color: #9A54BC;
@@ -131,14 +132,17 @@ h2 {
 }
 
 .smallEllipse {
-    top:-170px;
+    top: -170px;
 }
+
 .rectangle {
     top: -160px;
 }
+
 .ellipselogo {
     top: -50px;
 }
+
 .elipseBtn {
     padding: 7px 12px;
     background-color: white;
@@ -203,8 +207,9 @@ h2 {
     flex-direction: column;
     height: 100%;
     gap: 50px;
-    
+
 }
+
 .ancorContainer {
     width: 100%;
     height: 50px;
@@ -220,7 +225,7 @@ h2 {
     width: 50%;
     text-align: center;
     padding: 10px 0;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 .ancorContainer a :hover {
@@ -277,6 +282,7 @@ h2 {
 .projectsDoneContainer {
     gap: 120px;
 }
+
 .card {
     display: flex;
     flex-direction: column;
@@ -389,7 +395,7 @@ h2 {
     align-items: center;
     display: flex;
     font-style: normal;
-   
+
 }
 
 .background {
@@ -407,7 +413,7 @@ h2 {
     margin-bottom: 250px;
     column-gap: 15px;
     position: absolute;
-    left: 20%;   
+    left: 20%;
 }
 
 .part2 {
@@ -418,7 +424,7 @@ h2 {
     width: 90%;
     flex-wrap: wrap;
     position: absolute;
-    padding: 10%;   
+    padding: 10%;
 }
 
 .part3 {
@@ -430,7 +436,7 @@ h2 {
     margin-top: 250px;
     column-gap: 15px;
     position: absolute;
-    left: 20%;   
+    left: 20%;
 }
 
 .Join-us {
@@ -452,13 +458,14 @@ h2 {
     flex-direction: column;
     width: 100%;
     margin-bottom: 50px;
-    position: relative;  
+    position: relative;
 }
+
 .title p {
     width: 50%;
     text-align: center;
 }
- 
+
 
 .vector {
     display: flex;
@@ -467,13 +474,13 @@ h2 {
     flex-direction: column;
     width: 50%;
     column-gap: 15px;
-    position: relative;  
+    position: relative;
 }
 
 .Join-us-Btn {
     background-color: #9A54BC;
     padding: 10px 20px;
-    border: 2px solid ;
+    border: 2px solid;
     font-weight: 400;
     border-radius: 5px;
     cursor: pointer;
@@ -488,7 +495,7 @@ h2 {
 }
 
 .photos {
-    position: absolute;   
+    position: absolute;
 }
 
 .face1 {
@@ -496,40 +503,47 @@ h2 {
     right: 18rem;
     top: 1rem;
 }
+
 .face2 {
     position: absolute;
     right: 13rem;
     top: 6rem;
 }
+
 .face3 {
     position: absolute;
-   right: 7rem;
-   top: 6rem;
-   
+    right: 7rem;
+    top: 6rem;
+
 }
+
 .face4 {
     position: absolute;
     right: 1rem;
     top: 8rem;
-    
+
 }
+
 .face5 {
     position: absolute;
     left: 2rem;
     top: 8rem;
-    
+
 }
+
 .face6 {
     position: absolute;
     left: 8rem;
     top: 7rem;
 }
+
 .face7 {
     position: absolute;
     left: 14rem;
     top: 8rem;
 
 }
+
 .face8 {
     position: absolute;
     left: 18rem;
@@ -568,7 +582,7 @@ h2 {
 .find-Us {
     justify-content: center;
     align-items: center;
-    font-style: normal; 
+    font-style: normal;
 }
 
 .contacts {
@@ -579,33 +593,21 @@ h2 {
     margin-right: 10%;
     text-wrap: 50%;
     line-height: 3rem;
-    
-}
-
-.footer {
 
 }
 
-.footer-First-Part {
+.footer {}
 
+.footer-First-Part {}
+
+.foter-Box1 {}
+
+.Collab-Logo {}
+
+.iconss>img {
+    height: 2rem;
 }
 
-.foter-Box1 {
+.footer-boxes {}
 
-}
-
-.Collab-Logo {
-
-}
-
-.icons {
-
-}
-
-.footer-boxes {
-
-}
-
-.footer-Last-Part {
-    
-}
+.footer-Last-Part {}
