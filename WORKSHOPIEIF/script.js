@@ -23,37 +23,37 @@ console.log("Veikia");
 //Aprasymas: Sukurk kintamaji skaiciu ir priskirk jam reiksme. naudojant if, patikrink ar sis skaucius teigiamas, ar neigiamas.Atspausdink rezultata.
 //Pvz.: Jei skaicius = -5, konsoleje turetu atsirasti tekstas"Skaicius yra neigiamas".
 
-const skaicius = rand(-1000,1000);
-console.log(skaicius);
+const number = rand(-1000,1000);
+console.log(number);
 
-if (skaicius>0) {
-    Task1.innerText = `Skaicius ${skaicius} yra teigiamas`
+if (number>0) {
+    Task1.innerText = `The Number ${number} are positive`
 }
 
-else if (skaicius<0) {
-    Task1.innerText = `Skaicius ${skaicius} yra neigiamas`
+else if (number<0) {
+    Task1.innerText = `The number ${number} are negative`
     //Task1.innerText = 'Skaicius ' + skaicius + ' yra neigiamas'
 }
 
 else{
-    Task1.innerText = `Skaicius yra nulis`
+    Task1.innerText = `The Number is zero`
 }
 
 //Task2 : Lyginis arba nelyginis skaicius
 //Aprastmas:Sukurk kintamaji skaiciu ir priskirk jam reiksme.Naudodamas if, patikrink, ar skacius yra lyginis, ar nelyginis. Atspausdink rezultata.
 //Pvz.: Jei sakiacius = 4, konsoleje turetu atsirastitekstas "skaicius yra lyginis".
 
-const Number1 = rand(0,1000)
+const number1 = rand(0,1000)
 
-console.log(Number);
+console.log(number);
 
-if (Number1 % 2 === 0) {
-    Task2.innerText = `Number ${Number1} even`
+if (number1 % 2 === 0) {
+    Task2.innerText = ` The Number ${number1} is even`
 }
 
 else {
-    Task2.innerText = `Skaicius ${Number1} odd`
-    Task2.innerText = `My Number ${Number1}`
+    Task2.innerText = `The Number ${number1} is odd`
+    Task2.innerText = `My Number ${number1}`
 }
 
 // Task3: temperatures patikrinimas
@@ -63,11 +63,11 @@ else {
 const temp = rand(-30, 100)
 
 if(temp<0) {
-    Task3.innerText = `temperatura ${temp} yra neigiama` 
+    Task3.innerText = ` The temperature ${temp} is below zero` 
 }
 
 else if (temp>=0 && temp<=30) {
-    Task3. innerText = `temperatura${temp} yra tarp nulio ir trisdesimt`
+    Task3. innerText = ` The temperature ${temp} is between zero and thirty`
 }
 
 else {
@@ -90,16 +90,16 @@ else {
 //Aprasymas:  Sukurk kintamaji amzius ir patikrink,ar amzius yra mazesnis nei 18, tarp 18 ir ///65, ar virs 65. Atspausdink rezultata.
 //Pvz.: Jei amzius = 70, konsoleje turetu atsirasti tekstas "Asmuo yra pensinio amziaus".
 
-const amzius = rand(0, 100);
+const age = rand(0, 100);
 
-console.log (amzius);
+console.log (age);
 
-if(amzius < 18) {
-    Task4.innerText = `child his age is ${amzius}`
+if(age < 18) {
+    Task4.innerText = `a child of ${age} years old`
 }
 
-else if (amzius >18 && amzius<65) {
-    Task4.innerHTML = `workers his age is ${amzius}`
+else if (age >18 && age<65) {
+    Task4.innerHTML = `worker's age is ${age}`
 }
 
 else {
@@ -110,21 +110,21 @@ else {
 //Aprasymas: Sukurk du kintamuosius air break. Naudok if, kad palygintum ju reiksmes ir //atspausdintum, kuris yra didesnis, arba jei jie lygus.
 //Pvz.: Jei a = 10 ir b = 20, konsoleje turetu atsirasti tekstas "Skaicius b yra didesnis".
 
-const skaicius5 = rand(1000, 2000);
-const skaicius50 = rand(1000, 2000);
+const number5 = rand(1000, 2000);
+const number50 = rand(1000, 2000);
 
-console.log(skaicius5, skaicius50);
+console.log(number5, number50);
 
-if(skaicius5 >= skaicius50) {
-    Task5.innerText = `Skaicius ${skaicius5} yra didesnis uz ${skaicius50}`
+if(number5 >= number50) {
+    Task5.innerText = ` The Number ${number5} is greater than ${number50}`
 }
 
-else if (skaicius50>skaicius5) {
-    Task5.innerText = `Skaicius ${skaicius50} yra didesnis uz ${skaicius5}`
+else if (number50>number5) {
+    Task5.innerText = ` The Number ${number5} is less than ${number50}`
 }
 
 else {
-    Task5.innerText = `skaicius ${skaicius5} yra lygus ${skaicius50}`
+    Task5.innerText = `The Numbers ${number5} are equal ${number50}`
 }
 
 
@@ -132,8 +132,22 @@ else {
 // Aprašymas: Sukurk kintamąjį suma. Jei suma mažesnė nei 100, pasiūlyk „Įsigyk daugiau prekių“. Jei suma tarp 100 ir 500, parašyk „Jūs gaunate nuolaidą!“. Jei virš 500, parašyk „Jūs gaunate papildomą dovaną!“.
 // Pavyzdys: Jei suma = 250, konsolėje turėtų atsirasti tekstas „Jūs gaunate nuolaidą!“.
  
+const sum = rand(0, 400);
+
+
+console.log(sum);
+
+if(sum<100) {
+    Task6.innerText = `You cuold by more goods`
+}
  
- 
+ else if(sum>250) {
+    Task6.innerText = `You are getting a discount`
+ }
+
+ else {
+    Task6.innerText = `Thank you for your purchase`
+ }
  
  
 // Užduotis 7: Vardų patikrinimas
@@ -142,27 +156,44 @@ else {
  
  const name = rand(1, 3);
 
- let Name1 = 'George';
- let Name2 = 'Jack';
- let Name3 = 'Henry';
+ console.log (name)
 
-  if (Name = 1) {
-    Task7.innerText = `Hello ${Name1}`
+ let name1 = 'George';
+ let name2 = 'Jack';
+ let name3 = 'Henry';
+
+  if(name1) {
+    Task7.innerText = `Hello ${name1}`
   } 
-  else if (Name = 2) {
-    Task7.innerText = `Hello ${Name2}`
-  } 
-  else if (Name = 3) {
-    Task7.innerText = `Hello ${Name3}`
+
+  else if(name2) {
+    Task7.innerText = `Hello ${name2}`
+  }
+
+  else {
+    Task7.innerText = `Hello ${name3}`
   }
  
 // Užduotis 8: Egzaminų rezultatas
 // Aprašymas: Sukurk kintamąjį rezultatas. Jei rezultatas didesnis nei 90, parašyk „Puiku!“, jei tarp 60 ir 90 – „Gerai!“, jei žemiau 60 – „Nepakanka!“.
 // Pavyzdys: Jei rezultatas = 85, konsolėje turėtų atsirasti tekstas „Gerai!“.
  
+ const result = rand(1,100)
  
+ console.log (result);
+
+ if(result>90) {
+    Task8.innerText = `Excellent! :)`
+ }
+
+ else if(result<60) {
+    Task8.innerText = `Not Enough :(`
+ }
  
- 
+ else {
+    Task8.innerText = `Good`
+ }
+
  
 // Užduotis 9: Darbo valandos
 // Aprašymas: Sukurk kintamąjį valandos. Jei valandos reikšmė tarp 9 ir 17 (imtinai), parašyk „Dabar darbo laikas“, kitu atveju – „Ne darbo laikas“.
