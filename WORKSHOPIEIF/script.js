@@ -90,6 +90,21 @@ else {
 //Aprasymas:  Sukurk kintamaji amzius ir patikrink,ar amzius yra mazesnis nei 18, tarp 18 ir ///65, ar virs 65. Atspausdink rezultata.
 //Pvz.: Jei amzius = 70, konsoleje turetu atsirasti tekstas "Asmuo yra pensinio amziaus".
 
+const amzius = rand(0, 100);
+
+console.log (amzius);
+
+if(amzius < 18) {
+    Task4.innerText = `child his age is ${amzius}`
+}
+
+else if (amzius >18 && amzius<65) {
+    Task4.innerHTML = `workers his age is ${amzius}`
+}
+
+else {
+    Task4.innerHTML = `retired`
+}
 
 //Task5: Skaiciu palyginimas
 //Aprasymas: Sukurk du kintamuosius air break. Naudok if, kad palygintum ju reiksmes ir //atspausdintum, kuris yra didesnis, arba jei jie lygus.
