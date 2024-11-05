@@ -154,7 +154,7 @@ if(sum<100) {
 // Aprašymas: Sukurk kintamąjį vardas. Jei vardas yra „Jonas“, atspausdink „Labas, Jonai!“, jei „Ona“ – „Labas, Ona!“, o kitu atveju – „Labas, [vardas]!“.
 // Pavyzdys: Jei vardas = „Ona“, konsolėje turėtų atsirasti tekstas „Labas, Ona!“.
  
- const name = rand(1, 3);
+ const name = rand(1, 4);
 
  console.log (name)
 
@@ -162,11 +162,11 @@ if(sum<100) {
  let name2 = 'Jack';
  let name3 = 'Henry';
 
-  if(name1) {
+  if(name === 1) {
     Task7.innerText = `Hello ${name1}`
   } 
 
-  else if(name2) {
+  else if(name === 2) {
     Task7.innerText = `Hello ${name2}`
   }
 
