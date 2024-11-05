@@ -74,7 +74,12 @@ for (let i = 0; i < Numbers.length; i++) {
 // Didžiausio skaičiaus paieška sąraše
 // Sukurkite sąrašą skaičių ir raskite didžiausią skaičių. Tikrinkite kiekvieną reikšmę cikle.
 let numberss = [3, 45, 23, 67, 12, 90, 34];
- 
+for (let i = 0; i < numberss.length; i++) {
+    if(numberss[i] ){
+         console.log(numberss[i]);
+    }  
+}
+
  
  
  
