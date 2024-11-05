@@ -81,8 +81,6 @@ for (let i = 0; i < biggestNumberumberss.length; i++) {
 }
 
  
- 
- 
 // Raidžių skaičiavimas žodyje
 // Sukurkite žodį ir suskaičiuokite, kiek kartų žodyje pasikartoja raidė „a“.
 let word = "banana";
