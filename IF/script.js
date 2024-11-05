@@ -73,10 +73,10 @@ for (let i = 0; i < Numbers.length; i++) {
 
 // Didžiausio skaičiaus paieška sąraše
 // Sukurkite sąrašą skaičių ir raskite didžiausią skaičių. Tikrinkite kiekvieną reikšmę cikle.
-let numberss = [3, 45, 23, 67, 12, 90, 34];
-for (let i = 0; i < numberss.length; i++) {
-    if(numberss[i] ){
-         console.log(numberss[i]);
+let biggestNumber = [3, 45, 23, 67, 12, 90, 34];
+for (let i = 0; i < biggestNumberumberss.length; i++) {
+    if(biggestNumber[i] ){
+         console.log(biggestNumber[i]);
     }  
 }
 
@@ -85,15 +85,30 @@ for (let i = 0; i < numberss.length; i++) {
  
 // Raidžių skaičiavimas žodyje
 // Sukurkite žodį ir suskaičiuokite, kiek kartų žodyje pasikartoja raidė „a“.
-// let word = "banana";
+let word = "banana";
+for (let i = 0; i < word.length; i++) {
+    if(word[i].includes('a')){
+         console.log(word[i]);
+    }  
+}
+
  
  
 // Amžių filtravimas sąraše
 // Sukurkite sąrašą žmonių amžių. Išspausdinkite tik tuos, kurie yra vyresni nei 18.
-// let ages = [12, 17, 22, 19, 15, 30, 18];
- 
- 
+let ages = [12, 17, 22, 19, 15, 30, 18];
+for (let i = 0; i < ages.length; i++) {
+    if(ages[i] > 18){
+         console.log(ages[i]);
+    }  
+}
+
  
 // Skaičių dalybos liekanos tikrinimas
 // Sukurkite sąrašą skaičių. Išspausdinkite tik tuos skaičius, kurie, dalijant iš 2, turi liekaną.
-// let numbers = [5, 8, 13, 22, 31, 40];
+let numberss = [5, 8, 13, 22, 31, 40];
+for (let i = 0; i < numberss.length; i++) {
+    if(numberss[i] % 2 === ) {
+        console.log(numberss[i]);
+    }
+}
