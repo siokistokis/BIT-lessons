@@ -66,47 +66,48 @@ for (let i = 0; i < sentences.length; i++) {
 let Numbers = [2, 5, 7, 8, 10, 12];
 
 for (let i = 0; i < Numbers.length; i++) {
-    if(Numbers[i] > Math.sqrt; pow** < 50){ ?????
-         console.log(Numbers[i]);
+    const Sqware = Numbers[i] **2
+    if(Sqware > 50) { 
+         console.log(Sqware);
     }  
 }
 
 // Didžiausio skaičiaus paieška sąraše
 // Sukurkite sąrašą skaičių ir raskite didžiausią skaičių. Tikrinkite kiekvieną reikšmę cikle.
-let biggestNumber = [3, 45, 23, 67, 12, 90, 34];
-for (let i = 0; i < biggestNumberumberss.length; i++) {
-    if(biggestNumber[i] ){
-         console.log(biggestNumber[i]);
-    }  
-}
+//let biggestNumber = [3, 45, 23, 67, 12, 90, 34];
+for (let i = 0; i < biggestNumber.length; i++) {
+    //if(biggestNumber[i] ){
+         //console.log(biggestNumber[i]);
+    //}  
+//}
 
  
 // Raidžių skaičiavimas žodyje
 // Sukurkite žodį ir suskaičiuokite, kiek kartų žodyje pasikartoja raidė „a“.
-let word = "banana";
-for (let i = 0; i < word.length; i++) {
-    if(word[i].includes('a')){
-         console.log(word[i]);
-    }  
-}
+//let word = "banana";
+//for (let i = 0; i < word.length; i++) {
+    //if(word[i].includes('a')){
+         //console.log(word[i]);
+    //}  
+//}
 
  
  
 // Amžių filtravimas sąraše
 // Sukurkite sąrašą žmonių amžių. Išspausdinkite tik tuos, kurie yra vyresni nei 18.
-let ages = [12, 17, 22, 19, 15, 30, 18];
-for (let i = 0; i < ages.length; i++) {
-    if(ages[i] > 18){
-         console.log(ages[i]);
-    }  
-}
+//let ages = [12, 17, 22, 19, 15, 30, 18];
+//for (let i = 0; i < ages.length; i++) {
+    //if(ages[i] > 18){
+        // console.log(ages[i]);
+    //}  
+//}
 
  
 // Skaičių dalybos liekanos tikrinimas
 // Sukurkite sąrašą skaičių. Išspausdinkite tik tuos skaičius, kurie, dalijant iš 2, turi liekaną.
-let numberss = [5, 8, 13, 22, 31, 40];
-for (let i = 0; i < numberss.length; i++) {
-    if(numberss[i] % 2 === ) {
-        console.log(numberss[i]);
-    }
-}
+//let numberss = [5, 8, 13, 22, 31, 40];
+//for (let i = 0; i < numberss.length; i++) {
+    //if(numberss[i] % 2 === ) {
+       // console.log(numberss[i]);
+    //}
+//}
