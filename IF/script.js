@@ -67,7 +67,7 @@ let Numbers = [2, 5, 7, 8, 10, 12];
 
 for (let i = 0; i < Numbers.length; i++) {
     const Square = Numbers[i] **2
-    if(Sqware > 50) { 
+    if(Square > 50) { 
          console.log(Square);
     }  
 }
