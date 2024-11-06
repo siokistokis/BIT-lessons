@@ -74,47 +74,26 @@ for (let i = 0; i < Numbers.length; i++) {
 
 // Didžiausio skaičiaus paieška sąraše
 // Sukurkite sąrašą skaičių ir raskite didžiausią skaičių. Tikrinkite kiekvieną reikšmę cikle.
-let integers = [3, 45, 23, 67, 12, 90, 34];
-//findLargest([3, 45, 23, 67, 12, 90, 34]);
-//let findLargest = [3, 45, 23, 67, 12, 90, 34];
-//let i = 0;
-//function findLargest (integers) {
-   for (let x = 0; x < integers.length; x++) {
-        const largest = integers[i] < x;
-        if(largest < x) {
-            console.log(largest);
-        } 
-    }
-   
-//}
+let integers = [3, 45, 23, 67, 12, 90, 34]; 
+//didnotunderstand
+let theLargest = integers[0]; 
+for (let i=0; i < integers.length; i++) { 
+if (integers[i] > theLargest){
+    theLargest = integers[i]; 
+} 
+console.log(theLargest);
+} 
 
-
-//for (let i = 0; i < integers.length; i++) {
-
-    //const findLargest = integers[i] > x;
-
-    //if(findLargest[i] > x){
-         //console.log(findLargest);
-         //console.log(i)
-         //console.log(integers);
-    //}  
-//}
-
-
-//let largestNumArr = [3, 45, 23, 67, 12, 90, 34];
-//function largestInteger (array) {
-  //  for (let i = 0; i < array.length; i++);
-//}
-
- 
 // Raidžių skaičiavimas žodyje
 // Sukurkite žodį ir suskaičiuokite, kiek kartų žodyje pasikartoja raidė „a“.
-//let word = "banana";
-//for (let i = 0; i < word.length; i++) {
-    //if(word[i].includes('a')){
-         //console.log(word[i]);
-    //}  
-//}
+let word = "banana";
+let a = word[0]
+for(let i = 0; i < word.length; i++) {
+    if(word[i] % a == word[i]) {
+        a < word[i];   
+    } 
+      console.log(a[i]);
+}
 
  
  
