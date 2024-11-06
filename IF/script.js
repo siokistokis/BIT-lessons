@@ -87,12 +87,12 @@ console.log(theLargest);
 // Raidžių skaičiavimas žodyje
 // Sukurkite žodį ir suskaičiuokite, kiek kartų žodyje pasikartoja raidė „a“.
 let word = "banana";
-let a = word[0]
+ let a = word[0]
 for(let i = 0; i < word.length; i++) {
     if(word[i] % a == word[i]) {
-        a < word[i];   
+        a < word[i];     
     } 
-      console.log(a[i]);
+      console.log(a);
 }
 
  
