@@ -66,7 +66,7 @@ for (let i = 0; i < sentences.length; i++) {
 let Numbers = [2, 5, 7, 8, 10, 12];
 
 for (let i = 0; i < Numbers.length; i++) {
-    const Square = Numbers[i] **2
+    const Square = Numbers[i] **2;
     if(Square > 50) { 
          console.log(Square);
     }  
@@ -74,11 +74,36 @@ for (let i = 0; i < Numbers.length; i++) {
 
 // Didžiausio skaičiaus paieška sąraše
 // Sukurkite sąrašą skaičių ir raskite didžiausią skaičių. Tikrinkite kiekvieną reikšmę cikle.
-//let biggestNumber = [3, 45, 23, 67, 12, 90, 34];
-for (let i = 0; i < biggestNumber.length; i++) {
-    //if(biggestNumber[i] ){
-         //console.log(biggestNumber[i]);
+let integers = [3, 45, 23, 67, 12, 90, 34];
+//findLargest([3, 45, 23, 67, 12, 90, 34]);
+//let findLargest = [3, 45, 23, 67, 12, 90, 34];
+//let i = 0;
+//function findLargest (integers) {
+   for (let x = 0; x < integers.length; x++) {
+        const largest = integers[i] < x;
+        if(largest < x) {
+            console.log(largest);
+        } 
+    }
+   
+//}
+
+
+//for (let i = 0; i < integers.length; i++) {
+
+    //const findLargest = integers[i] > x;
+
+    //if(findLargest[i] > x){
+         //console.log(findLargest);
+         //console.log(i)
+         //console.log(integers);
     //}  
+//}
+
+
+//let largestNumArr = [3, 45, 23, 67, 12, 90, 34];
+//function largestInteger (array) {
+  //  for (let i = 0; i < array.length; i++);
 //}
 
  
