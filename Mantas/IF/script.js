@@ -92,10 +92,21 @@ let letterCount = 0;
 
 for (let i = 0; i < word.length; i++) {
   if (word[i].includes("a")) {
-    letterCount += word[i].length;
+    letterCount ++;
   }
 }
- console.log()
+ console.log(letterCount);
+
+ //my example
+
+ let word1 = "amusement"
+ let numberOfm = 0;
+ for (let i = 0; i < word1.length; i++) {
+    if (word1[i].includes("m")) {
+        numberOfm ++
+    }
+ }
+ console.log(numberOfm);
  
 // Amžių filtravimas sąraše
 // Sukurkite sąrašą žmonių amžių. Išspausdinkite tik tuos, kurie yra vyresni nei 18.
