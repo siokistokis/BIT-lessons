@@ -1,15 +1,15 @@
 let C = [
     {
         id: 1,
-        img: './images/kede.jpg',
-        title: 'Kedė',
+        img: './images/armchair.jpg',
+        title: 'chair',
         price: 50,
         quantity: 4
     },
     {
         id: 2,
-        img: './images/stalas.jpg',
-        title: 'Stalas',
+        img: './images/table.jpg',
+        title: 'table',
         price: 100,
         quantity: 2
     },
@@ -22,8 +22,8 @@ let C = [
     },
     {
         id: 4,
-        img: './images/komoda.jpg',
-        title: 'Komoda',
+        img: './images/arm-chair.webp',
+        title: 'Armchair',
         price: 150,
         quantity: 1
     }
