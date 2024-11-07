@@ -17,6 +17,14 @@ for (let i = 0; i < numbers.length; i++) {
     }
 }
  
+//my exemple:
+
+const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
+const isOdd = (num) => num % 2 !== 0; 
+const odd = numberss.filter(isOdd); 
+console.log(odd); 
+
+//for (let i = 1; i < 10; i += 1) { if (i % 2 !== 0) { console.log(i); } }
  
 // Žodžių, ilgesnių nei 5 raidės, spausdinimas
 // Sukurkite sąrašą žodžių. Išspausdinkite tik tuos žodžius, kurių ilgis yra didesnis nei 5 raidės.
@@ -27,7 +35,21 @@ for (let i = 0; i < words.length; i++) {
         console.log(words[i]);
     }
 }
- 
+
+//my exemple:
+
+let wordss = ["bear", "wolf", "snake", "koala", "giraffe", "Deer", "cat", "leopatd", "Frog", "squirrel"]
+//for (let i = 0; i < wordss.length; i++) {
+//    if(wordss[i].length < 4) {
+//        console.log(wordss[i]);}}
+
+let min = wordss[0]; 
+for (const letters of wordss) { 
+    if (letters.length < min.length) { min = letters;} 
+} 
+console.log(min);
+
+
  
 // Skaičių dalinimas iš 3 be liekanos
 // Sukurkite sąrašą skaičių nuo 1 iki 20. Išrinkite ir išspausdinkite tik tuos skaičius, kurie dalijasi iš 3 be liekanos.
@@ -39,6 +61,14 @@ for (let i =0; i < numbersArr.length; i++) {
     }
 }
  
+//my exemple:
+
+for (let i =0; i < numbersArr.length; i++) {
+    if(numbersArr[i] % 5 === 0) {
+        console.log(numbersArr[i]);
+    }
+}
+
  
 // Neigiamų skaičių suradimas sąraše
 // Sukurkite sąrašą teigiamų ir neigiamų skaičių. Išspausdinkite tik neigiamus skaičius.
@@ -60,6 +90,14 @@ for (let i = 0; i < sentences.length; i++) {
         console.log(sentences[i]);
     }
 } 
+
+//my exemple:
+
+for (let i = 0; i < sentences.length; i++) {
+    if(sentences[i].includes('is')) {
+        console.log(sentences[i]);
+    }
+} 
  
 // Skaičių kvadratų suradimas
 // Sukurkite sąrašą skaičių. Išspausdinkite tik tuos skaičius, kurių kvadratas yra didesnis nei 50.
@@ -72,6 +110,15 @@ for (let i = 0; i < Numbers.length; i++) {
     }  
 }
 
+//my exemple:
+for (let i = 0; i < Numbers.length; i++) {
+    const Square = Numbers[i] **2;
+    if(Square < 50) { 
+         console.log(Square);
+    }  
+}
+
+
 // Didžiausio skaičiaus paieška sąraše
 // Sukurkite sąrašą skaičių ir raskite didžiausią skaičių. Tikrinkite kiekvieną reikšmę cikle.
 let integers = [3, 45, 23, 67, 12, 90, 34]; 
@@ -82,6 +129,15 @@ if (integers[i] > theLargest){
     theLargest = integers[i]; 
 } 
 console.log(theLargest);
+} 
+
+//my exemple:
+let theSmolest = integers[0]; 
+for (let i=0; i < integers.length; i++) { 
+if (integers[i] < theSmolest){
+    theSmolest = integers[i]; 
+} 
+console.log(theSmolest);
 } 
 
 // Raidžių skaičiavimas žodyje
@@ -110,19 +166,26 @@ for (let i = 0; i < word.length; i++) {
  
 // Amžių filtravimas sąraše
 // Sukurkite sąrašą žmonių amžių. Išspausdinkite tik tuos, kurie yra vyresni nei 18.
-//let ages = [12, 17, 22, 19, 15, 30, 18];
-//for (let i = 0; i < ages.length; i++) {
-    //if(ages[i] > 18){
-        // console.log(ages[i]);
-    //}  
-//}
+let ages = [12, 17, 22, 19, 15, 30, 18];
+for (let i = 0; i < ages.length; i++) {
+    if(ages[i] > 18){
+         console.log(ages[i]);
+    }  
+}
+//my example:
 
+for (let i = 0; i < ages.length; i++) {
+    if(ages[i] < 17){
+         console.log(ages[i]);
+    }  
+}
  
 // Skaičių dalybos liekanos tikrinimas
 // Sukurkite sąrašą skaičių. Išspausdinkite tik tuos skaičius, kurie, dalijant iš 2, turi liekaną.
-//let numberss = [5, 8, 13, 22, 31, 40];
-//for (let i = 0; i < numberss.length; i++) {
-    //if(numberss[i] % 2 === ) {
-       // console.log(numberss[i]);
-    //}
-//}
+let eavenNr = [5, 8, 13, 22, 31, 40];
+for (let i = 0; i < eavenNr.length; i++) {
+    if(eavenNr[i] %  === 0) {
+        console.log(eavenNr[i]);
+    }
+}
+??????
