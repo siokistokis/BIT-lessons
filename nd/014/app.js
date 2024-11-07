@@ -31,29 +31,29 @@ div.style.height = '100px';
 div.style.backgroundColor = 'black';
 div.style.transition = 'border-radius 0.5s';
 // div.style.borderRadius = '0px';
-div.dataset.figurosBusena = 'kvadratas';
+div.dataset.shape = 'square';
 
 document.body.appendChild(div);
 
 div.addEventListener('click', _ => {
-    if (div.dataset.figurosBusena === 'kvadratas') {
+    if (div.dataset.shape === 'square') {
         div.style.borderRadius = '50%';
-        div.dataset.figurosBusena = 'rutulys';
+        div.dataset.shape = 'circle';
     } else {
         div.style.borderRadius = '0px';
-        div.dataset.figurosBusena = 'kvadratas';
+        div.dataset.shape = 'square';
     }
 });
 
 //3
 
-const input = document.querySelector('#teksto-laukelis');
+const input = document.querySelector('#input');
 
 const h1 = document.querySelector('h1');
 
-const button = document.querySelector('#mygtukas');
+const button = document.querySelector('#button');
 
-button.addEventListener('click', _ => {
+button. addEventListener ('click', _ => {
     h1.innerText = input.value;
     input.value = '';
 });
@@ -63,9 +63,9 @@ const mas1 = [-45, 78, -98, 4, 87, -1];
 
 // paskaičiuoti visų masyvo elementų sumą ir ją atspausdinti
 
-const suma = mas1.reduce((total, num) => total + num, 0);
+const sum = mas1.reduce((total, num) => total + num, 0);
 
-console.log(suma);
+console.log(sum);
 
 
 // surasti ir atspausdinti mažiausią masyvo skaičių with reduce
@@ -83,9 +83,9 @@ console.log(minPositive);
 
 // surasti ir atspausdinti mažiausią masyvo skaičių, kuris yra didesnis nei 10 with reduce
 
-const minDidesnisUz10 = mas1.reduce((min, num) => num > 10 && num < min ? num : min, Infinity);
+const minBiggerThan10 = mas1.reduce((min, num) => num > 10 && num < min ? num : min, Infinity);
 
-console.log(minDidesnisUz10);
+console.log(minBiggerThan10);
 
 
 const mas2 = ['antis', 'višta', 'povas', 'kiaušas', 'puodas', 'šakė'];
@@ -93,59 +93,59 @@ const mas2 = ['antis', 'višta', 'povas', 'kiaušas', 'puodas', 'šakė'];
 
 // surasti ir atspausdinti ilgiausią žodį masyve with reduce
 
-const ilgiausias = mas2.reduce((ilgiausias, zodis) => zodis.length > ilgiausias.length ? zodis : ilgiausias, '');
+const theLongest = mas2.reduce((theLongest, word) => word.length > theLongest.length ? word : theLongest, '');
 
-console.log(ilgiausias);
+console.log(theLongest);
 
 // surasti ir atspausdinti trumpiausią žodį masyve with reduce
 
-const trumpiausias = mas2.reduce((trumpiausias, zodis) => zodis.length < trumpiausias.length ? zodis : trumpiausias, mas2[0]);
+const theShortest = mas2.reduce((theShortest, word) => word.length < theShortest.length ? word : theShortest, mas2[0]);
 
 // surasti ir atspausdinti trumpiausią, bet ilgesnį nei 5 simboliai, žodį masyve with reduce
 
-const trumpiausiasDidesnisUz5 = mas2.reduce((trumpiausias, zodis) => {
-    return (zodis.length < trumpiausias.length && zodis.length > 5) ? zodis : trumpiausias
-}, mas2.find(zodis => zodis.length > 5));
+const theShortestBiggerThan5 = mas2.reduce((theShortest, word) => {
+    return (word.length < theShortest.length && word.length > 5) ? word : theShortest
+}, mas2.find(word => word.length > 5));
 
-console.log(trumpiausiasDidesnisUz5);
+console.log(theShortestBiggerThan5);
 
-const temp1 = mas2.filter(zodis => zodis.length > 5);
-const trumpiausiasDidesnisUz5WithFilter = temp1.reduce((trumpiausias, zodis) => zodis.length < trumpiausias.length ? zodis : trumpiausias, temp1[0]);
+const temp1 = mas2.filter(word => word.length > 5);
+const theShortestBiggerThan5WithFilter = temp1.reduce((theShortest, word) => word.length < theShortest.length ? word : theShortest, temp1[0]);
 
-console.log(trumpiausiasDidesnisUz5WithFilter);
+console.log(theShortestBiggerThan5WithFilter);
 
 
 
-let trumpiausiasDidesnisUz5WithForeache = mas2.find(zodis => zodis.length > 5);
+let theShortestBiggerThan5WithForeache = mas2.find(word => word.length > 5);
 
-mas2.forEach(zodis => {
-    if (zodis.length < trumpiausiasDidesnisUz5WithForeache.length && zodis.length > 5) {
-        trumpiausiasDidesnisUz5WithForeache = zodis;
+mas2.forEach(word => {
+    if (word.length < theShortestBiggerThan5WithForeache.length && word.length > 5) {
+        theShortestBiggerThan5WithForeache = word;
     }
 });
 
-console.log(trumpiausiasDidesnisUz5WithForeache);
+console.log(theShortestBiggerThan5WithForeache);
 
 
-let trumpiausiasDidesnisUz5WithForOnly = mas2[0];
+let theShortestBiggerThan5WithForOnly = mas2[0];
 
 for (let i = 0; i < mas2.length; i++) {
     if (mas2[i].length > 5) {
-        trumpiausiasDidesnisUz5WithForOnly = mas2[i];
+        theShortestBiggerThan5WithForOnly = mas2[i];
     }
 }
 
 for (let i = 0; i < mas2.length; i++) {
-    if (mas2[i].length < trumpiausiasDidesnisUz5WithForOnly.length && mas2[i].length > 5) {
-        trumpiausiasDidesnisUz5WithForOnly = mas2[i];
+    if (mas2[i].length <theShortestBiggerThan5WithForOnly .length && mas2[i].length > 5) {
+        theShortestBiggerThan5WithForOnly = mas2[i];
     }
 }
 
-console.log(trumpiausiasDidesnisUz5WithForOnly);
+console.log(theShortestBiggerThan5WithForOnly);
 
 
-const find = mas2.find(zodis => zodis.length > 16);
-const filter = mas2.filter(zodis => zodis.length > 16);
+const find = mas2.find(word => word.length > 16);
+const filter = mas2.filter(word => word.length > 16);
 
 console.log('find', find);
 console.log('filter', filter);
