@@ -87,15 +87,15 @@ console.log(theLargest);
 // Raidžių skaičiavimas žodyje
 // Sukurkite žodį ir suskaičiuokite, kiek kartų žodyje pasikartoja raidė „a“.
 let word = "banana";
- let a = word[0]
-for(let i = 0; i < word.length; i++) {
-    if(word[i] % a == word[i]) {
-        a < word[i];     
-    } 
-      console.log(a);
-}
 
- 
+let letterCount = 0;
+
+for (let i = 0; i < word.length; i++) {
+  if (word[i].includes("a")) {
+    letterCount += word[i].length;
+  }
+}
+ console.log()
  
 // Amžių filtravimas sąraše
 // Sukurkite sąrašą žmonių amžių. Išspausdinkite tik tuos, kurie yra vyresni nei 18.
