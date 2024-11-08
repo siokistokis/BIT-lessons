@@ -1,18 +1,45 @@
+const task1 = document.querySelector(".task1")
+const task2 = document.querySelector(".task2")
+const task3 = document.querySelector(".task3")
+const task4 = document.querySelector(".task4")
+const task5 = document.querySelector(".task5")
+const task6 = document.querySelector(".task6")
+const task7 = document.querySelector(".task7")
+const task8 = document.querySelector(".task8")
+const task9 = document.querySelector(".task9")
+const task10 = document.querySelector(".task10")
+const task11 = document.querySelector(".task11")
+const task12 = document.querySelector(".task12")
+const task13 = document.querySelector(".task13")
+const task14 = document.querySelector(".task14")
+const task15 = document.querySelector(".task15")
+const task16 = document.querySelector(".task16")
+const task17 = document.querySelector(".task17")
+const task18 = document.querySelector(".task18")
+const task19 = document.querySelector(".task19")
+const task20 = document.querySelector(".task20")
+const task21 = document.querySelector(".task21")
+
+
+
 //console.log('Hello');
 
-//Let array = [1, 2, 3, 4, 5];
-
-//for (Let i = 0; i < array.length; i++) {
- //   const element = array[i];
- //   console.log(element);
-//}
+let array = [1, 2, 3, 4, 5];
+//let container1 = document.querySelector(".task1");
+for (let i = 0; i < array.length; i++) {
+//    Task1.innerText = `${element}`;
+   const element = array[i];
+   console.log(element);
+}
 
 // Lyginių skaičių radimas sąraše
 // Sukurkite sąrašą skaičių. Naudodami for ciklą ir if sąlygą, išrinkite ir išspausdinkite tik lyginius skaičius iš sąrašo.
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+//let container1 = document.querySelector(".task1");
 for (let i = 0; i < numbers.length; i++) {
     if(numbers[i] % 2 === 0) {
+    
         console.log(numbers[i]);
     }
 }
@@ -20,8 +47,8 @@ for (let i = 0; i < numbers.length; i++) {
 //my exemple:
 
 const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
-const isOdd = (num) => num % 2 !== 0; 
-const odd = numberss.filter(isOdd); 
+const odddNr = (num) => num % 2 !== 0; 
+const odd = numberss.filter(odddNr); 
 console.log(odd); 
 
 //for (let i = 1; i < 10; i += 1) { if (i % 2 !== 0) { console.log(i); } }
@@ -182,10 +209,19 @@ for (let i = 0; i < ages.length; i++) {
  
 // Skaičių dalybos liekanos tikrinimas
 // Sukurkite sąrašą skaičių. Išspausdinkite tik tuos skaičius, kurie, dalijant iš 2, turi liekaną.
-let eavenNr = [5, 8, 13, 22, 31, 40];
-for (let i = 0; i < eavenNr.length; i++) {
-    if(eavenNr[i] % 2 !== 0) {
-        console.log(eavenNr[i]);
+let oddNr = [5, 8, 13, 22, 31, 40];
+for (let i = 0; i < oddNr.length; i++) {
+    if(oddNr[i] % 2 !== 0) {
+        console.log(oddNr[i]);
+    }
+}
+
+//my example:
+
+let evenNr = [5, 8, 13, 22, 31, 40];
+for (let i = 0; i < evenNr.length; i++) {
+    if(evenNr[i] % 2 === 0) {
+        console.log(evenNr[i]);
     }
 }
 
