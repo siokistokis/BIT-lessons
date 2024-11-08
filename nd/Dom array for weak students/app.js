@@ -8,10 +8,57 @@
 
 
 //Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais.
+const A = [
+    'Bebras',
+    'Zebras',
+    'Vilkas',
+    'Lapė',
+    'Barsukas',
+    'Voverė',
+    'Laukinis katinas',
+    'Šuo',
+    'Naminis katinas',
+];
+
 
 //Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais išdėliotais abėcėline tvarka.
 
+// 1.
+//var $items = $('#list li').sort((a, b) => $(a).text().localeCompare($(z).text()));
+//$('#list').append($items);
+
+// 2.
+//var $items = $('#myList li').sort((a, b) => {
+//    return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+//});
+//$('#myList').append($items);
+
+
+// 3.
+//const sorted = A.sort((a, b) => {
+    //if (a.toLowerCase() < b.toLowerCase()) {
+      //return -1;
+    //}
+    //if (a.toLowerCase() > b.toLowerCase()) {
+      //return 1;
+    //}
+    //return 0;
+  //});
+  
+  //console.log(sorted);
+
+  // 4.
+ // const sorted = A.sort((a, b) => a.localeCompare(b));
+//console.log(sorted); 
+  //. 5  
+A.sort()
+console.log(A);
+
+
+
 //Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvų A ir B nuskaitytais gyvūnais išdėliotais abėcėline tvarka (Rūšiavimas turi būti bendras tarp abiejų masyvų, NE kiekvieno atskirai).#pamastykKaip
+
+
 
 //Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra mėlyni apskritimai su centre užrašytais iš masyvo A nuskaitytais gyvūnais.
 
@@ -28,17 +75,7 @@
 //Uždavinį atlikite atskirame html faile. Visame ekrane atsitiktine tvarka “išmėtykite“ iš masyvo C nuskaitytus gyvūnus. Kad būtų daugiau gyvūnų, tą patį masyvą nuskaitykite 10 kartų. Gyvūnų pavadinimų raidžių dydis- atsitiktinis nuo 10px iki 100px. Gyvūnų pavadinimų raidžių spalva atsitiktinė. Pavadinimai turi tolygiai (pagal funkciją rand()) dengti visą ekraną (funkcijos duotos 02. DOM ir Cycles (one & four edition)).#fun
 
 
-const A = [
-    'Bebras',
-    'Zebras',
-    'Vilkas',
-    'Lapė',
-    'Barsukas',
-    'Voverė',
-    'Laukinis katinas',
-    'Šuo',
-    'Naminis katinas',
-];
+
 
 const B = [
     'Kalakutas',
