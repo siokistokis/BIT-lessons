@@ -12,11 +12,11 @@ const task10 = document.querySelector(".task10")
 function rand(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFlored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored = minCeiled +1) + minCeiled)
+    return Math.floor(Math.random() * (maxFloored = minCeiled + 1) + minCeiled)
 }
 
 function randomColor() {
-    return '#' + Math.floor(Math.random() *16777215).toString(16).padEnd(6, '0');
+    return '#' + Math.floor(Math.random() * 16777215).toString(16).padEnd(6, '0');
 }
 
 console.log("runs")
@@ -30,7 +30,7 @@ let h4 = "";
 let color = "green";
 
 for (let i = 0; i < 14; i++) {
-    h1 +=`<h1 style="color:${randomColor()} ">4</h1>`;
+    h1 += `<h1 style="color:${randomColor()} ">4</h1>`;
     h4 += `<h4 style="color:${color}" >1</h4>`;
 }
 
@@ -47,12 +47,12 @@ for (let i = 0; i < 44; i++) {
     const randNumber = rand(14, 44);
     if (randNumber % 4 === 0) {
         number += `<span style ="color: red; margin left: 10px;"> ${randNumber}</span>`
-    } 
-    else{
+    }
+    else {
         number += `<span style ="color: blue; margin left: 10px;"> ${randNumber}</span> `
     }
 }
- task2. innerHTML = number
+task2.innerHTML = number
 
 
 // 3. Narcykleje nupieskite 14 melynu apskritimu, isdeliotu eilute.
@@ -83,41 +83,86 @@ task4.innerHTML = circle
 //    multiplication += ``
 //}
 
- //First Option 
+//First Option 
 
 let table = document.createElement("table");
 
 document.body.append(table);
 
 for (let i = 1; i < 5; i++) {
-  let tr = document.createElement("tr");
+    let tr = document.createElement("tr");
 
-  table.appendChild(tr);
-  
-  for (let j = 1; j < 15; j++) {
-    let td = document.createElement("td");
-    
-    tr.appendChild(td);
-    td.innerText = i * j;
-  }
+    table.appendChild(tr);
+
+    for (let j = 1; j < 15; j++) {
+        let td = document.createElement("td");
+
+        tr.appendChild(td);
+        td.innerText = i * j;
+    }
 }
 
 //Second Option
 
-for (let j = 4; j <= 14; j++){  
-    document.write("<div style='float: left; width: 80px;'>"); 
-    for (let i = 1; i <=9; i++)  
-    { 
-    document.write(i + "*" + j + "=" +(i*j) + "<br>"); 
-    
-    }  
-    document.write ("</div>"); 
-    
+for (let j = 4; j <= 14; j++) {
+    document.write("<div style='float: left; width: 80px;'>");
+    for (let i = 1; i <= 9; i++) {
+        document.write(i + "*" + j + "=" + (i * j) + "<br>");
     }
+    document.write("</div>");
+
+}
 
 // 6. Narsykleje nupieskite linija is 444 * tarp zvaigzdziu tarpu nera. programiskai suskaldykite naudodami tagus atskirom zvaigzduciu grupem, zvaigzdutes taip, kad nebutu vvienoje eiluteje daugiau kaip 44*.
 
+//for (let i = 0; i < 444; i += 44) {
+//    document.write("<div style='font-family: monospace; white-space: pre;'");
+//    for (let j = 0; j < 44; j++);
+
+//}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+const nStars = 444;
+const starsPerLine = 44;
+let stars = '*'.repeat(nStars);
+let container = document.querySelector(".task6");
+for (let i = 0; i < nStars; i += starsPerLine) {
+    let starsGroup = stars.slice(i, i + starsPerLine);
+    console.log(starsGroup);
+    let p = document.createElement("p");
+    p.innerHTML = starsGroup;
+    p.style.color = getRandomColor();
+    container.appendChild(p);
+}
+console.log(nStars)
+
 // 7. Narsykleje nupieskite 14 atsitiktiniu spalvu kvadratu esanciu vienas kitame matrioska.
+
+
+let size = 300;
+let container7 = document.querySelector('.task7');
+for (let i = 0; i < 14; i++) {
+    let square = document.createElement('div');
+    square.classList.add('square');
+
+    square.style.width = `${size}px`;
+    square.style.height = `${size}px`;
+    square.style.backgroundColor = getRandomColor();
+
+    container7.appendChild(square);
+    container7 = square;
+
+    size -= 20;
+}
+console.log(container7)
 
 // 8. is simbolio &#9632; kopijuoti visa teksta su kabliuku. sudeliokite zalia kvadrata turinti 41x41 siu simboliu. kad kvadratas atrodytu kvadratiskai panaudokite css stiliu ir papildomus tagus. #ciklasCikle
 

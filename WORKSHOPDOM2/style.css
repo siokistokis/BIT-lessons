@@ -1,0 +1,14 @@
+
+
+.task7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+}
+.square {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
