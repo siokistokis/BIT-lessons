@@ -1,0 +1,18 @@
+.circle {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-size: 1.2em;
+    font-family: Arial, sans-serif;
+}
+
+#animalsSection {
+    display: flex;
+    flex-wrap: wrap;
+}

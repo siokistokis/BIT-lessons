@@ -1,5 +1,6 @@
-//03. DOM ir Array (animals edition)
 
+
+//03. DOM ir Array (animals edition)
 
 //	Nuoroda: nėra (jūsų pačių sukurtas html failas)
 //	Jūsų darbinis failas: laisvai pasirenkamas
@@ -9,58 +10,88 @@
 
 //Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais.
 const A = [
-    'Bebras',
-    'Zebras',
-    'Vilkas',
-    'Lapė',
-    'Barsukas',
-    'Voverė',
-    'Laukinis katinas',
-    'Šuo',
-    'Naminis katinas',
+  'Bebras',
+  'Zebras',
+  'Vilkas',
+  'Lapė',
+  'Barsukas',
+  'Voverė',
+  'Laukinis katinas',
+  'Šuo',
+  'Naminis katinas',
+];
+
+const B = [
+  'Kalakutas',
+  'Višta',
+  'Antis',
+  'Žąsis',
+  'Ančiasnapis'
 ];
 
 
 //Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais išdėliotais abėcėline tvarka.
 
 // 1.
-//var $items = $('#list li').sort((a, b) => $(a).text().localeCompare($(z).text()));
-//$('#list').append($items);
+
+//const sorted = A.sort((a, b) => {
+//if (a.toLowerCase() < b.toLowerCase()) {
+//return -1;
+//}
+//if (a.toLowerCase() > b.toLowerCase()) {
+//return 1;
+//}
+//return 0;
+//});
+
+//console.log(sorted);
 
 // 2.
-//var $items = $('#myList li').sort((a, b) => {
-//    return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
-//});
-//$('#myList').append($items);
+const sorted = A.sort((aa, bb) => aa.localeCompare(bb));
+console.log(sorted);
+let someList = document.getElementById("someList");
+sorted.forEach(item => {
+  let li = document.createElement("li");
+  li.textContent = item;
+  someList.appendChild(li);
+})
+//. 3  
+//A.sort()
+//console.log(A);
 
-
-// 3.
-//const sorted = A.sort((a, b) => {
-    //if (a.toLowerCase() < b.toLowerCase()) {
-      //return -1;
-    //}
-    //if (a.toLowerCase() > b.toLowerCase()) {
-      //return 1;
-    //}
-    //return 0;
-  //});
-  
-  //console.log(sorted);
-
-  // 4.
- // const sorted = A.sort((a, b) => a.localeCompare(b));
-//console.log(sorted); 
-  //. 5  
-A.sort()
-console.log(A);
+//let masyvas = ["a", "b"];
+//masyvas.sort();
+//console.log(masyvas); // ["a", "b"]
 
 
 
 //Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvų A ir B nuskaitytais gyvūnais išdėliotais abėcėline tvarka (Rūšiavimas turi būti bendras tarp abiejų masyvų, NE kiekvieno atskirai).#pamastykKaip
 
+let listTwoArrays = document.createElement('ul');
+let twoArrays = A.concat(B);
+document.body.appendChild(listTwoArrays);
+twoArrays = twoArrays.sort((aa, bb) => aa.localeCompare(bb));
+twoArrays.forEach(item => {
+  let li = document.createElement("li");
+  li.textContent = item;
+  listTwoArrays.appendChild(li);
+})
+document.body.appendChild(listTwoArrays);
+
+console.log(twoArrays)
 
 
 //Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra mėlyni apskritimai su centre užrašytais iš masyvo A nuskaitytais gyvūnais.
+
+let task3 = document.getElementById("animalsSection");
+A.forEach(item => {
+  let circleDiv = document.createElement("div")
+  circleDiv.classList.add("circle");
+  circleDiv.textContent = item;
+  task3.appendChild(circleDiv);
+})
+console.log(task3);
+
 
 //Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra raudoni apskritimai su centre centre užrašytais iš masyvo B nuskaitytais gyvūnais ir tų gyvūnų raidžių skaičiumi.
 
@@ -77,28 +108,22 @@ console.log(A);
 
 
 
-const B = [
-    'Kalakutas',
-    'Višta',
-    'Antis',
-    'Žąsis',
-    'Ančiasnapis'
-];
+
 
 const C = [
-    'Višta',
-    'Gaidys',
-    'Šernas',
-    'Lapė',
-    'Vilkas',
-    'Šuo dingo',
-    'Barsukas',
-    'Voverė',
-    'Šuo',
-    'Naminis katinas',
-    'Laukinis katinas',
-    'Šuo atsirado',
-    'Bebras',
-    'Ožys'
+  'Višta',
+  'Gaidys',
+  'Šernas',
+  'Lapė',
+  'Vilkas',
+  'Šuo dingo',
+  'Barsukas',
+  'Voverė',
+  'Šuo',
+  'Naminis katinas',
+  'Laukinis katinas',
+  'Šuo atsirado',
+  'Bebras',
+  'Ožys'
 ];
 
