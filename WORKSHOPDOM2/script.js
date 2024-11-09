@@ -121,11 +121,11 @@ task5.innerHTML = table
 let stars = "";
 
 for (let j = 0; j < 444; j++) {
-     stars += `<span style="color:${randomColor()}">*</span>`;
-    stars.split('44');
+    stars += `<span style="color:${randomColor()}">*</span>`;
+  
       console.log(stars);
-        
-    }  task6.innerHTML = stars;
+        task6.innerHTML = stars;
+    }  
    
 
 //function getRandomColor() {
