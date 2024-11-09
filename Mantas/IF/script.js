@@ -29,8 +29,11 @@ let array = [1, 2, 3, 4, 5];
 for (let i = 0; i < array.length; i++) {
 //    Task1.innerText = `${element}`;
    const element = array[i];
-   console.log(element);
+   console.log(array);
 }
+task1.style.display = "flex"
+task1.innerHTML = h3
+task1.innerHTML = array;
 
 // Lyginių skaičių radimas sąraše
 // Sukurkite sąrašą skaičių. Naudodami for ciklą ir if sąlygą, išrinkite ir išspausdinkite tik lyginius skaičius iš sąrašo.

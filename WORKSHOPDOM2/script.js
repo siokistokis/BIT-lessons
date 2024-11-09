@@ -100,7 +100,10 @@ for (let i = 1; i < 5; i++) {
         tr.appendChild(td);
         td.innerText = i * j;
     }
+    task5.innerText = table
 }
+
+
 
 //Second Option
 
@@ -110,39 +113,42 @@ for (let j = 4; j <= 14; j++) {
         document.write(i + "*" + j + "=" + (i * j) + "<br>");
     }
     document.write("</div>");
-
 }
+task5.innerHTML = table
 
 // 6. Narsykleje nupieskite linija is 444 * tarp zvaigzdziu tarpu nera. programiskai suskaldykite naudodami tagus atskirom zvaigzduciu grupem, zvaigzdutes taip, kad nebutu vvienoje eiluteje daugiau kaip 44*.
 
-//for (let i = 0; i < 444; i += 44) {
-//    document.write("<div style='font-family: monospace; white-space: pre;'");
-//    for (let j = 0; j < 44; j++);
+let stars = "";
 
+for (let j = 0; j < 444; j++) {
+     stars += `<span style="color:${randomColor()}">*</span>`;
+    stars.split('44');
+      console.log(stars);
+        
+    }  task6.innerHTML = stars;
+
+//function getRandomColor() {
+//    const letters = '0123456789ABCDEF';
+//    let color = '#';
+//    for (let i = 0; i < 6; i++) {
+//        color += letters[Math.floor(Math.random() * 16)];
+//    }
+//    return color;
 //}
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-const nStars = 444;
-const starsPerLine = 44;
-let stars = '*'.repeat(nStars);
-let container = document.querySelector(".task6");
-for (let i = 0; i < nStars; i += starsPerLine) {
-    let starsGroup = stars.slice(i, i + starsPerLine);
-    console.log(starsGroup);
-    let p = document.createElement("p");
-    p.innerHTML = starsGroup;
-    p.style.color = getRandomColor();
-    container.appendChild(p);
-}
-console.log(nStars)
+//const nStars = 444;
+//const starsPerLine = 44;
+//let stars = '*'.repeat(nStars);
+//let container = document.querySelector(".task6");
+//for (let i = 0; i < nStars; i += starsPerLine) {
+//    let starsGroup = stars.slice(i, i + starsPerLine);
+//    console.log(starsGroup);
+//    let p = document.createElement("p");
+//    p.innerHTML = starsGroup;
+//    p.style.color = getRandomColor();
+//    container.appendChild(p);
+//}
+//console.log(nStars)
 
 // 7. Narsykleje nupieskite 14 atsitiktiniu spalvu kvadratu esanciu vienas kitame matrioska.
 
