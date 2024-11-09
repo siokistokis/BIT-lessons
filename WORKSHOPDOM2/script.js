@@ -126,6 +126,7 @@ for (let j = 0; j < 444; j++) {
       console.log(stars);
         
     }  task6.innerHTML = stars;
+   
 
 //function getRandomColor() {
 //    const letters = '0123456789ABCDEF';
