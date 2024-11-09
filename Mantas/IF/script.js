@@ -27,12 +27,12 @@ const task21 = document.querySelector(".task21")
 let array = [1, 2, 3, 4, 5];
 //let container1 = document.querySelector(".task1");
 for (let i = 0; i < array.length; i++) {
-//    Task1.innerText = `${element}`;
+    //Task1.innerText = `${element}`;
    const element = array[i];
    console.log(array);
 }
-task1.style.display = "flex"
-task1.innerHTML = h3
+//task1.style.display = "flex"
+//task1.innerHTML = h3
 task1.innerHTML = array;
 
 // Lyginių skaičių radimas sąraše

@@ -91,16 +91,14 @@ document.body.append(table);
 
 for (let i = 1; i < 5; i++) {
     let tr = document.createElement("tr");
-
     table.appendChild(tr);
-
     for (let j = 1; j < 15; j++) {
         let td = document.createElement("td");
-
         tr.appendChild(td);
         td.innerText = i * j;
     }
     task5.innerText = table
+    console.log(table);
 }
 
 
@@ -112,6 +110,7 @@ for (let j = 4; j <= 14; j++) {
     for (let i = 1; i <= 9; i++) {
         document.write(i + "*" + j + "=" + (i * j) + "<br>");
     }
+    console.log(table);
     document.write("</div>");
 }
 task5.innerHTML = table
@@ -121,13 +120,13 @@ task5.innerHTML = table
 let stars = "";
 
 for (let j = 0; j < 444; j++) {
-    stars += `<span style="color:${randomColor()}">*</span>`;
-  
-      console.log(stars);
-        task6.innerHTML = stars;
-    }  
-   
+     stars += `<span style="color:${randomColor()}" >*</span>`;
+     console.log(stars);
+}task6.innerHTML = stars;
 
+      
+        
+ 
 //function getRandomColor() {
 //    const letters = '0123456789ABCDEF';
 //    let color = '#';
@@ -155,21 +154,20 @@ for (let j = 0; j < 444; j++) {
 
 
 let size = 300;
-let container7 = document.querySelector('.task7');
+let matryoshka = document.querySelector('.task7');
 for (let i = 0; i < 14; i++) {
     let square = document.createElement('div');
     square.classList.add('square');
 
     square.style.width = `${size}px`;
     square.style.height = `${size}px`;
-    square.style.backgroundColor = getRandomColor();
-
-    container7.appendChild(square);
-    container7 = square;
-
+    square.style.backgroundColor = randomColor();
+   
+   matryoshka.appendChild(square);
+    matryoshka = square;
     size -= 20;
 }
-console.log(container7)
+console.log(matryoshka)
 
 // 8. is simbolio &#9632; kopijuoti visa teksta su kabliuku. sudeliokite zalia kvadrata turinti 41x41 siu simboliu. kad kvadratas atrodytu kvadratiskai panaudokite css stiliu ir papildomus tagus. #ciklasCikle
 
