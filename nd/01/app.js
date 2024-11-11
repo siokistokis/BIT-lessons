@@ -4,6 +4,8 @@ function rand(min, max) {
 }
 
 // Užduotis 1: Skaičių įrašymas į h1-h4 tagus
+const dog = document.querySelector(".dog");
+dog.style.display = 'flex';
 console.log('H1 value before change: ' + document.querySelector('h1').innerText.valueOf());
 document.querySelector('h1').innerText = '1';
 document.querySelector('h2').innerText = '2';

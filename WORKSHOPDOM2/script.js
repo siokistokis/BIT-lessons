@@ -84,36 +84,43 @@ task4.innerHTML = circle
 //}
 
 //First Option 
-
-let table = document.createElement("table");
-
-document.body.append(table);
-
-for (let i = 1; i < 5; i++) {
-    let tr = document.createElement("tr");
-    table.appendChild(tr);
-    for (let j = 1; j < 15; j++) {
-        let td = document.createElement("td");
-        tr.appendChild(td);
-        td.innerText = i * j;
-    }
-    task5.innerText = table
-    console.log(table);
+let table2 = `<table border='1'>`;
+for (let i = 4; i <= 14; i++) {
+    let sum = i*4;
+    console.log(sum);
+    
+    table2 += `<tr><td>4*${i}</td><td>${sum}</td></tr>`;   
 }
+table2 += `</table>`;
+task5.innerHTML = table2;
+
+// document.body.append(table);
+
+// for (let i = 1; i < 5; i++) {
+//     let tr = document.createElement("tr");
+//     table.appendChild(tr);
+//     for (let j = 1; j < 15; j++) {
+//         let td = document.createElement("td");
+//         tr.appendChild(td);
+//         td.innerText = i * j;
+//     }
+//     task5.innerHTML = table
+//     console.log(table);
+// }
 
 
 
 //Second Option
-
-for (let j = 4; j <= 14; j++) {
-    document.write("<div style='float: left; width: 80px;'>");
-    for (let i = 1; i <= 9; i++) {
-        document.write(i + "*" + j + "=" + (i * j) + "<br>");
-    }
-    console.log(table);
-    document.write("</div>");
-}
-task5.innerHTML = table
+// let table = document.createElement("table");
+// for (let j = 4; j <= 14; j++) {
+//     document.write("<div style='float: left; width: 80px;'>");
+//     for (let i = 1; i <= 9; i++) {
+//         document.write(i + "*" + j + "=" + (i * j) + "<br>");
+//     }
+//     console.log(table);
+//     document.write("</div>");
+// }
+// task5.innerHTML = table
 
 // 6. Narsykleje nupieskite linija is 444 * tarp zvaigzdziu tarpu nera. programiskai suskaldykite naudodami tagus atskirom zvaigzduciu grupem, zvaigzdutes taip, kad nebutu vvienoje eiluteje daugiau kaip 44*.
 
@@ -121,7 +128,7 @@ let stars = "";
 
 for (let j = 0; j < 444; j++) {
      stars += `<span style="color:${randomColor()}" >*</span>`;
-     console.log(stars);
+     //console.log(stars);
 }task6.innerHTML = stars;
 
       

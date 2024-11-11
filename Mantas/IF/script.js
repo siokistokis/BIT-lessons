@@ -26,11 +26,7 @@ const task21 = document.querySelector(".task21")
 
 let array = [1, 2, 3, 4, 5];
 //let container1 = document.querySelector(".task1");
-for (let i = 0; i < array.length; i++) {
-    //Task1.innerText = `${element}`;
-   const element = array[i];
-   console.log(array);
-}
+
 //task1.style.display = "flex"
 //task1.innerHTML = h3
 task1.innerHTML = array;
@@ -43,7 +39,7 @@ let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 for (let i = 0; i < numbers.length; i++) {
     if(numbers[i] % 2 === 0) {
     
-        console.log(numbers[i]);
+        task2.innerHTML = numbers[i];
     }
 }
  
@@ -53,6 +49,7 @@ const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const odddNr = (num) => num % 2 !== 0; 
 const odd = numberss.filter(odddNr); 
 console.log(odd); 
+task3.innerHTML = odd;
 
 //for (let i = 1; i < 10; i += 1) { if (i % 2 !== 0) { console.log(i); } }
  
@@ -62,8 +59,9 @@ let words = ["apple", "banana", "kiwi", "watermelon", "pear"];
 
 for (let i = 0; i < words.length; i++) {
     if(words[i].length > 5) {
-        console.log(words[i]);
+        task4.innerHTML = words[i];
     }
+
 }
 
 //my exemple:
