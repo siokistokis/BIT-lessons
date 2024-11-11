@@ -15,16 +15,189 @@
 
 //A. Masyvas su skaičiais.
 
-//Surasti didžiausią skaičių;
-//Surasti mažiausią skaičių;
-//Surasti didžiausią neigiamą skaičių;
-//Surasti didžiausią skaičių, kuris yra mažesnis už 50;
-//Suskaičiuoti teigiamų skaičių sumą;
-//Suskaičiuoti neigiamų skaičių kvadratų (skaičių pakeltų kvadratu) sumą;
-//Suskaičiuoti kiek skaičių patenka į intervalą (imtinai) 25-75
-//Suskaičiuoti kiek skaičių yra 0-iai;
-//Suskaičiuoti kiek skaičių be liekanos dalinasi iš 3;
-//Suskaičiuoti neigiamų skaičių vidurkį;
+const A = [83, 55, 53, -73, 0, 8, 17, 76, 95, -1, 35, -16, -22, -94, 9, 54, 66, 30, -46, 9, 62, -9, -64, -55, 0, 19, 29, -70, 0, 51, -92, 46, 43, 58, -61, 3, -12, -58, -82, 5, 5, 97, 90, -51, 57, 72, -71, -6, 86, 34, 100, -94, 44, 80, 54, 60, 87, -94, -25, -59, -90, -3, 35, 7, -16, 26, -38, 82, 79, -61, -48, -3, 56, -32, -94, -87, -24, 86, -93, -21, 83, -71, -2, -45, 15, 39, 0, 29, -77, -97, 27, 77, 41, 0, 40, -54, 99, 70, -41, 91];
+
+// A1 Surasti didžiausią skaičių;
+
+ //first option
+
+let theLargest = A[0]; 
+for (let i=0; i < A.length; i++) { 
+if (A[i] > theLargest){
+    theLargest = A[i]; 
+    //taskA1.innerHTML = theLargest;
+} 
+console.log(theLargest);
+} 
+
+
+//second option
+
+function max(list) {
+  return list.reduce((a, b) => a > b ? a : b);
+}
+
+//third option
+
+function max(list) {
+  let max = list[0];
+  list.forEach(function(e) {
+    if (e > max) max = e;
+  });
+  return max;
+}
+
+//fourth option
+
+let bigArray = [/* ... огромное количество чисел ... */];
+let max = -Infinity;
+for (let i = 0; i < bigArray.length; i++) {
+    if (bigArray[i] > max) {
+        max = bigArray[i];
+    }
+}
+
+//fifth option
+
+function getBigNumber(list){
+  for(let i = 0; i < list.length; i++){
+      const itemToInsert = list[i];
+      let j = i;
+      while(j > 0 && comparator(itemToInsert, list[j - 1])){
+          list[j] = list[j - 1];
+          j--;
+      }
+      list[j] = itemToInsert;
+  }
+  let result = '';
+
+  list.forEach(({ str }) => 
+      result += str)
+
+  console.log(result)
+}
+
+// A2 Surasti mažiausią skaičių;
+let theSmolest = A[0]; 
+for (let i=0; i < A.length; i++) { 
+if (A[i] > theSmolest){
+    theLargest = A[i]; 
+    //taskA2.innerHTML = theLargest;
+} 
+console.log(theSmolest);
+} 
+
+// A3 Surasti didžiausią neigiamą skaičių;
+
+for (let i = 0; i < negativeNumbers.length; i++) {
+  if (negativeNumbers[i] < 0) {
+      console.log(negativeNumbers[i]);
+      taskA3.innerHTML = negativeNumbers[i];
+  } if
+} 
+
+
+//A4 Surasti didžiausią skaičių, kuris yra mažesnis už 50;
+
+//first option
+var sum = 0;
+ 
+numbers.forEach(function(num) {
+    sum += num;
+});
+ 
+console.log(sum); 
+
+//second option
+var sum = numbers.reduce(function(a, b){
+  return a + b;
+}, 0);
+
+console.log(sum);
+
+//third option
+
+var sum = 0;
+ 
+for (var i = 0; i &lt; numbers.length; i++) {
+    sum += numbers[i];
+}
+ 
+console.log(sum);
+
+//fourth option
+reduce(
+  (a, c) => {
+    if (c < 0) a[0] = a[0] + c;
+    if (c > 0) a[1] = a[1] + c;
+    return a;
+  },
+  [0, 0]
+);
+
+console.log(arr);
+
+// A5 Suskaičiuoti teigiamų skaičių sumą;
+
+//first option
+
+const summ = arr.reduce((acc, it) => {
+  it < 0 ? acc[0] += it : acc[1] += it;
+  return acc;
+}, [0, 0]);
+
+console.log(summ)
+
+//second option
+
+let result = [0, 0];
+for (let i = 0; i < arr.length; i++){
+    if (arr[i] < 0){
+        result[0] += arr[i]
+    }
+    else {
+        result[1] += arr[i]
+    }
+}
+console.log(result);
+
+//third option
+
+let result = 0;
+for (let i = 0; i < arr.length; i++){
+    if (arr[i] < 0){
+      continue
+    }
+    else if(arr[i] > 0){
+        result += arr[i]
+    }
+}
+console.log(result);
+
+//A6 Suskaičiuoti neigiamų skaičių kvadratų (skaičių pakeltų kvadratu) sumą;
+//A7 Suskaičiuoti kiek skaičių patenka į intervalą (imtinai) 25-75
+//A8 Suskaičiuoti kiek skaičių yra 0-iai;
+
+
+let letterCount = 0;
+
+for (let i = 0; i < A.length; i++) {
+  if (A[i].includes("0")) {
+    numbersCount ++;
+    taskA8.innerHTML = numbersCount;
+  }
+}
+ console.log(numbersCount);
+
+
+//A9 Suskaičiuoti kiek skaičių be liekanos dalinasi iš 3;
+for (let i =0; i < numbersArr.length; i++) {
+  if(numbersArr[i] % 3 === 0) {
+      //console.log(numbersArr[i]);
+       taskA9.innerHTML = numbersArr[i]; 
+  }  
+}
+//A10 Suskaičiuoti neigiamų skaičių vidurkį;
 
 
 //B. Masyvas su stringais.

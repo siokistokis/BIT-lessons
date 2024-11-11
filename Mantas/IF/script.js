@@ -38,7 +38,7 @@ let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 //let container1 = document.querySelector(".task1");
 for (let i = 0; i < numbers.length; i++) {
     if(numbers[i] % 2 === 0) {
-    
+        //console.log(numbers[i])
         task2.innerHTML = numbers[i];
     }
 }
@@ -61,7 +61,7 @@ for (let i = 0; i < words.length; i++) {
     if(words[i].length > 5) {
         task4.innerHTML = words[i];
     }
-
+    console.log(words[i])
 }
 
 //my exemple:
@@ -74,8 +74,10 @@ let wordss = ["bear", "wolf", "snake", "koala", "giraffe", "Deer", "cat", "leopa
 let min = wordss[0]; 
 for (const letters of wordss) { 
     if (letters.length < min.length) { min = letters;} 
+    task5.innerHTML = min
 } 
-console.log(min);
+//console.log(min);
+
 
 
  
@@ -85,15 +87,17 @@ let numbersArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
 
 for (let i =0; i < numbersArr.length; i++) {
     if(numbersArr[i] % 3 === 0) {
-        console.log(numbersArr[i]);
-    }
+        //console.log(numbersArr[i]);
+         task6.innerHTML = numbersArr[i]; //??????????????????????????????????
+    }  
 }
  
 //my exemple:
 
 for (let i =0; i < numbersArr.length; i++) {
     if(numbersArr[i] % 5 === 0) {
-        console.log(numbersArr[i]);
+        //console.log(numbersArr[i]);
+        task7.innerHTML = numbersArr[i];//?????????????????????????????????????
     }
 }
 
@@ -104,7 +108,8 @@ let negativeNumbers = [4, -3, 2, -1, 0, -5, 8, -9];
 
 for (let i = 0; i < negativeNumbers.length; i++) {
     if (negativeNumbers[i] < 0) {
-        console.log(negativeNumbers[i]);
+        //console.log(negativeNumbers[i]);
+        task8.innerHTML = negativeNumbers[i];//?????????????????????????????????
     }
 }
  
@@ -115,7 +120,8 @@ let sentences = ["I love programming", "JavaScript is awesome", "Coding is fun",
 
 for (let i = 0; i < sentences.length; i++) {
     if(sentences[i].includes('JavaScript')) {
-        console.log(sentences[i]);
+        //console.log(sentences[i]);
+        task9.innerHTML = sentences[i]; //???????????????????????????????????
     }
 } 
 
@@ -123,7 +129,8 @@ for (let i = 0; i < sentences.length; i++) {
 
 for (let i = 0; i < sentences.length; i++) {
     if(sentences[i].includes('is')) {
-        console.log(sentences[i]);
+        //console.log(sentences[i]);
+        task10.innerHTML = sentences[i];//??????????????????????????????????????
     }
 } 
  
@@ -134,7 +141,8 @@ let Numbers = [2, 5, 7, 8, 10, 12];
 for (let i = 0; i < Numbers.length; i++) {
     const Square = Numbers[i] **2;
     if(Square > 50) { 
-         console.log(Square);
+         //console.log(Square);
+         task11.innerHTML = Numbers[i];//????????????????????????????????
     }  
 }
 
@@ -143,6 +151,7 @@ for (let i = 0; i < Numbers.length; i++) {
     const Square = Numbers[i] **2;
     if(Square < 50) { 
          console.log(Square);
+         task12.innerHTML = Numbers[i];
     }  
 }
 
@@ -155,8 +164,9 @@ let theLargest = integers[0];
 for (let i=0; i < integers.length; i++) { 
 if (integers[i] > theLargest){
     theLargest = integers[i]; 
+    task13.innerHTML = theLargest;
 } 
-console.log(theLargest);
+//console.log(theLargest);
 } 
 
 //my exemple:
@@ -164,6 +174,7 @@ let theSmolest = integers[0];
 for (let i=0; i < integers.length; i++) { 
 if (integers[i] < theSmolest){
     theSmolest = integers[i]; 
+    task14.innerHTML = theSmolest;//?????????????????????????????????????
 } 
 console.log(theSmolest);
 } 
@@ -177,6 +188,7 @@ let letterCount = 0;
 for (let i = 0; i < word.length; i++) {
   if (word[i].includes("a")) {
     letterCount ++;
+    task15.innerHTML = letterCount;
   }
 }
  console.log(letterCount);
@@ -188,6 +200,7 @@ for (let i = 0; i < word.length; i++) {
  for (let i = 0; i < word1.length; i++) {
     if (word1[i].includes("m")) {
         numberOfm ++
+        task16.innerHTML = numberOfm;
     }
  }
  console.log(numberOfm);
@@ -198,6 +211,7 @@ let ages = [12, 17, 22, 19, 15, 30, 18];
 for (let i = 0; i < ages.length; i++) {
     if(ages[i] > 18){
          console.log(ages[i]);
+         task17.innerHTML = ages[i];//?????????????????????????????????????????
     }  
 }
 //my example:
@@ -205,6 +219,7 @@ for (let i = 0; i < ages.length; i++) {
 for (let i = 0; i < ages.length; i++) {
     if(ages[i] < 17){
          console.log(ages[i]);
+         task18.innerHTML = ages[i]; //???????????????????????????????????????
     }  
 }
  
@@ -214,6 +229,7 @@ let oddNr = [5, 8, 13, 22, 31, 40];
 for (let i = 0; i < oddNr.length; i++) {
     if(oddNr[i] % 2 !== 0) {
         console.log(oddNr[i]);
+        task19.innerHTML = oddNr[i]; //????????????????????????????????????????/
     }
 }
 
@@ -223,6 +239,7 @@ let evenNr = [5, 8, 13, 22, 31, 40];
 for (let i = 0; i < evenNr.length; i++) {
     if(evenNr[i] % 2 === 0) {
         console.log(evenNr[i]);
+        task20.innerHTML = evenNr[i];//??????????????????????????????????
     }
 }
 
