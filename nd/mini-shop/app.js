@@ -27,7 +27,9 @@ let C = [
         price: 150,
         quantity: 1
     }
-];
+]; 
+
+const cartIcon = document.querySelector(`[data-cart-icon]`);
 
 const cartRender = _ => {
     let cartHtml = '';
@@ -46,11 +48,11 @@ const cartRender = _ => {
                         `;
         cartHtml += cartItemHtml;
     });
-    document.querySelector('#mini-cart ul').innerHTML = cartHtml;
+    document.querySelector('[data-cart-list] ul').innerHTML = cartHtml;
 }
 
 const addEvents = _ => {
-    document.querySelectorAll('#mini-cart ul li')
+    document.querySelectorAll('[data-cart-list] ul li')
     .forEach(li => {
         const button = li.querySelector('button');
         button.addEventListener('click', _ => {

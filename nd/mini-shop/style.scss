@@ -79,8 +79,11 @@ header {
                 border: 3px solid $bg;
                 padding: 10px;
                 z-index: 1;
+                max-height: 0;
+                overflow: hidden;
                 ul {
                     width: 320px;
+                    padding: 10px;
                     li {
                         display: flex;
                         justify-content: space-between;
