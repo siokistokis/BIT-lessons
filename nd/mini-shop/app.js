@@ -30,6 +30,16 @@ let C = [
 ]; 
 
 const cartIcon = document.querySelector(`[data-cart-icon]`);
+const cartList = document.querySelector(`[data-cart-list]`);
+cartIcon.addEventListener('click',_ => {
+    if(cartList.dataset.open === 'close') {
+        cartList.dataset.open = 'open';
+        cartList.computedStyleMap.maxHeight = cartList.scrollheight + 'px';
+    } else {
+        cartList.dataset.open = 'close';
+        cartList.style.maxHeight = '0';
+    }
+});
 
 const cartRender = _ => {
     let cartHtml = '';
@@ -48,11 +58,14 @@ const cartRender = _ => {
                         `;
         cartHtml += cartItemHtml;
     });
+    if(!cartHtml) {
+        cartHtml = '<li data-empty>empty cart</li>';
+    }
     document.querySelector('[data-cart-list] ul').innerHTML = cartHtml;
 }
 
 const addEvents = _ => {
-    document.querySelectorAll('[data-cart-list] ul li')
+    document.querySelectorAll('[data-cart-list] ul li:not([data-empty])')
     .forEach(li => {
         const button = li.querySelector('button');
         button.addEventListener('click', _ => {
