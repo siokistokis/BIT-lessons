@@ -91,7 +91,7 @@ for (let i = 4; i <= 14; i++) {
     
     table2 += `<tr><td>4*${i}</td><td>${sum}</td></tr>`;   
 }
-table2 += `</table>`;
+table2 += '</table>';
 task5.innerHTML = table2;
 
 // document.body.append(table);
@@ -126,14 +126,16 @@ task5.innerHTML = table2;
 
 let stars = "";
 
-for (let j = 0; j < 444; j++) {
+for (let j = 1; j <= 444; j++) {
      stars += `<span style="color:${randomColor()}" >*</span>`;
+     if (i % 44 === 0) {
+       stars+= `<br/>` 
+     }
+
      //console.log(stars);
-}task6.innerHTML = stars;
+}task6.innerHTML = stars
 
       
-        
- 
 //function getRandomColor() {
 //    const letters = '0123456789ABCDEF';
 //    let color = '#';

@@ -53,7 +53,7 @@ const h1 = document.querySelector('h1');
 
 const button = document.querySelector('#button');
 
-button. addEventListener ('click', _ => {
+button.addEventListener ('click', _ => {
     h1.innerText = input.value;
     input.value = '';
 });
