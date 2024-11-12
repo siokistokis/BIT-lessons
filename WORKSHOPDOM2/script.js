@@ -16,7 +16,12 @@ function rand(min, max) {
 }
 
 function randomColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16).padEnd(6, '0');
+    return (
+        "#" + 
+    Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padEnd(6, "0")
+);
 }
 
 console.log("runs")
@@ -34,7 +39,7 @@ for (let i = 0; i < 14; i++) {
     h4 += `<h4 style="color:${color}" >1</h4>`;
 }
 
-
+task1.style.marginTop = "3rem"
 task1.style.display = "flex"
 task1.innerHTML = h1 + h4
 
@@ -52,6 +57,7 @@ for (let i = 0; i < 44; i++) {
         number += `<span style ="color: blue; margin left: 10px;"> ${randNumber}</span> `
     }
 }
+task2.style.marginTop = "3rem"
 task2.innerHTML = number
 
 
@@ -62,7 +68,7 @@ let circle = "";
 for (let i = 0; i < 14; i++) {
     circle += `<span style = "display: inline-block; width: 50px; height: 50px; border-radius: 50%; background-color: blue"></span>`
 }
-
+task3.style.marginTop = "3rem"
 task3.innerHTML = circle
 
 // 4. Narsykleje nupieskite 4 melynus ir 4 raudonus apskritimus, isdeliotus eilute zebru. raudonas melynas raudonas.
@@ -73,6 +79,7 @@ for (let i = 0; i < 4; i++) {
     circle += `<span style = "display: inline-block; width: 50px; height: 50px; border-radius: 50%; background-color: green"></span>`
     circle += `<span style = "display: inline-block; width: 50px; height: 50px; border-radius: 50%; background-color: red"></span>`
 }
+task4.style.marginTop = "3rem"
 task4.innerHTML = circle
 
 // 5. \narsykleje nupieskite daugybos lentele 4 dauginant is skaiciu nuo 4 iki14.
@@ -84,14 +91,15 @@ task4.innerHTML = circle
 //}
 
 //First Option 
-let table2 = `<table border='1'>`;
+let table2 = `<table border = 1 cellpadding = "10">`;
 for (let i = 4; i <= 14; i++) {
     let sum = i*4;
     console.log(sum);
     
-    table2 += `<tr><td>4*${i}</td><td>${sum}</td></tr>`;   
+    table2 += `<tr><td>4*${i}</td><td>=${sum}</td></tr>`;   
 }
 table2 += '</table>';
+task5.style.marginTop = "3rem"
 task5.innerHTML = table2;
 
 // document.body.append(table);
@@ -128,12 +136,14 @@ let stars = "";
 
 for (let j = 1; j <= 444; j++) {
      stars += `<span style="color:${randomColor()}" >*</span>`;
-     if (i % 44 === 0) {
+     if (j % 44 === 0) {
        stars+= `<br/>` 
      }
 
      //console.log(stars);
-}task6.innerHTML = stars
+}
+task6.style.marginTop = "3rem"
+task6.innerHTML = stars
 
       
 //function getRandomColor() {
@@ -161,24 +171,59 @@ for (let j = 1; j <= 444; j++) {
 
 // 7. Narsykleje nupieskite 14 atsitiktiniu spalvu kvadratu esanciu vienas kitame matrioska.
 
-
-let size = 300;
-let matryoshka = document.querySelector('.task7');
+//MantoS
+let size = 500
+let square = ""
 for (let i = 0; i < 14; i++) {
-    let square = document.createElement('div');
-    square.classList.add('square');
-
-    square.style.width = `${size}px`;
-    square.style.height = `${size}px`;
-    square.style.backgroundColor = randomColor();
-   
-   matryoshka.appendChild(square);
-    matryoshka = square;
-    size -= 20;
+    square += `<div style ="
+    width: ${size}px;
+    height: ${size}px;
+    position: absolute;
+    background-color: ${randomColor()};
+    top: ${(500-size) / 2}px;
+    left: ${(500-size) / 2}px;
+    "></div>`
+    size -= 30
 }
-console.log(matryoshka)
+task7.style.position = "relative";
+task7.style.marginTop = "3rem"
+task7.innerHTML = square;
+
+// let size = 300;
+// let matryoshka = document.querySelector('.task7');
+// for (let i = 0; i < 14; i++) {
+//     let square = document.createElement('div');
+//     square.classList.add('square');
+
+//     square.style.width = `${size}px`;
+//     square.style.height = `${size}px`;
+//     square.style.backgroundColor = randomColor();
+   
+//    matryoshka.appendChild(square);
+//     matryoshka = square;
+//     size -= 20;
+// }
+// console.log(matryoshka)
 
 // 8. is simbolio &#9632; kopijuoti visa teksta su kabliuku. sudeliokite zalia kvadrata turinti 41x41 siu simboliu. kad kvadratas atrodytu kvadratiskai panaudokite css stiliu ir papildomus tagus. #ciklasCikle
+
+let squareOfSigns = ""
+for(let i = 0; i < 41; i++) {
+    let row = `<div style="width: 50%;
+    height: 50%;">`
+    //display: grid; grid-template-columns:repeat(41, 1em)
+    for(let j = 0; j < 41; j++) {
+        row +=`<span>&#9632;</span`
+    }
+    row += `</div>`
+    squareOfSigns += row
+}
+// task8.style.position = "relative" 
+task8.style.marginTop = "12rem"
+
+task8.innerHTML = squareOfSigns
+
+
 
 // 9. uzdavinyje pries tai nupiestam kvadratui nupieskite geltonas istrizaines (geltonai nudazykite atitinkamus simbolius). #ciklasCikle
 

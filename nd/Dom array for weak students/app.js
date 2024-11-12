@@ -1,3 +1,12 @@
+const task1 = document.querySelector(".task1")
+const task2 = document.querySelector(".task2")
+const task3 = document.querySelector(".task3")
+const task4 = document.querySelector(".task4")
+const task5 = document.querySelector(".task5")
+const task6 = document.querySelector(".task6")
+const task7 = document.querySelector(".task7")
+const task8 = document.querySelector(".task8")
+
 //03. DOM ir Array (animals edition)
 
 //	Nuoroda: nėra (jūsų pačių sukurtas html failas)
@@ -6,7 +15,8 @@
 
 
 
-//Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais.
+//task1  Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais.
+
 const A = [
   'Bebras',
   'Zebras',
@@ -19,51 +29,44 @@ const A = [
   'Naminis katinas',
 ];
 
-const B = [
-  'Kalakutas',
-  'Višta',
-  'Antis',
-  'Žąsis',
-  'Ančiasnapis'
-];
+//task2 Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais išdėliotais abėcėline tvarka.
 
-
-//Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo A nuskaitytais gyvūnais išdėliotais abėcėline tvarka.
-
-// 1.
-
-//const sorted = A.sort((a, b) => {
-//if (a.toLowerCase() < b.toLowerCase()) {
-//return -1;
-//}
-//if (a.toLowerCase() > b.toLowerCase()) {
-//return 1;
-//}
-//return 0;
-//});
-
-//console.log(sorted);
 
 // 2.
 
-  const sorted = A.sort((aa, bb) => aa.localeCompare(bb));
-  console.log(sorted);
-  let someList = document.getElementById("someList");
-  sorted.forEach(item => {
-  let li = document.createElement("li");
-   li.textContent = item;
-   someList.appendChild(li);
- })
-
-
- //second option
-// const ul1 = document.querySelector ("#task1");
-// A.sort();
-// A.forEach((animal) => {
-//   const listItems = document.createElement("li");
-//   listItems.textContent = animal;
-//   ul1.appendChild(listItems);
+// const sorted = A.sort((a, b) => {
+// if (a.toLowerCase() < b.toLowerCase()) {
+// return -1;
+// }
+// if (a.toLowerCase() > b.toLowerCase()) {
+// return 1;
+// }
+// return 0;
 // });
+
+// console.log(sorted);
+
+// 2.
+//   const A = Document.querySelector('#task2')
+//   const sorted = A.sort((aa, bb) => aa.localeCompare(bb));
+//   console.log(sorted);
+//   let someList = document.getElementById("someList");
+//   sorted.forEach(item => {
+//   let li = document.createElement("li");
+//    li.textContent = item;
+//    someList.appendChild(li);
+//    task2.innerHTML = A;
+//  })
+
+
+ 
+//const ul1 = document.querySelector ("#task2");
+//A.sort();
+// A.forEach((animal) => {
+//    const listItems = document.createElement("li");
+//    listItems.textContent = animal;
+//    ul1.appendChild(listItems);
+//  });
 
 //third option
 // A.sort((a, b) => A.localeCompare(b, 'li'));
@@ -88,7 +91,15 @@ const B = [
 
 
 
-//Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvų A ir B nuskaitytais gyvūnais išdėliotais abėcėline tvarka (Rūšiavimas turi būti bendras tarp abiejų masyvų, NE kiekvieno atskirai).#pamastykKaip
+//task3. Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvų A ir B nuskaitytais gyvūnais išdėliotais abėcėline tvarka (Rūšiavimas turi būti bendras tarp abiejų masyvų, NE kiekvieno atskirai).#pamastykKaip
+
+const B = [
+  'Kalakutas',
+  'Višta',
+  'Antis',
+  'Žąsis',
+  'Ančiasnapis'
+];
 
 // const ul2 = document.querySelector("#task2");
 // const joinedAnimals = [...A,...B];
@@ -113,25 +124,77 @@ document.body.appendChild(listTwoArrays);
 console.log(twoArrays)
 
 
-//Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra mėlyni apskritimai su centre užrašytais iš masyvo A nuskaitytais gyvūnais.
+//4. Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra mėlyni apskritimai su centre užrašytais iš masyvo A nuskaitytais gyvūnais.
 
-let task3 = document.getElementById("animalsSection");
-A.forEach(item => {
-  let circleDiv = document.createElement("div")
-  circleDiv.classList.add("circle");
-  circleDiv.textContent = item;
-  task3.appendChild(circleDiv);
+// let task4 = document.getElementById("animalsSection");
+// A.forEach(item => {
+//   let circleDiv = document.createElement("div")
+//   circleDiv.classList.add("circle");
+//   circleDiv.textContent = item;
+//   task4.appendChild(circleDiv);
+// })
+// console.log(task4);
+
+//second option
+const circles = document. querySelector('#task4');
+A.forEach(A => {
+  divas.style.width ='100px';
+  divas.style.height = '100px';
+  divas.style.borderRadius = '50px';
+  divas.style.bacgroundColor = 'skyblue';
+  divas.style.texhAlign = 'center';
+  divas.innerText = A;
+  divas.style.display = 'flex';
+  divas.style.alignItems = 'center';
+  divas.style.justifyContent = 'center';
+  circles.style.display = 'flex';
+  circles.appendChild(divas);
 })
-console.log(task3);
+
+// task5. Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra raudoni apskritimai su centre centre užrašytais iš masyvo B nuskaitytais gyvūnais ir tų gyvūnų raidžių skaičiumi.
+
+const circles2 = document.queryselector('#task5');
+B.forEach(B => {
+  const divas2 = document.createElement('div');
+  divas.style.width ='100px';
+  divas.style.height = '100px';
+  divas.style.borderRadius = '50px';
+  divas.style.bacgroundColor = 'skyblue';
+  divas.style.texhAlign = 'center';
+  divas.innerText = B + ' ' + B.length;
+  divas.style.display = 'flex';
+  divas.style.alignItems = 'center';
+  divas.style.justifyContent = 'center';
+  circles2.style.display = 'flex';
+  circles2.appendChild(divas2);
+})
 
 
-//Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra raudoni apskritimai su centre centre užrašytais iš masyvo B nuskaitytais gyvūnais ir tų gyvūnų raidžių skaičiumi.
+// task6 Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra žali apskritimai su centre užrašytais gyvūnais, nuskaityto iš masyvo A. Dėkite tik tuos gyvūnus, kurie savo pavadinime turi tik vieną žodį.
 
-//Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite div tagus, kurie yra žali apskritimai su centre užrašytais gyvūnais, nuskaityto iš masyvo A. Dėkite tik tuos gyvūnus, kurie savo pavadinime turi tik vieną žodį.
+const circles3 = document. querySelector('#task6');
+const oneWord = A.filter(name => {
+  const one = name.split(" ");
+  return one. length === 1
+})
+ oneWord.forEach(name => {
+  const div = document.createComment('div');
+  div.innerText = name;
+  dispatchEvent.style.width ='100px';
+  div.style.height = '100px';
+  div.style.borderRadius = '50px';
+  div.style.bacgroundColor = 'green';
+  div.style.texhAlign = 'center';
+  div.style.display = 'flex';
+  div.style.alignItems = 'center';
+  div.style.justifyContent = 'center';
+  circles3.style.display = 'flex';
+  circles3.appendChild(div); 
+ })
 
-//Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite span tagus, kurie yra geltoni apskritimai su centre užrašytais iš masyvo B nuskaitytų gyvūnų pavadinimų raidėm. Kiekvienas span tagas- atskira raidė. (visų gyvūnų visos raidės atskiruose span taguose).#ciklasCikle
+// task7 Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite span tagus, kurie yra geltoni apskritimai su centre užrašytais iš masyvo B nuskaitytų gyvūnų pavadinimų raidėm. Kiekvienas span tagas- atskira raidė. (visų gyvūnų visos raidės atskiruose span taguose).#ciklasCikle
 
-//Html faile sukurkite du ul tagus (tiesiogiai). Į  vieną sukurtą tagą, su JS, sudėkite li tagus su iš masyvo C nuskaitytais gyvūnais, kurių pavadinimas ne ilgesnis kaip 6 raidės, į kitą likusius.
+//task8 Html faile sukurkite du ul tagus (tiesiogiai). Į  vieną sukurtą tagą, su JS, sudėkite li tagus su iš masyvo C nuskaitytais gyvūnais, kurių pavadinimas ne ilgesnis kaip 6 raidės, į kitą likusius.
 const C = [
   'Višta',
   'Gaidys',
