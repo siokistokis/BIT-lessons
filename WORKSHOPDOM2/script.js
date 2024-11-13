@@ -80,7 +80,7 @@ for (let i = 0; i < 4; i++) {
     circle += `<span style = "display: inline-block; width: 50px; height: 50px; border-radius: 50%; background-color: red"></span>`
 }
 task4.style.marginTop = "3rem"
-task4.innerHTML = circle
+task4.innerHTML = circle;
 
 // 5. \narsykleje nupieskite daugybos lentele 4 dauginant is skaiciu nuo 4 iki14.
 
