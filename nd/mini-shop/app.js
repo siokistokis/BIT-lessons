@@ -29,21 +29,48 @@
 //     }
 // ];
 
+// bandymas su local storage
+
+const obj = {name: 'Jonas', age: 25};
+
+localStorage.setItem('cat', JSON.stringify(obj));
+localStorage.setItem('dog', JSON.stringify(obj));
+
+
 let C = [];
 
+const init = _ => {
+    const cartIcon = document.querySelector('[data-cart-icon]');
+    cartIcon.addEventListener('click', _ => changeCart());
+    cartRender();
+    addEvents();
+    productsAction();
+}
 
-const cartIcon = document.querySelector('[data-cart-icon]');
-const cartList = document.querySelector('[data-cart-list]');
+const updateCount = _ => {
+    const count = C.reduce((acc, item) => acc + item.quantity, 0);
+    document.querySelector('[data-cart-count]').textContent = count;
+}
 
-cartIcon.addEventListener('click', _ => {
-    if (cartList.dataset.open === 'close') {
-        cartList.dataset.open = 'open';
-        cartList.style.maxHeight = cartList.scrollHeight + 'px';
+const changeCart = (changeView = true) => {
+    const cartList = document.querySelector('[data-cart-list]');
+
+    if (changeView) {
+        if (cartList.dataset.open === 'close') {
+            cartList.dataset.open = 'open';
+            cartList.style.maxHeight = cartList.scrollHeight + 'px';
+        } else {
+            cartList.dataset.open = 'close';
+            cartList.style.maxHeight = '0';
+        }
     } else {
-        cartList.dataset.open = 'close';
-        cartList.style.maxHeight = '0';
+        if (cartList.dataset.open === 'close') {
+            cartList.style.maxHeight = '0';
+        } else {
+            cartList.style.maxHeight = cartList.scrollHeight + 'px';
+        }
     }
-});
+}
 
 const showMessage = _ => {
     const message = document.querySelector('[data-show]');
@@ -69,29 +96,28 @@ const productsAction = _ => {
             const price = parseFloat(button.dataset.price);
             const quantity = parseInt(input.value);
 
-            C.push(
-                {
-                    id,
-                    img,
-                    title: name,
-                    price,
-                    quantity
-                }
-            );
+            const findItem = C.find(item => item.id === id);
+            if (findItem) {
+                findItem.quantity += quantity;
+            } else {
+                C.push(
+                    {
+                        id,
+                        img,
+                        title: name,
+                        price,
+                        quantity
+                    }
+                );
+            }
 
             showMessage();
             cartRender();
             addEvents();
-            const cartList = document.querySelector('[data-cart-list]');
-            cartList.dataset.open = 'close';
-            cartList.style.maxHeight = '0';
-
+            changeCart(false);
 
         });
     });
-
-
-
 }
 
 
@@ -114,13 +140,18 @@ const cartRender = _ => {
         cartHtml += cartItemHtml;
     });
     if (!cartHtml) {
-        cartHtml = '<li data-empty>Krepšelis tuščias</li>';
+        cartHtml = '<li data-not-product>Krepšelis tuščias</li>';
+    } else {
+        const total = C.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        cartHtml += `<li data-not-product>Total:  ${total.toFixed(2)} EUR</li>`;
     }
+
     document.querySelector('[data-cart-list] ul').innerHTML = cartHtml;
+    updateCount();
 }
 
 const addEvents = _ => {
-    document.querySelectorAll('[data-cart-list] ul li:not([data-empty])')
+    document.querySelectorAll('[data-cart-list] ul li:not([data-not-product])')
         .forEach(li => {
             const button = li.querySelector('button');
             button.addEventListener('click', _ => {
@@ -132,6 +163,6 @@ const addEvents = _ => {
         });
 }
 
-cartRender();
-addEvents();
-productsAction();
+
+
+init();

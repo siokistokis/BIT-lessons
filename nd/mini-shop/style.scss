@@ -85,6 +85,22 @@ header {
         .cart {
             position: relative;
 
+            .count {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                background-color: $red;
+                color: $white;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 15px;
+                font-weight: 500;
+            }
+
             svg {
                 width: 40px;
                 height: 40px;
@@ -227,7 +243,8 @@ header {
     position: fixed;
     right: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(100%, -50%);
+    transition: all 0.3s ease;
     .container {
         display: flex;
         justify-content: center;
@@ -238,8 +255,7 @@ header {
         border-bottom-left-radius: 40px;
         padding: 100px 100px 100px 50px;
         background-color: $white;
-        transform: translate(100%, 0);
-        transition: all 0.3s ease;
+
         p {
             font-size: 30px;
             color: $blue;
@@ -248,8 +264,6 @@ header {
     }
 
     &[data-show="true"] {
-        .container {
-            transform: translate(0, 0);
-        }
+        transform: translate(0, -50%);
     }
 }

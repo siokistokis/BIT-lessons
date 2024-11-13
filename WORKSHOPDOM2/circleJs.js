@@ -1,7 +1,7 @@
 function rand(min, max) {
     const minCeiled = Math.ceil(min);
-    const maxFlored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored = minCeiled + 1) + minCeiled)
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
 function randomColor() {
@@ -21,7 +21,7 @@ let circles = ""
         const diameter = rand(44, 144);
         const color = randomColor();
         const top = rand(0, window.innerHeight- diameter);
-        const left = rand(0,window.innerWidth- diameter);
+        const left = rand(0, window.innerWidth- diameter);
     circles += `<div style="
     position: absolute;
     width: ${diameter}px;
@@ -32,7 +32,16 @@ let circles = ""
     left: ${left}px;
     border-radius: 50%;
     "></div>`
+    console.log(top, left);
 
     }
-document.boody.innerHTML = circles;
+    document.body.style.position = 'relative';
+    document.body.style.height = "100vh";
+    document.body.style.width = "100vw";
+document.body.innerHTML = circles;
+console.log(rand(1, 100));
+
+
+
+
 //console.log(window.innerHeight, window.innerWidth);

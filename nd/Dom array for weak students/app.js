@@ -196,28 +196,113 @@ const oneWord = A.filter(name => {
 
 // task7 Html faile sukurkite section tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite span tagus, kurie yra geltoni apskritimai su centre užrašytais iš masyvo B nuskaitytų gyvūnų pavadinimų raidėm. Kiekvienas span tagas- atskira raidė. (visų gyvūnų visos raidės atskiruose span taguose).#ciklasCikle
 
+// const task07 = document.querySelector('#task7');
+// B.forEach(B => {
+//   let letters = B.split('');
+//   letters.forEach(letters => {
+//     let.span = dokument.createComment('span');
+//     span.innerText = letters;
+//     span.style.width = '40px';
+//     span.style.height = '40px';
+//     span.style.borderRadius = '20px'
+//     span.style.bacgroundColor = 'yellow';
+//     span.style.texhAlign = 'center';
+//     span.style.display = 'flex';
+//     span.style.alignItems = 'center';
+//     span.style.justifyContent = 'center';
+//     //task07.style.display = 'flex';
+//     //task07.appendChild(span);
+//     divas1.appendChild(span);
+//   })
+//   task07.appendChild(divas1)
+// })
+
+const task07 = document.querySelector('#task7');
+for (let i=0; i<B.length; i++) {
+  const word = B[i];
+  constdivas = document.createElement('div');
+  for (let j = 0; j < word.length; j++) {
+    const letter = word[j];
+    const span = document.createElement('span');
+    span.innerText = letter;
+    span.style.width = '50px';
+    span.style.height = '50px';
+    span.style.borderRadius = '50%'
+    span.style.bacgroundColor = 'yellow';
+    span.style.display = 'flex';
+    span.style.alignItems = 'center';
+    span.style.justifyContent = 'center';
+    divas.appendChild(divas)
+  }
+}
+
 //task8 Html faile sukurkite du ul tagus (tiesiogiai). Į  vieną sukurtą tagą, su JS, sudėkite li tagus su iš masyvo C nuskaitytais gyvūnais, kurių pavadinimas ne ilgesnis kaip 6 raidės, į kitą likusius.
 const C = [
   'Višta',
   'Gaidys',
-  'Šernas',
+  'Sernas',
   'Lapė',
   'Vilkas',
-  'Šuo dingo',
+  'Suo dingo',
   'Barsukas',
   'Voverė',
-  'Šuo',
+  'Suo',
   'Naminis katinas',
   'Laukinis katinas',
-  'Šuo atsirado',
+  'Suo atsirado',
   'Bebras',
   'Ožys'
 ];
 
+// const task8ul = dokument.querySelector('#task8.one');
+// const task8ul2 = dokument.querySelector('#task8.two');
+// const longest = C.filter(word => word.length > 6);
+// const shortest = C.filter(word1 => word1.length <= 6);
 
+// longest.forEach(longest => {
+//   let li = document.createElement('li');
+//   li.innerText = longest;
+//   li.style.color = 'green'
+//   task8ul.appendChild(li);
+// })
+// shortest.forEach(shortest => {
+//   let li1 = document.createElement('li');
+//   li1.innerText = shortest;
+//   li1.style.color = 'blue'
+//   task8ul. appendChild(li1)
+// })
 
+const shortertThan6 = C.filter(word => word.length < 6);
+const longerThan6 = C.filter(word =>word.length > 6);
+const ulOne = document.querySelector('.short');
+const ulTwo = document.querySelector('.long');
+
+shortertThan6.forEach(animal => {
+  const li = document.querySelector('li');
+  li.innerText = animal;
+  ulOne.appendChild(li);
+})
+longerThan6.forEach(animal => {
+  const li = document.querySelector('li');
+  li.innerText = animal;
+  ulTwo.appendChild('li');
+})
 
 //task9 Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo B nuskaitytais gyvūnais. Išfiltruokite ir nedėkite šunų.
+
+const task09 = document.querySelector('#task9');
+// C
+//   .filter(animal => animal !=='Suo' && animal !=='Suo dingo' && animal!=='Suo atsirado')
+//   .forEach(gyvunas => {
+//     const li = document.createElement('li');
+//   })
+
+const withoutSuo = C.filter(animal => !animal.includes('Suo'));
+withoutSuo.forEach(animals => {
+    const li = document.createElement('li');
+    li.innerText = animals;
+    task09.appendChild(li);
+})
 
 //task10 Uždavinį atlikite atskirame html faile. Visame ekrane atsitiktine tvarka “išmėtykite“ iš masyvo C nuskaitytus gyvūnus. Kad būtų daugiau gyvūnų, tą patį masyvą nuskaitykite 10 kartų. Gyvūnų pavadinimų raidžių dydis- atsitiktinis nuo 10px iki 100px. Gyvūnų pavadinimų raidžių spalva atsitiktinė. Pavadinimai turi tolygiai (pagal funkciją rand()) dengti visą ekraną (funkcijos duotos 02. DOM ir Cycles (one & four edition)).#fun
 
