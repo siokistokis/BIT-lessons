@@ -208,15 +208,15 @@ task7.innerHTML = square;
 // 8. is simbolio &#9632; kopijuoti visa teksta su kabliuku. sudeliokite zalia kvadrata turinti 41x41 siu simboliu. kad kvadratas atrodytu kvadratiskai panaudokite css stiliu ir papildomus tagus. #ciklasCikle
 
 let squareOfSigns = ""
-for(let i = 0; i < 41; i++) {
-    let row = `<div style="width: 50%;
-    height: 50%;">`
-    //display: grid; grid-template-columns:repeat(41, 1em)
-    for(let j = 0; j < 41; j++) {
-        row +=`<span>&#9632;</span`
+for (let i = 0; i < 41; i++) {
+    let row = `<div style="display: grid; grid-template-columns: repeat(41, 1.3rem); ">`
+    //width: 50%; height: 50%;
+    //color: ${green}; 
+    for (let j = 0; j < 41; j++) {
+        row +=`<span style="color: green;">&#9632;</span>`
     }
     row += `</div>`
-    squareOfSigns += row
+    squareOfSigns+= row
 }
 // task8.style.position = "relative" 
 task8.style.marginTop = "12rem"
@@ -226,5 +226,25 @@ task8.innerHTML = squareOfSigns
 
 
 // 9. uzdavinyje pries tai nupiestam kvadratui nupieskite geltonas istrizaines (geltonai nudazykite atitinkamus simbolius). #ciklasCikle
+
+let squareWithDiagonal = ""
+let sizes = 41 
+for (let i = 0; i < sizes; i++) {
+    let row = `<div style= "display: flex">`
+    for (let j = 0; j < sizes; j++) {
+        let color = ""
+        if (i===j || sizes-1-i===j) {
+            color = "yellow"
+        }
+        else {
+            color = "green"
+        }
+        row+=`<span style="color: ${color}":>&#9632;</span>`
+    }
+    row+=`</div>`
+    squareWithDiagonal+=row
+}
+task9.style.marginTop = "3rem"
+task9.innerHTML = squareWithDiagonal
 
 // 10. uzdavini atlikite atskirame html faile. visame ekrane atsitiktine tvarka ismeykite 444 pusiau permatomus atsitiktines spalvos ir atsitiktinio skersmens nuo 44 iki 144 px
