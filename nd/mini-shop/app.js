@@ -36,7 +36,6 @@ const obj = {name: 'Jonas', age: 25};
 localStorage.setItem('cat', JSON.stringify(obj));
 localStorage.setItem('dog', JSON.stringify(obj));
 
-
 let C = [];
 
 const init = _ => {

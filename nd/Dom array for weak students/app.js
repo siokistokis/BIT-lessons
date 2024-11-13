@@ -199,6 +199,7 @@ const oneWord = A.filter(name => {
 // const task07 = document.querySelector('#task7');
 // B.forEach(B => {
 //   let letters = B.split('');
+ //     const divas1 = document.createElement('div');
 //   letters.forEach(letters => {
 //     let.span = dokument.createComment('span');
 //     span.innerText = letters;
@@ -207,7 +208,7 @@ const oneWord = A.filter(name => {
 //     span.style.borderRadius = '20px'
 //     span.style.bacgroundColor = 'yellow';
 //     span.style.texhAlign = 'center';
-//     span.style.display = 'flex';
+//     span.style.display = 'inline-flex';
 //     span.style.alignItems = 'center';
 //     span.style.justifyContent = 'center';
 //     //task07.style.display = 'flex';
@@ -229,11 +230,12 @@ for (let i=0; i<B.length; i++) {
     span.style.height = '50px';
     span.style.borderRadius = '50%'
     span.style.bacgroundColor = 'yellow';
-    span.style.display = 'flex';
+    span.style.display = 'inline-flex';
     span.style.alignItems = 'center';
     span.style.justifyContent = 'center';
-    divas.appendChild(divas)
+    divas.appendChild(span)
   }
+  task07.appendChild(divas);
 }
 
 //task8 Html faile sukurkite du ul tagus (tiesiogiai). Į  vieną sukurtą tagą, su JS, sudėkite li tagus su iš masyvo C nuskaitytais gyvūnais, kurių pavadinimas ne ilgesnis kaip 6 raidės, į kitą likusius.
@@ -272,22 +274,39 @@ const C = [
 //   task8ul. appendChild(li1)
 // })
 
-const shortertThan6 = C.filter(word => word.length < 6);
-const longerThan6 = C.filter(word =>word.length > 6);
-const ulOne = document.querySelector('.short');
-const ulTwo = document.querySelector('.long');
+//second option
+// const shortertThan6 = C.filter(word => word.length < 6);
+// const longerThan6 = C.filter(word =>word.length > 6);
+// const ulOne = document.querySelector('.short');
+// const ulTwo = document.querySelector('.long');
 
-shortertThan6.forEach(animal => {
-  const li = document.querySelector('li');
-  li.innerText = animal;
-  ulOne.appendChild(li);
-})
-longerThan6.forEach(animal => {
-  const li = document.querySelector('li');
-  li.innerText = animal;
-  ulTwo.appendChild('li');
-})
+// shortertThan6.forEach(animal => {
+//   const li = document.querySelector('li');
+//   li.innerText = animal;
+//   ulOne.appendChild(li);
+// })
+// longerThan6.forEach(animal => {
+//   const li = document.querySelector('li');
+//   li.innerText = animal;
+//   ulTwo.appendChild('li');
+// })
 
+//third option
+
+const shorstUl = document.querySelector('.shorts');
+const longsUl = document.querySelector('.longs');
+
+C,forEach(animal =>{
+  if (animal.lenght < 6){
+    const li = document.querySelector('li');
+    li.innerText = animal;
+    shorstUl.appendChild(li);   
+  }else {
+    const li = document.querySelector('li');
+    li.innerText = animal;
+    longsUl.appendChild(li);
+  }
+})
 //task9 Html faile sukurkite ul tagą (tiesiogiai). Į sukurtą tagą, su JS, sudėkite li tagus su iš masyvo B nuskaitytais gyvūnais. Išfiltruokite ir nedėkite šunų.
 
 const task09 = document.querySelector('#task9');
