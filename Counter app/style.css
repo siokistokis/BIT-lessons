@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+}
+
+.containerAppContainer {
+    background-color:#005490;
+    width: 500px;
+    height: 300px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.counterAppContainer h1 {
+    color: white;
+    font-size: 2rem;
+    
+}
+hr {
+   width: 90%; 
+}
+.button {
+    padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;  
+}
+.buttonsContainer {
+    display: flex;
+    gap: 15px;
+    
+}
+.subtract {
+    background-color: orangered;
+}
+.reset {
+    background-color: white;
+}
+add {
+    background-color: greenyellow;
+}
