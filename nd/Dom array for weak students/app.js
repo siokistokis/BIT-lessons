@@ -326,25 +326,44 @@ withoutSuo.forEach(animals => {
 //task10 Uždavinį atlikite atskirame html faile. Visame ekrane atsitiktine tvarka “išmėtykite“ iš masyvo C nuskaitytus gyvūnus. Kad būtų daugiau gyvūnų, tą patį masyvą nuskaitykite 10 kartų. Gyvūnų pavadinimų raidžių dydis- atsitiktinis nuo 10px iki 100px. Gyvūnų pavadinimų raidžių spalva atsitiktinė. Pavadinimai turi tolygiai (pagal funkciją rand()) dengti visą ekraną (funkcijos duotos 02. DOM ir Cycles (one & four edition)).#fun
 
 
-function displayAnimals() {
-  C.forEach(animal => {
-    const fontSize = rand(minFontSize, maxFontSize) + 'px';
-    animalElement.style.fontSze = fontSize;
-  animalElement.style.color = randomColor();
-  const maxX = screenWidth - parseInt(fontSize) - 200;
-  const maxY = screenHeight - parseInt(fontSize) - 5;
-  const x = rand(0, maxX);
-  const y = rand(0, maxY);
-  animalElement.style.position = 'absolute';
-  animalElement. style.left = `${x}px`;
-  animalElement. style.top = `${y}px`;
-  document.body.appendChild(animalElement);
+// function displayAnimals() {
+//   C.forEach(animal => {
+//     const fontSize = rand(minFontSize, maxFontSize) + 'px';
+//     animalElement.style.fontSze = fontSize;
+//   animalElement.style.color = randomColor();
+//   const maxX = screenWidth - parseInt(fontSize) - 200;
+//   const maxY = screenHeight - parseInt(fontSize) - 5;
+//   const x = rand(0, maxX);
+//   const y = rand(0, maxY);
+//   animalElement.style.position = 'absolute';
+//   animalElement. style.left = `${x}px`;
+//   animalElement. style.top = `${y}px`;
+//   document.body.appendChild(animalElement);
 
-  });
-}
+//   });
+// }
 
-displayAnimals();
+// displayAnimals();
+//}  
+ 
 
+//second option
+
+//  for (let i = 0; i < 5; i++) {
+//   C.forEach(animals => {
+//     const p =document.createElement('p');
+//     const sizeOfLetters = rand(10, 100);
+//     const colorOFLetters = randomColor();
+//     const top = rand(0, window.innerHeight - sizeOfLetters);
+//     const left = rand(0, window.innerWidth - sizeOfLetters);
+
+//     p.style.color = colorOFLetters;
+//     p.style.fontSize = sizeOfLetters + 'px';
+//     p.style.position = 'absolute';
+//     p.style.top = top + 'px';
+//     p.style.left = left + 'px';
+//   })
+//  };
 
 
 
