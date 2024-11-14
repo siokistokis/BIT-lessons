@@ -10,10 +10,18 @@ subtract.addEventListener("click",function(){
     count.innerHTML--
 })
 
-function querySelector(){
-    for (let i = 0; i < 0; i++) {
-        if(????? i> 0) {
-           
-        }else difrent color
-    }
+    reset.addEventListener("click", function(){
+        count.innerHTML = 0
+    })
+
+function setColot(){
+    //for (let i = 0; i < 0; i++)
 }
+
+
+
+//     for (let i = 0; i < 0; i++) {
+//         if(????? i> 0) {
+           
+//         }else difrent color
+//     }
