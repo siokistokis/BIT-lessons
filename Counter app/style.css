@@ -33,9 +33,9 @@ hr {
 }
 .button {
     padding: 5px 10px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;  
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;  
 }
 .buttonsContainer {
     display: flex;
