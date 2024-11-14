@@ -32,12 +32,16 @@ task1.innerHTML = array;
 // Lyginių skaičių radimas sąraše
 // Sukurkite sąrašą skaičių. Naudodami for ciklą ir if sąlygą, išrinkite ir išspausdinkite tik lyginius skaičius iš sąrašo.
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+let arr = []
 for (let i = 0; i < numbers.length; i++) {
     if(numbers[i] % 2 === 0) {
         //console.log(numbers[i])
-        task2.innerHTML = numbers[i];
+        //task2.innerHTML = numbers[i];
+        arr.push(numbers[i]);
     }
-}         //???????????????????????????????????????????????????????
+} 
+task2.innerHTML = arr   
+     //console.log(arr)
 //3.
 //my exemple:
 const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 

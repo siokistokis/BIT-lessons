@@ -12,7 +12,7 @@ const task10 = document.querySelector(".task10")
 function rand(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored = minCeiled + 1) + minCeiled)
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled)
 }
 
 function randomColor() {
@@ -219,7 +219,7 @@ for (let i = 0; i < 41; i++) {
     squareOfSigns+= row
 }
 // task8.style.position = "relative" 
-task8.style.marginTop = "12rem"
+task8.style.marginTop = "3rem"
 
 task8.innerHTML = squareOfSigns
 
