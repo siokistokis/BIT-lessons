@@ -14,7 +14,7 @@ subtract.addEventListener("click",function(){
         count.innerHTML = 0
     })
 
-function setColot(){
+function setColor(){
     //for (let i = 0; i < 0; i++)
 }
 
