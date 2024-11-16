@@ -20,6 +20,33 @@ const task19 = document.querySelector(".task19")
 const task20 = document.querySelector(".task20")
 const task21 = document.querySelector(".task21")
 
+// function addGapBetweenWords(text, gap) {
+//     // Split the text into words
+//     let words = text.split(' ');
+    
+//     // Join the words with the specified gap
+//     return words.join(gap);
+//   }
+
+function addGapToDocumentText(gap) {
+    // Function to recursively process all text nodes in the document
+    function traverseAndModifyText(node) {
+      // If the node is a text node, modify its content
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.textContent = node.textContent.split(' ').join(gap);
+      } else {
+        // If it's an element node, recursively process its children
+        for (let child of node.childNodes) {
+          traverseAndModifyText(child);
+        }
+      }
+    }
+  
+    // Start from the body of the document
+    traverseAndModifyText(document.body);
+  }
+  //???????????????????????????????????????????????????????????????????????????????????????
+
 //console.log('Hello');
 //1.
 let array = [1, 2, 3, 4, 5];
