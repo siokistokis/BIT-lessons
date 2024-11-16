@@ -1,8 +1,4 @@
 
-
-
-
-
 //Agregacija. 
 
 //Agregaciją daugeliu atveju galima atlikti JS reduce metodu, bet siekiant įgauti praktikos visus uždavinius reikėtų išspręsti dviem būdais:
@@ -13,191 +9,221 @@
 //Pastaba: užduoties raidė atitinka masyvo, skirto tai užduočiai raidei.
 //Pastaba: kodas turi būti užrašytas taip, kad pasikeitus masyvų turiniui rezultatas išliktų teisingas.
 
+const A1 = document.querySelector(".A1")
+const A2 = document.querySelector(".A2")
+const A3 = document.querySelector(".A3")
+const A4 = document.querySelector(".A4")
+const A5 = document.querySelector(".A5")
+const A6 = document.querySelector(".A6")
+const A7 = document.querySelector(".A7")
+const A8 = document.querySelector(".A8")
+const A9 = document.querySelector(".A9")
+const A10 = document.querySelector(".A10")
+
+// Funkcija atsitiktiniams skaičiams generuoti
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function rand(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled)
+}
+
+
+
 //A. Masyvas su skaičiais.
 
 const A = [83, 55, 53, -73, 0, 8, 17, 76, 95, -1, 35, -16, -22, -94, 9, 54, 66, 30, -46, 9, 62, -9, -64, -55, 0, 19, 29, -70, 0, 51, -92, 46, 43, 58, -61, 3, -12, -58, -82, 5, 5, 97, 90, -51, 57, 72, -71, -6, 86, 34, 100, -94, 44, 80, 54, 60, 87, -94, -25, -59, -90, -3, 35, 7, -16, 26, -38, 82, 79, -61, -48, -3, 56, -32, -94, -87, -24, 86, -93, -21, 83, -71, -2, -45, 15, 39, 0, 29, -77, -97, 27, 77, 41, 0, 40, -54, 99, 70, -41, 91];
 
 // A1 Surasti didžiausią skaičių;
 
- //first option
 
-let theLargest = A[0]; 
-for (let i=0; i < A.length; i++) { 
-if (A[i] > theLargest){
-    theLargest = A[i]; 
-    //taskA1.innerHTML = theLargest;
-} 
-console.log(theLargest);
-} 
-
-
-//second option
-
-function max(list) {
-  return list.reduce((a, b) => a > b ? a : b);
-}
-
-//third option
-
-function max(list) {
-  let max = list[0];
-  list.forEach(function(e) {
-    if (e > max) max = e;
-  });
-  return max;
-}
-
-//fourth option
-
-let bigArray = [/* ... огромное количество чисел ... */];
-let max = -Infinity;
-for (let i = 0; i < bigArray.length; i++) {
-    if (bigArray[i] > max) {
-        max = bigArray[i];
-    }
-}
-
-//fifth option
-
-function getBigNumber(list){
-  for(let i = 0; i < list.length; i++){
-      const itemToInsert = list[i];
-      let j = i;
-      while(j > 0 && comparator(itemToInsert, list[j - 1])){
-          list[j] = list[j - 1];
-          j--;
-      }
-      list[j] = itemToInsert;
+// Step 1: Filter out only positive numbers
+let array1 = [];
+for (let i = 0; i < A.length; i++) {
+  if (A[i] > 0) {  // Only values greater than 0
+    array1.push(A[i]);
   }
-  let result = '';
-
-  list.forEach(({ str }) => 
-      result += str)
-
-  console.log(result)
 }
+
+// Step 2: Find the largest number in array1 using Math.max()
+let biggestNumber = Math.max(...array1);  // Spread the array into the Math.max function
+
+// Step 3: Display the largest number in the console and on the webpage
+console.log("The biggest number is:", biggestNumber);
+
+// If you want to display it on the webpage, you can use this:
+document.getElementById("A1").innerHTML = `The biggest number is: ${biggestNumber}`;
+
+
+
 
 // A2 Surasti mažiausią skaičių;
-let theSmolest = A[0]; 
-for (let i=0; i < A.length; i++) { 
-if (A[i] > theSmolest){
-    theLargest = A[i]; 
-    //taskA2.innerHTML = theLargest;
-} 
-console.log(theSmolest);
-} 
+
+// Step 1: Filter out only positive numbers
+let array2 = [];
+for (let i = 0; i < A.length; i++) {
+  if (A[i] < 0) {  // Only values greater than 0
+    array2.push(A[i]);
+  }
+}
+
+// Step 2: Find the smolest number in array1 using Math.min()
+let smolestNumber = Math.min(...array2);  // Spread the array into the Math.max function
+
+// Step 3: Display the smolest number in the console and on the webpage
+console.log("The smolest number is:", smolestNumber);
+
+// If you want to display it on the webpage, you can use this:
+document.getElementById("A2").innerHTML = `The smolest number is: ${smolestNumber}`;
+
+
 
 // A3 Surasti didžiausią neigiamą skaičių;
 
-for (let i = 0; i < negativeNumbers.length; i++) {
-  if (negativeNumbers[i] < 0) {
-      console.log(negativeNumbers[i]);
-      taskA3.innerHTML = negativeNumbers[i];
-  } if
-} 
+//  let array3 = [];
+//  for (let i = 0; i < A.length; i++) {
+//     if (A[i] < 0) {
+//       array3.push(A[i]);
+//     } 
+//   } 
+//   let biggestestNegativeNumber = Math.max(...array3);
+//   console.log("The biggest negative number is:", biggestestNegativeNumber);
+//   document.getElementById("A3").innerHTML = `The biggest negative number is: ${biggestestNegativeNumber}`;
+
+ // Step 1: Create array3 with only negative numbers
+ let array3 = [];
+ for (let i = 0; i < A.length; i++) {
+   if (A[i] < 0) {
+     array3.push(A[i]);
+   }
+ }
+
+ // Step 2: Find the biggest negative number (least negative)
+ let biggestestNegativeNumber = Math.max(...array3);  // Use Math.max to get the "least negative" number
+
+ // Step 3: Display the biggest negative number in console and on the webpage
+ console.log("The biggest negative number is:", biggestestNegativeNumber);
+
+ // If you want to display it on the webpage, you can use:
+ document.getElementById("A3").innerHTML = `The biggest negative number is: ${biggestestNegativeNumber}`;
 
 
 //A4 Surasti didžiausią skaičių, kuris yra mažesnis už 50;
 
-//first option
-var sum = 0;
- 
-numbers.forEach(function(num) {
-    sum += num;
-});
- 
-console.log(sum); 
 
-//second option
-var sum = numbers.reduce(function(a, b){
-  return a + b;
-}, 0);
+// Step 1: Filter the array to get only numbers less than 50
+let numbersLessThan50 = A.filter(number => number < 50);
 
-console.log(sum);
+// Step 2: Find the maximum number from the filtered array
+let biggestNumberLessThan50 = Math.max(...numbersLessThan50);
 
-//third option
+// Step 3: Display the result
+console.log("The biggest number less than 50 is:", biggestNumberLessThan50);
 
-var sum = 0;
- 
-for (var i = 0; i &lt; numbers.length; i++) {
-    sum += numbers[i];
-}
- 
-console.log(sum);
+// Optionally, display it on the webpage
+document.getElementById("A4").innerHTML = `The biggest number less than 50 is: ${biggestNumberLessThan50}`;
 
-//fourth option
-reduce(
-  (a, c) => {
-    if (c < 0) a[0] = a[0] + c;
-    if (c > 0) a[1] = a[1] + c;
-    return a;
-  },
-  [0, 0]
-);
-
-console.log(arr);
 
 // A5 Suskaičiuoti teigiamų skaičių sumą;
 
-//first option
 
-const summ = arr.reduce((acc, it) => {
-  it < 0 ? acc[0] += it : acc[1] += it;
-  return acc;
-}, [0, 0]);
+// Step 1: Filter out the positive numbers
+let positiveNumbers = A.filter(number => number > 0);
 
-console.log(summ)
+// Step 2: Calculate the sum of the positive numbers using reduce()
+let sumOfPositiveNumbers = positiveNumbers.reduce((sum, number) => sum + number, 0);
 
-//second option
+// Step 3: Display the result
+console.log("The sum of the positive numbers is:", sumOfPositiveNumbers);
 
-let result = [0, 0];
-for (let i = 0; i < arr.length; i++){
-    if (arr[i] < 0){
-        result[0] += arr[i]
-    }
-    else {
-        result[1] += arr[i]
-    }
-}
-console.log(result);
+// Optionally, display the result on the webpage
+document.getElementById("A5").innerHTML = `The sum of the positive numbers is: ${sumOfPositiveNumbers}`;
 
-//third option
-
-let result = 0;
-for (let i = 0; i < arr.length; i++){
-    if (arr[i] < 0){
-      continue
-    }
-    else if(arr[i] > 0){
-        result += arr[i]
-    }
-}
-console.log(result);
 
 //A6 Suskaičiuoti neigiamų skaičių kvadratų (skaičių pakeltų kvadratu) sumą;
+
+
+// Step 1: Filter the negative numbers from the array
+let negativeNumbers = A.filter(number => number < 0);
+
+// Step 2: Square each negative number
+let squaredNegativeNumbers = negativeNumbers.map(number => number ** 2);
+
+// Step 3: Sum the squared values
+let sumOfSquaredNegatives = squaredNegativeNumbers.reduce((sum, number) => sum + number, 0);
+
+// Step 4: Display the result
+console.log("The sum of the squared negative numbers is:", sumOfSquaredNegatives);
+
+// Optionally, display it on the webpage
+document.getElementById("A6").innerHTML = `The sum of the squared negative numbers is: ${sumOfSquaredNegatives}`;
+
 //A7 Suskaičiuoti kiek skaičių patenka į intervalą (imtinai) 25-75
+
+
+// Step 1: Filter the numbers in the range [25, 75]
+let numbersInRange = A.filter(number => number >= 25 && number <= 75);
+
+// Step 2: Count how many numbers fall within this range (inclusive)
+let countInRange = numbersInRange.length;
+
+// Step 3: Display the result
+console.log("The count of numbers in the range 25 to 75 inclusive is:", countInRange);
+
+// Optionally, display it on the webpage
+document.getElementById("A7").innerHTML = `The count of numbers in the range 25 to 75 inclusive is: ${countInRange}`;
+
 //A8 Suskaičiuoti kiek skaičių yra 0-iai;
 
+// Step 1: Filter the zeros (numbers that are equal to 0)
+let zeros = A.filter(number => number === 0);
 
-let letterCount = 0;
+// Step 2: Count how many zeros there are
+let countZeros = zeros.length;
 
-for (let i = 0; i < A.length; i++) {
-  if (A[i].includes("0")) {
-    numbersCount ++;
-    taskA8.innerHTML = numbersCount;
-  }
-}
- console.log(numbersCount);
+// Step 3: Display the result
+console.log("The count of zeros in the array is:", countZeros);
+
+// Optionally, display the result on the webpage
+document.getElementById("A8").innerHTML = `The count of zeros in the array is: ${countZeros}`;
 
 
-//A9 Suskaičiuoti kiek skaičių be liekanos dalinasi iš 3;
-for (let i =0; i < numbersArr.length; i++) {
-  if(numbersArr[i] % 3 === 0) {
-      //console.log(numbersArr[i]);
-       taskA9.innerHTML = numbersArr[i]; 
-  }  
-}
+// //A9 Suskaičiuoti kiek skaičių be liekanos dalinasi iš 3;
+
+
+// Step 1: Filter numbers that are divisible by 3 (without a remainder)
+let divisibleByThree = A.filter(number => number % 3 === 0);
+
+// Step 2: Count how many numbers are divisible by 3
+let countDivisibleByThree = divisibleByThree.length;
+
+// Step 3: Display the result
+console.log("The count of numbers divisible by 3 is:", countDivisibleByThree);
+
+// Optionally, display the result on the webpage
+document.getElementById("A9").innerHTML = `The count of numbers divisible by 3 is: ${countDivisibleByThree}`;
+
 //A10 Suskaičiuoti neigiamų skaičių vidurkį;
+
+
+// Step 1: Filter the negative numbers
+let negativeNumberss = A.filter(number => number < 0);
+
+// Step 2: Sum the negative numbers
+let sumOfNegativeNumbers = negativeNumberss.reduce((sum, number) => sum + number, 0);
+
+// Step 3: Calculate the average of the negative numbers
+let averageOfNegativeNumbers = negativeNumbers.length > 0 ? sumOfNegativeNumbers / negativeNumbers.length : 0;
+
+// Step 4: Display the result
+console.log("The average of the negative numbers is:", averageOfNegativeNumbers);
+
+// Optionally, display it on the webpage
+document.getElementById("A10").innerHTML = `The average of the negative numbers is: ${averageOfNegativeNumbers}`;
+
 
 
 //B. Masyvas su stringais.
