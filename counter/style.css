@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.background {
+    background-color: aquamarine;
+}
  
 .mainContainer {
     display: flex;
@@ -11,15 +15,16 @@
     height: 100vh;
  
     .bmiCalculator {
-        background-color: #1370b2;
+        background-color: lavender;
         width: 500px;
         height: 500px;
         display: flex;
         align-items: center;
         flex-direction: column;
+        border-radius: 5%;
  
         h1 {
-            color: white;
+            color: orchid;
             font-size: 45px;
             padding-top: 20px;
         }
@@ -42,7 +47,7 @@
            
         }
         .titles{
-            color: white;
+            color: orchid;
             font-size: 20px;
             font-weight: 200;
         }
@@ -50,7 +55,7 @@
             margin-top: 10px;
             width: 450px;
             padding: 12px;
-            background-color: rgb(248, 109, 58);
+            background-color: orchid;
             border-radius: 5px;
             border: none;
             color: white;
@@ -60,7 +65,7 @@
         .count {
             margin: 35px 5px;
             font-size: 22px;
-            color: white;
+            color:orchid;
             font-weight: 100;
             padding-left: 10px;
         }
