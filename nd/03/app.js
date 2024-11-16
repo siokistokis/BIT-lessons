@@ -58,8 +58,6 @@ console.log("The biggest number is:", biggestNumber);
 document.getElementById("A1").innerHTML = `The biggest number is: ${biggestNumber}`;
 
 
-
-
 // A2 Surasti mažiausią skaičių;
 
 // Step 1: Filter out only positive numbers
