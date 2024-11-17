@@ -840,32 +840,263 @@ document.getElementById("C10").innerHTML = `True: ${trueCount}, False: ${falseCo
 
 
 //D. Dvimatis masyvas su skaičiais.
+const D1 = document.querySelector(".D1")
+const D2 = document.querySelector(".D2")
+const D3 = document.querySelector(".D3")
+const D4 = document.querySelector(".D4")
+const D5 = document.querySelector(".D5")
+const D6 = document.querySelector(".D6")
+const D7 = document.querySelector(".D7")
+const D8 = document.querySelector(".D8")
+const D9 = document.querySelector(".D9")
+const D10 = document.querySelector(".D10")
 
-//Surasti didžiausią skaičių;
-//Rasti ar yra bent vienas sub masyvas ilgesnis nei 5;
-//Suskaičiuoti kiek elementų yra sub masyvai trumpesni nei 2;
-//Surasti didžiausią skaičių, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
-//Suskaičiuoti didesnių nei 10 skaičių sumą, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 3;
-//Suskaičiuoti kiek skaičių patenka į intervalą (imtinai) 10-20, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 3;
-//Suskaičiuoti kiek skaičių be liekanos dalinasi iš 5, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
-//Suskaičiuoti kiek skaičių be liekanos dalinasi iš 5, ieškant tik tokiuose sub masyvuose, kurie yra 2 ilgio;
-//Suskaičiuoti sumą skaičių, kurie sub masyve turi indeksą 2;
-//Suskaičiuoti vidurkį skaičių, kurie sub masyve turi indeksą 1 arba 3;
+const D = [[95,78,38],[55,35],[61,0,16],[36,32,16],[64],[94],[80,10,80],[75,80],[41],[91,77],[93,73,77,65],[26,25,17],[19,52,42,11],[35,18,82],[31,1],[3,52,70,84],[98],[90,0],[94,58],[80],[17,0,3],[65],[99,54,33,24],[86,6],[55,47],[63],[41,56],[97,69],[11],[41,53],[19,89],[48,54,54,63],[33,55,60,54],[28,28,74,44],[60],[5,52],[80,92,31,30],[24],[95,4,23],[38,7,61],[53,99,22],[23,34]];
 
+//D1. Surasti didžiausią skaičių;
+
+// Flatten the array D into a single array of numbers
+const flattenedArray = D.flat();
+
+// Find the largest number in the flattened array
+const arrayD1 = Math.max(...flattenedArray);
+
+console.log("The largest number in the array D is:", arrayD1);
+
+// Display the result in an HTML element with id "D1"
+document.getElementById("D1").innerHTML = `The largest number in the array D is: ${arrayD1}`;
+
+
+
+//D2. Rasti ar yra bent vienas sub masyvas ilgesnis nei 5;
+
+
+// Check if any subarray in D has a length greater than 5
+// let hasSubarrayLongerThanFive = D.some(subarray => subarray.length > 5);
+
+// if (hasSubarrayLongerThanFive) {
+//   console.log("Array D has at least one subarray with more than 5 elements.");
+// } else {
+//   console.log("Array D does not have any subarray with more than 5 elements.");
+// }
+// document.getElementById("D2").innerHTML = `???????????
+
+
+// Check if any subarray in D has a length greater than 5
+let hasSubarrayLongerThanFive = D.some(subarray => subarray.length > 5);
+
+// Display the result in the HTML element with id "D2"
+if (hasSubarrayLongerThanFive) {
+  console.log("Array D has at least one subarray with more than 5 elements.");
+  document.getElementById("D2").innerHTML = "Array D has at least one subarray with more than 5 elements.";
+} else {
+  console.log("Array D does not have any subarray with more than 5 elements.");
+  document.getElementById("D2").innerHTML = "Array D does not have any subarray with more than 5 elements.";
+}
+//D3.Suskaičiuoti kiek elementų yra sub masyvai trumpesni nei 2;
+
+// Find all subarrays with a length shorter than 2 and count the total number of elements in them
+let elementsInShortSubarrays = D.filter(subarray => subarray.length < 2)
+.reduce((total, subarray) => total + subarray.length, 0);
+
+console.log("Number of elements in subarrays shorter than 2:", elementsInShortSubarrays);
+document.getElementById("D3").innerHTML = `Number of elements in subarrays shorter than 2: ${elementsInShortSubarrays}`;
+
+//D4. Surasti didžiausią skaičių, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
+// Step 1: Filter subarrays longer than 2 elements
+let longSubarrays = D.filter(subarray => subarray.length > 2);
+
+// Step 2: Flatten the filtered subarrays
+let flattenedArrayy = longSubarrays.flat();
+
+// Step 3: Find the largest number in the flattened array
+let largestNumberr = Math.max(...flattenedArray);
+
+console.log("The biggest number from subarrays longer than 2 is:", largestNumber);
+
+// Optionally, display it in an HTML element with id "D4"
+document.getElementById("D4").innerHTML = `The biggest number from subarrays longer than 2 is: ${largestNumber}`;
+
+//D5. Suskaičiuoti didesnių nei 10 skaičių sumą, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 3;
+// Step 1: Filter subarrays whose length is 3 or less
+let shortSubarrays = D.filter(subarray => subarray.length <= 3);
+
+// Step 2: Flatten the filtered subarrays
+let flattenedArrayyy = shortSubarrays.flat();
+
+// Step 3: Filter the numbers greater than 10
+let numbersGreaterThan10 = flattenedArray.filter(number => number > 10);
+
+// Step 4: Calculate the sum of those numbers
+let sumGreaterThan10 = numbersGreaterThan10.reduce((sum, number) => sum + number, 0);
+
+console.log("The sum of numbers greater than 10 from subarrays not longer than 3:", sumGreaterThan10);
+
+// Optionally, display it in an HTML element with id "D5"
+document.getElementById("D5").innerHTML = `The sum of numbers greater than 10 from subarrays not longer than 3 is: ${sumGreaterThan10}`;
+
+
+//D6. Suskaičiuoti kiek skaičių patenka į intervalą (imtinai) 10-20, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 3;
+// Step 1: Filter subarrays whose length is 3 or less
+let arrayD6 = D.filter(subarray => subarray.length <= 3);
+
+// Step 2: Flatten the filtered subarrays
+let flattenedArrays = arrayD6.flat(); // Use arrayD6 here, not shortSubarrays
+
+// Step 3: Filter the numbers within the range 1-20
+let numbersInRangee = flattenedArray.filter(number => number >= 1 && number <= 20);
+
+// Step 4: Count how many numbers are in the range
+let countInRangee = numbersInRange.length;
+
+console.log("The count of numbers in the range 1-20 from subarrays shorter than 3:", countInRange);
+
+// Optionally, display it in an HTML element with id "D6"
+document.getElementById("D6").innerHTML = `The count of numbers in the range 1-20 from subarrays shorter than 3 is: ${countInRange}`;
+
+
+
+//D7. Suskaičiuoti kiek skaičių be liekanos dalinasi iš 5, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
+// Step 1: Filter subarrays whose length is 3 or less
+let arrayD7 = D.filter(subarray => subarray.length <= 3);
+
+// Step 2: Flatten the filtered subarrays
+let flattenedArrayyyy = arrayD6.flat(); // Use arrayD6 here, not shortSubarrays
+
+// Step 3: Filter the numbers within the range 1-20
+let numbersInRangeee = flattenedArray.filter(number => number >= 1 && number <= 20);
+
+// Step 4: Count how many numbers are in the range
+let countInRangeee = numbersInRange.length;
+
+console.log("The count of numbers in the range 1-20 from subarrays shorter than 3:", countInRange);
+
+// Optionally, display it in an HTML element with id "D6"
+document.getElementById("D7").innerHTML = `The count of numbers in the range 1-20 from subarrays shorter than 3 is: ${countInRange}`;
+
+//D8. Suskaičiuoti kiek skaičių be liekanos dalinasi iš 5, ieškant tik tokiuose sub masyvuose, kurie yra 2 ilgio;
+
+
+// Step 1: Filter subarrays that have exactly 2 elements
+const subarraysOfLength2 = D.filter(subarray => subarray.length === 2);
+
+// Step 2: Flatten the subarrays to access individual numbers
+const flattenedArrayyyyyy = subarraysOfLength2.flat();
+
+// Step 3: Filter numbers that are divisible by 5 without remainder
+const divisibleBy5 = flattenedArray.filter(number => number % 5 === 0);
+
+// Step 4: Count how many numbers are divisible by 5
+const countDivisibleBy5 = divisibleBy5.length;
+
+console.log("The count of numbers divisible by 5 from subarrays of length 2 is:", countDivisibleBy5);
+document.getElementById("D8").innerHTML = `The count of numbers divisible by 5 from subarrays of length 2 is: ${countDivisibleBy5}`;
+
+//D9. Suskaičiuoti sumą skaičių, kurie sub masyve turi indeksą 2;
+
+// Step 1: Filter out subarrays that have at least 3 elements
+const subarraysWithIndex2 = D.filter(subarray => subarray.length > 2);
+
+// Step 2: Sum the numbers at index 2 of each subarray
+const sumAtIndex2 = subarraysWithIndex2.reduce((sum, subarray) => {
+  return sum + subarray[2];  // Add the element at index 2 of each subarray
+}, 0);
+
+// Step 3: Display the result
+console.log("The sum of numbers at index 2 in subarrays is:", sumAtIndex2);
+document.getElementById("D9").innerHTML = `The sum of numbers at index 2 in subarrays is: ${sumAtIndex2}`;
+
+
+// If you want to display it on a web page (if you have an HTML element with id "result"):
+// document.getElementById("result").innerHTML = "The sum of numbers at index 2 is: " + sumAtIndex2;
+
+
+//D10. Suskaičiuoti vidurkį skaičių, kurie sub masyve turi indeksą 1 arba 3;
+
+
+// Step 1: Initialize variables for counting
+let totalCount = 0; // To store the total count of elements at index 1 or 3
+let subarrayCount = 0; // To store the number of subarrays that have elements at index 1 or 3
+
+// Step 2: Loop through each subarray in array D
+D.forEach(subarray => {
+  let count = 0;
+
+  // Step 3: Check if index 1 exists and increment count if it does
+  if (subarray.length > 1) count++;
+  
+  // Step 4: Check if index 3 exists and increment count if it does
+  if (subarray.length > 3) count++;
+
+  // If the subarray has elements at index 1 or 3, increase total count
+  if (count > 0) {
+    totalCount += count;
+    subarrayCount++;
+  }
+});
+
+// Step 5: Calculate the average
+let average = (subarrayCount > 0) ? totalCount / subarrayCount : 0;
+
+// Step 6: Output the result
+console.log("Average number of elements at index 1 or 3 in subarrays:", average);
+
+// Optional: Display in HTML
+document.getElementById("D10").innerHTML = `The average number of elements at index 1 or 3 is: ${average}`;
 
 
 //E. Dvimatis masyvas su stringais.
+const E1 = document.querySelector(".E1")
+const E2 = document.querySelector(".E2")
+const E3 = document.querySelector(".E3")
+const E4 = document.querySelector(".E4")
+const E5 = document.querySelector(".E5")
+const E6 = document.querySelector(".E6")
+const E7 = document.querySelector(".E7")
+const E8 = document.querySelector(".E8")
+const E9 = document.querySelector(".E9")
+const E10 = document.querySelector(".E10")
 
-//Suskaičiuoti bendrą stringų ilgį;
-//Suskaičiuoti bendrą stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
-//Suskaičiuoti bendrą, ilgesnių nei 6, stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
-//Surasti stringą, kuris prasideda “a” raide, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 3;
-//Surasti stringą, kuris pasibaigia “r” raide, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 3;
-//Surasti trumpiausią stringą, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
-//Suskaičiuoti vidutinį stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
-//Suskaičiuoti vidutinį stringų, ilgesnių nei 5, ilgį, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
-//Suskaičiuoti vidutinį stringų ilgį, kurie sub masyve turi indeksą 2;
-//Suskaičiuoti kiek “s” raidžių yra stringuose, kurie sub masyve turi indeksą 0 arba yra sub masyvo paskutinis elementas;
+const E = [
+     ['time', 'love', 'government'],
+     ['year'],
+     ['time', 'friend', 'child', 'money'],
+     ['air'],
+     ['world', 'music'],
+     ['phone', 'job', 'hope', 'car'],
+     ['day'],
+     ['house', 'thing', 'future'],
+     ['family', 'man', 'life', 'life'],
+     ['way', 'moon', 'history', 'tree'],
+     ['cat', 'book', 'science', 'internet'],
+     ['food', 'people', 'art', 'country'],
+     ['internet', 'friend', 'house', 'job'],
+     ['money', 'government', 'antiquity', 'time'],
+     ['love', 'cat', 'family', 'friend'],
+     ['future', 'year', 'time', 'life'],
+     ['sun'],
+     ['school'],
+     ['health', 'mountain'],
+     ['city'],
+     ['water', 'star'],
+     ['flower', 'earth', 'fire'],
+     ['star'],
+     ['river', 'art', 'fire'],
+     ['woman', 'earth', 'flower', 'computer'],
+     ['water', 'technology', 'dream']
+];
+ 
+
+//E1. Suskaičiuoti bendrą stringų ilgį;
+//E2.Suskaičiuoti bendrą stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
+//E3. Suskaičiuoti bendrą, ilgesnių nei 6, stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
+//E4. Surasti stringą, kuris prasideda “a” raide, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 3;
+//E5. Surasti stringą, kuris pasibaigia “r” raide, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 3;
+//E6. Surasti trumpiausią stringą, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
+//E7. Suskaičiuoti vidutinį stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
+//E8. Suskaičiuoti vidutinį stringų, ilgesnių nei 5, ilgį, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
+//E9. Suskaičiuoti vidutinį stringų ilgį, kurie sub masyve turi indeksą 2;
+//E10. Suskaičiuoti kiek “s” raidžių yra stringuose, kurie sub masyve turi indeksą 0 arba yra sub masyvo paskutinis elementas;
 
 
 //Sunkesni.
