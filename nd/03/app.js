@@ -225,18 +225,283 @@ document.getElementById("A10").innerHTML = `The average of the negative numbers 
 
 
 //B. Masyvas su stringais.
+const B1 = document.querySelector(".B1")
+const B2 = document.querySelector(".B2")
+const B3 = document.querySelector(".B3")
+const B4 = document.querySelector(".B4")
+const B5 = document.querySelector(".B5")
+const B6 = document.querySelector(".B6")
+const B7 = document.querySelector(".B7")
+const B8 = document.querySelector(".B8")
+const B9 = document.querySelector(".B9")
+const B10 = document.querySelector(".B10")
 
-//Surasti ilgiausią stringą;
-//Surasti trumpiausią stringą;
-//Surasti stringą, kuris prasideda “a” raide;
-//Surasti stringą su daugiausia žodžių;
-//Surasti stringą su mažiausiai žodžių;
-//Suskaičiuoti kiek stringų turi daugiau nei 4 žodžius;
-//Suskaičiuoti kiek masyve yra žodžių;
-//Suskaičiuoti visas ‘s’ raides;
-//Suskaičiuoti kiek masyve yra raidžių (tarpų tarp žodžių neskaičiuoti!);
-//Surasti ilgiausią žodį (ne stringą, o atskirą stringo žodį!);
+const B = [
+  'the quick brown fox',
+  'jumps over the lazy dog',
+  'a bird in the hand',
+  'is worth two in the bush',
+  'an apple a day',
+  'keeps the doctor away',
+  'actions speak louder than words',
+  'all good things must come to an end',
+  'beauty is in the eye of the beholder',
+  'better late than never',
+  'birds of a feather flock together',
+  'cleanliness is next to godliness',
+  'dont bite the hand that feeds you',
+  'dont count your chickens before they hatch',
+  'dont put all your eggs in 1 basket',
+  'every cloud has a silver lining',
+  'every dog has its day',
+  'every rose has its thorn',
+  'fortune favors the bold',
+  'good things come to those who wait',
+  'a watched pot never boils',
+  'haste makes waste',
+  'history repeats itself',
+  'cat got your tongue',
+  'home is where the heart is',
+  'if the shoe fits, wear it',
+  'ignorance is bliss',
+  'it takes two to tango',
+  'arabs have 100 words for sand',
+  'kill two birds with one stone',
+  'laughter is the best medicine',
+  'love is blind',
+  'money doesnt grow on trees',
+  'no pain no gain',
+  'nothing ventured nothing gained',
+  'once bitten twice shy',
+  'practice makes perfect',
+  'the early bird catches the worm',
+  'the grass is always greener on the other side',
+  'the pen is mightier than 10 swords',
+  'theres no smoke without fire',
+  'time heals all wounds',
+  '5 second rule',
+  'every dog has its day',
+  'to err is human to forgive divine',
+  '2 wrongs dont make a right',
+  'when in Rome do as the Romans do',
+  'where theres smoke, theres fire',
+  'you cant judge a book by its cover',
+  'you cant make an omelette without breaking eggs',
+  'you reap what you sow',
+  'youre never too old to learn'
+];
 
+//B1. Surasti ilgiausią stringą;
+
+// Find the longest string
+let arrayB1 = B[0];  // Start with the first string in the array
+
+// Loop through the array to find the longest string
+for (let i = 1; i < B.length; i++) {
+  if (B[i].length > arrayB1.length) {  // Compare string lengths
+    arrayB1 = B[i];  // Update arrayB1 if the current string is longer
+  }
+}
+
+// The longest string has been found in arrayB1
+let longestString = arrayB1;
+
+// Display the longest string in the console
+console.log("The longest string is:", longestString);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B1").innerHTML = `The longest string is: ${longestString}`;
+
+
+//B2. Surasti trumpiausią stringą;
+let arrayB2 = B[0];  // Start with the first string in the array
+
+// Loop throughlet the array to find the shortest string
+for (let i = 1; i < B.length; i++) {
+  if (B[i].length < arrayB2.length) {  // Compare string lengths for the shortest one
+    arrayB2 = B[i];  // Update arrayB1 if the current string is shorter
+  }
+}
+
+// The shortest string has been found in arrayB1
+let shortestString = arrayB2;
+
+// Display the shortest string in the console
+console.log("The shortest string is:", shortestString);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B2").innerHTML = `The shortest string is: ${shortestString}`;
+
+//B3. Surasti stringą, kuris prasideda “a” raide;
+
+  stringsStartingWithA = [];  // Array to hold strings starting with "a"
+
+ // Loop through the array to find strings that start with "a"
+ for (let i = 0; i < B.length; i++) {
+   if (B[i].toLowerCase().startsWith("a")) {  // Check if the string starts with "a"
+     stringsStartingWithA.push(B[i]);  // Add the string to the result array
+   }
+ }
+
+ // Display the result in the console
+ console.log("Strings starting with 'a':", stringsStartingWithA);
+
+ // Optionally, display the result in an HTML element with id "B1"
+ document.getElementById("B3").innerHTML = `Strings starting with 'a': ${stringsStartingWithA.join(', ')}`;
+
+
+
+// let stringsStartingWithA = [];  // Array to hold strings starting with "a"
+
+// // Loop through the array to find strings that start with "a"
+// for (let i = 0; i < B.length; i++) {
+//   if (B[i].toLowerCase().startsWith("a")) {  // Check if the string starts with "a"
+//     stringsStartingWithA.push(B[i]);  // Add the string to the result array
+//   }
+// }
+
+// // Display the result in the console
+// console.log("Strings starting with 'a':", stringsStartingWithA);
+
+// // Display the strings in column format in the HTML element with id "B1"
+// let columnHtml = stringsStartingWithA.map(function(str) {
+//   return `<p>${str}</p>`;  // Wrap each string in a <p> tag
+// }).join('');  // Join the strings without commas, creating a list of <p> elements
+
+// document.getElementById("B3").innerHTML = columnHtml;  // Insert into the page
+//???????????????????????????????????????????????????????????????????????????????????
+
+//B4. Surasti stringą su daugiausia žodžių;
+
+let rowWithMostWords = B[0];  // Start with the first row
+let maxWordCount = B[0].split(' ').length;  // Get the word count of the first string
+
+// Loop through the array to find the row with the largest number of words
+for (let i = 1; i < B.length; i++) {
+  let wordCount = B[i].split(' ').length;  // Split the string by spaces and count the words
+  if (wordCount > maxWordCount) {  // If this row has more words than the current maximum
+    rowWithMostWords = B[i];  // Update the row with the most words
+    maxWordCount = wordCount;  // Update the word count
+  }
+}
+
+// Display the result in the console
+console.log("Row with the largest number of words:", rowWithMostWords);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B4").innerHTML = `Row with the largest number of words: ${rowWithMostWords}`;
+
+//B5. Surasti stringą su mažiausiai žodžių;
+
+let rowWithFewestWords = B[0];  // Start with the first row
+let minWordCount = B[0].split(' ').length;  // Get the word count of the first string
+
+// Loop through the array to find the row with the least number of words
+for (let i = 1; i < B.length; i++) {
+  let wordCount = B[i].split(' ').length;  // Split the string by spaces and count the words
+  if (wordCount < minWordCount) {  // If this row has fewer words than the current minimum
+    rowWithFewestWords = B[i];  // Update the row with the fewest words
+    minWordCount = wordCount;  // Update the word count
+  }
+}
+
+// Display the result in the console
+console.log("Row with the least number of words:", rowWithFewestWords);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B5").innerHTML = `Row with the least number of words: ${rowWithFewestWords}`;
+
+//B6. Suskaičiuoti kiek stringų turi daugiau nei 4 žodžius;
+
+let countMoreThanFourWords = 0;  // Initialize the counter for lines with more than 4 words
+
+// Loop through the array to check each line's word count
+for (let i = 0; i < B.length; i++) {
+  let wordCount = B[i].split(' ').length;  // Count words by splitting by spaces
+  if (wordCount > 4) {  // If the word count is greater than 4
+    countMoreThanFourWords++;  // Increment the counter
+  }
+}
+
+// Display the result in the console
+console.log("Number of lines with more than 4 words:", countMoreThanFourWords);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B6").innerHTML = `Number of lines with more than 4 words: ${countMoreThanFourWords}`;
+
+//B7. Suskaičiuoti kiek masyve yra žodžių;
+
+let totalWords = 0;  // Initialize a counter for the total number of words
+
+// Loop through each string in the array B
+for (let i = 0; i < B.length; i++) {
+  let wordCount = B[i].split(' ').length;  // Split the string into words and count them
+  totalWords += wordCount;  // Add the word count for this string to the total
+}
+
+// Display the result in the console
+console.log("Total number of words in array B:", totalWords);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B7").innerHTML = `Total number of words in array B: ${totalWords}`;
+
+//B8. Suskaičiuoti visas ‘s’ raides;
+
+let totalSCount = 0;  // Initialize a counter for the letter 's'
+
+// Loop through each string in the array B
+for (let i = 0; i < B.length; i++) {
+  // Count occurrences of 's' in the current string
+  let sCountInRow = (B[i].match(/s/g) || []).length;  // Use a regex to match 's' globally
+  totalSCount += sCountInRow;  // Add the count of 's' in this string to the total
+}
+
+// Display the result in the console
+console.log("Total number of 's' in array B:", totalSCount);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B8").innerHTML = `Total number of 's' in array B: ${totalSCount}`;
+
+//B9. Suskaičiuoti kiek masyve yra raidžių (tarpų tarp žodžių neskaičiuoti!);
+
+let totalLetters = 0;  // Initialize a counter for the letters
+
+// Loop through each string in the array B
+for (let i = 0; i < B.length; i++) {
+  // Use a regex to find all alphabetic characters in the current string
+  let lettersInRow = B[i].replace(/[^a-zA-Z]/g, '').length;  // Remove non-letters and count the remaining letters
+  totalLetters += lettersInRow;  // Add the count of letters in this string to the total
+}
+
+// Display the result in the console
+console.log("Total number of letters in array B:", totalLetters);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B9").innerHTML = `Total number of letters in array B: ${totalLetters}`;
+
+//B10. Surasti ilgiausią žodį (ne stringą, o atskirą stringo žodį!);
+
+let longestWord = "";  // Variable to store the longest word
+
+// Loop through each string in the array B
+for (let i = 0; i < B.length; i++) {
+  // Split the current string into words
+  let words = B[i].split(' ');
+
+  // Loop through the words and check for the longest word
+  for (let j = 0; j < words.length; j++) {
+    // Check if the current word is longer than the current longest word
+    if (words[j].length > longestWord.length) {
+      longestWord = words[j];  // Update the longest word
+    }
+  }
+}
+
+// Display the result in the console
+console.log("The longest word in the array B is:", longestWord);
+
+// Optionally, display it in an HTML element with id "B1"
+document.getElementById("B10").innerHTML = `The longest word in the array B is: ${longestWord}`;
 
 //C. Mišrus masyvas.
 
