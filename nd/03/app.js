@@ -504,17 +504,338 @@ console.log("The longest word in the array B is:", longestWord);
 document.getElementById("B10").innerHTML = `The longest word in the array B is: ${longestWord}`;
 
 //C. Mišrus masyvas.
+const C1 = document.querySelector(".C1")
+const C2 = document.querySelector(".C2")
+const C3 = document.querySelector(".C3")
+const C4 = document.querySelector(".C4")
+const C5 = document.querySelector(".C5")
+const C6 = document.querySelector(".C6")
+const C7 = document.querySelector(".C7")
+const C8 = document.querySelector(".C8")
+const C9 = document.querySelector(".C9")
+const C10 = document.querySelector(".C10")
 
-//Surasti didžiausią skaičių;
-//Surasti trumpiausią stringą;
-//Suskaičiuoti kiek skaičių yra 0-iai (ne stringai ‘0’, o skaičiai!);
-//Suskaičiuoti teigiamų skaičių sumą (tik skaičių, ne stringų!);
-//Suskaičiuoti bendrą visų stringų ilgį;
-//Suskaičiuoti vidutinį stringo ilgį;
-//Suskaičiuoti kiek elementų masyve yra nei stringas nei skaičius;
-//Suskaičiuoti skaičių, kuriuos galima padaryti iš stringų sumą (jeigu stringas verčiasi ne į NaN);
-//Rasti ko yra daugiau- stringų ar skaičių;
-//Rasti ko yra daugiau- loginių true ar false;
+const C = [94, true, 'technology', 'year', 34, true, 'flower', 13, 'future', undefined, 0, 12, 'water', 'false', 'school', 'cat', false, 'family', 70, undefined, 'life', 'government', 'mountain', 13, true, 'year', 'sun', 50, 'day', 'food', 0, 'health', 70, 31, 16, 85, 'car', 'internet', 100, 'money', 26, 'fire', 76, [], 45, 'time', 'music', 93, 0, 'love', 69, {}, 96, 0, false, 'air', 'star', 24, 9, 'thing', 19, 'house', 'way', 'true', 90, '0', 'woman', 'time', 'job', '72', '22', 'city', 'history', 47, 'man', 92, 'child', 73, '0', 16, 63, 48, 'country', 45, 'tree', true, 57, 'earth', 96, [], 'hope', 'dream', 39, 43, 'art', 27, 'friend', 'moon', '26', 'science', 74];
+
+//C1. Surasti didžiausią skaičių;
+
+// Function to find the largest number in the array
+let largestNumber = -Infinity;  // Initialize with a very small number
+
+// Loop through each element in the array
+for (let i = 0; i < C.length; i++) {
+  // Check if the element is a number
+  if (typeof C[i] === 'number' && !isNaN(C[i])) {
+    // Update the largest number if the current number is greater
+    if (C[i] > largestNumber) {
+      largestNumber = C[i];
+    }
+  }
+}
+
+console.log("The largest number in the array C is:", largestNumber);
+document.getElementById("C1").innerHTML = `The largest number in the array C is: ${largestNumber}`;
+
+
+//C2. Surasti trumpiausią stringą;
+
+// Function to find the shortest string in the array
+// let arrayC3 = null;  // Initialize to null (will be set to a string if found)
+
+// // Loop through each element in the array
+// for (let i = 0; i < C.length; i++) {
+//   // Check if the current element is a string
+//   if (typeof C[i] === 'string') {
+//     // If no shortest string has been found yet, or if the current string is shorter
+//     if (arrayC3 === null || C[i].length < arrayC3.length) {
+//       arrayC3 = C[i];  // Update the shortest string
+//     }
+//   }
+// }
+
+// console.log("The shortest string in the array C is:", shortestString);
+// document.getElementById("C2").innerHTML = `The shortest string in the array C is: ${shortestString}`;
+
+
+let arrayC3 = null;  // Initialize to null (will be set to a string if found)
+
+// Loop through each element in the array C
+for (let i = 0; i < C.length; i++) {
+  // Check if the current element is a string
+  if (typeof C[i] === 'string') {
+    // If no shortest string has been found yet, or if the current string is shorter
+    if (arrayC3 === null || C[i].length < arrayC3.length) {
+      arrayC3 = C[i];  // Update the shortest string
+    }
+  }
+}
+
+// Check if a shortest string was found
+if (arrayC3 === null) {
+  console.log("No strings found in the array.");
+  document.getElementById("C2").innerHTML = "No strings found in the array.";
+} else {
+  console.log("The shortest string in the array C is:", arrayC3);
+  document.getElementById("C2").innerHTML = `The shortest string in the array C is: ${arrayC3}`;
+}
+
+
+
+
+
+// // Initialize to null (indicating no strings have been found yet)
+// let shortestString = null;
+
+// // Loop through each element in the array C
+// for (let i = 0; i < C.length; i++) {
+//   // Check if the current element is a string
+//   if (typeof C[i] === 'string') {
+//     // If no shortest string has been found yet, or if the current string is shorter
+//     if (shortestString === null || C[i].length < shortestString.length) {
+//       shortestString = C[i];  // Update the shortest string
+//     }
+//   }
+// }
+
+// // Check if a shortest string was found
+// if (shortestString === null) {
+//   console.log("No strings found in the array.");
+//   document.getElementById("C2").innerHTML = "No strings found in the array.";
+// } else {
+//   console.log("The shortest string in the array C is:", shortestString);
+//   document.getElementById("C2").innerHTML = `The shortest string in the array C is: ${shortestString}`;
+// }
+
+
+
+// let longestStringg = "";  // Initialize to an empty string (will be updated with the longest string)
+
+// // Loop through each element in the array C
+// for (let i = 0; i < C.length; i++) {
+//   // Check if the current element is a string
+//   if (typeof C[i] === 'string') {
+//     // If no longest string has been found yet, or if the current string is longer
+//     if (C[i].length > longestString.length) {
+//       longestString = C[i];  // Update the longest string
+//     }
+//   }
+// }
+
+// // Check if a longest string was found
+// if (longestString === "") {
+//   console.log("No strings found in the array.");
+//   document.getElementById("C2").innerHTML = "No strings found in the array.";
+// } else {
+//   console.log("The longest string in the array C is:", longestString);
+//   document.getElementById("C2").innerHTML = `The longest string in the array C is: ${longestString}`;
+// }
+
+
+
+
+//C3. Suskaičiuoti kiek skaičių yra 0-iai (ne stringai ‘0’, o skaičiai!);
+
+// Initialize a counter for zeros
+let zeroCount = 0;
+
+// Loop through the array and count zeros
+for (let i = 0; i < C.length; i++) {
+  if (C[i] === 0) {  // Check if the current element is strictly equal to 0
+    zeroCount++;  // Increment the counter if a zero is found
+  }
+}
+
+console.log("Number of zeros in array C:", zeroCount);
+
+// Optionally display it in an HTML element
+document.getElementById("C3").innerHTML = `Number of zeros in array C: ${zeroCount}`;
+
+//C4.Suskaičiuoti teigiamų skaičių sumą (tik skaičių, ne stringų!);
+
+
+// Initialize a variable to store the sum of positive numbers
+let sumOfPositiveNumberss = 0;
+
+// Loop through the array and sum positive numbers
+for (let i = 0; i < C.length; i++) {
+  if (typeof C[i] === 'number' && C[i] > 0) {  // Check if it's a positive number
+    sumOfPositiveNumbers += C[i];  // Add the number to the sum
+  }
+}
+
+console.log("The sum of positive numbers in array C is:", sumOfPositiveNumbers);
+
+// Optionally display it in an HTML element
+document.getElementById("C4").innerHTML = `The sum of positive numbers in array C is: ${sumOfPositiveNumbers}`;
+
+//C5. Suskaičiuoti bendrą visų stringų ilgį;
+
+
+// Initialize a variable to store the total length of all strings
+let totalStringLength = 0;
+
+// Loop through the array and sum the lengths of all strings
+for (let i = 0; i < C.length; i++) {
+  if (typeof C[i] === 'string') {  // Check if the current element is a string
+    totalStringLength += C[i].length;  // Add the length of the string to the total
+  }
+}
+
+console.log("The total length of all strings in array C is:", totalStringLength);
+
+// Optionally display it in an HTML element
+document.getElementById("C5").innerHTML = `The total length of all strings in array C is: ${totalStringLength}`;
+
+//C6. Suskaičiuoti vidutinį stringo ilgį;
+
+// Initialize variables for total length and number of strings
+let totalStringLengthh = 0;
+let stringCount = 0;
+
+// Loop through the array and sum the lengths of all strings
+for (let i = 0; i < C.length; i++) {
+  if (typeof C[i] === 'string') {  // Check if the current element is a string
+    totalStringLength += C[i].length;  // Add the length of the string to the total
+    stringCount++;  // Increment the count of strings
+  }
+}
+
+// Calculate the average length of the strings
+let averageStringLength = stringCount > 0 ? totalStringLength / stringCount : 0;  // Avoid division by zero
+
+console.log("The average length of strings in array C is:", averageStringLength);
+
+// Optionally display it in an HTML element
+document.getElementById("C6").innerHTML = `The average length of strings in array C is: ${averageStringLength.toFixed(2)}`;
+
+//C7. Suskaičiuoti kiek elementų masyve yra nei stringas nei skaičius;
+
+
+// Initialize a counter for elements that are neither strings nor numbers
+let countNonStringNumber = 0;
+
+// Loop through the array and check each element
+for (let i = 0; i < C.length; i++) {
+  if (typeof C[i] !== 'string' && typeof C[i] !== 'number') {
+    countNonStringNumber++;  // Increment the count if the element is neither a string nor a number
+  }
+}
+
+console.log("The number of elements that are neither a string nor a number is:", countNonStringNumber);
+
+// Optionally display the result in an HTML element
+document.getElementById("C7").innerHTML = `The number of elements that are neither a string nor a number is: ${countNonStringNumber}`;
+
+//C8. Suskaičiuoti skaičių, kuriuos galima padaryti iš stringų sumą (jeigu stringas verčiasi ne į NaN);
+
+
+// Initialize counter for numbers that can be summed from the strings
+let countValidNumbers = 0;
+
+// Loop through the array
+for (let i = 0; i < C.length; i++) {
+  // Check if the current element is a string
+  if (typeof C[i] === 'string') {
+    // Try to convert the string to a number
+    let numberFromString = Number(C[i]);
+
+    // Check if the conversion is a valid number (not NaN)
+    if (!isNaN(numberFromString)) {
+      countValidNumbers++;  // Increment the count for valid numbers
+    }
+  }
+}
+
+console.log("The number of strings that can be converted to valid numbers is:", countValidNumbers);
+
+// Optionally display the result in an HTML element
+document.getElementById("C8").innerHTML = `The number of strings that can be converted to valid numbers is: ${countValidNumbers}`;
+
+//C9.Rasti ko yra daugiau- stringų ar skaičių;
+
+
+// // Initialize counters
+// let stringCountt = 0;
+// let numberCount = 0;
+
+// // Loop through the array and count strings and numbers
+// for (let i = 0; i < C.length; i++) {
+//   if (typeof C[i] === 'string') {
+//     stringCount++;  // Increment string count
+//   } else if (typeof C[i] === 'number' && !isNaN(C[i])) {
+//     numberCount++;  // Increment number count (ignoring NaN)
+//   }
+// }
+
+// // Compare the counts and log the result
+// if (stringCount > numberCount) {
+//   console.log("There are more strings than numbers in the array C.");
+// } else if (numberCount > stringCount) {
+//   console.log("There are more numbers than strings in the array C.");
+// } else {
+//   console.log("The number of strings and numbers are the same in the array C.");
+// }
+
+// // Optionally display the result in an HTML element
+// document.getElementById("C9").innerHTML = `Strings: ${stringCount}, Numbers: ${numberCount}.`;
+
+
+//--------
+
+// Initialize counters for strings and numbers
+let stringCountt = 0;
+let numberCount = 0;
+
+// Loop through the array and count strings and numbers
+for (let i = 0; i < C.length; i++) {
+  if (typeof C[i] === 'string') {
+    stringCount++;  // Increment string count
+  } else if (typeof C[i] === 'number' && !isNaN(C[i])) {
+    numberCount++;  // Increment number count (excluding NaN)
+  }
+}
+
+// Compare the counts and log the result
+if (stringCount > numberCount) {
+  console.log("There are more strings than numbers in the array C.");
+} else if (numberCount > stringCount) {
+  console.log("There are more numbers than strings in the array C.");
+} else {
+  console.log("The number of strings and numbers are the same in the array C.");
+}
+
+// Optionally display the result in an HTML element
+document.getElementById("C9").innerHTML = `Strings: ${stringCount}, Numbers: ${numberCount}.`;
+
+
+//C10.Rasti ko yra daugiau- loginių true ar false;
+
+
+// Initialize counters for true and false
+let trueCount = 0;
+let falseCount = 0;
+
+// Loop through the array and count true and false values
+for (let i = 0; i < C.length; i++) {
+  if (C[i] === true) {
+    trueCount++;  // Increment true count
+  } else if (C[i] === false) {
+    falseCount++; // Increment false count
+  }
+}
+
+// Compare the counts and log the result
+if (trueCount > falseCount) {
+  console.log("There are more true values than false values in the array C.");
+} else if (falseCount > trueCount) {
+  console.log("There are more false values than true values in the array C.");
+} else {
+  console.log("The number of true and false values are the same in the array C.");
+}
+
+// Optionally display the result in an HTML element
+document.getElementById("C10").innerHTML = `True: ${trueCount}, False: ${falseCount}.`;
+
 
 
 
