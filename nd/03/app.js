@@ -955,24 +955,24 @@ console.log("The count of numbers in the range 1-20 from subarrays shorter than 
 document.getElementById("D6").innerHTML = `The count of numbers in the range 1-20 from subarrays shorter than 3 is: ${countInRange}`;
 
 
-
 //D7. Suskaičiuoti kiek skaičių be liekanos dalinasi iš 5, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
-// Step 1: Filter subarrays whose length is 3 or less
-let arrayD7 = D.filter(subarray => subarray.length <= 3);
 
-// Step 2: Flatten the filtered subarrays
-let flattenedArrayyyy = arrayD6.flat(); // Use arrayD6 here, not shortSubarrays
 
-// Step 3: Filter the numbers within the range 1-20
-let numbersInRangeee = flattenedArray.filter(number => number >= 1 && number <= 20);
+// Step 1: Filter subarrays that have more then 2 elements
+const subarraysOfLengthLongerThan2 = D.filter(subarray => subarray.length > 2);
 
-// Step 4: Count how many numbers are in the range
-let countInRangeee = numbersInRange.length;
+// Step 2: Flatten the subarrays to access individual numbers
+const flattenedArrayD7 = subarraysOfLengthLongerThan2.flat();
 
-console.log("The count of numbers in the range 1-20 from subarrays shorter than 3:", countInRange);
+// Step 3: Filter numbers that are divisible by 5 without remainder
+const divisibleeBy5 = flattenedArrayD7.filter(number => number % 5 === 0);
 
-// Optionally, display it in an HTML element with id "D6"
-document.getElementById("D7").innerHTML = `The count of numbers in the range 1-20 from subarrays shorter than 3 is: ${countInRange}`;
+// Step 4: Count how many numbers are divisible by 5
+const countDivisibleeBy5 = divisibleeBy5.length;
+
+console.log("The count of numbers divisible by 5 from subarrays of length longer than 2 is:", countDivisibleeBy5);
+document.getElementById("D7").innerHTML = `The count of numbers divisible by 5 from subarrays of length longer than 2 is: ${countDivisibleeBy5}`;
+
 
 //D8. Suskaičiuoti kiek skaičių be liekanos dalinasi iš 5, ieškant tik tokiuose sub masyvuose, kurie yra 2 ilgio;
 
@@ -981,10 +981,10 @@ document.getElementById("D7").innerHTML = `The count of numbers in the range 1-2
 const subarraysOfLength2 = D.filter(subarray => subarray.length === 2);
 
 // Step 2: Flatten the subarrays to access individual numbers
-const flattenedArrayyyyyy = subarraysOfLength2.flat();
+const flattenedArrayD8 = subarraysOfLength2.flat();
 
 // Step 3: Filter numbers that are divisible by 5 without remainder
-const divisibleBy5 = flattenedArray.filter(number => number % 5 === 0);
+const divisibleBy5 = flattenedArrayD8.filter(number => number % 5 === 0);
 
 // Step 4: Count how many numbers are divisible by 5
 const countDivisibleBy5 = divisibleBy5.length;
