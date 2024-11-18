@@ -114,42 +114,72 @@ console.log("Just array:", array);
       
 //3.
 //my exemple:
-const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
-const odddNr = (num) => num % 2 !== 0; 
-const odd = numberss.filter(odddNr); 
-//console.log(odd); 
-task3.innerHTML = (odd); 
 
+// const odddNr = (num) => num % 2 !== 0; 
+// const odd = numberss.filter(odddNr); 
+// //console.log(odd); 
+// task3.innerHTML = (odd); 
+const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]; 
+let T3 = []
+for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 !== 0) {
+        T3.push(numberss[i]);
+    }
+}
+document.getElementById("T3").innerHTML = `Odd numbers from array: ${T3.join(", ")}`;
+console.log("Odd numbers from array:", T3);
 
 //4.
 let arrayy = [-1, 32, 2, 3, 55, -4, 24, 5, -6, 7, -41, 8, 0, -9, -10, 11, 12, 78, -13, 69, -14, 15];
 // const oddint = (num) => num % 2 !== 0;
 // const oddd = arrayy.filter(oddint);
 // task4.innerHTML = (oddd);
-let T4 = []
- for (let i = 0; i < numbers.length; i += 1) { 
-     if (numbers[i] % 2 !== 0) { 
-          console.log(i);
-          T4.push(" "+numbers[i]);
-     } }
-  task4.innerHTML = T4
- 
+// let T4 = []
+//  for (let i = 0; i < numbers.length; i ++) { 
+//      if (numbers[i] % 2 !== 0) { 
+//           console.log(i);
+//           T4.push(" "+arrayy[i]);
+//      } }
+//   //task4.innerHTML = T4
+//    document.getElementById("T4").innerHTML = `Odd numbers from array: ${T4.join(", ")}`;
+//    console.log("Odd numbers from array:", T4);
+
+
+let T4 = [];
+
+for (let i = 0; i < arrayy.length; i++) { 
+    if (arrayy[i] % 2 !== 0) { // Check if the number is odd
+        console.log(i); // Log the index of the odd number
+        T4.push(" " + arrayy[i]); // Push the odd number (with a space before it) to T4
+    } 
+}
+
+// Display odd numbers in the element with ID "T4" on the web page
+document.getElementById("T4").innerHTML = `Odd numbers from array: ${T4.join(", ")}`;
+
+// Log the odd numbers array in the console
+console.log("Odd numbers from array:", T4);
+
+
+
+
 //5. 
 // Žodžių, ilgesnių nei 5 raidės, spausdinimas
 // Sukurkite sąrašą žodžių. Išspausdinkite tik tuos žodžius, kurių ilgis yra didesnis nei 5 raidės.
-let words = ["apple", "banana", "kiwi", "watermelon", "pear"];
-let arrT5 = []
-for (let i = 0; i < words.length; i++) {
-     //let words = `<div style= "word-spacing: 5px;">`
-    if(words[i].length > 5) {
-        //task5.innerHTML = words[i];
-        arrT5.push(" "+words[i])
-    }
-     // words += `</div>` 
-    console.log(words[i])
-} task5.innerHTML = arrT5   
-   //task5.innerHTML = words[i]
 
+   let words = ["apple", "banana", "kiwi", "watermelon", "pear"];
+   let arrT5 = [];
+   // Loop through the 'words' array and check the length of each word
+   for (let i = 0; i < words.length; i++) {
+       if (words[i].length > 5) {
+           arrT5.push(words[i]); // Push words with more than 5 letters into arrT5
+       }
+   }
+   // Display the words longer than 5 letters in the HTML element with ID "T5"
+   document.getElementById("T5").innerHTML = `Longer than 5 letter words from array: ${arrT5.join(", ")}`;
+   // Log the longer words to the console
+   console.log("Longer than 5 letter words from array:", arrT5);
+   
 //6.
 //my exemple:
 let wordss = ["bear", "wolf", "snake", "koala", "giraffe", "Deer", "cat", "leopard", "Frog", "squirrel"]
@@ -157,10 +187,12 @@ let arrT6 = []
 for (let i = 0; i < wordss.length; i++) {
     if(wordss[i].length < 5) {
         arrT6.push(" "+wordss[i])
-        console.log(wordss[i]);
-       
+        console.log(wordss[i]);   
     }
-}task6.innerHTML = arrT6;
+}//task6.innerHTML = arrT6;
+document.getElementById("T6").innerHTML = `Chorter than 5 letter words from array: ${arrT6.join(", ")}`;
+console.log("Chorter than 5 letter words from array:", arrT6);
+
     //task6.innerHTML = wordss[i];
 // let min = wordss[0]; 
 // for (const letters of wordss) { 
