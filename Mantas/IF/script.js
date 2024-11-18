@@ -49,26 +49,69 @@ function addGapToDocumentText(gap) {
 
 //console.log('Hello');
 //1.
-let array = [1, 2, 3, 4, 5];
-let span = document.createElement("span")
-span.innerText = 'task1';
-task1.appendChild(span)
-task1.innerHTML = array;
+// let array = [1, 2, 3, 4, 5];
+// let ???? = []
+// let span = document.createElement("span")
+// span.innerText = 'task1';
+// task1.appendChild(span)
+// task1.innerHTML = array;
+//  document.getElementById("task1").innerHTML = `Just array: ${task1.join(", ")}`;
+//  console.log("Just array:", task1);
+
+
+let array = [1, 2, 3, 4, 5]; // Your array
+let T1 = document.getElementById("T1"); // Reference to the HTML element with id "T1"
+
+// // Create a span element
+// let span = document.createElement("span");
+// span.innerText = 'task1: ';  // Set text for the span
+
+// // Append the span to the T1 element
+// T1.appendChild(span);
+
+// Now append the array as a string to the T1 element, but only once
+T1.innerHTML = `Just array: ${array.join(", ")}`; // Append the array values
+
+// Log the array to the console
+console.log("Just array:", array);
+
 
 //2.
 // Lyginių skaičių radimas sąraše
 // Sukurkite sąrašą skaičių. Naudodami for ciklą ir if sąlygą, išrinkite ir išspausdinkite tik lyginius skaičius iš sąrašo.
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-let arr = []
-for (let i = 0; i < numbers.length; i++) {
-    if(numbers[i] % 2 === 0) {
-        //console.log(numbers[i])
-        //task2.innerHTML = numbers[i];
-        arr.push(" "+numbers[i]);
-    }
-} 
-task2.innerHTML = arr   
-     //console.log(arr)
+// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+// let T2 = []
+// for (let i = 0; i < numbers.length; i++) {
+//     if(numbers[i] % 2 === 0) {
+//         //console.log(numbers[i])
+//         //task2.innerHTML = numbers[i];
+//         T2.push(" "+numbers[i]);
+//     }
+// } 
+// task2.innerHTML = T2   
+//      console.log(T2)
+//      //console.log("Eaven numbers from array:", ???);
+//      //document.getElementById("T2").innerHTML = `Eaven numbers from array: ${???}`;
+
+
+
+     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+     let T2 = []
+     
+     // Loop through numbers to find even ones
+     for (let i = 0; i < numbers.length; i++) {
+         if (numbers[i] % 2 === 0) {
+             // Push even numbers to T2 array
+             T2.push(numbers[i]);
+         }
+     }
+     
+     // Now update the HTML content with the even numbers
+     document.getElementById("T2").innerHTML = `Even numbers from array: ${T2.join(", ")}`;
+     
+     // Log the even numbers to the console
+     console.log("Even numbers from array:", T2);
+      
 //3.
 //my exemple:
 const numberss = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; 
@@ -76,18 +119,20 @@ const odddNr = (num) => num % 2 !== 0;
 const odd = numberss.filter(odddNr); 
 //console.log(odd); 
 task3.innerHTML = (odd); 
+
+
 //4.
 let arrayy = [-1, 32, 2, 3, 55, -4, 24, 5, -6, 7, -41, 8, 0, -9, -10, 11, 12, 78, -13, 69, -14, 15];
-const oddint = (num) => num % 2 !== 0;
-const oddd = arrayy.filter(oddint);
-task4.innerHTML = (oddd);
-
-// for (let i = 0; i < numbers.length; i += 1) { 
-//     if (numbers[i] % 2 !== 0) { 
-//          console.log(i);
-//          arr.push(numbers[i]);
-//     } }
-//  task4.innerHTML = (arrayy)
+// const oddint = (num) => num % 2 !== 0;
+// const oddd = arrayy.filter(oddint);
+// task4.innerHTML = (oddd);
+let T4 = []
+ for (let i = 0; i < numbers.length; i += 1) { 
+     if (numbers[i] % 2 !== 0) { 
+          console.log(i);
+          T4.push(" "+numbers[i]);
+     } }
+  task4.innerHTML = T4
  
 //5. 
 // Žodžių, ilgesnių nei 5 raidės, spausdinimas
@@ -98,7 +143,7 @@ for (let i = 0; i < words.length; i++) {
      //let words = `<div style= "word-spacing: 5px;">`
     if(words[i].length > 5) {
         //task5.innerHTML = words[i];
-        arrT5.push(words[i])
+        arrT5.push(" "+words[i])
     }
      // words += `</div>` 
     console.log(words[i])
@@ -111,7 +156,7 @@ let wordss = ["bear", "wolf", "snake", "koala", "giraffe", "Deer", "cat", "leopa
 let arrT6 = []
 for (let i = 0; i < wordss.length; i++) {
     if(wordss[i].length < 5) {
-        arrT6.push(wordss[i])
+        arrT6.push(" "+wordss[i])
         console.log(wordss[i]);
        
     }
@@ -132,7 +177,7 @@ let arrT7 = []
 for (let i =0; i < numbersArr.length; i++) {
     if(numbersArr[i] % 3 === 0) {
         //console.log(numbersArr[i]);
-        arrT7.push(numbersArr[i])
+        arrT7.push(" "+numbersArr[i])
          //task7.innerHTML = numbersArr[i];
     } 
 }  task7.innerHTML = arrT7
@@ -143,7 +188,7 @@ for (let i =0; i < numbersArr.length; i++) {
     if(numbersArr[i] % 5 === 0) {
         //console.log(numbersArr[i]);
         //task8.innerHTML = numbersArr[i];
-        arrT8.push(numbersArr[i])
+        arrT8.push(" "+numbersArr[i])
     }
 }  task8.innerHTML = arrT8
 
@@ -156,7 +201,7 @@ for (let i = 0; i < negativeNumbers.length; i++) {
     if (negativeNumbers[i] < 0) {
         //console.log(negativeNumbers[i]);
         //task9.innerHTML = negativeNumbers[i];
-        arrT9.push(negativeNumbers[i])
+        arrT9.push(" "+negativeNumbers[i])
     }
 }  task9.innerHTML = arrT9
  
@@ -168,7 +213,7 @@ let arrT10 = []
 for (let i = 0; i < sentences.length; i++) {
     if(sentences[i].includes('JavaScript')) {
         //console.log(sentences[i]);
-        arrT10.push(sentences[i])
+        arrT10.push(" "+sentences[i])
         //task10.innerHTML = sentences[i]; 
     }
 } task10.innerHTML = arrT10
@@ -180,7 +225,7 @@ for (let i = 0; i < sentences.length; i++) {
     if(sentences[i].includes('is')) {
         //console.log(sentences[i]);
         //task11.innerHTML = sentences[i];
-        arrT11.push(sentences[i])
+        arrT11.push(" "+sentences[i])
     }
 } task11.innerHTML = arrT11
 
@@ -194,7 +239,7 @@ for (let i = 0; i < Numbers.length; i++) {
     if(Square > 50) { 
          //console.log(Square);
          //task12.innerHTML = Numbers[i];
-         arrT12.push(Numbers[i])
+         arrT12.push(" "+Numbers[i])
     }  
 }task12.innerHTML = arrT12
 //13.
@@ -205,7 +250,7 @@ for (let i = 0; i < Numbers.length; i++) {
     if(Square < 50) { 
         //  console.log(Square);
         //  task13.innerHTML = Numbers[i];
-        arrT13.push(Numbers[i]);
+        arrT13.push(" "+Numbers[i]);
     }  
 }task13.innerHTML = arrT13
 
@@ -218,7 +263,7 @@ let theLargest = integers[0];
 for (let i=0; i < integers.length; i++) { 
 if (integers[i] > theLargest){
     theLargest = integers[i]; 
-    arrT14.push(integers[i]);
+    arrT14.push(" "+integers[i]);
     task14.innerHTML = theLargest; 
 } 
 //console.log(theLargest);
@@ -230,7 +275,7 @@ let theSmolest = integers[0];
 for (let i=0; i < integers.length; i++) { 
 if (integers[i] < theSmolest){
     theSmolest = integers[i];
-    arrT15.push(integers[i]);
+    arrT15.push(" "+integers[i]);
     task15.innerHTML = theSmolest;
 } 
 //console.log(theSmolest);
@@ -267,7 +312,7 @@ for (let i = 0; i < ages.length; i++) {
     if(ages[i] > 18) {
         console.log(ages[i]);
         task18.innerHTML = ages[i];
-        arrT18.push(ages[i]);
+        arrT18.push(" "+ages[i]);
     }  
 }task18.innerHTML = arrT18
 //19.
@@ -289,7 +334,7 @@ for (let i = 0; i < justNr.length; i++) {
     if(justNr[i] % 2 !== 0) {
         console.log(justNr[i]);
         task20.innerHTML = justNr[i]; 
-        oddNr.push(justNr[i])
+        oddNr.push(" "+justNr[i])
     }
 }task20.innerHTML = oddNr
 //21.
@@ -299,7 +344,7 @@ for (let i = 0; i < justNr.length; i++) {
     if(justNr[i] % 2 === 0) {
         console.log(justNr[i]);
         task21.innerHTML = justNr[i];
-        evenNr.push(justNr[i])
+        evenNr.push(" "+justNr[i])
     }
 }task21.innerHTML = evenNr
 
