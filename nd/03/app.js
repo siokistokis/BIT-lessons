@@ -1088,15 +1088,229 @@ const E = [
  
 
 //E1. Suskaičiuoti bendrą stringų ilgį;
+// Flatten the array and calculate the total length of all strings
+const totalLengthE1 = E.flat().reduce((acc, word) => acc + word.length, 0);
+
+console.log(totalLengthE1);  // Output the result
+document.getElementById("E1").innerHTML = `The total length of strings in array E is: ${totalLengthE1}`;
+
 //E2.Suskaičiuoti bendrą stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
+
+// Filter subarrays with more than 2 elements
+    const filteredSubarrays = E.filter(subarray => subarray.length > 2);
+
+    // Flatten the filtered subarrays and calculate total length of strings
+    const totalLengthE2 = filteredSubarrays.flat().reduce((acc, word) => acc + word.length, 0);
+    console.log(totalLengthE2); // Output the result
+    // Display the result in the HTML element with id="result"
+    document.getElementById("E2").innerHTML = `The total length of strings in subarrays with more than 2 elements is: ${totalLengthE2}`;
+
 //E3. Suskaičiuoti bendrą, ilgesnių nei 6, stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2;
+ 
+
+// Filter subarrays with more than 2 elements
+const filteredSubarraysE3 = E.filter(subarray => subarray.length > 2);
+
+// Flatten the filtered subarrays into a single array
+const allWords = filteredSubarrays.flat();
+
+// Filter words longer than 6 characters
+const longWords = allWords.filter(word => word.length > 6);
+
+// Calculate the total length of those words
+const totalLength = longWords.reduce((acc, word) => acc + word.length, 0);
+console.log(filteredSubarraysE3);
+// Display the result in the HTML element with id="result"
+document.getElementById("E3").innerHTML = `The total length of strings longer than 6 characters in subarrays with more than 2 elements is: ${totalLength}`;
+
+
 //E4. Surasti stringą, kuris prasideda “a” raide, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 3;
+
+// Step 1: Filter subarrays with 3 or fewer elements
+const filteredSubarraysE4 = E.filter(subarray => subarray.length <= 3);
+
+// Step 2: Flatten the filtered subarrays into a single array
+const allWordsE4 = filteredSubarrays.flat();
+
+// Step 3: Filter words that start with the letter "A" (case-insensitive)
+const wordsStartingWithA = allWords.filter(word => word.toLowerCase().startsWith('a'));
+
+// Output the result
+console.log(wordsStartingWithA);  // Output the matching words
+
+
+// Display the result in the HTML element with id="result"
+document.getElementById("E4").innerHTML = `Words starting with "A": ${wordsStartingWithA.join(', ')}`;
+
+
+
 //E5. Surasti stringą, kuris pasibaigia “r” raide, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 3;
+// Step 1: Filter subarrays that are shorter than 3 elements
+const filteredSubarraysE5 = E.filter(subarray => subarray.length < 3);
+
+// Step 2: Flatten the filtered subarrays into a single array
+const allWordsE5 = filteredSubarrays.flat();
+
+// Step 3: Filter words that end with the letter "r"
+const wordsEndingWithR = allWords.filter(word => word.toLowerCase().endsWith('r'));
+
+// Output the result
+console.log(wordsEndingWithR);  // Output the matching words
+
+// Display the result in the HTML element with id="result"
+document.getElementById("E5").innerHTML = `Words that end with "r" in subarrays with fewer than 3 elements: ${wordsEndingWithR.join(', ')}`;
+
+
+
 //E6. Surasti trumpiausią stringą, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
+// Step 1: Filter subarrays with fewer than 2 elements (i.e., those with exactly 1 element)
+const filteredSubarraysE6 = E.filter(subarray => subarray.length < 2);
+
+// Step 2: Flatten the filtered subarrays into a single array
+const allWordsE6 = filteredSubarrays.flat();
+
+// Step 3: Find the shortest string by comparing the lengths
+const shortestWord = allWords.reduce((shortest, current) => {
+  return current.length < shortest.length ? current : shortest;
+}, allWords[0]);
+
+console.log(shortestWord);  // Output the shortest string
+
+ // Display the result in the HTML element with id="result"
+ document.getElementById("E6").innerHTML = `The shortest string in subarrays with fewer than 2 elements is: "${shortestWord}"`;
+
+
 //E7. Suskaičiuoti vidutinį stringų ilgį, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
+
+// Step 1: Filter subarrays that have fewer than 2 elements (i.e., subarrays with exactly 1 element)
+const filteredSubarraysE7 = E.filter(subarray => subarray.length < 2);
+
+// Step 2: Flatten the filtered subarrays into a single array of words
+const allWordsE7 = filteredSubarrays.flat();
+
+// Step 3: Calculate the total length of all words
+const totalLengthE7 = allWords.reduce((acc, word) => acc + word.length, 0);
+
+// Step 4: Calculate the average length
+const averageLength = allWords.length > 0 ? totalLength / allWords.length : 0;
+
+console.log(averageLength);  // Output the average length
+
+ // Display the result in the HTML element with id="result"
+ document.getElementById("E7").innerHTML = `The average length of strings in subarrays with fewer than 2 elements is: ${averageLength.toFixed(2)}`;
+
 //E8. Suskaičiuoti vidutinį stringų, ilgesnių nei 5, ilgį, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 2;
+
+// Step 1: Filter subarrays that have fewer than 2 elements (i.e., subarrays with exactly 1 element)
+const filteredSubarraysE8 = E.filter(subarray => subarray.length < 2);
+
+// Step 2: Flatten the filtered subarrays into a single array of words
+const allWordsE8 = filteredSubarrays.flat();
+
+// Step 3: Filter words that are longer than 5 characters
+const longWordsE8 = allWords.filter(word => word.length > 5);
+
+// Step 4: Calculate the total length of those words
+const totalLengthE8 = longWords.reduce((acc, word) => acc + word.length, 0);
+
+// Step 5: Calculate the average length
+const averageLengthE8 = longWords.length > 0 ? totalLength / longWords.length : 0;
+
+console.log(averageLength);  // Output the average length
+
+// Display the result in the HTML element with id="result"
+document.getElementById("E8").innerHTML = `The average length of strings longer than 5 characters in subarrays with fewer than 2 elements is: ${averageLength.toFixed(2)}`;
+
+
 //E9. Suskaičiuoti vidutinį stringų ilgį, kurie sub masyve turi indeksą 2;
+
+// Step 1: Filter the subarrays where index 2 exists (i.e., subarrays with at least 3 elements)
+const validSubarrays = E.filter(subarray => subarray.length > 2);
+
+// Step 2: Get all the strings at index 2
+const stringsAtIndex2 = validSubarrays.map(subarray => subarray[2]);
+
+// Step 3: Calculate the total length of the strings at index 2
+const totalLengthE9 = stringsAtIndex2.reduce((acc, word) => acc + word.length, 0);
+
+// Step 4: Calculate the average length
+const averageLengthE9 = stringsAtIndex2.length > 0 ? totalLength / stringsAtIndex2.length : 0;
+
+console.log(averageLength);  // Output the average length
+
+// Display the result in the HTML element with id="result"
+document.getElementById("E9").innerHTML = `The average length of strings at index 2 is: ${averageLength.toFixed(2)}`;
+
 //E10. Suskaičiuoti kiek “s” raidžių yra stringuose, kurie sub masyve turi indeksą 0 arba yra sub masyvo paskutinis elementas;
+
+// Function to count occurrences of 's' (case-insensitive)
+const countSInString = (str) => {
+  return (str.match(/s/gi) || []).length;  // Using 'gi' for case-insensitive matching
+};
+
+// Step 1: Initialize the counter
+let sCount = 0;
+
+// Step 2: Loop through each subarray in E
+E.forEach(subarray => {
+  // Get the first and last element of the subarray
+  const firstElement = subarray[0];
+  const lastElement = subarray[subarray.length - 1];
+  
+  // Step 3: Count occurrences of 's' in the first element
+  sCount += countSInString(firstElement);
+  
+  // Step 4: Count occurrences of 's' in the last element, avoiding double-counting if first and last are the same
+  if (firstElement !== lastElement) {
+    sCount += countSInString(lastElement);
+  }
+});
+
+// Step 5: Output the total count of 's'
+console.log(sCount);  // Check the count in the console
+
+// Display the result in an HTML element with id="E10"
+document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sCount}`;
+
+// // Wait for the DOM to be fully loaded before running the script
+// document.addEventListener("DOMContentLoaded", function() {
+
+
+//   // Function to count occurrences of the letter 's' in a string (case insensitive)
+//   const countSInString = (str) => {
+//     const matches = str.match(/s/gi);  // Match both 's' and 'S'
+//     return (matches || []).length;  // If no matches, return 0
+//   };
+
+//   // Counter for 's' occurrences
+//   let sCount = 0;
+
+//   // Loop through each subarray in E
+//   E.forEach(subarray => {
+
+//     // Get the first and last elements of each subarray
+//     const firstElement = subarray[0];
+//     const lastElement = subarray[subarray.length - 1];
+
+//     // Count occurrences of 's' in the first element
+//     sCount += countSInString(firstElement);
+
+//     // If the first element is different from the last, count occurrences in the last element
+//     if (firstElement !== lastElement) {
+//       sCount += countSInString(lastElement);
+//     }
+//   });
+
+//   // Check if the result element is found and display the result
+//   const resultElement = document.getElementById("E10");
+//   if (resultElement) {
+//     resultElement.innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sCount}`;
+//   } else {
+//     console.error('Element with ID "E10" not found!');
+//   }
+// });
+
+//????????????????????????????????????????????????????????????
 
 
 //Sunkesni.
