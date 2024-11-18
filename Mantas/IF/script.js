@@ -64,7 +64,7 @@ for (let i = 0; i < numbers.length; i++) {
     if(numbers[i] % 2 === 0) {
         //console.log(numbers[i])
         //task2.innerHTML = numbers[i];
-        arr.push(numbers[i]);
+        arr.push(" "+numbers[i]);
     }
 } 
 task2.innerHTML = arr   
