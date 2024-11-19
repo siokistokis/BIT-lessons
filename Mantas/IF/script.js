@@ -19,6 +19,7 @@ const task18 = document.querySelector(".task18")
 const task19 = document.querySelector(".task19")
 const task20 = document.querySelector(".task20")
 const task21 = document.querySelector(".task21")
+const task22 = document.querySelector(".task22")
 
 // function addGapBetweenWords(text, gap) {
 //     // Split the text into words
@@ -190,8 +191,8 @@ for (let i = 0; i < wordss.length; i++) {
         console.log(wordss[i]);   
     }
 }//task6.innerHTML = arrT6;
-document.getElementById("T6").innerHTML = `Chorter than 5 letter words from array: ${arrT6.join(", ")}`;
-console.log("Chorter than 5 letter words from array:", arrT6);
+document.getElementById("T6").innerHTML = `Shorter than 5 letter words from array: ${arrT6.join(", ")}`;
+console.log("Shorter than 5 letter words from array:", arrT6);
 
     //task6.innerHTML = wordss[i];
 // let min = wordss[0]; 
@@ -212,7 +213,11 @@ for (let i =0; i < numbersArr.length; i++) {
         arrT7.push(" "+numbersArr[i])
          //task7.innerHTML = numbersArr[i];
     } 
-}  task7.innerHTML = arrT7
+}  //task7.innerHTML = arrT7
+document.getElementById("T7").innerHTML = `Divisible numbers by 3 without remainder: ${arrT7.join(", ")}`;
+console.log("Divisible numbers by 3 without remainder:", arrT7);
+
+
 //8.
 //my exemple:
 let arrT8 = []
@@ -222,7 +227,11 @@ for (let i =0; i < numbersArr.length; i++) {
         //task8.innerHTML = numbersArr[i];
         arrT8.push(" "+numbersArr[i])
     }
-}  task8.innerHTML = arrT8
+}  //task8.innerHTML = arrT8
+
+document.getElementById("T8").innerHTML = `Divisible numbers by 5 without remainder: ${arrT8.join(", ")}`;
+console.log("Divisible numbers by 5 without remainder:", arrT8);
+
 
 //9.
 // Neigiamų skaičių suradimas sąraše
@@ -235,7 +244,9 @@ for (let i = 0; i < negativeNumbers.length; i++) {
         //task9.innerHTML = negativeNumbers[i];
         arrT9.push(" "+negativeNumbers[i])
     }
-}  task9.innerHTML = arrT9
+}  //task9.innerHTML = arrT9
+document.getElementById("T9").innerHTML = `List of negative numbers from array: ${arrT9.join(", ")}`;
+console.log("List of negative numbers from array:", arrT9);
  
 //10.
 // Teksto paieška sąraše
@@ -249,6 +260,8 @@ for (let i = 0; i < sentences.length; i++) {
         //task10.innerHTML = sentences[i]; 
     }
 } task10.innerHTML = arrT10
+document.getElementById("T10").innerHTML = `Sentenses containing the word 'JavaScript': ${arrT10.join(", ")}`;
+console.log("Sentenses containing the word 'JavaScript':", arrT10);
 
 //11.
 //my exemple:
@@ -260,11 +273,13 @@ for (let i = 0; i < sentences.length; i++) {
         arrT11.push(" "+sentences[i])
     }
 } task11.innerHTML = arrT11
+document.getElementById("T11").innerHTML = `Sentenses containing the word 'is': ${arrT11.join(", ")}`;
+console.log("Sentenses containing the word 'is':", arrT11);
 
 //12.
 // Skaičių kvadratų suradimas
 // Sukurkite sąrašą skaičių. Išspausdinkite tik tuos skaičius, kurių kvadratas yra didesnis nei 50.
-let Numbers = [2, 5, 7, 8, 10, 12]
+let Numbers = [2, 5, 7, 8, 10, 13]
 let arrT12 = []
 for (let i = 0; i < Numbers.length; i++) {
     const Square = Numbers[i] **2;
@@ -274,6 +289,9 @@ for (let i = 0; i < Numbers.length; i++) {
          arrT12.push(" "+Numbers[i])
     }  
 }task12.innerHTML = arrT12
+document.getElementById("T12").innerHTML = `Numbers whose square is greater than fifty: ${arrT12.join(", ")}`;
+console.log("Number whose square is greater than fifty:", arrT12);
+
 //13.
 //my exemple:
 let arrT13 = []
@@ -285,79 +303,155 @@ for (let i = 0; i < Numbers.length; i++) {
         arrT13.push(" "+Numbers[i]);
     }  
 }task13.innerHTML = arrT13
+document.getElementById("T13").innerHTML = `Numbers whose square is less than fifty: ${arrT13.join(", ")}`;
+console.log("Number whose square is less than fifty:", arrT13);
 
 //14.
 // Didžiausio skaičiaus paieška sąraše
 // Sukurkite sąrašą skaičių ir raskite didžiausią skaičių. Tikrinkite kiekvieną reikšmę cikle.
-let integers = [3, 45, -14, 23, 67, -5, 12, 90, -37, 34]; 
-let arrT14 = []
-let theLargest = integers[0]; 
-for (let i=0; i < integers.length; i++) { 
-if (integers[i] > theLargest){
-    theLargest = integers[i]; 
-    arrT14.push(" "+integers[i]);
-    task14.innerHTML = theLargest; 
-} 
-//console.log(theLargest);
-} task14.innerHTML = arrT14
+
+
+
+let integers = [3, 45, -14, 23, -81, 67, -5, 12, 90, -37, 34, 105];
+let arrT14 = [];
+let theLargest = integers[0]; // Initialize with the first element of the array.
+
+for (let i = 1; i < integers.length; i++) { // Start the loop from index 1.
+  if (integers[i] > theLargest) {
+    theLargest = integers[i]; // Update the largest number.
+  }
+}
+// After the loop, we can display the largest number.
+arrT14.push(" " + theLargest); // Push only the largest number into the array.
+document.getElementById("T14").innerHTML = `The largest number in the array is: ${arrT14.join(", ")}`;
+console.log("The largest number in the array is:", theLargest);
+
 //15.
 //my exemple:
-let arrT15 = []
-let theSmolest = integers[0]; 
-for (let i=0; i < integers.length; i++) { 
-if (integers[i] < theSmolest){
-    theSmolest = integers[i];
-    arrT15.push(" "+integers[i]);
-    task15.innerHTML = theSmolest;
-} 
-//console.log(theSmolest);
-} task15.innerHTML = arrT15
+
+let arrT15 = [];
+let theSmolest = integers[0]; // Initialize with the first element of the array.
+for (let i = 1; i < integers.length; i++) { // Start from index 1, as the first element is already assigned.
+  if (integers[i] < theSmolest) {
+    theSmolest = integers[i]; // Update the smallest number.
+  }
+}
+// After the loop, store the smallest number in arrT15.
+arrT15.push(" " + theSmolest); 
+// Update the HTML to display the smallest number.
+document.getElementById("T15").innerHTML = `The smallest number in the array is: ${arrT15.join(", ")}`;
+// Optionally log it to the console.
+console.log("The smallest number in the array is:", theSmolest);
+
 //16.
 // Raidžių skaičiavimas žodyje
 // Sukurkite žodį ir suskaičiuokite, kiek kartų žodyje pasikartoja raidė „a“.
+
 let word = "banana";
 let letterCount = 0;
+// Loop through each character in the word
 for (let i = 0; i < word.length; i++) {
-  if (word[i].includes("a")) {
-    letterCount ++;
-    task16.innerHTML = letterCount;
+  if (word[i] === "a") { // Check if the current character is 'a'
+    letterCount++;
   }
 }
- console.log(letterCount);
+// Display the result after the loop
+document.getElementById("T16").innerHTML = `The letter 'a' in the word 'banana' is repeated ${letterCount} times`;
+console.log("Count of 'a' in 'banana' is:", letterCount);
+
+
 //17.
  //my example
  let word1 = "amusement"
- let numberOfm = 0;
+ let countOfm = 0;
  for (let i = 0; i < word1.length; i++) {
     if (word1[i].includes("m")) {
-        numberOfm ++
-        task17.innerHTML = numberOfm;
+        countOfm ++
+        task17.innerHTML = countOfm;
     }
  }
- console.log(numberOfm);
+ //console.log(countOfm);
+ document.getElementById("T17").innerHTML = `The letter 'm' in the word 'amusement' is repeated ${countOfm} times`;
+ console.log("Count of 'm' in 'amusement' is:", countOfm);
+
+
 //18. 
 // Amžių filtravimas sąraše
 // Sukurkite sąrašą žmonių amžių. Išspausdinkite tik tuos, kurie yra vyresni nei 18.
-let ages = [12, 10, 17, 40, 22, 36, 19, 15, 9, 30, 18];
-let arrT18 = []
+// let ages = [12, 10, 17, 40, 22, 36, 19, 15, 9, 30, 18,];
+// let arrT18 = [John, Carol, John, Henry, Lily, Jordan, Betty, Linda, Alan, James, Jack, Jacob]
+// for (let i = 0; i < ages.length; i++) {
+//     if(ages[i] > 18) {
+//         console.log(ages[i]);
+//         task18.innerHTML = ages[i];
+//         arrT18.push(" "+ages[i]);
+//     }  
+// }//task18.innerHTML = arrT18
+
+let ages = [12, 10, 17, 40, 22, 14, 36, 19, 15, 9, 30, 18];
+let names = ["John", "Carol", "John", "Henry", "Lily", "Jordan", "Betty", "Linda", "Alan", "James", "Jack", "Jacob"];
+let adults = []; // Array to store names of people older than 18
+
 for (let i = 0; i < ages.length; i++) {
-    if(ages[i] > 18) {
-        console.log(ages[i]);
-        task18.innerHTML = ages[i];
-        arrT18.push(" "+ages[i]);
-    }  
-}task18.innerHTML = arrT18
+    if (ages[i] > 18) { // Check if the person is older than 18
+        adults.push(names[i]); // Push the corresponding name into the adults array
+    }
+}
+
+// Update the HTML with the names of people older than 18
+document.getElementById("T18").innerHTML = `Names of people older than 18: ${adults.join(", ")}`;
+
+console.log("Names of people older than 18:", adults);
+
+
+
+
 //19.
 //my example:
-let arrT19 = []
+// let arrT19 = []
+// for (let i = 0; i < ages.length; i++) {
+//     if(ages[i] < 17){
+//         console.log(ages[i]);
+//         task19.innerHTML = ages[i];
+//          arrT19.push(ages[i]);
+//     }  
+// }task19.innerHTML = arrT19
+
+
+let namesT19 = ["John", "Carol", "John", "Henry", "Lily", "Jordan", "Betty", "Linda", "Alan", "James", "Jack", "Jacob"];
+let underage = []; // To store names of underage people
+
+// Loop through the ages array and check for underage people
 for (let i = 0; i < ages.length; i++) {
-    if(ages[i] < 17){
-        console.log(ages[i]);
-        task19.innerHTML = ages[i];
-         arrT19.push(ages[i]);
-    }  
-}task19.innerHTML = arrT19
-//20. 
+    if (ages[i] < 17) { // Check if the person is underage (you said under 17)
+        underage.push(namesT19[i]); // Push the corresponding name from namesT19
+    }
+}
+
+// Display the list of underage names in the task19 element
+document.getElementById("T19").innerHTML = `Names of underage people: ${underage.join(", ")}`;
+console.log("Names of underage people:", underage);
+
+
+//20.
+
+
+let namesT20 = ["John", "Carol", "John", "Henry", "Lily", "Jordan", "Betty", "Linda", "Alan", "James", "Jack", "Jacob"]; // Array of names
+let eighteen = []; // Array to store names of people who are exactly 18 years old
+
+// Loop through the ages array to find people who are exactly 18 years old
+for (let i = 0; i < ages.length; i++) {
+    if (ages[i] === 18) { // Check if the age is exactly 18
+        eighteen.push(namesT20[i]); // Add the corresponding name to the "eighteen" array
+    }
+}
+
+// Display the list of people who are exactly 18 in the HTML element with id "T18"
+document.getElementById("T20").innerHTML = `Names of people who are 18 years old: ${eighteen.join(", ")}`;
+console.log("Names of people who are 18 years old:", eighteen);
+
+
+//21. 
 // Skaičių dalybos liekanos tikrinimas
 // Sukurkite sąrašą skaičių. Išspausdinkite tik tuos skaičius, kurie, dalijant iš 2, turi liekaną.
 let justNr = [-14, -6, -1, -7, 5, 8, 11, 13, 22, 27, 31, 40];
@@ -365,20 +459,26 @@ let oddNr = []
 for (let i = 0; i < justNr.length; i++) {
     if(justNr[i] % 2 !== 0) {
         console.log(justNr[i]);
-        task20.innerHTML = justNr[i]; 
+        task21.innerHTML = justNr[i]; 
         oddNr.push(" "+justNr[i])
     }
-}task20.innerHTML = oddNr
-//21.
+}task21.innerHTML = oddNr
+document.getElementById("T21").innerHTML = `List of numbers that have a remainder when divided by 2: ${oddNr.join(", ")}`;
+console.log("List of numbers that have a remainder when divided by 2:", oddNr);
+
+//22.
 //my example:
 let evenNr = [];
 for (let i = 0; i < justNr.length; i++) {
     if(justNr[i] % 2 === 0) {
         console.log(justNr[i]);
-        task21.innerHTML = justNr[i];
+        task22.innerHTML = justNr[i];
         evenNr.push(" "+justNr[i])
     }
-}task21.innerHTML = evenNr
+}task22.innerHTML = evenNr
+document.getElementById("T22").innerHTML = `List of numbers that have no remainder when divided by 2: ${evenNr.join(", ")}`;
+console.log("List of numbers that have no remainder when divided by 2:", evenNr);
+
 
 
 //Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
