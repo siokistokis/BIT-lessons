@@ -1241,36 +1241,45 @@ console.log(averageLength);  // Output the average length
 // Display the result in the HTML element with id="result"
 document.getElementById("E9").innerHTML = `The average length of strings at index 2 is: ${averageLength.toFixed(2)}`;
 
+
+
+
+
 //E10. Suskaičiuoti kiek “s” raidžių yra stringuose, kurie sub masyve turi indeksą 0 arba yra sub masyvo paskutinis elementas;
 
-// Function to count occurrences of 's' (case-insensitive)
-const countSInString = (str) => {
-  return (str.match(/s/gi) || []).length;  // Using 'gi' for case-insensitive matching
-};
+// // Function to count occurrences of 's' (case-insensitive)
+// const countSInString = (str) => {
+//   return (str.match(/s/gi) || []).length;  // Using 'gi' for case-insensitive matching
+// };
 
-// Step 1: Initialize the counter
-let sCount = 0;
+// // Step 1: Initialize the counter
+// let sCount = 0;
 
-// Step 2: Loop through each subarray in E
-E.forEach(subarray => {
-  // Get the first and last element of the subarray
-  const firstElement = subarray[0];
-  const lastElement = subarray[subarray.length - 1];
+// // Step 2: Loop through each subarray in E
+// E.forEach(subarray => {
+//   // Get the first and last element of the subarray
+//   const firstElement = subarray[0];
+//   const lastElement = subarray[subarray.length - 1];
   
-  // Step 3: Count occurrences of 's' in the first element
-  sCount += countSInString(firstElement);
+//   // Step 3: Count occurrences of 's' in the first element
+//   sCount += countSInString(firstElement);
   
-  // Step 4: Count occurrences of 's' in the last element, avoiding double-counting if first and last are the same
-  if (firstElement !== lastElement) {
-    sCount += countSInString(lastElement);
-  }
-});
+//   // Step 4: Count occurrences of 's' in the last element, avoiding double-counting if first and last are the same
+//   if (firstElement !== lastElement) {
+//     sCount += countSInString(lastElement);
+//   }
+// });
 
-// Step 5: Output the total count of 's'
-console.log(sCount);  // Check the count in the console
+// // Step 5: Output the total count of 's'
+// console.log(sCount);  // Check the count in the console
 
-// Display the result in an HTML element with id="E10"
-document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sCount}`;
+// // Display the result in an HTML element with id="E10"
+// document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sCount}`;
+
+
+
+
+//--------------------------------------------------------
 
 // // Wait for the DOM to be fully loaded before running the script
 // document.addEventListener("DOMContentLoaded", function() {
@@ -1309,6 +1318,110 @@ document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' 
 //     console.error('Element with ID "E10" not found!');
 //   }
 // });
+
+//---------------------------------------------------------
+
+//  // Function to count occurrences of 's' in the first and last elements of each subarray
+//  function countSInSpecialPositions(array) {
+//   let totalSCount = 0;
+
+//   // Iterate over each subarray in E
+//   array.forEach(subarray => {
+//       // Check the first element (index 0) and the last element (index -1)
+//       let firstElement = subarray[0];
+//       let lastElement = subarray[subarray.length - 1];
+
+//       // Count 's' in the first element
+//       totalSCount += (firstElement.match(/s/g) || []).length;
+
+//       // Count 's' in the last element (if it's not the same as the first)
+//       if (firstElement !== lastElement) {
+//           totalSCount += (lastElement.match(/s/g) || []).length;
+//       }
+//   });
+
+//   return totalSCount;
+// }
+
+// // Call the function and store the result
+// const result = countSInSpecialPositions(E);
+
+// // Display the result in the HTML element with id "E10"
+// const resultElement = document.getElementById("E10");
+// resultElement.innerHTML = `Total occurrences of the letter 's' in first and last elements: ${result}`;
+
+
+
+//------------------------------------------
+
+// let masyvas = [
+//   // ["saule", "lietus", "sniegas"],
+//   // [1, "testas", "paskutinis"],
+//   // ["startas", 2, "pabaiga"],
+//   // ["kitas", "pavyzdys"]
+// ];
+
+// let sRaidziuSkaicius = 0;
+
+// masyvas.forEach(subMasyvas => {
+//   // Paimame indeksą 0
+//   let pirmasElementas = subMasyvas[0];
+//   // Paimame paskutinį elementą
+//   let paskutinisElementas = subMasyvas[subMasyvas.length - 1];
+
+//   [pirmasElementas, paskutinisElementas].forEach(elementas => {
+//     if (typeof elementas === 'string') {
+//         console.log(elementas);
+//         // Suskaičiuojame 's' raides (nepriklausomai nuo didžiųjų/mažųjų raidžių)
+//         let sRaides = elementas.match(/s/gi);
+//         if (sRaides) {
+//             sRaidziuSkaicius += sRaides.length;
+//         }
+//     }
+// });
+// });
+
+// console.log("Iš viso 's' raidžių:", sRaidziuSkaicius);
+
+// document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sRaidziuSkaicius};`
+
+//_________________________________________________________________
+
+ // Function to count occurrences of 's' in the first and last elements of each subarray
+let arrayE10 = []
+ function countSInSpecialPositions(arrayE10) {
+  let totalSCount = 0;
+
+  // Iterate over each subarray in E
+  arrayE10.forEach(subarray => {
+      // Check the first element (index 0) and the last element (index -1)
+      let firstElement = subarray[0];
+      let lastElement = subarray[subarray.length - 1];
+
+      // Count 's' in the first element
+      totalSCount += (firstElement.match(/s/g) || []).length;
+
+      // Count 's' in the last element (if it's not the same as the first)
+      if (firstElement !== lastElement) {
+          totalSCount += (lastElement.match(/s/g) || []).length;
+      }
+  });
+
+  return totalSCount;
+}
+
+// Wait for the DOM to fully load before running the script
+//document.addEventListener("DOMContentLoaded", function() {
+  // Call the function and store the result
+ // const result = countSInSpecialPositions(E);
+console.log(arrayE10);  
+  // Display the result in the HTML element with id "E10"
+  document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' in first and last elements: ${arrayE10}`;
+//});
+
+
+
+
 
 //????????????????????????????????????????????????????????????
 
