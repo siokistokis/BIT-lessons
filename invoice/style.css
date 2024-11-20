@@ -1,0 +1,54 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(236, 233, 228);
+
+}
+
+#invoice {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid cadetblue;
+
+}
+
+#invoiceDetails, #sellerBuyer, #totals {
+    margin-bottom: 20px;
+
+}
+
+#sellerBuyer {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1, h2 {
+    text-align: center;
+
+}
+
+#sellerBuyer div {
+    width: 48%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+ table th, tabletd {
+    border: 1px solid cadetblue ;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: blanchedalmond;
+}
+
+#items {
+
+}
