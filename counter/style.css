@@ -1,4 +1,4 @@
-* {
+ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,6 +23,7 @@
         flex-direction: column;
         border-radius: 5%;
  
+        
         h1 {
             color: orchid;
             font-size: 45px;
@@ -79,7 +80,9 @@
         }
        
     }
-}
+} 
+
+
 
 /* .counterAppContainer {
     background-color: #005490;
@@ -92,3 +95,5 @@
     flex-direction: column;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 } */
+
+/* Reset default margin and padding */
