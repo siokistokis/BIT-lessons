@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="styles.css">  <!-- Ensure the path is correct -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="invoice">
+        <header>
+            <h1>Invoice</h1>
+            <div id="company-details">
+                <p><strong>Company Name</strong><br>Address<br>Phone: (123) 456-7890<br>Email: company@example.com</p>
+            </div>
+        </header>
+
+        <section id="customer-details">
+            <h2>Billing To:</h2>
+            <p><strong id="customer-name">Customer Name</strong><br>Address<br>Email: customer@example.com</p>
+        </section>
+
+        <table id="invoice-items">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="items-list">
+                <!-- Dynamically filled items -->
+            </tbody>
+        </table>
+
+        <div id="invoice-summary">
+            <p><strong>Total:</strong> $<span id="invoice-total">0.00</span></p>
+        </div>
+
+        <button id="generate-pdf">Download as PDF</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
