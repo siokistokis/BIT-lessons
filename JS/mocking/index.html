@@ -1,10 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
 <body>
     <div id="invoice">
         <h1>INVOICE</h1>
         <div id="invoiceDetails">
             <p><strong>Number: </strong><span id="invoiceNumber"></span></p>
             <p><strong>Date: </strong><span id="invoiceDate"></span></p>
-            <p><strong>Payment Term: </strong><span id="invoiceTerm"></span></p>
+            <p><strong>Peyment term: </strong><span id="invoiceTerm"></span></p>
         </div>
         <div id="sellerBuyer">
             <div>
@@ -43,3 +51,44 @@
     </div>
     <script src="app.js" defer></script>
 </body>
+</html>
+
+
+
+
+/* joson
+{
+    "number": "INV12345",
+    "date": "2024-11-23",
+    "paymentTerm": "30 days",
+    "seller": {
+      "name": "Seller Name",
+      "address": "Seller Address",
+      "code": "Seller Code",
+      "vat": "VAT123456"
+    },
+    "buyer": {
+      "name": "Buyer Name",
+      "address": "Buyer Address",
+      "code": "Buyer Code",
+      "vat": "VAT654321"
+    },
+    "items": [
+      {
+        "name": "Item 1",
+        "price": "100",
+        "quantity": "2",
+        "discount": "10",
+        "subtotal": "190"
+      },
+      {
+        "name": "Item 2",
+        "price": "50",
+        "quantity": "1",
+        "discount": "5",
+        "subtotal": "45"
+      }
+    ],
+    "transportationCosts": "20"
+  }
+   */
