@@ -1,0 +1,45 @@
+<body>
+    <div id="invoice">
+        <h1>INVOICE</h1>
+        <div id="invoiceDetails">
+            <p><strong>Number: </strong><span id="invoiceNumber"></span></p>
+            <p><strong>Date: </strong><span id="invoiceDate"></span></p>
+            <p><strong>Payment Term: </strong><span id="invoiceTerm"></span></p>
+        </div>
+        <div id="sellerBuyer">
+            <div>
+                <h2>Seller</h2>
+                <p id="sellerName"></p>
+                <p id="sellerAddress"></p>
+                <p id="sellerCode"></p>
+                <p id="sellerVAT"></p>
+            </div>
+            <div>
+                <h2>Buyer</h2>
+                <p id="buyerName"></p>
+                <p id="buyerAddress"></p>
+                <p id="buyerCode"></p>
+                <p id="buyerVAT"></p> 
+            </div>
+        </div>
+        <table id="items">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Subtotal</th>   
+                </tr>    
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="totals">
+            <p><strong>Transportation costs:</strong><span id="transportCosts"></span></p>
+            <p><strong>Rate without VAT:</strong><span id="rateWithoutVAT"></span></p>
+            <p><strong>VAT (21%):</strong><span id="VAT"></span></p>
+            <p><strong>Final amount including VAT:</strong><span id="total"></span></p>
+        </div>
+    </div>
+    <script src="app.js" defer></script>
+</body>
