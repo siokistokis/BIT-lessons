@@ -4,30 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Self-Service Invoice Generator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="mainContainer">
         <h1>Self-Service Invoice Generator</h1>
-
+    
         <div class="form-section">
             <h2>Enter Your Invoice Details</h2>
-            <label for="customer-name">Customer Name:</label>
-            <input type="text" id="customer-name" placeholder="Enter customer name" />
-
-            <label for="item-description">Item Description:</label>
-            <input type="text" id="item-description" placeholder="Enter item description" />
-
-            <label for="unit-price">Unit Price ($):</label>
-            <input type="number" id="unit-price" placeholder="Enter unit price" />
-
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" placeholder="Enter quantity" />
-
+            <div>
+                <div>
+                    <label for="customer-name">Customer Name:</label>
+                </div>
+                 <div>
+                    <input type="text" id="customer-name" placeholder="Enter customer name" />
+                 </div>
+               </div>
+           <div>
+                <div>
+                    <label for="item-description">Item Description:</label>
+                </div>
+                <div>
+                    <input type="text" id="item-description" placeholder="Enter item description" />
+                </div>
+           </div>
+           <div>
+                <div>
+                    <label for="unit-price">Unit Price ($):</label>
+                </div>
+                <div>
+                    <input type="number" id="unit-price" placeholder="Enter unit price" /> 
+                </div>
+           </div>
+            <div>
+                <div>
+                    <label for="quantity">Quantity:</label>
+                </div>
+                <div>
+                    <input type="number" id="quantity" placeholder="Enter quantity" />
+                </div>
+            </div>
+    
             <button id="add-item">Add Item</button>
         </div>
-
+    
         <h2>Invoice Preview</h2>
         <div id="invoice-preview">
             <h3>Customer: <span id="customer-name-preview">N/A</span></h3>
@@ -44,16 +65,16 @@
                     <!-- Dynamically filled with items -->
                 </tbody>
             </table>
-
+    
             <h4>Total: $<span id="total-price">0.00</span></h4>
         </div>
-
+    
         <div class="buttons">
             <button id="generate-pdf">Generate PDF</button>
             <button id="reset-form">Reset Form</button>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>

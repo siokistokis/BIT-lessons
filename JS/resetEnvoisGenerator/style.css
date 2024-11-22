@@ -1,95 +1,162 @@
-/* Basic reset */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Body and HTML: Full Height, Centered */
+body, html {
+    height: 100%;
     margin: 0;
+    display: flex;
+    justify-content: center;  /* Center content horizontally */
+    align-items: center;     /* Center content vertically */
+    background-color: #f4f4f9; /* Light background color */
+    font-family: 'Arial', sans-serif; /* Modern font */
 }
 
-.container {
-    width: 80%;
-    max-width: 900px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Main Container: Centered with Maximum Width */
+.mainContainer {
+    display: flex;
+    flex-direction: column;  /* Stack items vertically */
+    align-items: center;     /* Center content horizontally */
+    justify-content: flex-start; /* Align content from the top */
+    width: 100%;
+    max-width: 900px;        /* Max width for large screens */
+    padding: 40px 30px;      /* Padding inside the container */
+    background-color: #ffffff; /* White background */
+    border-radius: 10px;     /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
+/* Header Styling */
 h1 {
+    font-size: 2.5rem;
+    color: #333; /* Dark text */
+    margin-bottom: 20px; /* Space below the title */
     text-align: center;
-    color: #333;
 }
 
+h2 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 15px; /* Space below the subheading */
+    text-align: center;
+}
+
+/* Form Section */
 .form-section {
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column; /* Stack inputs vertically */
+    gap: 20px; /* Add space between fields */
+    width: 100%;
+    margin-bottom: 30px; /* Space between form and preview */
 }
 
+/* Form Inputs */
 label {
     font-weight: bold;
-    margin-top: 10px;
+    color: #555;
+    margin-bottom: 5px; /* Space between label and input */
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 15px; /* Space between inputs */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for input fields */
 }
 
 button {
-    background-color: #4CAF50;
+    padding: 15px 30px;
+    background-color: #6c5b7b;
     color: white;
     border: none;
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;  /* Button takes the full width of its container */
+    font-size: 16px;
     margin-top: 10px;
-    width: 100%;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #5a4d66; /* Darker background on hover */
 }
 
-#reset-form {
-    background-color: #f44336; /* Red for reset button */
-}
-
-#reset-form:hover {
-    background-color: #e53935;
-}
-
-h3, h4 {
-    margin-top: 20px;
-}
-
-#invoice-items-table {
+/* Invoice Preview */
+#invoice-preview {
+    margin-top: 40px;
     width: 100%;
-    margin-top: 20px;
+}
+
+table {
+    width: 100%;
     border-collapse: collapse;
+    margin-bottom: 30px;
 }
 
-#invoice-items-table th, #invoice-items-table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ccc;
 }
 
-#invoice-items-table th {
+th {
     background-color: #f4f4f4;
+    font-weight: bold;
 }
 
+h4 {
+    text-align: right;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Buttons Section */
 .buttons {
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px; /* Add space between buttons */
+}
+
+#generate-pdf, #reset-form {
+    width: 48%; /* Button width should be almost equal */
+}
+
+/* Responsive Design for Small Screens */
+@media only screen and (max-width: 600px) {
+    .mainContainer {
+        width: 95%; /* Take up more space on small screens */
+        max-width: none; /* Disable max-width */
+        padding: 20px; /* Less padding on smaller screens */
+    }
+
+    .buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px; /* Add space between buttons */
+    }
+
+    button {
+        width: 100%; /* Make buttons take full width */
+    }
+
+    table {
+        width: 100%;
+        font-size: 14px; /* Smaller font for mobile */
+    }
+
+    td, th {
+        padding: 12px; /* Less padding in table cells on small screens */
+    }
+
+    input {
+        padding: 10px; /* Smaller padding in input fields on mobile */
+    }
 }
