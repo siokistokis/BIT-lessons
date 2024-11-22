@@ -334,42 +334,28 @@ document.getElementById("B2").innerHTML = `The shortest string is: ${shortestStr
 
 //B3. Surasti stringą, kuris prasideda “a” raide;
 
-  stringsStartingWithA = [];  // Array to hold strings starting with "a"
-
- // Loop through the array to find strings that start with "a"
- for (let i = 0; i < B.length; i++) {
-   if (B[i].toLowerCase().startsWith("a")) {  // Check if the string starts with "a"
-     stringsStartingWithA.push(B[i]);  // Add the string to the result array
-   }
- }
-
- // Display the result in the console
- console.log("Strings starting with 'a':", stringsStartingWithA);
-
- // Optionally, display the result in an HTML element with id "B1"
- document.getElementById("B3").innerHTML = `Strings starting with 'a': ${stringsStartingWithA.join(', ')}`;
 
 
 
-// let stringsStartingWithA = [];  // Array to hold strings starting with "a"
+let arrayB3 = [];  // Array to hold strings starting with "a"
 
-// // Loop through the array to find strings that start with "a"
-// for (let i = 0; i < B.length; i++) {
-//   if (B[i].toLowerCase().startsWith("a")) {  // Check if the string starts with "a"
-//     stringsStartingWithA.push(B[i]);  // Add the string to the result array
-//   }
-// }
+// Loop through the array to find strings that start with "a"
+for (let i = 0; i < B.length; i++) {
+  if (B[i].toLowerCase().startsWith("a")) {  // Check if the string starts with "a"
+    arrayB3.push(B[i]);  // Add the string to the result array
+  }
+}
 
-// // Display the result in the console
-// console.log("Strings starting with 'a':", stringsStartingWithA);
+// Display the result in the console
+console.log("Strings starting with 'a':", arrayB3);
 
-// // Display the strings in column format in the HTML element with id "B1"
-// let columnHtml = stringsStartingWithA.map(function(str) {
-//   return `<p>${str}</p>`;  // Wrap each string in a <p> tag
-// }).join('');  // Join the strings without commas, creating a list of <p> elements
+// Format the result for better readability in HTML
+const formattedResult = arrayB3.join('<br>');  // Using <br> to insert line breaks
 
-// document.getElementById("B3").innerHTML = columnHtml;  // Insert into the page
-//???????????????????????????????????????????????????????????????????????????????????
+// Optionally, display the result in an HTML element with id "B3"
+document.getElementById("B3").innerHTML = `Strings starting with 'a':<br>${formattedResult}`;
+
+
 
 //B4. Surasti stringą su daugiausia žodžių;
 
@@ -539,101 +525,33 @@ document.getElementById("C1").innerHTML = `The largest number in the array C is:
 
 //C2. Surasti trumpiausią stringą;
 
-// Function to find the shortest string in the array
-// let arrayC3 = null;  // Initialize to null (will be set to a string if found)
 
-// // Loop through each element in the array
-// for (let i = 0; i < C.length; i++) {
-//   // Check if the current element is a string
-//   if (typeof C[i] === 'string') {
-//     // If no shortest string has been found yet, or if the current string is shorter
-//     if (arrayC3 === null || C[i].length < arrayC3.length) {
-//       arrayC3 = C[i];  // Update the shortest string
-//     }
-//   }
-// }
-
-// console.log("The shortest string in the array C is:", shortestString);
-// document.getElementById("C2").innerHTML = `The shortest string in the array C is: ${shortestString}`;
-
-
-let arrayC3 = null;  // Initialize to null (will be set to a string if found)
+let arrayC2 = null;  // Initialize to null (will be set to a string if found)
 
 // Loop through each element in the array C
 for (let i = 0; i < C.length; i++) {
   // Check if the current element is a string
   if (typeof C[i] === 'string') {
     // If no shortest string has been found yet, or if the current string is shorter
-    if (arrayC3 === null || C[i].length < arrayC3.length) {
-      arrayC3 = C[i];  // Update the shortest string
+    if (arrayC2 === null || C[i].length < arrayC2.length) {
+      arrayC2 = C[i];  // Update the shortest string
     }
   }
 }
 
 // Check if a shortest string was found
-if (arrayC3 === null) {
+if (arrayC2 === null) {
   console.log("No strings found in the array.");
   document.getElementById("C2").innerHTML = "No strings found in the array.";
 } else {
-  console.log("The shortest string in the array C is:", arrayC3);
-  document.getElementById("C2").innerHTML = `The shortest string in the array C is: ${arrayC3}`;
+  console.log("The shortest string in the array C is:", arrayC2);
+  document.getElementById("C2").innerHTML = `The shortest string in the array C is: ${arrayC2}`;
 }
 
 
 
-
-
-// // Initialize to null (indicating no strings have been found yet)
-// let shortestString = null;
-
-// // Loop through each element in the array C
-// for (let i = 0; i < C.length; i++) {
-//   // Check if the current element is a string
-//   if (typeof C[i] === 'string') {
-//     // If no shortest string has been found yet, or if the current string is shorter
-//     if (shortestString === null || C[i].length < shortestString.length) {
-//       shortestString = C[i];  // Update the shortest string
-//     }
-//   }
-// }
-
-// // Check if a shortest string was found
-// if (shortestString === null) {
-//   console.log("No strings found in the array.");
-//   document.getElementById("C2").innerHTML = "No strings found in the array.";
-// } else {
-//   console.log("The shortest string in the array C is:", shortestString);
-//   document.getElementById("C2").innerHTML = `The shortest string in the array C is: ${shortestString}`;
-// }
-
-
-
-// let longestStringg = "";  // Initialize to an empty string (will be updated with the longest string)
-
-// // Loop through each element in the array C
-// for (let i = 0; i < C.length; i++) {
-//   // Check if the current element is a string
-//   if (typeof C[i] === 'string') {
-//     // If no longest string has been found yet, or if the current string is longer
-//     if (C[i].length > longestString.length) {
-//       longestString = C[i];  // Update the longest string
-//     }
-//   }
-// }
-
-// // Check if a longest string was found
-// if (longestString === "") {
-//   console.log("No strings found in the array.");
-//   document.getElementById("C2").innerHTML = "No strings found in the array.";
-// } else {
-//   console.log("The longest string in the array C is:", longestString);
-//   document.getElementById("C2").innerHTML = `The longest string in the array C is: ${longestString}`;
-// }
-
-
-
-
 //C3. Suskaičiuoti kiek skaičių yra 0-iai (ne stringai ‘0’, o skaičiai!);
+
 
 // Initialize a counter for zeros
 let zeroCount = 0;
@@ -649,6 +567,7 @@ console.log("Number of zeros in array C:", zeroCount);
 
 // Optionally display it in an HTML element
 document.getElementById("C3").innerHTML = `Number of zeros in array C: ${zeroCount}`;
+
 
 //C4.Suskaičiuoti teigiamų skaičių sumą (tik skaičių, ne stringų!);
 
@@ -751,36 +670,9 @@ console.log("The number of strings that can be converted to valid numbers is:", 
 // Optionally display the result in an HTML element
 document.getElementById("C8").innerHTML = `The number of strings that can be converted to valid numbers is: ${countValidNumbers}`;
 
+
 //C9.Rasti ko yra daugiau- stringų ar skaičių;
 
-
-// // Initialize counters
-// let stringCountt = 0;
-// let numberCount = 0;
-
-// // Loop through the array and count strings and numbers
-// for (let i = 0; i < C.length; i++) {
-//   if (typeof C[i] === 'string') {
-//     stringCount++;  // Increment string count
-//   } else if (typeof C[i] === 'number' && !isNaN(C[i])) {
-//     numberCount++;  // Increment number count (ignoring NaN)
-//   }
-// }
-
-// // Compare the counts and log the result
-// if (stringCount > numberCount) {
-//   console.log("There are more strings than numbers in the array C.");
-// } else if (numberCount > stringCount) {
-//   console.log("There are more numbers than strings in the array C.");
-// } else {
-//   console.log("The number of strings and numbers are the same in the array C.");
-// }
-
-// // Optionally display the result in an HTML element
-// document.getElementById("C9").innerHTML = `Strings: ${stringCount}, Numbers: ${numberCount}.`;
-
-
-//--------
 
 // Initialize counters for strings and numbers
 let stringCountt = 0;
@@ -870,18 +762,6 @@ document.getElementById("D1").innerHTML = `The largest number in the array D is:
 
 //D2. Rasti ar yra bent vienas sub masyvas ilgesnis nei 5;
 
-
-// Check if any subarray in D has a length greater than 5
-// let hasSubarrayLongerThanFive = D.some(subarray => subarray.length > 5);
-
-// if (hasSubarrayLongerThanFive) {
-//   console.log("Array D has at least one subarray with more than 5 elements.");
-// } else {
-//   console.log("Array D does not have any subarray with more than 5 elements.");
-// }
-// document.getElementById("D2").innerHTML = `???????????
-
-
 // Check if any subarray in D has a length greater than 5
 let hasSubarrayLongerThanFive = D.some(subarray => subarray.length > 5);
 
@@ -893,6 +773,8 @@ if (hasSubarrayLongerThanFive) {
   console.log("Array D does not have any subarray with more than 5 elements.");
   document.getElementById("D2").innerHTML = "Array D does not have any subarray with more than 5 elements.";
 }
+
+
 //D3.Suskaičiuoti kiek elementų yra sub masyvai trumpesni nei 2;
 
 // Find all subarrays with a length shorter than 2 and count the total number of elements in them
@@ -1006,9 +888,6 @@ const sumAtIndex2 = subarraysWithIndex2.reduce((sum, subarray) => {
 console.log("The sum of numbers at index 2 in subarrays is:", sumAtIndex2);
 document.getElementById("D9").innerHTML = `The sum of numbers at index 2 in subarrays is: ${sumAtIndex2}`;
 
-
-// If you want to display it on a web page (if you have an HTML element with id "result"):
-// document.getElementById("result").innerHTML = "The sum of numbers at index 2 is: " + sumAtIndex2;
 
 
 //D10. Suskaičiuoti vidurkį skaičių, kurie sub masyve turi indeksą 1 arba 3;
@@ -1243,83 +1122,8 @@ document.getElementById("E9").innerHTML = `The average length of strings at inde
 
 
 
-
-
 //E10. Suskaičiuoti kiek “s” raidžių yra stringuose, kurie sub masyve turi indeksą 0 arba yra sub masyvo paskutinis elementas;
 
-// // Function to count occurrences of 's' (case-insensitive)
-// const countSInString = (str) => {
-//   return (str.match(/s/gi) || []).length;  // Using 'gi' for case-insensitive matching
-// };
-
-// // Step 1: Initialize the counter
-// let sCount = 0;
-
-// // Step 2: Loop through each subarray in E
-// E.forEach(subarray => {
-//   // Get the first and last element of the subarray
-//   const firstElement = subarray[0];
-//   const lastElement = subarray[subarray.length - 1];
-  
-//   // Step 3: Count occurrences of 's' in the first element
-//   sCount += countSInString(firstElement);
-  
-//   // Step 4: Count occurrences of 's' in the last element, avoiding double-counting if first and last are the same
-//   if (firstElement !== lastElement) {
-//     sCount += countSInString(lastElement);
-//   }
-// });
-
-// // Step 5: Output the total count of 's'
-// console.log(sCount);  // Check the count in the console
-
-// // Display the result in an HTML element with id="E10"
-// document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sCount}`;
-
-
-
-
-//--------------------------------------------------------
-
-// // Wait for the DOM to be fully loaded before running the script
-// document.addEventListener("DOMContentLoaded", function() {
-
-
-//   // Function to count occurrences of the letter 's' in a string (case insensitive)
-//   const countSInString = (str) => {
-//     const matches = str.match(/s/gi);  // Match both 's' and 'S'
-//     return (matches || []).length;  // If no matches, return 0
-//   };
-
-//   // Counter for 's' occurrences
-//   let sCount = 0;
-
-//   // Loop through each subarray in E
-//   E.forEach(subarray => {
-
-//     // Get the first and last elements of each subarray
-//     const firstElement = subarray[0];
-//     const lastElement = subarray[subarray.length - 1];
-
-//     // Count occurrences of 's' in the first element
-//     sCount += countSInString(firstElement);
-
-//     // If the first element is different from the last, count occurrences in the last element
-//     if (firstElement !== lastElement) {
-//       sCount += countSInString(lastElement);
-//     }
-//   });
-
-//   // Check if the result element is found and display the result
-//   const resultElement = document.getElementById("E10");
-//   if (resultElement) {
-//     resultElement.innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sCount}`;
-//   } else {
-//     console.error('Element with ID "E10" not found!');
-//   }
-// });
-
-//---------------------------------------------------------
 
 //  // Function to count occurrences of 's' in the first and last elements of each subarray
 //  function countSInSpecialPositions(array) {
@@ -1352,8 +1156,6 @@ document.getElementById("E9").innerHTML = `The average length of strings at inde
 
 
 
-//------------------------------------------
-
  let masyvas = [
     ["saule", "lietus", "sniegas"],
     [1, "testas", "paskutinis"],
@@ -1385,28 +1187,306 @@ document.getElementById("E9").innerHTML = `The average length of strings at inde
 
  document.getElementById("E10").innerHTML = `Total occurrences of the letter 's' in first and last elements: ${sRaidziuSkaicius};`
 
-//_________________________________________________________________
 
- 
-
-
-
-
-//????????????????????????????????????????????????????????????
 
 
 //Sunkesni.
 
-//Masyve E surasti visus žodžius, kurie pasibaigia “r” raide, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 3. Surastus žodžius sudėti į atskirą masyvą;
-//Masyve E surasti visus žodžius, kurie prasideda “a” raide, ieškant tik tokiuose sub masyvuose, kurie yra ilgesni nei 2. Surastus žodžius sudėti į atskirą masyvą;
-//Masyve E surasti visus žodžius, kurie pasikartoja daugiau nei 1 kartą ir sudėti juos į atskirą masyvą;
-//Masyve B surasti vienodą stringą;
-//Masyve C surasti vienodą stringą;
-//Masyve B surasti žodį, kuris pasikartoja daugiausiai kartų;
-//Masyve B surasti ir sudėti į atskirą masyvą visus skaičius, esančius tekste;
-//Masyve D surasti elementą, kurio masyvo elemento suma yra didžiausia;
-//Masyve A surasti visus skaičius, kurie yra ir teigiami ir neigiami (pvz. yra 15 ir -15). Rastus skaičius sudėti į atskirą masyvą;
-//Masyve A suskaičiuoti visų skaičių, kuriuose nėra skaitmens “7” sumą;
+const F1 = document.querySelector(".F1")
+const F2 = document.querySelector(".F2")
+const F3 = document.querySelector(".F3")
+const F4 = document.querySelector(".F4")
+const F5 = document.querySelector(".F5")
+const F6 = document.querySelector(".F6")
+const F7 = document.querySelector(".F7")
+const F8 = document.querySelector(".F8")
+const F9 = document.querySelector(".F9")
+const F10 = document.querySelector(".F10")
+
+//F1. Masyve E surasti visus žodžius, kurie pasibaigia “r” raide, ieškant tik tokiuose sub masyvuose, kurie yra trumpesni nei 3. Surastus žodžius sudėti į atskirą masyvą;
+
+
+let arrayF1 = [];  // Array to hold words starting with 'a'
+
+// Loop through each subarray in array E
+for (let i = 0; i < E.length; i++) {
+  // Check if the subarray has 3 or more elements
+  if (E[i].length >= 3) {
+    // Loop through the words in the subarray
+    for (let j = 0; j < E[i].length; j++) {
+      // Check if the word starts with the letter "a"
+      if (E[i][j].toLowerCase().startsWith('a')) {
+        arrayF1.push(E[i][j]);  
+      }
+    }
+  }
+}
+
+// Display the result in the console
+console.log("Words starting with 'a' in subarrays of length >= 3:", arrayF1);
+
+// Format the result with a comma and space between each word
+document.getElementById("F1").innerHTML = `Start with the letter 'a' in only those subarrays that are not shorter than three: ${arrayF1.join(', ')}`;
+
+
+
+//F2. Masyve E surasti visus žodžius, kurie prasideda “a” raide, ieškant tik tokiuose sub mas. yvuose, kurie yra ilgesni nei 2. Surastus žodžius sudėti į atskirą masyvą;
+
+let arrayF2 = [];  // Array to hold words starting with 'a' in subarrays with no more than two elements
+
+// Loop through each subarray in array E
+for (let i = 0; i < E.length; i++) {
+  // Check if the subarray has 2 or fewer elements
+  if (E[i].length <= 2) {
+    // Loop through the words in the subarray
+    for (let j = 0; j < E[i].length; j++) {
+      // Check if the word starts with the letter "a"
+      if (E[i][j].toLowerCase().startsWith('a')) {
+        arrayF2.push(E[i][j]);  // Add the word to arrayF2
+      }
+    }
+  }
+}
+
+// Display the result in the console
+console.log("Words starting with 'a' in subarrays of length <= 2:", arrayF2);
+
+// Optionally, display the result in an HTML element with id "F2"
+document.getElementById("F2").innerHTML = `Start with the letter 'a' in subarrays of length is not longer than 2: ${arrayF2.join(', ')}`;
+
+
+
+//F3. Masyve E surasti visus žodžius, kurie pasikartoja daugiau nei 1 kartą ir sudėti juos į atskirą masyvą;
+
+let arrayF3 = [
+  ['time', 'love', 'government'],
+  ['year', 'time'],
+  ['air', 'art'],
+  ['time', 'world', 'music'],
+  ['cat', 'book', 'science', 'time'],
+  ['art', 'time']
+];
+
+let wordCount = {};  // Object to store word counts
+let repeatedWords = [];  // Array to hold repeated words
+
+// Flatten the array and count the frequency of each word
+for (let i = 0; i < E.length; i++) {
+  for (let j = 0; j < E[i].length; j++) {
+    const word = E[i][j].toLowerCase();  // Make it case-insensitive
+    wordCount[word] = (wordCount[word] || 0) + 1;
+  }
+}
+
+// Find words that are repeated more than once
+for (let word in wordCount) {
+  if (wordCount[word] > 1) {
+    repeatedWords.push(word);  // Add repeated words to the result array
+  }
+}
+
+// Display the result in the console
+console.log("Words repeated more than once:", repeatedWords);
+
+// Optionally, display the result in an HTML element with id "F3"
+document.getElementById("F3").innerHTML = `Words repeated more than once: ${repeatedWords.join(', ')}`;
+
+
+
+//F4. Masyve B surasti vienodą stringą;
+
+let arrayF4 = {};  // Object to store string counts
+let duplicates = [];  // Array to store duplicate strings
+
+// Count occurrences of each string in array B
+for (let i = 0; i < B.length; i++) {
+  const str = B[i];
+  wordCount[str] = (wordCount[str] || 0) + 1;
+}
+
+// Find strings that are repeated (i.e., count > 1)
+for (let str in wordCount) {
+  if (wordCount[str] > 1) {
+    duplicates.push(str);  // Add to duplicates array
+  }
+}
+
+// Display the result in the console
+console.log("Duplicate strings:", duplicates);
+
+// Optionally, display the result in an HTML element with id "duplicates"
+document.getElementById("F4").innerHTML = `Duplicate strings in array B: ${duplicates.join(', ')}`;
+
+
+
+//F5. Masyve C surasti vienodą stringą;
+
+
+ // Step 1: Filter out only the strings from the array C
+ const stringArray = C.filter(item => typeof item === 'string');
+
+ // Step 2: Count the occurrences of each string
+ let arrayF5 = {}; // Use the correct variable name here
+ for (let i = 0; i < stringArray.length; i++) {
+   const str = stringArray[i];
+   arrayF5[str] = (arrayF5[str] || 0) + 1;
+ }
+
+ // Step 3: Find the strings that are repeated more than once
+ let repeatedStrings = [];
+ for (let str in arrayF5) {
+   if (arrayF5[str] > 1) {
+     repeatedStrings.push(str);
+   }
+ }
+
+ // Display the result in the console
+ console.log("Repeated strings:", repeatedStrings);
+
+ // Optionally, display the result in an HTML element with id "F5"
+ document.getElementById("F5").innerHTML = `Repeated strings in array C: ${repeatedStrings.join(', ')}`;
+
+
+
+
+
+//F6. Masyve B surasti žodį, kuris pasikartoja daugiausiai kartų;
+
+
+
+let arrayF6 = {};
+
+// Step 2: Loop through array B and split each string into words, then count their occurrences
+for (let i = 0; i < B.length; i++) {
+  // Split each string by spaces to get individual words
+  let words = B[i].toLowerCase().split(' ');
+
+  // Count the occurrences of each word
+  for (let word of words) {
+    arrayF6[word] = (arrayF6[word] || 0) + 1;
+  }
+}
+
+// Step 3: Find the word that has the highest occurrence
+let maxCount = 0;
+let mostRepeatedWord = '';
+
+for (let word in arrayF6) {
+  if (arrayF6[word] > maxCount) {
+    maxCount = arrayF6[word];
+    mostRepeatedWord = word;
+  }
+}
+
+// Display the result in the console
+console.log(`The word that is repeated the most is: "${mostRepeatedWord}" with ${maxCount} occurrences.`);
+
+// Display the result in an HTML element with id "F6"
+document.getElementById("F6").innerHTML = `The word that is repeated the most is: "${mostRepeatedWord}" with ${maxCount} occurrences.`;
+
+
+//F7. Masyve B surasti ir sudėti į atskirą masyvą visus skaičius, esančius tekste;
+
+
+// Step 1: Create a separate array to store the numbers
+let numbersArray = [];
+
+// Step 2: Loop through each string in array B
+for (let i = 0; i < B.length; i++) {
+  // Step 3: Use regular expression to match numbers (including decimals)
+  let numbers = B[i].match(/\d+(\.\d+)?/g);
+
+  // Step 4: If numbers are found, add them to the numbersArray
+  if (numbers) {
+    numbersArray = numbersArray.concat(numbers.map(Number)); // Convert strings to numbers and add them
+  }
+}
+
+// Step 5: Display the result in the console
+console.log("Numbers found in array B:", numbersArray);
+
+// Optionally, display the result in an HTML element with id "E7"
+document.getElementById("F7").innerHTML = `Numbers found in array B: ${numbersArray.join(', ')}`;
+
+
+//F8.Masyve D surasti elementą, kurio masyvo elemento suma yra didžiausia;
+
+
+
+// Step 1: Initialize variables to track the subarray with the largest sum
+let maxSum = -Infinity;  // Start with a very small number
+let maxSumArray = [];
+
+// Step 2: Loop through each subarray in D
+for (let i = 0; i < D.length; i++) {
+  // Step 3: Calculate the sum of the current subarray
+  let currentSum = D[i].reduce((sum, num) => sum + num, 0);
+  
+  // Step 4: Update the maximum sum and subarray if current sum is larger
+  if (currentSum > maxSum) {
+    maxSum = currentSum;
+    maxSumArray = D[i];
+  }
+}
+
+// Step 5: Display the result
+console.log("The subarray with the largest sum is:", maxSumArray);
+console.log("The sum of that subarray is:", maxSum);
+
+// Optionally, display the result in an HTML element with id "F8"
+document.getElementById("F8").innerHTML = `The subarray with the largest sum is: [${maxSumArray.join(', ')}], with a sum of: ${maxSum}`;
+
+//F9. Masyve A surasti visus skaičius, kurie yra ir teigiami ir neigiami (pvz. yra 15 ir -15). Rastus skaičius sudėti į atskirą masyvą;
+
+
+// Step 1: Initialize an empty array to hold the pairs
+let pairs = [];
+
+// Step 2: Loop through array A and find the corresponding positive/negative number pair
+for (let i = 0; i < A.length; i++) {
+  const num = A[i];
+  
+  // Check if the current number is negative
+  if (num < 0) {
+    // Look for the corresponding positive number in the array
+    const positiveNum = -num;
+    
+    // Check if the positive number exists in the array A
+    if (A.includes(positiveNum)) {
+      // Add the pair to the result array
+      pairs.push([num, positiveNum]);
+    }
+  }
+}
+
+// Step 3: Display the result
+console.log("Pairs of negative and positive numbers:", pairs);
+
+// Optionally, display the result in an HTML element with id "F9"
+document.getElementById("F9").innerHTML = `Pairs of negative and positive numbers: ${JSON.stringify(pairs)}`;
+
+
+
+//F10. Masyve A suskaičiuoti visų skaičių, kuriuose nėra skaitmens “7” sumą;
+
+
+// Step 1: Initialize the counter for numbers that do not contain the digit '7'
+let countWithout7 = 0;
+
+// Step 2: Loop through array A and check each number
+for (let i = 0; i < A.length; i++) {
+  // Convert the number to a string (absolute value to handle negative numbers)
+  let numStr = Math.abs(A[i]).toString();
+  
+  // Check if the number does not contain the digit '7'
+  if (!numStr.includes('7')) {
+    countWithout7++;
+  }
+}
+
+// Step 3: Display the result
+console.log(`Count of numbers without the digit '7': ${countWithout7}`);
+document.getElementById("F10").innerHTML = `Count of numbers without the digit '7': ${countWithout7}`;
 
 
 //Masyvai užduočiai:
