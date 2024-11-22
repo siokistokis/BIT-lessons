@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <!-- <link rel="icon" type="image/x-icon" href="icons/me.png"> --> uzkomentavau ketinima.
+     neidedu cia piktogramines iconos pagal, Mantai. tavo duota pavyzdi. esu idejus  BMIcounter folfderyje su html piesinukas vadinasi me.png geltonas kiausinis , kazka darau ne taip. idomu kur klystu, chatGpt manes nesupranta visai. kaip ideti????????????????????????? ir dar idomu ar sita matuokle tiktu telefonu ekranams?
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center;     /* Vertically center the content */
+            font-family: Arial, sans-serif;
+            background-color: rgb(221, 195, 161);
+        }
+
+        .mainContainer {
+            display: flex;
+            flex-wrap: wrap;         /* Allow content to wrap */
+            justify-content: center; /* Center content inside the container */
+            align-items: center;     /* Align items to the center */
+            width: 80%;              /* Limit the width of the container */
+            max-width: 600px;        /* Optional: Max width to control scaling */
+            padding: 20px;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+            background-color: #d0a8c0;
+            border-radius: 50%;
+        }
+
+        .bmiCalculator {
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 1px solid #ccc;
+        }
+
+        .counter {
+            background-color: #8fb07d;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(95, 121, 143, 0.1);
+            min-width: 150px;        /* Minimum width for the box */
+            flex-grow: 1;            /* Allow the box to grow if space permits */
+            text-align: center;
+        }
+
+        .titles {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .calculate {
+            background-color: #aad1ac;
+            color: white;
+        }
+
+        .reset {
+            background-color: #d89994;
+            color: white;
+        }
+
+        .count {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .mainContainer {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .counter {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .titles, input, button {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .counter {
+                padding: 10px;
+            }
+
+            .titles, input, button {
+                font-size: 0.9em;
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body class="background">
+    <section class="mainContainer">
+        <div class="bmiCalculator">
+            <h1>BMI Calculator</h1>
+            <hr />
+            <div class="counter">
+                <span class="titles">Height (in cm)</span>
+                <input type="text" class="height" placeholder="Enter height">
+                <br />
+                <span class="titles">Weight (in kg)</span>
+                <input type="text" class="weight" placeholder="Enter weight">
+                <br />
+                <button class="calculate">Calculate</button>
+                <span class="count"></span>
+                <br />
+                <button class="reset">Reset</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const height = document.querySelector('.height');
+        const weight = document.querySelector('.weight');
+        const calculate = document.querySelector('.calculate');
+        let count = document.querySelector('.count');
+        const reset = document.querySelector('.reset');
+
+        calculate.addEventListener('click', () => {
+            const height1 = parseFloat(height.value);
+            const weight1 = parseFloat(weight.value);
+
+            // Check if values are valid numbers
+            if (isNaN(height1) || isNaN(weight1) || height1 <= 0 || weight1 <= 0) {
+                count.textContent = 'Please enter valid values.';
+                count.style.color = 'black';  // Default color for invalid input
+                return;
+            }
+
+            // Calculate BMI
+            const bmi = weight1 / ((height1 * height1) / 10000);
+
+            // Check the BMI category and update the count text accordingly
+            if (bmi < 18.5) {
+                count.textContent = `Underweight: ${bmi.toFixed(2)}`;
+                count.style.color = 'blue';  // Color for Underweight
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                count.textContent = `Normal: ${bmi.toFixed(2)}`;
+                count.style.color = 'darkgreen'; // Color for Normal
+            } else if (bmi >= 25 && bmi < 29.9) {
+                count.textContent = `Overweight: ${bmi.toFixed(2)}`;
+                count.style.color = 'yellow'; // Color for Overweight
+            } else if (bmi >= 30) {
+                count.textContent = `Obese: ${bmi.toFixed(2)}`;
+                count.style.color = 'red'; // Color for Obese
+            }
+        });
+
+        // Reset functionality
+        reset.addEventListener('click', () => {
+            height.value = '';
+            weight.value = '';
+            count.textContent = '';
+            count.style.color = ''; // Reset color when cleared
+        });
+    </script>
+</body>
+</html> 
+
+
