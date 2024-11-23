@@ -112,7 +112,7 @@
                 width: 100%;
             }
 
-            h1 {
+            h1, h2 {
                 font-size: 1.5em;
             }
 
@@ -131,7 +131,7 @@
                 width: 100%;
             }
 
-            h1 {
+            h1, h2 {
                 font-size: 1.2em;
             }
         }
@@ -145,13 +145,13 @@
             <div class="enter">
                 <div>
                     <span class="titles">Number</span>
-                    <input type="text" class="height" placeholder="Enter number">
+                    <input type="text" class="enter" placeholder="Enter number">
                     <br />
                     <span class="titles">Date</span>
-                    <input type="text" class="height" placeholder="Enter date">
+                    <input type="text" class="enter" placeholder="Enter date">
                     <br />
                     <span class="titles">Payment term</span>
-                    <input type="text" class="height" placeholder="Enter term">
+                    <input type="text" class="enter" placeholder="Enter term">
                     <br />
                     <button class="reset">Reset</button>
                     <br>
@@ -161,13 +161,13 @@
                     <h2>Company</h2>
                     <hr>
                     <span class="titles">Company name</span>
-                    <input type="text" class="height" placeholder="Enter seler name">
+                    <input type="text" class="enter" placeholder="Enter seler name">
                     <br />
                     <span class="titles">Company address</span>
-                    <input type="text" class="height" placeholder="Enter seler address">
+                    <input type="text" class="enter" placeholder="Enter seler address">
                     <br />
                     <span class="titles">Company phone nr</span>
-                    <input type="text" class="height" placeholder="Enter seler phone nr">
+                    <input type="text" class="enter" placeholder="Enter seler phone nr">
                     <br />
                     <button class="reset">Reset</button>
                     <br>
@@ -178,13 +178,13 @@
                     <h2>Client</h2>
                     <hr>
                     <span class="titles">Client name</span>
-                    <input type="text" class="weight" placeholder="Enter buyer name">
+                    <input type="text" class="enter" placeholder="Enter buyer name">
                     <br />
                     <span class="titles">Client address</span>
-                    <input type="text" class="height" placeholder="Enter buyer address">
+                    <input type="text" class="enter" placeholder="Enter buyer address">
                     <br />
                     <span class="titles">Client phone nr</span>
-                    <input type="text" class="height" placeholder="Enter buyer phone nr">
+                    <input type="text" class="enter" placeholder="Enter buyer phone nr">
                     <br />
                     <button class="reset">Reset</button>
                     <br>
@@ -195,16 +195,16 @@
                     <h2>Purchase</h2>
                     <hr>
                     <span class="titles">Item</span>
-                    <input type="text" class="weight" placeholder="Enter item name">
+                    <input type="text" class="enter" placeholder="Enter item name">
                     <br />
                     <span class="titles">Quantity</span>
-                    <input type="text" class="height" placeholder="Enter quantity address">
+                    <input type="text" class="enter" placeholder="Enter quantity">
                     <br />
                     <span class="titles">Price</span>
-                    <input type="text" class="height" placeholder="Enter price">
+                    <input type="text" class="price" placeholder=" price">
                     <br />
                     <span class="titles">Discount</span>
-                    <input type="text" class="height" placeholder="Enter discount %">
+                    <input type="text" class="discount" placeholder=" discount %">
                     <br />
                     <span class="titles">Subtotal:</span>
                     <br>
@@ -216,7 +216,7 @@
                 </div>
                 <div class="other-expenses">
                     <span class="titles">Transportation costs:</span>
-                    <input type="text" class="height" placeholder="Enter transportation costs">
+                    <input type="text" class="enter" placeholder="Enter transportation costs">
                     <br />
                     <span class="titles">Rate without VAT:</span>
                     <br>
@@ -236,55 +236,50 @@
                     <br>
                 </div>
 
-                 <button class="calculate">Calculate</button>
-                <span class="count"></span>
-                <br />
-                <button class="reset">Reset</button>
+                <button class="previewer">PREVIEWER</button>
+                <br>
+
+                    <div class="finalButtons">
+                        <button id="generate-pdf">Generate PDF</button>
+                        <br>
+                        <button id="reset-form">Reset Form</button>
+                    </div>
+                
+                
             </div>
         </div>
     </section>
 
     <script>
-        const height = document.querySelector('.height');
-        const weight = document.querySelector('.weight');
+        const enter = document.querySelector('.enter');
         const calculate = document.querySelector('.calculate');
         let count = document.querySelector('.count');
         const reset = document.querySelector('.reset');
 
         calculate.addEventListener('click', () => {
-            const height1 = parseFloat(height.value);
-            const weight1 = parseFloat(weight.value);
+            const enter1 = parseFloat(entert.value);
+            
 
             // Check if values are valid numbers
-            if (isNaN(height1) || isNaN(weight1) || height1 <= 0 || weight1 <= 0) {
+            if (isNaN(enter1) || isNaN(enter1) || count????? <= 0 || ????????? <= 0) {
                 count.textContent = 'Please enter valid values.';
                 count.style.color = 'black';  // Default color for invalid input
                 return;
             }
 
-            // Calculate BMI
-            const bmi = weight1 / ((height1 * height1) / 10000);
+           
+            const bill = enter1 * (????);
 
-            // Check the BMI category and update the count text accordingly
-            if (bmi < 18.5) {
-                count.textContent = `Underweight: ${bmi.toFixed(2)}`;
-                count.style.color = 'blue';  // Color for Underweight
-            } else if (bmi >= 18.5 && bmi < 24.9) {
-                count.textContent = `Normal: ${bmi.toFixed(2)}`;
-                count.style.color = 'darkgreen'; // Color for Normal
-            } else if (bmi >= 25 && bmi < 29.9) {
-                count.textContent = `Overweight: ${bmi.toFixed(2)}`;
-                count.style.color = 'yellow'; // Color for Overweight
-            } else if (bmi >= 30) {
-                count.textContent = `Obese: ${bmi.toFixed(2)}`;
-                count.style.color = 'red'; // Color for Obese
-            }
-        });
+           
+            if (bill???/) {
+                count.textContent = `?????: ${bill.toFixed(2)}`;
+                count.style.color = 'blue'; 
+            } );
 
         // Reset functionality
         reset.addEventListener('click', () => {
-            height.value = '';
-            weight.value = '';
+            enter.value = '';
+           
             count.textContent = '';
             count.style.color = ''; // Reset color when cleared
         });
