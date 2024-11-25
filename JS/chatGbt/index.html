@@ -264,30 +264,246 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- jsPDF library -->
 
     <script>
-        // Get elements for form fields
-        const number = document.getElementById('number');
-        const date = document.getElementById('date');
-        const paymentTerm = document.getElementById('payment-term');
-        const companyName = document.getElementById('company-name');
-        const companyAddress = document.getElementById('company-address');
-        const companyPhone = document.getElementById('company-phone');
-        const clientName = document.getElementById('client-name');
-        const clientAddress = document.getElementById('client-address');
-        const clientPhone = document.getElementById('client-phone');
-        const item = document.getElementById('item');
-        const quantity = document.getElementById('quantity');
-        const price = document.getElementById('price');
-        const discount = document.getElementById('discount');
-        const transportationCosts = document.getElementById('transportation-costs');
-        const subtotalElement = document.getElementById('subtotal');
-        const rateWithoutVatElement = document.getElementById('rate-without-vat');
-        const vatElement = document.getElementById('vat');
-        const finalAmountElement = document.getElementById('final-amount');
+
+
+//         // Get elements for form fields
+//         const number = document.getElementById('number');
+//         const date = document.getElementById('date');
+//         const paymentTerm = document.getElementById('payment-term');
+//         const companyName = document.getElementById('company-name');
+//         const companyAddress = document.getElementById('company-address');
+//         const companyPhone = document.getElementById('company-phone');
+//         const clientName = document.getElementById('client-name');
+//         const clientAddress = document.getElementById('client-address');
+//         const clientPhone = document.getElementById('client-phone');
+//         const item = document.getElementById('item');
+//         const quantity = document.getElementById('quantity');
+//         const price = document.getElementById('price');
+//         const discount = document.getElementById('discount');
+//         const transportationCosts = document.getElementById('transportation-costs');
+//         const subtotalElement = document.getElementById('subtotal');
+//         const rateWithoutVatElement = document.getElementById('rate-without-vat');
+//         const vatElement = document.getElementById('vat');
+//         const finalAmountElement = document.getElementById('final-amount');
         
-        // Previewer Button
-        const previewerButton = document.querySelector('.previewer');
-        previewerButton.addEventListener('click', () => {
-            const previewWindow = window.open('', '_blank');
+//         // Previewer Button
+//         const previewerButton = document.querySelector('.previewer');
+//         previewerButton.addEventListener('click', () => {
+//             const previewWindow = window.open('', '_blank');
+//             previewWindow.document.write('<h1>Invoice Preview</h1>');
+//             previewWindow.document.write(`<p><strong>Invoice Number:</strong> ${number.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Date:</strong> ${date.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Payment Term:</strong> ${paymentTerm.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Company:</strong> ${companyName.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Company Address:</strong> ${companyAddress.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Company Phone:</strong> ${companyPhone.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Client:</strong> ${clientName.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Client Address:</strong> ${clientAddress.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Client Phone:</strong> ${clientPhone.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Item:</strong> ${item.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Quantity:</strong> ${quantity.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Price:</strong> €${price.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Discount:</strong> ${discount.value}%</p>`);
+//             previewWindow.document.write(`<p><strong>Transportation Costs:</strong> €${transportationCosts.value}</p>`);
+//             previewWindow.document.write(`<p><strong>Subtotal:</strong> €${subtotalElement.textContent}</p>`);
+//             previewWindow.document.write(`<p><strong>Rate Without VAT:</strong> €${rateWithoutVatElement.textContent}</p>`);
+//             previewWindow.document.write(`<p><strong>VAT (21%):</strong> €${vatElement.textContent}</p>`);
+//             previewWindow.document.write(`<p><strong>Final Amount:</strong> €${finalAmountElement.textContent}</p>`);
+//         });
+    
+//         // Generate PDF Button
+//         const generatePdfButton = document.getElementById('generate-pdf');
+//         generatePdfButton.addEventListener('click', () => {
+//             const { jsPDF } = window.jspdf;
+//             const doc = new jsPDF();
+    
+//             // Add content to PDF
+//             doc.text('Invoice', 10, 10);
+//             doc.text(`Invoice Number: ${number.value}`, 10, 20);
+//             doc.text(`Date: ${date.value}`, 10, 30);
+//             doc.text(`Payment Term: ${paymentTerm.value}`, 10, 40);
+//             doc.text(`Company: ${companyName.value}`, 10, 50);
+//             doc.text(`Company Address: ${companyAddress.value}`, 10, 60);
+//             doc.text(`Company Phone: ${companyPhone.value}`, 10, 70);
+//             doc.text(`Client: ${clientName.value}`, 10, 80);
+//             doc.text(`Client Address: ${clientAddress.value}`, 10, 90);
+//             doc.text(`Client Phone: ${clientPhone.value}`, 10, 100);
+//             doc.text(`Item: ${item.value}`, 10, 110);
+//             doc.text(`Quantity: ${quantity.value}`, 10, 120);
+//             doc.text(`Price: €${price.value}`, 10, 130);
+//             doc.text(`Discount: ${discount.value}%`, 10, 140);
+//             doc.text(`Transportation Costs: €${transportationCosts.value}`, 10, 150);
+//             doc.text(`Subtotal: €${subtotalElement.textContent}`, 10, 160);
+//             doc.text(`Rate Without VAT: €${rateWithoutVatElement.textContent}`, 10, 170);
+//             doc.text(`VAT (21%): €${vatElement.textContent}`, 10, 180);
+//             doc.text(`Final Amount: €${finalAmountElement.textContent}`, 10, 190);
+    
+//             // Save the PDF
+//             doc.save('invoice.pdf');
+//         });
+    
+//         // Reset Form Button
+//         const resetFormButton = document.getElementById('reset-form');
+//         resetFormButton.addEventListener('click', () => {
+//             // Clear all form fields
+//             document.getElementById('number').value = '';
+//             document.getElementById('date').value = '';
+//             document.getElementById('payment-term').value = '';
+//             document.getElementById('company-name').value = '';
+//             document.getElementById('company-address').value = '';
+//             document.getElementById('company-phone').value = '';
+//             document.getElementById('client-name').value = '';
+//             document.getElementById('client-address').value = '';
+//             document.getElementById('client-phone').value = '';
+//             document.getElementById('item').value = '';
+//             document.getElementById('quantity').value = '';
+//             document.getElementById('price').value = '';
+//             document.getElementById('discount').value = '';
+//             document.getElementById('transportation-costs').value = '';
+    
+//             // Clear calculated fields
+//             subtotalElement.textContent = '';
+//             rateWithoutVatElement.textContent = '';
+//             vatElement.textContent = '';
+//             finalAmountElement.textContent = '';
+//         });
+
+//         // Get elements for the form fields
+// const resetButtons = document.querySelectorAll('.reset');
+// const calculateButtons = document.querySelectorAll('.calculate');
+
+// // Reset Button functionality for specific sections
+// resetButtons.forEach(button => {
+//     button.addEventListener('click', (e) => {
+//         const section = e.target.closest('div');  // Get the section where the reset button was clicked
+
+//         if (section) {
+//             const inputs = section.querySelectorAll('input');
+//             inputs.forEach(input => {
+//                 input.value = '';  // Clear the inputs within this section
+//             });
+
+//             // If any calculated fields are within this section, clear them as well
+//             const calculatedFields = section.querySelectorAll('.count');
+//             calculatedFields.forEach(field => {
+//                 field.textContent = '';
+//             });
+//         }
+//     });
+// });
+
+// // Calculate Button functionality
+// calculateButtons.forEach(button => {
+//     button.addEventListener('click', (e) => {
+//         const section = e.target.closest('div');
+        
+//         // Calculate Subtotal
+//         if (section.classList.contains('purchase')) {
+//             const qty = parseFloat(quantity.value);
+//             const priceVal = parseFloat(price.value);
+//             const discountVal = parseFloat(discount.value) / 100;
+
+//             if (!isNaN(qty) && !isNaN(priceVal)) {
+//                 let subtotal = qty * priceVal;
+//                 if (!isNaN(discountVal)) {
+//                     subtotal -= subtotal * discountVal;  // Apply discount
+//                 }
+//                 subtotalElement.textContent = '€' + subtotal.toFixed(2);
+//             }
+//         }
+
+//         // Calculate Rate Without VAT
+//         if (section.classList.contains('other-expenses')) {
+//             const transportation = parseFloat(transportationCosts.value);
+//             const subtotalVal = parseFloat(subtotalElement.textContent.replace('€', ''));
+
+//             if (!isNaN(subtotalVal) && !isNaN(transportation)) {
+//                 const rateWithoutVat = subtotalVal + transportation;
+//                 rateWithoutVatElement.textContent = '€' + rateWithoutVat.toFixed(2);
+//             }
+//         }
+
+//         // Calculate VAT (21%)
+//         if (section.classList.contains('other-expenses') || section.classList.contains('purchase')) {
+//             const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
+
+//             if (!isNaN(rateWithoutVat)) {
+//                 const vat = rateWithoutVat * 0.21;  // 21% VAT
+//                 vatElement.textContent = '€' + vat.toFixed(2);
+//             }
+//         }
+
+//         // Calculate Final Amount
+//         if (section.classList.contains('other-expenses') || section.classList.contains('purchase')) {
+//             const vat = parseFloat(vatElement.textContent.replace('€', ''));
+//             const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
+
+//             if (!isNaN(vat) && !isNaN(rateWithoutVat)) {
+//                 const finalAmount = rateWithoutVat + vat;
+//                 finalAmountElement.textContent = '€' + finalAmount.toFixed(2);
+//             }
+//         }
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Get elements for form fields
+    const number = document.getElementById('number');
+    const date = document.getElementById('date');
+    const paymentTerm = document.getElementById('payment-term');
+    const companyName = document.getElementById('company-name');
+    const companyAddress = document.getElementById('company-address');
+    const companyPhone = document.getElementById('company-phone');
+    const clientName = document.getElementById('client-name');
+    const clientAddress = document.getElementById('client-address');
+    const clientPhone = document.getElementById('client-phone');
+    const item = document.getElementById('item');
+    const quantity = document.getElementById('quantity');
+    const price = document.getElementById('price');
+    const discount = document.getElementById('discount');
+    const transportationCosts = document.getElementById('transportation-costs');
+    const subtotalElement = document.getElementById('subtotal');
+    const rateWithoutVatElement = document.getElementById('rate-without-vat');
+    const vatElement = document.getElementById('vat');
+    const finalAmountElement = document.getElementById('final-amount');
+    
+    // Previewer Button
+    const previewerButton = document.querySelector('.previewer');
+    previewerButton.addEventListener('click', () => {
+        const previewWindow = window.open('', '_blank');
+        
+        if (previewWindow) {
             previewWindow.document.write('<h1>Invoice Preview</h1>');
             previewWindow.document.write(`<p><strong>Invoice Number:</strong> ${number.value}</p>`);
             previewWindow.document.write(`<p><strong>Date:</strong> ${date.value}</p>`);
@@ -307,142 +523,148 @@
             previewWindow.document.write(`<p><strong>Rate Without VAT:</strong> €${rateWithoutVatElement.textContent}</p>`);
             previewWindow.document.write(`<p><strong>VAT (21%):</strong> €${vatElement.textContent}</p>`);
             previewWindow.document.write(`<p><strong>Final Amount:</strong> €${finalAmountElement.textContent}</p>`);
-        });
-    
-        // Generate PDF Button
-        const generatePdfButton = document.getElementById('generate-pdf');
-        generatePdfButton.addEventListener('click', () => {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-    
-            // Add content to PDF
-            doc.text('Invoice', 10, 10);
-            doc.text(`Invoice Number: ${number.value}`, 10, 20);
-            doc.text(`Date: ${date.value}`, 10, 30);
-            doc.text(`Payment Term: ${paymentTerm.value}`, 10, 40);
-            doc.text(`Company: ${companyName.value}`, 10, 50);
-            doc.text(`Company Address: ${companyAddress.value}`, 10, 60);
-            doc.text(`Company Phone: ${companyPhone.value}`, 10, 70);
-            doc.text(`Client: ${clientName.value}`, 10, 80);
-            doc.text(`Client Address: ${clientAddress.value}`, 10, 90);
-            doc.text(`Client Phone: ${clientPhone.value}`, 10, 100);
-            doc.text(`Item: ${item.value}`, 10, 110);
-            doc.text(`Quantity: ${quantity.value}`, 10, 120);
-            doc.text(`Price: €${price.value}`, 10, 130);
-            doc.text(`Discount: ${discount.value}%`, 10, 140);
-            doc.text(`Transportation Costs: €${transportationCosts.value}`, 10, 150);
-            doc.text(`Subtotal: €${subtotalElement.textContent}`, 10, 160);
-            doc.text(`Rate Without VAT: €${rateWithoutVatElement.textContent}`, 10, 170);
-            doc.text(`VAT (21%): €${vatElement.textContent}`, 10, 180);
-            doc.text(`Final Amount: €${finalAmountElement.textContent}`, 10, 190);
-    
-            // Save the PDF
-            doc.save('invoice.pdf');
-        });
-    
-        // Reset Form Button
-        const resetFormButton = document.getElementById('reset-form');
-        resetFormButton.addEventListener('click', () => {
-            // Clear all form fields
-            document.getElementById('number').value = '';
-            document.getElementById('date').value = '';
-            document.getElementById('payment-term').value = '';
-            document.getElementById('company-name').value = '';
-            document.getElementById('company-address').value = '';
-            document.getElementById('company-phone').value = '';
-            document.getElementById('client-name').value = '';
-            document.getElementById('client-address').value = '';
-            document.getElementById('client-phone').value = '';
-            document.getElementById('item').value = '';
-            document.getElementById('quantity').value = '';
-            document.getElementById('price').value = '';
-            document.getElementById('discount').value = '';
-            document.getElementById('transportation-costs').value = '';
-    
-            // Clear calculated fields
-            subtotalElement.textContent = '';
-            rateWithoutVatElement.textContent = '';
-            vatElement.textContent = '';
-            finalAmountElement.textContent = '';
-        });
 
-        // Get elements for the form fields
-const resetButtons = document.querySelectorAll('.reset');
-const calculateButtons = document.querySelectorAll('.calculate');
-
-// Reset Button functionality for specific sections
-resetButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const section = e.target.closest('div');  // Get the section where the reset button was clicked
-
-        if (section) {
-            const inputs = section.querySelectorAll('input');
-            inputs.forEach(input => {
-                input.value = '';  // Clear the inputs within this section
-            });
-
-            // If any calculated fields are within this section, clear them as well
-            const calculatedFields = section.querySelectorAll('.count');
-            calculatedFields.forEach(field => {
-                field.textContent = '';
-            });
+            setTimeout(() => {
+                previewWindow.close();
+                window.location.href = '/';
+            }, 5000);
+        } else {
+            alert('Failed to open preview window. Please check your browser settings.');
         }
     });
-});
 
-// Calculate Button functionality
-calculateButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const section = e.target.closest('div');
-        
-        // Calculate Subtotal
-        if (section.classList.contains('purchase')) {
-            const qty = parseFloat(quantity.value);
-            const priceVal = parseFloat(price.value);
-            const discountVal = parseFloat(discount.value) / 100;
+    // Generate PDF Button
+    const generatePdfButton = document.getElementById('generate-pdf');
+    generatePdfButton.addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
 
-            if (!isNaN(qty) && !isNaN(priceVal)) {
-                let subtotal = qty * priceVal;
-                if (!isNaN(discountVal)) {
-                    subtotal -= subtotal * discountVal;  // Apply discount
-                }
-                subtotalElement.textContent = '€' + subtotal.toFixed(2);
+        doc.text('Invoice', 10, 10);
+        doc.text(`Invoice Number: ${number.value}`, 10, 20);
+        doc.text(`Date: ${date.value}`, 10, 30);
+        doc.text(`Payment Term: ${paymentTerm.value}`, 10, 40);
+        doc.text(`Company: ${companyName.value}`, 10, 50);
+        doc.text(`Company Address: ${companyAddress.value}`, 10, 60);
+        doc.text(`Company Phone: ${companyPhone.value}`, 10, 70);
+        doc.text(`Client: ${clientName.value}`, 10, 80);
+        doc.text(`Client Address: ${clientAddress.value}`, 10, 90);
+        doc.text(`Client Phone: ${clientPhone.value}`, 10, 100);
+        doc.text(`Item: ${item.value}`, 10, 110);
+        doc.text(`Quantity: ${quantity.value}`, 10, 120);
+        doc.text(`Price: €${price.value}`, 10, 130);
+        doc.text(`Discount: ${discount.value}%`, 10, 140);
+        doc.text(`Transportation Costs: €${transportationCosts.value}`, 10, 150);
+        doc.text(`Subtotal: €${subtotalElement.textContent}`, 10, 160);
+        doc.text(`Rate Without VAT: €${rateWithoutVatElement.textContent}`, 10, 170);
+        doc.text(`VAT (21%): €${vatElement.textContent}`, 10, 180);
+        doc.text(`Final Amount: €${finalAmountElement.textContent}`, 10, 190);
+
+        doc.save('invoice.pdf');
+    });
+
+    // Reset Form Button
+    const resetFormButton = document.getElementById('reset-form');
+    resetFormButton.addEventListener('click', () => {
+        document.getElementById('number').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('payment-term').value = '';
+        document.getElementById('company-name').value = '';
+        document.getElementById('company-address').value = '';
+        document.getElementById('company-phone').value = '';
+        document.getElementById('client-name').value = '';
+        document.getElementById('client-address').value = '';
+        document.getElementById('client-phone').value = '';
+        document.getElementById('item').value = '';
+        document.getElementById('quantity').value = '';
+        document.getElementById('price').value = '';
+        document.getElementById('discount').value = '';
+        document.getElementById('transportation-costs').value = '';
+
+        // Clear calculated fields
+        subtotalElement.textContent = '';
+        rateWithoutVatElement.textContent = '';
+        vatElement.textContent = '';
+        finalAmountElement.textContent = '';
+    });
+
+    // Get elements for the form fields
+    const resetButtons = document.querySelectorAll('.reset');
+    const calculateButtons = document.querySelectorAll('.calculate');
+
+    // Reset Button functionality for specific sections
+    resetButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const section = e.target.closest('div');
+            if (section) {
+                const inputs = section.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+
+                const calculatedFields = section.querySelectorAll('.count');
+                calculatedFields.forEach(field => {
+                    field.textContent = '';
+                });
             }
-        }
+        });
+    });
 
-        // Calculate Rate Without VAT
-        if (section.classList.contains('other-expenses')) {
-            const transportation = parseFloat(transportationCosts.value);
-            const subtotalVal = parseFloat(subtotalElement.textContent.replace('€', ''));
+    // Calculate Button functionality
+    calculateButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const section = e.target.closest('div');
+            
+            // Calculate Subtotal
+            if (section.classList.contains('purchase')) {
+                const qty = parseFloat(quantity.value);
+                const priceVal = parseFloat(price.value);
+                const discountVal = parseFloat(discount.value) / 100;
 
-            if (!isNaN(subtotalVal) && !isNaN(transportation)) {
-                const rateWithoutVat = subtotalVal + transportation;
+                if (!isNaN(qty) && !isNaN(priceVal)) {
+                    let subtotal = qty * priceVal;
+                    if (!isNaN(discountVal)) {
+                        subtotal -= subtotal * discountVal;  // Apply discount
+                    }
+                    subtotalElement.textContent = '€' + subtotal.toFixed(2);
+                }
+            }
+
+            // Calculate Rate Without VAT
+            if (section.classList.contains('other-expenses')) {
+                const transportation = parseFloat(transportationCosts.value);
+                const subtotal = parseFloat(subtotalElement.textContent.replace('€', ''));
+                const rateWithoutVat = subtotal + (isNaN(transportation) ? 0 : transportation);
                 rateWithoutVatElement.textContent = '€' + rateWithoutVat.toFixed(2);
             }
-        }
 
-        // Calculate VAT (21%)
-        if (section.classList.contains('other-expenses') || section.classList.contains('purchase')) {
-            const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
-
-            if (!isNaN(rateWithoutVat)) {
+            // Calculate VAT (21%)
+            if (section.classList.contains('vat-calculation')) {
+                const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
                 const vat = rateWithoutVat * 0.21;  // 21% VAT
                 vatElement.textContent = '€' + vat.toFixed(2);
             }
-        }
 
-        // Calculate Final Amount
-        if (section.classList.contains('other-expenses') || section.classList.contains('purchase')) {
-            const vat = parseFloat(vatElement.textContent.replace('€', ''));
-            const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
-
-            if (!isNaN(vat) && !isNaN(rateWithoutVat)) {
+            // Calculate Final Amount (with VAT)
+            if (section.classList.contains('final-amount')) {
+                const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
+                const vat = parseFloat(vatElement.textContent.replace('€', ''));
                 const finalAmount = rateWithoutVat + vat;
                 finalAmountElement.textContent = '€' + finalAmount.toFixed(2);
             }
-        }
+        });
     });
-});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     </script>
