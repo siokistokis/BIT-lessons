@@ -478,6 +478,13 @@
 
 
 
+
+
+
+
+
+
+    
     // Get elements for form fields
     const number = document.getElementById('number');
     const date = document.getElementById('date');
@@ -501,8 +508,10 @@
     // Previewer Button
     const previewerButton = document.querySelector('.previewer');
     previewerButton.addEventListener('click', () => {
+        // Open the preview window
         const previewWindow = window.open('', '_blank');
         
+        // Check if the preview window is opened successfully
         if (previewWindow) {
             previewWindow.document.write('<h1>Invoice Preview</h1>');
             previewWindow.document.write(`<p><strong>Invoice Number:</strong> ${number.value}</p>`);
@@ -524,10 +533,11 @@
             previewWindow.document.write(`<p><strong>VAT (21%):</strong> €${vatElement.textContent}</p>`);
             previewWindow.document.write(`<p><strong>Final Amount:</strong> €${finalAmountElement.textContent}</p>`);
 
+            // Set a timeout to close the preview window and redirect to the homepage after a certain time (e.g., 5 seconds)
             setTimeout(() => {
-                previewWindow.close();
-                window.location.href = '/';
-            }, 5000);
+                previewWindow.close(); // Close the preview window
+                window.location.href = '/'; // Redirect to the homepage
+            }, 5000);  // 5-second delay before closing and redirecting
         } else {
             alert('Failed to open preview window. Please check your browser settings.');
         }
@@ -539,6 +549,7 @@
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
+        // Add content to PDF
         doc.text('Invoice', 10, 10);
         doc.text(`Invoice Number: ${number.value}`, 10, 20);
         doc.text(`Date: ${date.value}`, 10, 30);
@@ -559,6 +570,7 @@
         doc.text(`VAT (21%): €${vatElement.textContent}`, 10, 180);
         doc.text(`Final Amount: €${finalAmountElement.textContent}`, 10, 190);
 
+        // Save the PDF
         doc.save('invoice.pdf');
     });
 
@@ -635,28 +647,17 @@
                 const subtotal = parseFloat(subtotalElement.textContent.replace('€', ''));
                 const rateWithoutVat = subtotal + (isNaN(transportation) ? 0 : transportation);
                 rateWithoutVatElement.textContent = '€' + rateWithoutVat.toFixed(2);
-            }
-
-            // Calculate VAT (21%)
-            if (section.classList.contains('vat-calculation')) {
-                const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
-                const vat = rateWithoutVat * 0.21;  // 21% VAT
+                
+                // Calculate VAT
+                const vat = rateWithoutVat * 0.21; // 21% VAT
                 vatElement.textContent = '€' + vat.toFixed(2);
-            }
-
-            // Calculate Final Amount (with VAT)
-            if (section.classList.contains('final-amount')) {
-                const rateWithoutVat = parseFloat(rateWithoutVatElement.textContent.replace('€', ''));
-                const vat = parseFloat(vatElement.textContent.replace('€', ''));
+                
+                // Calculate Final Amount
                 const finalAmount = rateWithoutVat + vat;
                 finalAmountElement.textContent = '€' + finalAmount.toFixed(2);
             }
         });
     });
-
-
-
-
 
 
 
