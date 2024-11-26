@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill</title>
-    <link rel="icon" href="me.png">
+    <link rel="icon" href="me copy.png">
 
     <style>
         * {
@@ -21,6 +21,7 @@
         align-items: flex-start; /* Align items at the top */
         font-family: Arial, sans-serif;
         background-color: rgb(221, 195, 161);
+        background: lemonchiffon;
         overflow: auto; /* Allow scrolling if necessary */
     }
 
@@ -35,7 +36,7 @@
         padding: 20px;
         border: 2px solid #ccc;
         box-sizing: border-box;
-        background-color: #d0a8c0;
+        background-color: #ebdae4;
         border-radius: 5%;
         overflow-y: auto; /* Allow scrolling inside the container if necessary */
     }
@@ -99,6 +100,17 @@
         color: white;
     }
 
+    /* .previewer {
+        background-color: #aad1ac;
+        color: white;
+    } */
+
+    button:hover:hover {
+    background-color:antiquewhite;
+    color: #000000;
+    }
+
+
     .count {
         font-size: 1.2em;
         margin-top: 20px;
@@ -139,12 +151,19 @@
         }
     }
 
+   
+/* 
+    .previewer:hover:hover {
+        background-color: antiquewhite;
+        color: #000000;
+    } */
+
     </style>
 </head>
 <body>
     <section class="mainContainer">
         <div class="bill">
-            <h1>INVOICE</h1>
+            <h1 style="color: #8fb07d;">INVOICE</h1>
             <hr />
             <div class="enter">
                 <div>
@@ -164,7 +183,7 @@
                     <hr>
                 </div>
                 <div class="company">
-                    <h2>Company</h2>
+                    <h2 style="color: #d89994;">Company</h2>
                     <hr>
                     <span class="titles">Company name</span>
                     <input type="text" id="company-name" placeholder="Enter seller name">
@@ -181,7 +200,7 @@
                 </div>
 
                 <div class="client">
-                    <h2>Client</h2>
+                    <h2 style="color: cadetblue;">Client</h2>
                     <hr>
                     <span class="titles">Client name</span>
                     <input type="text" id="client-name" placeholder="Enter buyer name">
@@ -198,7 +217,7 @@
                 </div>
 
                 <div class="purchase">
-                    <h2>Purchase</h2>
+                    <h2 style="color: gray;">Purchase</h2>
                     <hr>
                     <span class="titles">Item</span>
                     <br>
@@ -249,13 +268,13 @@
                     <br>
                 </div>
                
-                <button href="" style="background-color: rgb(134, 175, 162); color: white;" class="previewer">PREVIEWER</button>
+                <button href="" style="background-color: rgba(60, 190, 73, 0.608); color: white;"  class="previewer">PREVIEWER</button>
                 <br>
 
                 <div class="finalButtons">
-                    <button id="generate-pdf" style="background-color: sandybrown;">Generate PDF</button>
+                    <button id="generate-pdf" style="background-color: rgb(235, 208, 183);">Generate PDF</button>
                     <br>
-                    <button id="reset-form" style="background-color: rgb(211, 211, 119);">Reset all</button>
+                    <button id="reset-form" style="background-color: rgba(245, 69, 5, 0.574);">Reset all</button>
                 </div>
             </div>
         </div>
