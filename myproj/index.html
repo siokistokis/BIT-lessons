@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+    <link rel="icon" href="me.png">
+
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html {
+        height: 100%;
+        margin: 0px;
+        display: flex;
+        justify-content: center; /* Horizontally center the content */
+        align-items: flex-start; /* Align items at the top */
+        font-family: Arial, sans-serif;
+        background-color: rgb(238, 228, 214);
+        overflow: auto; /* Allow scrolling if necessary */
+    }
+
+    .mainContainer {
+        display: flex;
+        flex-wrap: wrap; /* Allow content to wrap */
+        justify-content: center; /* Center content inside the container */
+        align-items: flex-start; /* Align items at the top */
+        width: 100%; /* Limit the width of the container */
+        max-width: 1200px; /* Limit the width to a max value */
+        min-height: 100vh; /* Ensure container takes full height of the viewport */
+        padding: 20px;
+        border: 2px solid #ccc;
+        box-sizing: border-box;
+        background-color: #f4d6e8;
+        border-radius: 5%;
+        overflow-y: auto; /* Allow scrolling inside the container if necessary */
+    }
+
+    .bill {
+        text-align: center;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    hr {
+        margin: 20px 0;
+        border: 1px solid #ccc;
+    }
+
+    .counter {
+        background-color: #8fb07d;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(95, 121, 143, 0.1);
+        min-width: 150px; /* Minimum width for the box */
+        flex-grow: 1; /* Allow the box to grow if space permits */
+        text-align: center;
+    }
+
+    .titles {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 1em;
+        margin-bottom: 20px;
+        width: 80%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+        margin-top: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .calculate {
+        background-color: #aad1ac;
+        color: white;
+    }
+
+    .reset {
+        background-color: #d89994;
+        color: white;
+    }
+
+    .count {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .mainContainer {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .counter {
+         width: 100%;
+        }
+
+        h1, h2 {
+            font-size: 1.5em;
+        }
+
+        .titles, input, button {
+            font-size: 1em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .counter {
+            padding: 10px;
+        }
+
+        .titles, input, button {
+            font-size: 0.9em;
+            width: 100%;
+        }
+
+        h1, h2 {
+            font-size: 1.2em;
+        }
+    }
+
+    </style>
+</head>
+<body>
+    <section class="mainContainer">
+        <div class="bill">
+            <h1>INVOICE</h1>
+            <hr />
+            <div class="enter">
+                <div>
+                    <span class="titles">Number</span>
+                    <br>
+                    <input type="text" id="number" placeholder="Enter number">
+                    <br />
+                    <span class="titles">Date</span>
+                    <br>
+                    <input type="text" id="date" placeholder="Enter date">
+                    <br />
+                    <span class="titles">Payment term</span>
+                    <input type="text" id="payment-term" placeholder="Enter term">
+                    <br />
+                    <button class="reset">Reset</button>
+                    <br>
+                    <hr>
+                </div>
+                <div class="company">
+                    <h2>Company</h2>
+                    <hr>
+                    <span class="titles">Company name</span>
+                    <input type="text" id="company-name" placeholder="Enter seller name">
+                    <br />
+                    <span class="titles">Company address</span>
+                    <input type="text" id="company-address" placeholder="Enter seller address">
+                    <br />
+                    <span class="titles">Company phone nr</span>
+                    <input type="text" id="company-phone" placeholder="Enter seller phone nr">
+                    <br />
+                    <button class="reset">Reset</button>
+                    <br>
+                    <hr>
+                </div>
+
+                <div class="client">
+                    <h2>Client</h2>
+                    <hr>
+                    <span class="titles">Client name</span>
+                    <input type="text" id="client-name" placeholder="Enter buyer name">
+                    <br />
+                    <span class="titles">Client address</span>
+                    <input type="text" id="client-address" placeholder="Enter buyer address">
+                    <br />
+                    <span class="titles">Client phone nr</span>
+                    <input type="text" id="client-phone" placeholder="Enter buyer phone nr">
+                    <br />
+                    <button class="reset">Reset</button>
+                    <br>
+                    <hr>
+                </div>
+
+                <div class="purchase">
+                    <h2>Purchase</h2>
+                    <hr>
+                    <span class="titles">Item</span>
+                    <br>
+                    <input type="text" id="item" placeholder="Enter item name">
+                    <br />
+                    <span class="titles">Quantity</span>
+                    <br>
+                    <input type="number" id="quantity" placeholder="Enter quantity">
+                    <br />
+                    <span class="titles">Price</span>
+                    <br>
+                    <input type="number" id="price" placeholder="Price">
+                    <br />
+                    <span class="titles">Discount</span>
+                    <br>
+                    <input type="number" id="discount" placeholder="Discount %">
+                    <br />
+                    <span class="titles" style="color: blue;">Subtotal:</span>
+                    <div id="subtotal" class="count"></div>
+                    <br>
+                    <button class="calculate">Calculate</button>
+                    <br>
+                    <button class="reset">Reset</button>
+                    <br>
+                </div>
+                <div class="other-expenses">
+                    <span class="titles">Transportation costs:</span>
+                    <input type="number" id="transportation-costs" placeholder="Enter transportation costs">
+                    <br />
+                    <span class="titles">Rate without VAT:</span>
+                    <div id="rate-without-vat" class="count"></div>
+                    <br>
+                    <button class="calculate">Calculate</button>
+                    <br>
+                    <button class="reset">Reset</button>
+                    <br>
+                </div>
+                <div>
+                    <span class="titles">VAT (21%):</span>
+                    <div id="vat" class="count"></div>
+                    <br />
+                    <span class="titles" style="color: blue;">Final amount including VAT:</span>
+                    <div id="final-amount" class="count"></div>
+                    <br />
+                    <button class="calculate">Calculate</button>
+                    <br>
+                    <button class="reset">Reset</button>
+                    <br>
+                </div>
+               
+                <button href="" style="background-color: rgb(134, 175, 162); color: white;" class="previewer">PREVIEWER</button>
+                <br>
+
+                <div class="finalButtons">
+                    <button id="generate-pdf" style="background-color: sandybrown;">Generate PDF</button>
+                    <br>
+                    <button id="reset-form" style="background-color: rgb(211, 211, 119);">Reset all</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- jsPDF library -->
+
+    <script>
+
+
+
+
+
+    
+    // Get elements for form fields
+    const number = document.getElementById('number');
+    const date = document.getElementById('date');
+    const paymentTerm = document.getElementById('payment-term');
+    const companyName = document.getElementById('company-name');
+    const companyAddress = document.getElementById('company-address');
+    const companyPhone = document.getElementById('company-phone');
+    const clientName = document.getElementById('client-name');
+    const clientAddress = document.getElementById('client-address');
+    const clientPhone = document.getElementById('client-phone');
+    const item = document.getElementById('item');
+    const quantity = document.getElementById('quantity');
+    const price = document.getElementById('price');
+    const discount = document.getElementById('discount');
+    const transportationCosts = document.getElementById('transportation-costs');
+    const subtotalElement = document.getElementById('subtotal');
+    const rateWithoutVatElement = document.getElementById('rate-without-vat');
+    const vatElement = document.getElementById('vat');
+    const finalAmountElement = document.getElementById('final-amount');
+    
+
+    // Previewer Button
+    const previewerButton = document.querySelector('.previewer');
+    previewerButton.addEventListener('click', () => {
+        // Open the preview window
+        const previewWindow = window.open('', '_blank');
+        
+        // Check if the preview window is opened successfully
+        if (previewWindow) {
+            previewWindow.document.write('<h1>Invoice Preview</h1>');
+            previewWindow.document.write(`<p><strong>Invoice Number:</strong> ${number.value}</p>`);
+            previewWindow.document.write(`<p><strong>Date:</strong> ${date.value}</p>`);
+            previewWindow.document.write(`<p><strong>Payment Term:</strong> ${paymentTerm.value}</p>`);
+            previewWindow.document.write(`<p><strong>Company:</strong> ${companyName.value}</p>`);
+            previewWindow.document.write(`<p><strong>Company Address:</strong> ${companyAddress.value}</p>`);
+            previewWindow.document.write(`<p><strong>Company Phone:</strong> ${companyPhone.value}</p>`);
+            previewWindow.document.write(`<p><strong>Client:</strong> ${clientName.value}</p>`);
+            previewWindow.document.write(`<p><strong>Client Address:</strong> ${clientAddress.value}</p>`);
+            previewWindow.document.write(`<p><strong>Client Phone:</strong> ${clientPhone.value}</p>`);
+            previewWindow.document.write(`<p><strong>Item:</strong> ${item.value}</p>`);
+            previewWindow.document.write(`<p><strong>Quantity:</strong> ${quantity.value}</p>`);
+            previewWindow.document.write(`<p><strong>Price:</strong> €${price.value}</p>`);
+            previewWindow.document.write(`<p><strong>Discount:</strong> ${discount.value}%</p>`);
+            previewWindow.document.write(`<p><strong>Transportation Costs:</strong> €${transportationCosts.value}</p>`);
+            previewWindow.document.write(`<p><strong>Subtotal:</strong> €${subtotalElement.textContent}</p>`);
+            previewWindow.document.write(`<p><strong>Rate Without VAT:</strong> €${rateWithoutVatElement.textContent}</p>`);
+            previewWindow.document.write(`<p><strong>VAT (21%):</strong> €${vatElement.textContent}</p>`);
+            previewWindow.document.write(`<p><strong>Final Amount:</strong> €${finalAmountElement.textContent}</p>`);
+
+
+
+
+
+    // Add a "Back" button to the preview page
+         previewWindow.document.write('<button onclick="window.history.back()">Go Back</button>');
+        
+         // Set a timeout to close the preview window and redirect to the homepage after a certain time (e.g., 5 seconds)
+         setTimeout(() => {
+             previewWindow.close(); // Close the preview window
+         }, 5000);  // 5-second delay before closing the window
+     } else {
+         alert('Failed to open preview window. Please check your browser settings.');
+     }
+
+
+
+
+
+
+
+        //     // Set a timeout to close the preview window and redirect to the homepage after a certain time (e.g., 5 seconds)
+        //     setTimeout(() => {
+        //         previewWindow.close(); // Close the preview window
+        //         window.location.href = '/'; // Redirect to the homepage
+        //     }, 5000);  // 5-second delay before closing and redirecting
+        // } else {
+        //     alert('Failed to open preview window. Please check your browser settings.');
+        // }
+
+
+
+
+    });
+
+
+
+
+
+
+    // Generate PDF Button
+    const generatePdfButton = document.getElementById('generate-pdf');
+    generatePdfButton.addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Add content to PDF
+        doc.text('Invoice', 10, 10);
+        doc.text(`Invoice Number: ${number.value}`, 10, 20);
+        doc.text(`Date: ${date.value}`, 10, 30);
+        doc.text(`Payment Term: ${paymentTerm.value}`, 10, 40);
+        doc.text(`Company: ${companyName.value}`, 10, 50);
+        doc.text(`Company Address: ${companyAddress.value}`, 10, 60);
+        doc.text(`Company Phone: ${companyPhone.value}`, 10, 70);
+        doc.text(`Client: ${clientName.value}`, 10, 80);
+        doc.text(`Client Address: ${clientAddress.value}`, 10, 90);
+        doc.text(`Client Phone: ${clientPhone.value}`, 10, 100);
+        doc.text(`Item: ${item.value}`, 10, 110);
+        doc.text(`Quantity: ${quantity.value}`, 10, 120);
+        doc.text(`Price: €${price.value}`, 10, 130);
+        doc.text(`Discount: ${discount.value}%`, 10, 140);
+        doc.text(`Transportation Costs: €${transportationCosts.value}`, 10, 150);
+        doc.text(`Subtotal: €${subtotalElement.textContent}`, 10, 160);
+        doc.text(`Rate Without VAT: €${rateWithoutVatElement.textContent}`, 10, 170);
+        doc.text(`VAT (21%): €${vatElement.textContent}`, 10, 180);
+        doc.text(`Final Amount: €${finalAmountElement.textContent}`, 10, 190);
+
+        // Save the PDF
+        doc.save('invoice.pdf');
+    });
+
+    // Reset Form Button
+    const resetFormButton = document.getElementById('reset-form');
+    resetFormButton.addEventListener('click', () => {
+        document.getElementById('number').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('payment-term').value = '';
+        document.getElementById('company-name').value = '';
+        document.getElementById('company-address').value = '';
+        document.getElementById('company-phone').value = '';
+        document.getElementById('client-name').value = '';
+        document.getElementById('client-address').value = '';
+        document.getElementById('client-phone').value = '';
+        document.getElementById('item').value = '';
+        document.getElementById('quantity').value = '';
+        document.getElementById('price').value = '';
+        document.getElementById('discount').value = '';
+        document.getElementById('transportation-costs').value = '';
+
+        // Clear calculated fields
+        subtotalElement.textContent = '';
+        rateWithoutVatElement.textContent = '';
+        vatElement.textContent = '';
+        finalAmountElement.textContent = '';
+    });
+
+    // Get elements for the form fields
+    const resetButtons = document.querySelectorAll('.reset');
+    const calculateButtons = document.querySelectorAll('.calculate');
+
+    // Reset Button functionality for specific sections
+    resetButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const section = e.target.closest('div');
+            if (section) {
+                const inputs = section.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+
+                const calculatedFields = section.querySelectorAll('.count');
+                calculatedFields.forEach(field => {
+                    field.textContent = '';
+                });
+            }
+        });
+    });
+
+    // Calculate Button functionality
+    calculateButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const section = e.target.closest('div');
+            
+            // Calculate Subtotal
+            if (section.classList.contains('purchase')) {
+                const qty = parseFloat(quantity.value);
+                const priceVal = parseFloat(price.value);
+                const discountVal = parseFloat(discount.value) / 100;
+
+                if (!isNaN(qty) && !isNaN(priceVal)) {
+                    let subtotal = qty * priceVal;
+                    if (!isNaN(discountVal)) {
+                        subtotal -= subtotal * discountVal;  // Apply discount
+                    }
+                    subtotalElement.textContent = '€' + subtotal.toFixed(2);
+                }
+            }
+
+            // Calculate Rate Without VAT
+            if (section.classList.contains('other-expenses')) {
+                const transportation = parseFloat(transportationCosts.value);
+                const subtotal = parseFloat(subtotalElement.textContent.replace('€', ''));
+                const rateWithoutVat = subtotal + (isNaN(transportation) ? 0 : transportation);
+                rateWithoutVatElement.textContent = '€' + rateWithoutVat.toFixed(2);
+                
+                // Calculate VAT
+                const vat = rateWithoutVat * 0.21; // 21% VAT
+                vatElement.textContent = '€' + vat.toFixed(2);
+                
+                // Calculate Final Amount
+                const finalAmount = rateWithoutVat + vat;
+                finalAmountElement.textContent = '€' + finalAmount.toFixed(2);
+            }
+        });
+    });
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.10/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+  const generatePdfButton = document.getElementById('generate-pdf');
+  generatePdfButton.addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Set document title and general settings
+    doc.setFont('helvetica');
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0); // Black text
+    
+    // Title of the invoice
+    doc.text('Invoice', 105, 20, null, null, 'center');
+    
+    // Invoice number and date
+    doc.setFontSize(12);
+    doc.text(`Invoice Number: ${number.value}`, 20, 40);
+    doc.text(`Date: ${date.value}`, 20, 50);
+    doc.text(`Payment Term: ${paymentTerm.value}`, 20, 60);
+
+    // Company details
+    doc.setFontSize(14);
+    doc.text('Company Details:', 20, 80);
+    doc.setFontSize(12);
+    doc.text(`Company: ${companyName.value}`, 20, 90);
+    doc.text(`Address: ${companyAddress.value}`, 20, 100);
+    doc.text(`Phone: ${companyPhone.value}`, 20, 110);
+
+    // Client details
+    doc.setFontSize(14);
+    doc.text('Client Details:', 105, 80, null, null, 'center');
+    doc.setFontSize(12);
+    doc.text(`Client: ${clientName.value}`, 105, 90, null, null, 'center');
+    doc.text(`Address: ${clientAddress.value}`, 105, 100, null, null, 'center');
+    doc.text(`Phone: ${clientPhone.value}`, 105, 110, null, null, 'center');
+
+    // Item Details (use autoTable for better structure)
+    const items = [
+      [item.value, quantity.value, price.value, discount.value]
+    ];
+    
+    doc.autoTable({
+      head: [['Item', 'Quantity', 'Price (€)', 'Discount (%)']],
+      body: items,
+      startY: 120,  // Starting Y position for the table
+      theme: 'striped',
+      margin: { top: 10 },
+    });
+
+    // Calculate Totals
+    const subtotal = parseFloat(subtotalElement.textContent.replace('€', ''));
+    const transportation = parseFloat(transportationCosts.value);
+    const rateWithoutVat = subtotal + (isNaN(transportation) ? 0 : transportation);
+    const vat = rateWithoutVat * 0.21;  // 21% VAT
+    const finalAmount = rateWithoutVat + vat;
+
+    // Total calculation details
+    doc.setFontSize(14);
+    doc.text('Total Calculation:', 20, doc.lastAutoTable.finalY + 10); // Position after the table
+    doc.setFontSize(12);
+    doc.text(`Subtotal: €${subtotal.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 20);
+    doc.text(`Transportation: €${transportation.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 30);
+    doc.text(`Rate Without VAT: €${rateWithoutVat.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 40);
+    doc.text(`VAT (21%): €${vat.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 50);
+    doc.text(`Final Amount: €${finalAmount.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 60);
+    
+    // Save the PDF
+    doc.save('invoice.pdf');
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+const generatePdfButton = document.getElementById('generate-pdf');
+generatePdfButton.addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Set background color for the PDF page
+    doc.setFillColor(242, 242, 242); // Light gray background
+    doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F'); // Apply background
+
+    // Set fonts and text color for the title
+    doc.setFont('helvetica');
+    doc.setFontSize(20);
+    doc.setTextColor(0, 0, 0); // Black text color
+    doc.text('Invoice', doc.internal.pageSize.width / 2, 20, null, null, 'center'); // Center the title
+
+    // Set subtitle style (e.g., blue color and bold)
+    doc.setFontSize(14);
+    doc.setTextColor(50, 50, 255); // Blue color for subtitles
+    doc.text('Invoice Number', 20, 40);
+    doc.text('Date', 20, 50);
+    doc.text('Payment Term', 20, 60);
+
+    // Invoice details
+    doc.setTextColor(0, 0, 0); // Black color for content
+    doc.setFontSize(12);
+    doc.text(`Invoice Number: ${number.value}`, 60, 40);
+    doc.text(`Date: ${date.value}`, 60, 50);
+    doc.text(`Payment Term: ${paymentTerm.value}`, 60, 60);
+
+    // Company details
+    doc.setFontSize(14);
+    doc.setTextColor(50, 50, 255); // Blue subtitle
+    doc.text('Company Details:', 20, 80);
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0); // Black text color for details
+    doc.text(`Company: ${companyName.value}`, 20, 90);
+    doc.text(`Address: ${companyAddress.value}`, 20, 100);
+    doc.text(`Phone: ${companyPhone.value}`, 20, 110);
+
+    // Client details (Centered)
+    doc.setFontSize(14);
+    doc.setTextColor(50, 50, 255); // Blue subtitle
+    doc.text('Client Details:', doc.internal.pageSize.width / 2, 80, null, null, 'center');
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0); // Black text color for details
+    doc.text(`Client: ${clientName.value}`, doc.internal.pageSize.width / 2, 90, null, null, 'center');
+    doc.text(`Address: ${clientAddress.value}`, doc.internal.pageSize.width / 2, 100, null, null, 'center');
+    doc.text(`Phone: ${clientPhone.value}`, doc.internal.pageSize.width / 2, 110, null, null, 'center');
+
+    // Item Details (Using autoTable)
+    const items = [
+      [item.value, quantity.value, price.value, discount.value]
+    ];
+    doc.autoTable({
+        head: [['Item', 'Quantity', 'Price (€)', 'Discount (%)']],
+        body: items,
+        startY: 120,
+        theme: 'striped',
+        margin: { top: 10 },
+    });
+
+    // Calculate totals and display
+    const subtotal = parseFloat(subtotalElement.textContent.replace('€', ''));
+    const transportation = parseFloat(transportationCosts.value);
+    const rateWithoutVat = subtotal + (isNaN(transportation) ? 0 : transportation);
+    const vat = rateWithoutVat * 0.21;  // 21% VAT
+    const finalAmount = rateWithoutVat + vat;
+
+    doc.setFontSize(14);
+    doc.setTextColor(50, 50, 255); // Blue subtitle
+    doc.text('Total Calculation:', 20, doc.lastAutoTable.finalY + 10); // Position after the table
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0); // Black text color for details
+    doc.text(`Subtotal: €${subtotal.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 20);
+    doc.text(`Transportation: €${transportation.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 30);
+    doc.text(`Rate Without VAT: €${rateWithoutVat.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 40);
+    doc.text(`VAT (21%): €${vat.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 50);
+    doc.text(`Final Amount: €${finalAmount.toFixed(2)}`, 20, doc.lastAutoTable.finalY + 60);
+
+    // Save the PDF
+    doc.save('invoice.pdf');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>    
