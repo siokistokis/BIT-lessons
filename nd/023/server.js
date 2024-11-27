@@ -2,10 +2,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
-  res.send('Hello Beaver!')
+  res.send('Hello Deer!')
 });
 
 app.listen(port, () => {
-  console.log(`Bebras darbui pasiruoses ant ${port} porto`)
+  console.log(`Bebras darbui pasiruoses ant ${port} porto!`)
 });
