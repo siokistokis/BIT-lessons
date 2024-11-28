@@ -56,6 +56,17 @@
         border: 1px solid #ccc;
     }
 
+    /* .list {
+        align-items: center;
+        justify-content: flex-start;
+        display: inline;
+    } */
+
+    /* ??????????????????????????????????????????????????????????????????????????????????????? */
+
+
+
+
     .counter {
         background-color: #8fb07d;
         padding: 20px;
@@ -219,29 +230,45 @@
                 <div class="purchase">
                     <h2 style="color: gray;">Purchase</h2>
                     <hr>
-                    <span class="titles">Item</span>
-                    <br>
-                    <input type="text" id="item" placeholder="Enter item name">
-                    <br />
-                    <span class="titles">Quantity</span>
-                    <br>
-                    <input type="number" id="quantity" placeholder="Enter quantity">
-                    <br />
-                    <span class="titles">Price</span>
-                    <br>
-                    <input type="number" id="price" placeholder="Price">
-                    <br />
-                    <span class="titles">Discount</span>
-                    <br>
-                    <input type="number" id="discount" placeholder="Discount %">
-                    <br />
-                    <span class="titles" style="color: blue;">Subtotal:</span>
-                    <div id="subtotal" class="count"></div>
-                    <br>
-                    <button class="calculate">Calculate</button>
-                    <br>
-                    <button class="reset">Reset</button>
-                    <br>
+                    <div id="list">
+
+                        <div>
+                            <span class="titles">Item</span>
+                            <br>
+                            <input type="text" id="item" placeholder="Enter item name">
+                        </div>
+                        
+                        <div>
+                            <span class="titles">Quantity</span>
+                            <br>
+                            <input type="number" id="quantity" placeholder="Enter quantity">   
+                        </div>
+                       
+                        <div>
+                            <span class="titles">Price</span>
+                            <br>
+                            <input type="number" id="price" placeholder="Price">   
+                        </div>
+                        
+                        <div>
+                           <span class="titles">Discount</span>
+                            <br>
+                            <input type="number" id="discount" placeholder="Discount %"> 
+                        </div>
+                    
+                        <div>
+                             <span class="titles" style="color: blue;">Subtotal:</span>
+                        <div id="subtotal" class="count"></div>
+                        </div>
+                        
+                    </div>
+                        <br>
+                        <button class="calculate">Calculate</button>
+                        <br>
+                        <button class="reset">Reset</button>
+                        <br>
+                    
+                    
                 </div>
                 <div class="other-expenses">
                     <span class="titles">Transportation costs:</span>

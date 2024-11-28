@@ -3,8 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Document</title>
+
+    <style>
+
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(236, 233, 228);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#invoice {
+  width: 800px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid cadetblue;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centers all text inside the invoice */
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#invoiceDetails, #sellerBuyer, #totals {
+  margin-bottom: 20px;
+}
+
+#invoiceDetails p, #sellerBuyer p {
+  margin: 5px 0;
+}
+
+#sellerBuyer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Adds space between seller and buyer sections */
+}
+
+#sellerBuyer div {
+  width: 48%;
+  background-color: #f9f9f9; /* Background color for seller/buyer sections */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 1px solid cadetblue;
+  padding: 12px;  /* Increased padding for readability */
+  text-align: center;
+}
+
+table th {
+  background-color: blanchedalmond; /* Background color for table headers */
+}
+
+#totals p {
+  text-align: right;
+  font-weight: bold;
+}
+
+#items {
+  margin-top: 20px;
+}
+
+
+
+    </style>
+
+
 </head>
 <body>
     <div id="invoice">
@@ -49,7 +129,123 @@
             <p><strong>Final amount including VAT:</strong><span id="total"></span></p>
         </div>
     </div>
-    <script src="app.js" defer></script>
+    <!-- <script src="app.js" defer></script> -->
+
+
+    <script>
+
+
+          const apiUrl = "https://in3.dev/inv/";
+
+async function fetchInvoiceData() {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    renderInvoice(data);
+}
+
+function renderInvoice(data) {
+    // Set invoice details
+    document.getElementById("invoiceNumber").textContent = data.number;
+    document.getElementById("invoiceDate").textContent = data.date;
+    document.getElementById("invoiceTerm").textContent = data.paymentTerm;
+
+    // Set seller details
+    document.getElementById("sellerName").textContent = data.seller.name;
+    document.getElementById("sellerAddress").textContent = data.seller.address;
+    document.getElementById("sellerCode").textContent = data.seller.code;
+    document.getElementById("sellerVAT").textContent = data.seller.vat;
+
+    // Set buyer details
+    document.getElementById("buyerName").textContent = data.buyer.name;
+    document.getElementById("buyerAddress").textContent = data.buyer.address;
+    document.getElementById("buyerCode").textContent = data.buyer.code;
+    document.getElementById("buyerVAT").textContent = data.buyer.vat;
+
+    // Render items in table
+    const itemsTableBody = document.querySelector("#items tbody");
+    let totalWithoutVAT = 0;
+    let totalVAT = 0;
+    let totalDiscount = 0;
+
+    data.items.forEach(item => {
+        const row = document.createElement("tr");
+
+        // Calculate subtotal for the item
+        const itemPrice = parseFloat(item.price);
+        const itemQuantity = parseFloat(item.quantity);
+        const itemDiscount = item.discount ? parseFloat(item.discount) : 0;
+        const itemSubtotal = (itemPrice * itemQuantity) - itemDiscount;
+
+        totalWithoutVAT += itemPrice * itemQuantity;
+        totalDiscount += itemDiscount;
+        totalVAT += itemSubtotal * 0.21;  // 21% VAT
+
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${itemQuantity}</td>
+            <td>${itemPrice.toFixed(2)}</td>
+            <td>${itemDiscount.toFixed(2)}</td>
+            <td>${itemSubtotal.toFixed(2)}</td>
+        `;
+
+        itemsTableBody.appendChild(row);
+    });
+
+    // Set totals
+    const transportationCosts = parseFloat(data.transportationCosts);
+    const finalAmountWithVAT = totalWithoutVAT + totalVAT - totalDiscount + transportationCosts;
+
+    document.getElementById("transportCosts").textContent = transportationCosts.toFixed(2);
+    document.getElementById("rateWithoutVAT").textContent = totalWithoutVAT.toFixed(2);
+    document.getElementById("VAT").textContent = totalVAT.toFixed(2);
+    document.getElementById("total").textContent = finalAmountWithVAT.toFixed(2);
+}
+
+fetchInvoiceData();
+
+
+/* joson
+{
+    "number": "INV12345",
+    "date": "2024-11-23",
+    "paymentTerm": "30 days",
+    "seller": {
+      "name": "Seller Name",
+      "address": "Seller Address",
+      "code": "Seller Code",
+      "vat": "VAT123456"
+    },
+    "buyer": {
+      "name": "Buyer Name",
+      "address": "Buyer Address",
+      "code": "Buyer Code",
+      "vat": "VAT654321"
+    },
+    "items": [
+      {
+        "name": "Item 1",
+        "price": "100",
+        "quantity": "2",
+        "discount": "10",
+        "subtotal": "190"
+      },
+      {
+        "name": "Item 2",
+        "price": "50",
+        "quantity": "1",
+        "discount": "5",
+        "subtotal": "45"
+      }
+    ],
+    "transportationCosts": "20"
+  }
+   */
+  
+
+
+    </script>
+
+
 </body>
 </html>
 

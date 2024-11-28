@@ -1,114 +1,72 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill</title>
-    <link rel="icon" href="me.png">
+    
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+
+       body {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgb(236, 233, 228);
+
         }
 
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center; /* Horizontally center the content */
-            align-items: center;     /* Vertically center the content */
-            font-family: Arial, sans-serif;
-            background-color: rgb(221, 195, 161);
-        }
-
-        .mainContainer {
-            display: flex;
-            flex-wrap: wrap;         /* Allow content to wrap */
-            justify-content: center; /* Center content inside the container */
-            align-items: center;     /* Align items to the center */
-            width: 80%;              /* Limit the width of the container */
-            max-width: 600px;        /* Optional: Max width to control scaling */
+        #invoice {
+            width: 800px;
+            margin: 20px auto;
             padding: 20px;
-            border: 2px solid #ccc;
-            box-sizing: border-box;
-            background-color: #d0a8c0;
-            border-radius: 50%;
+            background-color: white;
+            border: 1px solid cadetblue;
+
         }
 
-        .bill {
+        #invoiceDetails, #sellerBuyer, #totals {
+            margin-bottom: 20px;
+
+        }
+
+        #sellerBuyer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        h1, h2 {
             text-align: center;
+
+        }
+
+        #sellerBuyer div {
+            width: 48%;
+        }
+
+        table {
+            border-collapse: collapse;
             width: 100%;
         }
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        hr {
-            margin: 20px 0;
-            border: 1px solid #ccc;
-        }
-
-        .counter {
-            background-color: #8fb07d;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(95, 121, 143, 0.1);
-            min-width: 150px;        /* Minimum width for the box */
-            flex-grow: 1;            /* Allow the box to grow if space permits */
+        table th, tabletd {
+            border: 1px solid cadetblue ;
+            padding: 8px;
             text-align: center;
-        }
+            }
 
-        .titles {
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
-
-        input {
-            padding: 10px;
-            font-size: 1em;
-            margin-bottom: 20px;
-            width: 80%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            margin-top: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            border: none;
-        }
-
-        .calculate {
-            background-color: #aad1ac;
-            color: white;
-        }
-
-        .reset {
-            background-color: #d89994;
-            color: white;
-        }
-
-        .count {
-            font-size: 1.2em;
-            margin-top: 20px;
+        table th {
+            background-color: blanchedalmond;
         }
 
         /* Responsive styles */
         @media (max-width: 768px) {
-            .mainContainer {
+            body {
                 width: 90%;
                 padding: 10px;
             }
 
-            .counter {
+            #invoice {
                 width: 100%;
             }
 
@@ -122,7 +80,7 @@
         }
 
         @media (max-width: 480px) {
-            .counter {
+            #invoice{
                 padding: 10px;
             }
 
@@ -137,154 +95,691 @@
         }
     </style>
 </head>
-<body class="background">
-    <section class="mainContainer">
-        <div class="bill">
-            <h1>INVOICE</h1>
-            <hr />
-            <div class="enter">
-                <div>
-                    <span class="titles">Number</span>
-                    <input type="text" class="enter" placeholder="Enter number">
-                    <br />
-                    <span class="titles">Date</span>
-                    <input type="text" class="enter" placeholder="Enter date">
-                    <br />
-                    <span class="titles">Payment term</span>
-                    <input type="text" class="enter" placeholder="Enter term">
-                    <br />
-                    <button class="reset">Reset</button>
-                    <br>
-                    <hr>
-                </div>
-                <div class="company">
-                    <h2>Company</h2>
-                    <hr>
-                    <span class="titles">Company name</span>
-                    <input type="text" class="enter" placeholder="Enter seler name">
-                    <br />
-                    <span class="titles">Company address</span>
-                    <input type="text" class="enter" placeholder="Enter seler address">
-                    <br />
-                    <span class="titles">Company phone nr</span>
-                    <input type="text" class="enter" placeholder="Enter seler phone nr">
-                    <br />
-                    <button class="reset">Reset</button>
-                    <br>
-                    <hr>
-                </div>
-               
-                <div class="client">
-                    <h2>Client</h2>
-                    <hr>
-                    <span class="titles">Client name</span>
-                    <input type="text" class="enter" placeholder="Enter buyer name">
-                    <br />
-                    <span class="titles">Client address</span>
-                    <input type="text" class="enter" placeholder="Enter buyer address">
-                    <br />
-                    <span class="titles">Client phone nr</span>
-                    <input type="text" class="enter" placeholder="Enter buyer phone nr">
-                    <br />
-                    <button class="reset">Reset</button>
-                    <br>
-                    <hr>
-                </div>
-
-                <div class="purchase">
-                    <h2>Purchase</h2>
-                    <hr>
-                    <span class="titles">Item</span>
-                    <input type="text" class="enter" placeholder="Enter item name">
-                    <br />
-                    <span class="titles">Quantity</span>
-                    <input type="text" class="enter" placeholder="Enter quantity">
-                    <br />
-                    <span class="titles">Price</span>
-                    <input type="text" class="price" placeholder=" price">
-                    <br />
-                    <span class="titles">Discount</span>
-                    <input type="text" class="discount" placeholder=" discount %">
-                    <br />
-                    <span class="titles">Subtotal:</span>
-                    <br>
-                    <button class="calculate">Calculate</button>
-                    <br>
-                    <button class="reset">Reset</button>
-                    <br>
-                  
-                </div>
-                <div class="other-expenses">
-                    <span class="titles">Transportation costs:</span>
-                    <input type="text" class="enter" placeholder="Enter transportation costs">
-                    <br />
-                    <span class="titles">Rate without VAT:</span>
-                    <br>
-                    <button class="calculate">Calculate</button>
-                    <br>
-                    <button class="reset">Reset</button>
-                    <br>
-                </div>
-                <div>
-                    <span class="titles">VAT (21%):</span>
-                    <br />
-                    <span class="titles">Final amount including VAT:</span>
-                    <br />
-                    <button class="calculate">Calculate</button>
-                    <br>
-                    <button class="reset">Reset</button>
-                    <br>
-                </div>
-
-                <button class="previewer">PREVIEWER</button>
-                <br>
-
-                    <div class="finalButtons">
-                        <button id="generate-pdf">Generate PDF</button>
-                        <br>
-                        <button id="reset-form">Reset Form</button>
-                    </div>
-                
-                
+<body>
+    <div id="invoice">
+        <h1>INVOICE</h1>
+        <div id="invoiceDetails">
+            <p><strong>Number: </strong><span id="invoiceNumber"></span></p>
+            <p><strong>Date: </strong><span id="invoiceDate"></span></p>
+            <p><strong>Peyment term: </strong><span id="invoiceTerm"></span></p>
+        </div>
+        <div id="sellerBuyer">
+            <div>
+                <h2>Seller</h2>
+                <p id="sellerName"></p>
+                <p id="sellerAddress"></p>
+                <p id="sellerCode"></p>
+                <p id="sellerVAT"></p>
+            </div>
+            <div>
+                <h2>Buyer</h2>
+                <p id="buyerName"></p>
+                <p id="buyerAddress"></p>
+                <p id="buyerCode"></p>
+                <p id="buyerVAT"></p> 
             </div>
         </div>
-    </section>
+        <table id="items">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Subtotal</th>   
+                </tr>    
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="totals">
+            <p><strong>Transportation costs:</strong><span id="transportCosts"></span></p>
+            <p><strong>Rate without VAT:</strong><span id="rateWithoutVAT"></span></p>
+            <p><strong>VAT (21%):</strong><span id="VAT"></span></p>
+            <p><strong>Final amount including VAT:</strong><span id="total"></span></p>
+        </div>
+    </div>
 
     <script>
-        const enter = document.querySelector('.enter');
-        const calculate = document.querySelector('.calculate');
-        let count = document.querySelector('.count');
-        const reset = document.querySelector('.reset');
 
-        calculate.addEventListener('click', () => {
-            const enter1 = parseFloat(entert.value);
-            
+        const apiUrl = "https://in3.dev/inv/";
+        async function fetchInvoiceData() {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            renderInvoice(data);
+        }
 
-            // Check if values are valid numbers
-            if (isNaN(enter1) || isNaN(enter1) || count????? <= 0 || ????????? <= 0) {
-                count.textContent = 'Please enter valid values.';
-                count.style.color = 'black';  // Default color for invalid input
-                return;
+        function renderInvoice(data) {
+        //invoice details
+        document.getElementById("invoiceNumber").textContent = data.number;
+        }
+
+        fetchInvoiceData();
+
+
+            // SELLER
+
+        seller.queryselector('[data-name]').innerText = seller.name;
+        seller.queryselector('[data-code]').innerText = seller.code;
+        seller.queryselector('[data-vat]').innerText = seller.vat;
+        seller.queryselector('[data-phone]').innerText = seller.phone;
+        seller.queryselector('[data-email]').innerText = seller.email;
+
+           // BUYER
+
+        buyer.queryselector('[data-name]').innerText = buyer.name;
+        buyer.queryselector('[data-code]').innerText = buyer.code;
+        buyer.queryselector('[data-vat]').innerText = buyer.vat;
+        buyer.queryselector('[data-phone]').innerText = buyer.phone;
+        buyer.queryselector('[data-email]').innerText = buyer.email;
+
+        let sum = 0;
+
+        json.item. forEach(element => {
+            const quantity = element.quantity;
+            const price = element.price;
+            const persentage = element.discount.value;
+            const discount = (price*persentage) / 100;
+
+            const product = list.appendChild(document.createElement('tr'));
+            product.appendChild(document.createElement('td')).innerText = json.items.indexOf(element) + 1;
+            product.appendChild(document.createElement('td')).innerText = element.discription;
+            product.appendChild(document.createElement('td')).innerText = quantity;
+            product.appendChild(document.createElement('td')).innerText = price.toFixed(2);
+
+            if (element.discount && element.discount.value) {
+                if (element.discount.type ==='fixed') {
+                    product.appendChild(document.createElement('td')).innerText = '-' + persentage.toFixed(2);
+                    product.appendChild(document.createElement('td')).innerText = ((price - persentage) * quantity)
+                }
+                else {
+                    product.appendChild(document.createElement('td')).innerText = `-${discount.toFixed(2)} (${persentage}%)`;
+                    product.appendChild(document.createElement('td')).innerText = ((price - discount) * quantity).toFixed(2);
+                }
+            }   else {
+                    product.appendChild(document.createElement('td')).innerText = (0).toFixed(2);
+                    product.appendChild(document.createElement('td')).innerText = (price * quantity).toFixed(2);
             }
 
-           
-            const bill = enter1 * (????);
+            let sumOfProduct;
+            if(element.discount && element.discount.value) {
+                if (element.discount.type === 'fixed') {
+                    sumOfProduct = (price - persentage) * quantity;                
+                } else {
+                    sumOfProduct = (price - discount) * quantity;
+                }
+            }   else {
+                sumOfProduct = price * quantity;
+            }
 
-           
-            if (bill???/) {
-                count.textContent = `?????: ${bill.toFixed(2)}`;
-                count.style.color = 'blue'; 
-            } );
-
-        // Reset functionality
-        reset.addEventListener('click', () => {
-            enter.value = '';
-           
-            count.textContent = '';
-            count.style.color = ''; // Reset color when cleared
+            sum += sumOfProduct;
         });
+
+        subtotal.innerText = sum.toFixed(2);
+        const shipping = json.shippingPrice;
+        let VAT = ((sum + shipping) * 21) / 100;
+        shippingCosts.innerText = shipping.toFixed(2);
+        VAT.innerText = VAT.toFixed(2);
+        totalPrice.innerText = ((sum + shipping)+VAT).toFixed(2);
+
+
+
+        .catch(error => console.error('Fetch error:', error));
+        
     </script>
 </body>
 </html> 
 
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(236, 233, 228);
+        }
+
+        #invoice {
+            width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid cadetblue;
+        }
+
+        #invoiceDetails, #sellerBuyer, #totals {
+            margin-bottom: 20px;
+        }
+
+        #sellerBuyer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        #sellerBuyer div {
+            width: 48%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table th, table td {
+            border: 1px solid cadetblue;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: blanchedalmond;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            body {
+                width: 90%;
+                padding: 10px;
+            }
+
+            #invoice {
+                width: 100%;
+            }
+
+            h1, h2 {
+                font-size: 1.5em;
+            }
+
+            .titles, input, button {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #invoice {
+                padding: 10px;
+            }
+
+            .titles, input, button {
+                font-size: 0.9em;
+                width: 100%;
+            }
+
+            h1, h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="invoice">
+        <h1>INVOICE</h1>
+        <div id="invoiceDetails">
+            <p><strong>Number: </strong><span id="invoiceNumber"></span></p>
+            <p><strong>Date: </strong><span id="invoiceDate"></span></p>
+            <p><strong>Payment Term: </strong><span id="invoiceTerm"></span></p>
+        </div>
+
+        <div id="sellerBuyer">
+            <div>
+                <h2>Seller</h2>
+                <p id="sellerName"></p>
+                <p id="sellerAddress"></p>
+                <p id="sellerCode"></p>
+                <p id="sellerVAT"></p>
+            </div>
+            <div>
+                <h2>Buyer</h2>
+                <p id="buyerName"></p>
+                <p id="buyerAddress"></p>
+                <p id="buyerCode"></p>
+                <p id="buyerVAT"></p> 
+            </div>
+        </div>
+
+        <table id="items">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Subtotal</th>   
+                </tr>    
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div id="totals">
+            <p><strong>Transportation costs:</strong> <span id="transportCosts"></span></p>
+            <p><strong>Rate without VAT:</strong> <span id="rateWithoutVAT"></span></p>
+            <p><strong>VAT (21%):</strong> <span id="VAT"></span></p>
+            <p><strong>Final amount including VAT:</strong> <span id="total"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = "https://in3.dev/inv/";
+
+        async function fetchInvoiceData() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                renderInvoice(data);
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        }
+
+        function renderInvoice(data) {
+            // Invoice details
+            document.getElementById("invoiceNumber").textContent = data.number;
+            document.getElementById("invoiceDate").textContent = data.date;
+            document.getElementById("invoiceTerm").textContent = data.paymentTerm;
+
+            // Seller details
+            document.getElementById("sellerName").textContent = data.seller.name;
+            document.getElementById("sellerAddress").textContent = data.seller.address;
+            document.getElementById("sellerCode").textContent = data.seller.code;
+            document.getElementById("sellerVAT").textContent = data.seller.vat;
+
+            // Buyer details
+            document.getElementById("buyerName").textContent = data.buyer.name;
+            document.getElementById("buyerAddress").textContent = data.buyer.address;
+            document.getElementById("buyerCode").textContent = data.buyer.code;
+            document.getElementById("buyerVAT").textContent = data.buyer.vat;
+
+            // Items table
+            const itemsTableBody = document.querySelector("#items tbody");
+            let sum = 0;
+
+            data.items.forEach((item, index) => {
+                const discount = item.discount ? item.discount.value : 0;
+                const discountedPrice = item.price - discount;
+                const subtotal = discountedPrice * item.quantity;
+
+                const row = itemsTableBody.insertRow();
+                row.innerHTML = `
+                    <td>${item.description}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.price.toFixed(2)}</td>
+                    <td>${discount ? `-${discount.toFixed(2)} (${item.discount.value}%)` : '0.00'}</td>
+                    <td>${subtotal.toFixed(2)}</td>
+                `;
+
+                sum += subtotal;
+            });
+
+            // Totals calculation
+            const shipping = data.shippingPrice || 0;
+            const VAT = ((sum + shipping) * 21) / 100;
+            const total = sum + shipping + VAT;
+
+            document.getElementById("transportCosts").textContent = shipping.toFixed(2);
+            document.getElementById("rateWithoutVAT").textContent = sum.toFixed(2);
+            document.getElementById("VAT").textContent = VAT.toFixed(2);
+            document.getElementById("total").textContent = total.toFixed(2);
+        }
+
+        // Fetch and render the invoice data
+        fetchInvoiceData();
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(236, 233, 228);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #invoice {
+            width: 800px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid cadetblue;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #invoiceDetails, #sellerBuyer, #totals {
+            margin-bottom: 20px;
+        }
+
+        #invoiceDetails p, #sellerBuyer p {
+            margin: 5px 0;
+        }
+
+        #sellerBuyer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        #sellerBuyer div {
+            width: 48%;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid cadetblue;
+            padding: 12px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: blanchedalmond;
+        }
+
+        #totals p {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        #items {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="invoice">
+        <h1>INVOICE</h1>
+        <div id="invoiceDetails">
+            <p><strong>Number: </strong><span id="invoiceNumber"></span></p>
+            <p><strong>Date: </strong><span id="invoiceDate"></span></p>
+            <p><strong>Payment Term: </strong><span id="invoiceTerm"></span></p>
+        </div>
+        <div id="sellerBuyer">
+            <div>
+                <h2>Seller</h2>
+                <p id="sellerName"></p>
+                <p id="sellerAddress"></p>
+                <p id="sellerCode"></p>
+                <p id="sellerVAT"></p>
+            </div>
+            <div>
+                <h2>Buyer</h2>
+                <p id="buyerName"></p>
+                <p id="buyerAddress"></p>
+                <p id="buyerCode"></p>
+                <p id="buyerVAT"></p>
+            </div>
+        </div>
+        <table id="items">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="totals">
+            <p><strong>Transportation Costs:</strong><span id="transportCosts"></span></p>
+            <p><strong>Rate without VAT:</strong><span id="rateWithoutVAT"></span></p>
+            <p><strong>VAT (21%):</strong><span id="VAT"></span></p>
+            <p><strong>Final Amount including VAT:</strong><span id="total"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = "https://in3.dev/inv/";
+
+        async function fetchInvoiceData() {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            renderInvoice(data);
+        }
+
+        function renderInvoice(data) {
+            // Set invoice details
+            document.getElementById("invoiceNumber").textContent = data.number;
+            document.getElementById("invoiceDate").textContent = data.date;
+            document.getElementById("invoiceTerm").textContent = data.paymentTerm;
+
+            // Set seller details
+            document.getElementById("sellerName").textContent = data.seller.name;
+            document.getElementById("sellerAddress").textContent = data.seller.address;
+            document.getElementById("sellerCode").textContent = data.seller.code;
+            document.getElementById("sellerVAT").textContent = data.seller.vat;
+
+            // Set buyer details
+            document.getElementById("buyerName").textContent = data.buyer.name;
+            document.getElementById("buyerAddress").textContent = data.buyer.address;
+            document.getElementById("buyerCode").textContent = data.buyer.code;
+            document.getElementById("buyerVAT").textContent = data.buyer.vat;
+
+            // Render items in table
+            const itemsTableBody = document.querySelector("#items tbody");
+            let totalWithoutVAT = 0;
+            let totalVAT = 0;
+            let totalDiscount = 0;
+
+            data.items.forEach(item => {
+                const row = document.createElement("tr");
+
+                // Calculate subtotal for the item
+                const itemPrice = parseFloat(item.price);
+                const itemQuantity = parseFloat(item.quantity);
+                const itemDiscount = item.discount ? parseFloat(item.discount) : 0;
+                const itemSubtotal = (itemPrice * itemQuantity) - itemDiscount;
+
+                totalWithoutVAT += itemPrice * itemQuantity;
+                totalDiscount += itemDiscount;
+                totalVAT += itemSubtotal * 0.21;  // 21% VAT
+
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${itemQuantity}</td>
+                    <td>${itemPrice.toFixed(2)}</td>
+                    <td>${itemDiscount.toFixed(2)}</td>
+                    <td>${itemSubtotal.toFixed(2)}</td>
+                `;
+
+                itemsTableBody.appendChild(row);
+            });
+
+            // Set totals
+            const transportationCosts = parseFloat(data.transportationCosts);
+            const finalAmountWithVAT = totalWithoutVAT + totalVAT - totalDiscount + transportationCosts;
+
+            document.getElementById("transportCosts").textContent = transportationCosts.toFixed(2);
+            document.getElementById("rateWithoutVAT").textContent = totalWithoutVAT.toFixed(2);
+            document.getElementById("VAT").textContent = totalVAT.toFixed(2);
+            document.getElementById("total").textContent = finalAmountWithVAT.toFixed(2);
+        }
+
+        fetchInvoiceData();
+
+    </script>
+
+</body>
+</html>
 
