@@ -27,3 +27,21 @@ fetch('http://localhost:3000/briedis')
                 h1.style.fontSize = data.dydis + 'px';
             });
     });
+
+    const param1 = document.querySelector('#query');
+    const color1 = param1.querySelector('[type="color"]');
+    const range1 = param1.querySelector('[type="range"]');
+     
+    param1.querySelector('button').addEventListener('click', _ => {
+     
+        const colorWithoutHash = color1.value.slice(1);
+     
+        fetch(`http://localhost:3000/briedis1?color=${colorWithoutHash}&size=${range1.value}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const h1 = document.querySelector('h1');
+                h1.style.color = '#' + data.spalva;
+                h1.style.fontSize = data.dydis + 'px';
+            });
+    });
