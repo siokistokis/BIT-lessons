@@ -11,3 +11,12 @@ function renderInvoice(data) {
 }
 
 fetchInvoiceData();
+
+
+// function renderInvoice(data) {
+//     //invoice details
+//     document.getElementById("invoiceDate").textContent = data.number;
+// }
+
+// fetchInvoiceData();
+
