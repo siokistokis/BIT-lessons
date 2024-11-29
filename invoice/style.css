@@ -7,7 +7,7 @@ body {
 }
 
 #invoice {
-    width: 800px;
+    width: 1200px;
     margin: 20px auto;
     padding: 20px;
     background-color: white;
@@ -40,7 +40,7 @@ table {
     width: 100%;
 }
 
- table th, tabletd {
+ table th, table td {
     border: 1px solid cadetblue ;
     padding: 8px;
     text-align: center;
@@ -48,6 +48,11 @@ table {
 
 table th {
     background-color: blanchedalmond;
+}
+
+.money-column {
+    background-color: #AAFFAA;
+    text-align: right;
 }
 
 #items {
