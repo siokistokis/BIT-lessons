@@ -77,67 +77,28 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Generator Demo</title>
-    <link rel="stylesheet" href="invoice.css">
-    <script src="items.js"></script>
-    <script src="invoice.js"></script>
-    <!-- PROGRESSIVE WEB APP -->
-    <link rel="icon" href="logo.png" type="image/png">
-    <link rel="manifest" href="manifest.json">
-    <script>
-        if ("serviceWorker" in navigator) {
-            // REGISTER SERVICE WORKER
-            navigator.serviceWorker.register("worker.js", { scope: "/" });
-            // CACHE WEB APP FILES
-            caches.open("invoice").then(cache => cache.addAll([
-                "invoice.css", "invoice.html", "invoice.js", "items.js", "logo.png", "manifest.json", "print.css", "print.html"
-            ]));
-        }
-    </script>
-</head>
-<body>
-<form onsubmit="return invoice.print()">
-    <!-- INVOICE -->
-    <div class="header">Invoice</div>
-    <div id="inRow">
-        <label for="inNum">Invoice Number</label>
-        <input type="text" id="inNum" placeholder="Invoice Number" required>
 
-        <label for="inDate">Date</label>
-        <input type="date" id="inDate" required>
-    </div>
 
-    <label for="inBill">Bill To</label>
-    <textarea id="inBill" placeholder="Bill to" required></textarea>
 
-    <!-- ITEMS -->
-    <div class="header">Items</div>
-    <div id="itemsList"></div>
-    <div id="itemsAdd" class="irow">
-        <input type="number" class="qty" min="1" placeholder="Qty">
-        <input type="text" class="item" placeholder="Item Name" list="itemsData" onchange="invoice.price(this)">
-        <input type="number" class="price" min="0.00" step="0.01" placeholder="Price Each">
-        <input type="button" class="action" value="+" onclick="invoice.add()">
-    </div>
-    <datalist id="itemsData"></datalist>
 
-    <!-- TOTALS -->
-    <div class="header">Totals</div>
-    <div id="totals">Grand Total: £0.00</div>
 
-    <!-- CONTROLS -->
-    <div id="controls">
-        <label id="loader">
-            <input type="file" accept=".json" onchange="invoice.load()">Load
-        </label>
-        <input type="button" value="Save" onclick="invoice.save()">
-        <input type="submit" value="Print">
-    </div>
-</form>
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
