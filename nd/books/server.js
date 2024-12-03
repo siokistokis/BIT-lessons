@@ -5,6 +5,9 @@ const fs = require('node:fs');
 const app = express();
 const port = 80;
 
+// const domain = 'http://localhost';
+const domain = 'http://books.final/';
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
