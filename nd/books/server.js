@@ -11,12 +11,19 @@ const domain = 'http://books.final/';
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+const top = fs.readFileSync('./html/top.html', 'utf8');
+const bottom = fs.readFileSync('./html/bottom.html', 'utf8');
+
 //Routes
 
 app.get('/create', (req, res) => {
-  const file = fs.readFileSync('./html/create.html', 'utf8');
+  const file = top + fs.readFileSync('./html/create.html', 'utf8') + bottom;
   const template = handlebars.compile(file);
-  const data = { manoKintamasis: 'Labas' };
+  const data = { 
+    manoKintamasis: 'Labas',
+    pageTitle: 'NAUJA KNYGA', 
+};
   const html = template(data);
   res.send(html);
 

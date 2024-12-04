@@ -1,0 +1,125 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+p {
+    position: absoliute;
+    bottom: 400px;
+    font-size: 2rem;
+    width: 800px;
+    text-wrap: wrap;
+    height: 100px;
+    overflow: auto;
+}
+
+button {
+    position: absolute;
+    padding: 80px 40px;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+}
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Press on the chest</h1>
+        <img src="./chuck-norris-approved-wallpaper-download-dibujo-chuck-norris-11563233120sytftspih5 (1).png" alt="">
+        <p>Get random Chuck Norris jokes</p>
+        <button>Press here</button>
+
+    </main>
+    <script>
+        const p = document.querySelector("p")
+const btn = document.querySelector("button")
+const url = "https://api.chucknorris.io/jokes/random"
+
+btn.addEventListener("click", getJoke)
+
+function getJoke() {
+    fetch(url).then(response => response.json()).then(data => p.innerText = data.value)
+}
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        p {
+            position: absolute;
+            top: 650px;  /* Adjust this value to move it higher or lower */
+            font-size: 2rem;
+            width: 800px;
+            text-wrap: wrap;
+            height: 100px;
+            overflow: auto;
+        }
+
+        button {
+            position: absolute;
+            padding: 80px 40px;
+            cursor: pointer;
+            border: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>Press on the chest</h1>
+        <img src="./chuck-norris-approved-wallpaper-download-dibujo-chuck-norris-11563233120sytftspih5 (1).png" alt="">
+        <p>Get random Chuck Norris jokes</p>
+        <button>Press here</button>
+    </main>
+    <script>
+        const p = document.querySelector("p")
+        const btn = document.querySelector("button")
+        const url = "https://api.chucknorris.io/jokes/random"
+
+        btn.addEventListener("click", getJoke)
+
+        function getJoke() {
+            fetch(url).then(response => response.json()).then(data => p.innerText = data.value)
+        }
+    </script>
+</body>
+</html>
