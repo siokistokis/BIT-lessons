@@ -14,8 +14,8 @@
 }
 
 p {
-    position: absoliute;
-    bottom: 700px;
+    position: absolute;
+    top: 650px;
     font-size: 2rem;
     width: 800px;
     text-wrap: wrap;
