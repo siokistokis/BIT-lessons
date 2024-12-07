@@ -1,3 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+    <link rel="icon" href="me copy.png">
+
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html {
+        height: 100%;
+        margin: 0px;
+        display: flex;
+        justify-content: center; /* Horizontally center the content */
+        align-items: flex-start; /* Align items at the top */
+        font-family: Arial, sans-serif;
+        background-color: rgb(221, 195, 161);
+        background: lemonchiffon;
+        overflow: auto; /* Allow scrolling if necessary */
+    }
+
+    .mainContainer {
+        display: flex;
+        flex-wrap: wrap; /* Allow content to wrap */
+        justify-content: center; /* Center content inside the container */
+        align-items: flex-start; /* Align items at the top */
+        width: 100%; /* Limit the width of the container */
+        max-width: 1200px; /* Limit the width to a max value */
+        min-height: 100vh; /* Ensure container takes full height of the viewport */
+        padding: 20px;
+        border: 2px solid #ccc;
+        box-sizing: border-box;
+        background-color: #ebdae4;
+        border-radius: 5%;
+        overflow-y: auto; /* Allow scrolling inside the container if necessary */
+    }
+
+    .bill {
+        text-align: center;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    hr {
+        margin: 20px 0;
+        border: 1px solid #ccc;
+    }
+
+    
+
+    .counter {
+        background-color: #8fb07d;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(95, 121, 143, 0.1);
+        min-width: 150px; /* Minimum width for the box */
+        flex-grow: 1; /* Allow the box to grow if space permits */
+        text-align: center;
+    }
+
+    .titles {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 1em;
+        margin-bottom: 20px;
+        width: 80%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+        margin-top: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .calculate {
+        background-color: #aad1ac;
+        color: white;
+    }
+
+    .reset {
+        background-color: #d89994;
+        color: white;
+    }
+
+    
+
+    button:hover:hover {
+    background-color:antiquewhite;
+    color: #000000;
+    }
+
+
+    .count {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .mainContainer {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .counter {
+         width: 100%;
+        }
+
+        h1, h2 {
+            font-size: 1.5em;
+        }
+
+        .titles, input, button {
+            font-size: 1em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .counter {
+            padding: 10px;
+        }
+
+        .titles, input, button {
+            font-size: 0.9em;
+            width: 100%;
+        }
+
+        h1, h2 {
+            font-size: 1.2em;
+        }
+    }
+
+   
+
+
+    </style>
+</head>
+<body>
+
+   
+
+
+    <section class="mainContainer">
+        <div class="bill">
+            <h1 style="color: #8fb07d;">INVOICE</h1>
+            <hr />
+            <div class="enter">
+                <div>
+                    <span class="titles">Number</span>
+                    <br>
+                    <input type="text" id="number" placeholder="Enter number">
+                    <br />
+
+
+
+                    <span class="titles">Date</span>
+                    <br>
+                    <input type="date" id="date"> <!-- Changed to type="date" -->
+                    <br />
+
+
+                    <span class="titles">Payment term</span>
+                    <input type="text" id="payment-term" placeholder="Enter term">
+                    <br />
+                    <button class="reset">Reset</button>
+                    <br>
+                    <hr>
+                </div>
+                <div class="company">
+                    <h2 style="color: #d89994;">Company</h2>
+                    <hr>
+                    <span class="titles">Company name</span>
+                    <input type="text" id="company-name" placeholder="Enter seller name">
+                    <br />
+                    <span class="titles">Company address</span>
+                    <input type="text" id="company-address" placeholder="Enter seller address">
+                    <br />
+                    <span class="titles">Company phone nr</span>
+                    <input type="text" id="company-phone" placeholder="Enter seller phone nr">
+                    <br />
+                    <button class="reset">Reset</button>
+                    <br>
+                    <hr>
+                </div>
+
+                <div class="client">
+                    <h2 style="color: cadetblue;">Client</h2>
+                    <hr>
+                    <span class="titles">Client name</span>
+                    <input type="text" id="client-name" placeholder="Enter buyer name">
+                    <br />
+                    <span class="titles">Client address</span>
+                    <input type="text" id="client-address" placeholder="Enter buyer address">
+                    <br />
+                    <span class="titles">Client phone nr</span>
+                    <input type="text" id="client-phone" placeholder="Enter buyer phone nr">
+                    <br />
+                    <button class="reset">Reset</button>
+                    <br>
+                    <hr>
+                </div>
+
+
+
+             
+                              
+                   <!-- Add the purchase list structure inside a table instead of using <thead> -->
+<div class="purchase">
+    <h2 style="color: gray;">Purchase</h2>
+    <hr>
+    <table id="purchase-list">
+        <thead>
+            <tr>
+                <th><span class="number">List</span></th>
+                <th><span class="titles">Description</span></th>
+                <th><span class="titles">Quantity</span></th>
+                <th><span class="titles">Unit Price</span></th>
+                <th><span class="titles">Discount</span></th>
+                <th><span class="titles" style="color: blue;">Subtotal:</span></th>
+            </tr>
+        </thead>
+        <tbody id="list-body">
+            <!-- Existing purchase rows will go here -->
+        </tbody>
+    </table>
+    <br>
+    <button class="calculate">Calculate</button>
+    <br>
+    <button class="reset">Reset</button>
+    <br>
+    <button class="list-next-purchase">Add Next Purchase</button>
+</div>
+
+
+
+
+
+
+
+                <div class="other-expenses">
+                    <span class="titles">Transportation costs:</span>
+                    <input type="number" id="transportation-costs" placeholder="Enter transportation costs">
+                    <br />
+                    <span class="titles">Rate without VAT:</span>
+                    <div id="rate-without-vat" class="count"></div>
+                    <br>
+                    <button class="calculate">Calculate</button>
+                    <br>
+                    <button class="reset">Reset</button>
+                    <br>
+                </div>
+                <div>
+                    <span class="titles">VAT (21%):</span>
+                    <div id="vat" class="count"></div>
+                    <br />
+                    <span class="titles" style="color: blue;">Final amount including VAT:</span>
+                    <div id="final-amount" class="count"></div>
+                    <br />
+                    <button class="calculate">Calculate</button>
+                    <br>
+                    <button class="reset">Reset</button>
+                    <br>
+                </div>
+               
+                <button href="" style="background-color: rgba(60, 190, 73, 0.608); color: white;"  class="previewer">PREVIEWER</button>
+                <br>
+
+                <div class="finalButtons">
+                    <button id="generate-pdf" style="background-color: rgb(235, 208, 183);">Generate PDF</button>
+                    <br>
+                    <button id="reset-form" style="background-color: rgba(245, 69, 5, 0.574);">Reset all</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- jsPDF library -->
+
+
+
+
+    <script>
+    
+
+
+
+
+// Get the necessary elements
+const listNextPurchaseButton = document.querySelector('.list-next-purchase');
+const listBody = document.getElementById('list-body');
+const calculateButtons = document.querySelectorAll('.calculate');
+const resetButtons = document.querySelectorAll('.reset');
+
+// Function to calculate the subtotal for a specific row
+function calculateSubtotal(row) {
+    const quantityInput = row.querySelector('.quantity');
+    const priceInput = row.querySelector('.price');
+    const discountInput = row.querySelector('.discount');
+    const subtotalElement = row.querySelector('.subtotal');
+    
+    const qty = parseFloat(quantityInput.value);
+    const price = parseFloat(priceInput.value);
+    const discount = parseFloat(discountInput.value) / 100;
+    
+    if (!isNaN(qty) && !isNaN(price)) {
+        let subtotal = qty * price;
+        if (!isNaN(discount)) {
+            subtotal -= subtotal * discount;  // Apply discount
+        }
+        subtotalElement.textContent = '€' + subtotal.toFixed(2);
+    }
+}
+
+// Add event listener to the "Add Next Purchase" button
+listNextPurchaseButton.addEventListener('click', () => {
+    // Create a new row (<tr>) for the purchase entry
+    const newRow = document.createElement('tr');
+    
+    // Create individual cells (<td>) for each input field in the row
+    newRow.innerHTML = `
+        <td><input type="number" class="item" placeholder="Enter list number"></td>
+        <td><input type="text" class="description" placeholder="Enter item name"></td>
+        <td><input type="number" class="quantity" placeholder="Enter quantity"></td>
+        <td><input type="number" class="price" placeholder="Enter price"></td>
+        <td><input type="number" class="discount" placeholder="Enter discount %"></td>
+        <td><div class="subtotal">€0.00</div></td>
+    `;
+    
+    // Append the new row to the table body
+    listBody.appendChild(newRow);
+});
+
+// Add event listeners for input fields to recalculate subtotal when values change
+listBody.addEventListener('input', (e) => {
+    const row = e.target.closest('tr');  // Get the row where the input was changed
+    if (row) {
+        calculateSubtotal(row);  // Recalculate the subtotal for that row
+    }
+});
+
+// Calculate Button functionality
+calculateButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const section = e.target.closest('div');
+
+        // Calculate the subtotal for all rows
+        if (section.classList.contains('purchase')) {
+            const rows = section.querySelectorAll('tr');
+            rows.forEach(row => {
+                calculateSubtotal(row);
+            });
+        }
+
+        // You can also add other calculations for the rate without VAT, VAT, and final amount here if needed.
+    });
+});
+
+// Reset Button functionality for specific sections
+resetButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const section = e.target.closest('div');
+        if (section) {
+            const inputs = section.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.value = '';  // Reset input values
+            });
+
+            const calculatedFields = section.querySelectorAll('.count');
+            calculatedFields.forEach(field => {
+                field.textContent = '';  // Reset calculated fields
+            });
+        }
+    });
+});
+
+
+
+    </script>
+    
+</body>    
+</html>
 
 
 
@@ -14,15 +415,4 @@
 
 
 
-
-<table id="items">
-    <thead>
-        <tr>
-            <th>List</th>
-            <th>Discription</th>
-            <th>Quantity</th>
-            <th>Unit Price</th>
-            <th>Discount</th>
-            <th>Subtotal</th>   
-        </tr>    
-    </thead>
+    

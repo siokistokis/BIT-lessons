@@ -1,219 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <title>Document</title>
-
+    <title>Invoice</title>
+    <link rel="icon" href="me copy.png">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body,
+        html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            font-family: Arial, sans-serif;
+            background-color: rgb(221, 195, 161);
+            background: lemonchiffon;
+            overflow: auto;
+        }
 
-body {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(236, 233, 228);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
+        .mainContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 100vh;
+            padding: 20px;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+            background-color: #ebdae4;
+            border-radius: 5%;
+            overflow-y: auto;
+        }
 
-#invoice {
-  width: 800px;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid cadetblue;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Centers all text inside the invoice */
-}
+        .bill {
+            text-align: center;
+            width: 100%;
+        }
 
-h1, h2 {
-  text-align: center;
-  margin-bottom: 10px;
-}
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
 
-#invoiceDetails, #sellerBuyer, #totals {
-  margin-bottom: 20px;
-}
+        hr {
+            margin: 20px 0;
+            border: 1px solid #ccc;
+        }
 
-#invoiceDetails p, #sellerBuyer p {
-  margin: 5px 0;
-}
+        .titles {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
 
-#sellerBuyer {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Adds space between seller and buyer sections */
-}
+        input {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            width: 80%;
+            border: 1px solid #ab7777;
+            border-radius: 5px;
+        }
 
-#sellerBuyer div {
-  width: 48%;
-  background-color: #f9f9f9; /* Background color for seller/buyer sections */
-  padding: 10px;
-  border-radius: 5px;
-}
+        .cc {
+            flex-direction: row;
+            align-items: baseline;
+            display: flex;
+            justify-content: space-between;
+        }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ab7777;
+        }
 
-table th, table td {
-  border: 1px solid cadetblue;
-  padding: 12px;  /* Increased padding for readability */
-  text-align: center;
-}
+        .calculate {
+            background-color: #aad1ac;
+            color: white;
+        }
 
-table th {
-  background-color: blanchedalmond; /* Background color for table headers */
-}
+        .reset {
+            background-color: #d89994;
+            color: white;
+        }
 
-#totals p {
-  text-align: right;
-  font-weight: bold;
-}
+        button:hover {
+            background-color: antiquewhite;
+            color: #000000;
+        }
 
-#items {
-  margin-top: 20px;
-}
+        .count {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
 
+        .finalButtons button {
+            margin-top: 20px;
+        }
 
-
+        .purchase-table input {
+            width: 90%;
+        }
     </style>
-
-
 </head>
+
 <body>
-    <div id="invoice">
-        <h1>INVOICE</h1>
-        <div id="invoiceDetails">
-            <p><strong>Number: </strong><span id="invoiceNumber"></span></p>
-            <p><strong>Date: </strong><span id="invoiceDate"></span></p>
-            <p><strong>Peyment term: </strong><span id="invoiceTerm"></span></p>
-        </div>
-        <div id="sellerBuyer">
+
+<section class="mainContainer">
+    <div class="bill">
+        <h1 style="color: #8fb07d;">INVOICE</h1>
+        <hr />
+
+        <!-- Enter Section -->
+        <div class="enter">
+            <!-- Basic information -->
             <div>
-                <h2>Seller</h2>
-                <p id="sellerName"></p>
-                <p id="sellerAddress"></p>
-                <p id="sellerCode"></p>
-                <p id="sellerVAT"></p>
+                <span class="titles">Number</span> <br>
+                <input type="text" id="number" placeholder="Enter number"><br />
+
+                <span class="titles">Date</span> <br>
+                <input type="date" id="date"><br />
+
+                <span class="titles">Payment term</span><br>
+                <input type="date" id="payment-term"><br />
             </div>
+            <div class="cc">
+                <!-- Company Section -->
+                <div class="company">
+                    <h2 style="color: #d89994;">Company</h2>
+                    <hr>
+                    <span class="titles">Company name</span>
+                    <input type="text" id="company-name" placeholder="Enter seller name"><br />
+                    <span class="titles">Company address</span>
+                    <input type="text" id="company-address" placeholder="Enter seller address"><br />
+                    <span class="titles">Company email address</span>
+                    <input type="text" id="company-email-address" placeholder="Enter seller email address"><br />
+                    <span class="titles">Company phone nr</span>
+                    <input type="text" id="company-phone" placeholder="Enter seller phone nr"><br />
+                </div>
+
+                <!-- Client Section -->
+                <div class="client">
+                    <h2 style="color: cadetblue;">Client</h2>
+                    <hr>
+                    <span class="titles">Client name</span>
+                    <input type="text" id="client-name" placeholder="Enter buyer name"><br />
+                    <span class="titles">Client address</span>
+                    <input type="text" id="client-address" placeholder="Enter buyer address"><br />
+                    <span class="titles">Client email address</span>
+                    <input type="text" id="client-email-address" placeholder="Enter buyer email address"><br />
+                    <span class="titles">Client phone nr</span>
+                    <input type="text" id="client-phone" placeholder="Enter buyer phone nr"><br />
+                </div>
+
+            </div>
+            
+            <!-- Purchase Section -->
+            <div class="purchase">
+                <h2 style="color: gray;">Purchase</h2>
+                <hr>
+                <table id="purchase-list" class="purchase-table">
+                    <thead>
+                        <tr>
+                            <th style="color: blue;">List:</th>
+                            <th><span class="titles">Description</span></th>
+                            <th><span class="titles">Quantity</span></th>
+                            <th><span class="titles">Unit Price</span></th>
+                            <th><span class="titles">Discount</span></th>
+                            <th><span class="titles" style="color: blue;">Subtotal:</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="list-body">
+                        <!-- Existing purchase rows will go here -->
+                    </tbody>
+                </table>
+            
+                <!-- <button class="calculate">Calculate</button><br>
+                <button class="reset">Reset</button><br> -->
+                <button class="list-next-purchase" style="font-style: italic;">+ ADD + NEXT + PURCHASE + TO + LIST +</button>
+                <br>
+            </div>
+            <br>
+
+            <!-- Transportation Costs Section -->
+            <div class="other-expenses">
+                <span class="titles">Transportation costs:</span> <br>
+                <input type="number" id="transportation-costs" placeholder="Enter transportation costs"><br />
+            </div>
+
+            <!-- VAT and Final Amount Section -->
             <div>
-                <h2>Buyer</h2>
-                <p id="buyerName"></p>
-                <p id="buyerAddress"></p>
-                <p id="buyerCode"></p>
-                <p id="buyerVAT"></p> 
+                <span class="titles" style="color: red;">VAT (21%):</span>
+                <div id="vat" class="count"></div><br />
+                <span class="titles" style="color: blue;">Final amount including VAT:</span>
+                <div id="final-amount" class="count"></div><br />
             </div>
-        </div>
-        <table id="items">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Discount</th>
-                    <th>Subtotal</th>   
-                </tr>    
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div id="totals">
-            <p><strong>Transportation costs:</strong><span id="transportCosts"></span></p>
-            <p><strong>Rate without VAT:</strong><span id="rateWithoutVAT"></span></p>
-            <p><strong>VAT (21%):</strong><span id="VAT"></span></p>
-            <p><strong>Final amount including VAT:</strong><span id="total"></span></p>
+
+            <button class="calculate">Calculate</button><br>
+                <button class="reset">Reset</button><br>
+
+            <!-- Reset and PDF Buttons -->
+            <div class="finalButtons">
+                <button id="generate-pdf" style="background-color: rgb(235, 208, 183);">Generate PDF</button><br>
+                <button id="reset-form" style="background-color: rgba(245, 69, 5, 0.574);">Reset all</button>
+            </div>
         </div>
     </div>
-    <!-- <script src="app.js" defer></script> -->
+</section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <script>
-
-
-          const apiUrl = "https://in3.dev/inv/";
-
-async function fetchInvoiceData() {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    renderInvoice(data);
+<script>
+// Function to calculate subtotal for each purchase row
+function calculateSubtotal(row) {
+    const quantityInput = row.querySelector('.quantity');
+    const priceInput = row.querySelector('.price');
+    const discountInput = row.querySelector('.discount');
+    const subtotalElement = row.querySelector('.subtotal');
+    
+    const qty = parseFloat(quantityInput.value);
+    const price = parseFloat(priceInput.value);
+    const discount = parseFloat(discountInput.value) / 100;
+    
+    if (!isNaN(qty) && !isNaN(price)) {
+        let subtotal = qty * price;
+        if (!isNaN(discount)) {
+            subtotal -= subtotal * discount;  // Apply discount
+        }
+        subtotalElement.textContent = '€' + subtotal.toFixed(2);
+    }
 }
 
-function renderInvoice(data) {
-    // Set invoice details
-    document.getElementById("invoiceNumber").textContent = data.number;
-    document.getElementById("invoiceDate").textContent = data.date;
-    document.getElementById("invoiceTerm").textContent = data.paymentTerm;
+// Add New Purchase Row
+document.querySelector('.list-next-purchase').addEventListener('click', () => {
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td><input type="number" class="item" placeholder="Enter list number"></td>
+        <td><input type="text" class="description" placeholder="Enter item name"></td>
+        <td><input type="number" class="quantity" placeholder="Enter quantity"></td>
+        <td><input type="number" class="price" placeholder="Enter price"></td>
+        <td><input type="number" class="discount" placeholder="Enter discount %"></td>
+        <td><div class="subtotal">€0.00</div></td>
+    `;
+    document.getElementById('list-body').appendChild(newRow);
 
-    // Set seller details
-    document.getElementById("sellerName").textContent = data.seller.name;
-    document.getElementById("sellerAddress").textContent = data.seller.address;
-    document.getElementById("sellerCode").textContent = data.seller.code;
-    document.getElementById("sellerVAT").textContent = data.seller.vat;
+    // Add event listeners to recalculate subtotal whenever inputs change
+    newRow.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+            calculateSubtotal(newRow);  // Recalculate subtotal for that row
+        });
+    });
+});
 
-    // Set buyer details
-    document.getElementById("buyerName").textContent = data.buyer.name;
-    document.getElementById("buyerAddress").textContent = data.buyer.address;
-    document.getElementById("buyerCode").textContent = data.buyer.code;
-    document.getElementById("buyerVAT").textContent = data.buyer.vat;
+// Calculate Button functionality for VAT and Final Amount
+document.querySelector('.calculate').addEventListener('click', () => {
+    let totalWithoutVat = 0;
 
-    // Render items in table
-    const itemsTableBody = document.querySelector("#items tbody");
-    let totalWithoutVAT = 0;
-    let totalVAT = 0;
-    let totalDiscount = 0;
-
-    data.items.forEach(item => {
-        const row = document.createElement("tr");
-
-        // Calculate subtotal for the item
-        const itemPrice = parseFloat(item.price);
-        const itemQuantity = parseFloat(item.quantity);
-        const itemDiscount = item.discount ? parseFloat(item.discount) : 0;
-        const itemSubtotal = (itemPrice * itemQuantity) - itemDiscount;
-
-        totalWithoutVAT += itemPrice * itemQuantity;
-        totalDiscount += itemDiscount;
-        totalVAT += itemSubtotal * 0.21;  // 21% VAT
-
-        row.innerHTML = `
-            <td>${item.name}</td>
-            <td>${itemQuantity}</td>
-            <td>${itemPrice.toFixed(2)}</td>
-            <td>${itemDiscount.toFixed(2)}</td>
-            <td>${itemSubtotal.toFixed(2)}</td>
-        `;
-
-        itemsTableBody.appendChild(row);
+    // Loop through each purchase row and calculate the subtotal
+    const rows = document.querySelectorAll('#list-body tr');
+    rows.forEach(row => {
+        calculateSubtotal(row);
+        const subtotal = parseFloat(row.querySelector('.subtotal').textContent.replace('€', ''));
+        if (!isNaN(subtotal)) {
+            totalWithoutVat += subtotal;
+        }
     });
 
-    // Set totals
-    const transportationCosts = parseFloat(data.transportationCosts);
-    const finalAmountWithVAT = totalWithoutVAT + totalVAT - totalDiscount + transportationCosts;
+    // Add transportation costs if entered
+    const transportationCosts = parseFloat(document.getElementById('transportation-costs').value);
+    if (!isNaN(transportationCosts)) {
+        totalWithoutVat += transportationCosts;
+    }
 
-    document.getElementById("transportCosts").textContent = transportationCosts.toFixed(2);
-    document.getElementById("rateWithoutVAT").textContent = totalWithoutVAT.toFixed(2);
-    document.getElementById("VAT").textContent = totalVAT.toFixed(2);
-    document.getElementById("total").textContent = finalAmountWithVAT.toFixed(2);
+    // VAT Calculation (21%)
+    const vatAmount = totalWithoutVat * 0.21;
+    document.getElementById('vat').textContent = '€' + vatAmount.toFixed(2);
+
+    // Final amount including VAT
+    const finalAmount = totalWithoutVat + vatAmount;
+    document.getElementById('final-amount').textContent = '€' + finalAmount.toFixed(2);
+});
+
+// Reset function to clear all inputs and calculations
+function resetAll() {
+    const allInputs = document.querySelectorAll('input');
+    const allCalculatedFields = document.querySelectorAll('.count');
+    allInputs.forEach(input => input.value = '');
+    allCalculatedFields.forEach(field => field.textContent = '');
+    const listBody = document.getElementById('list-body');
+    listBody.innerHTML = ''; // Clear all purchase rows
 }
 
-fetchInvoiceData();
+// Event listener for Reset all button
+document.getElementById('reset-form').addEventListener('click', resetAll);
 
+// Generate PDF
+document.getElementById('generate-pdf').addEventListener('click', () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-
-  
-
-
-    </script>
-
+    // Capture the bill content (you can expand this logic to include all fields)
+    const invoiceContent = document.querySelector('.mainContainer').innerHTML;
+    doc.html(invoiceContent, {
+        callback: function (doc) {
+            doc.save('invoice.pdf');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
-
-
-
-
