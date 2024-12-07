@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +12,7 @@
             box-sizing: border-box;
         }
 
-        body,
-        html {
+        body, html {
             height: 100%;
             display: flex;
             justify-content: center;
@@ -112,6 +110,38 @@
         .purchase-table input {
             width: 90%;
         }
+
+        /* Print-Specific Styles */
+        @media print {
+            .print-button,      /* Hide the Print button */
+            .calculate,         /* Hide the Calculate button */
+            .reset,             /* Hide the Reset button */
+            .finalButtons,      /* Hide the final buttons section */
+            .list-next-purchase, /* Hide the Add Purchase button */
+            .purchase-table input { /* Optionally hide inputs in the table */
+                display: none;
+            }
+
+            /* Ensure the table and its contents are styled for printing */
+            .purchase-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .purchase-table th, .purchase-table td {
+                padding: 8px;
+                border: 1px solid black;
+                text-align: left;
+            }
+
+            .purchase-table .subtotal {
+                font-weight: bold;
+            }
+
+            .purchase-table {
+                display: table; /* Ensure the table is displayed */
+            }
+        }
     </style>
 </head>
 
@@ -122,9 +152,7 @@
         <h1 style="color: #8fb07d;">INVOICE</h1>
         <hr />
 
-        <!-- Enter Section -->
         <div class="enter">
-            <!-- Basic information -->
             <div>
                 <span class="titles">Number</span> <br>
                 <input type="text" id="number" placeholder="Enter number"><br />
@@ -136,7 +164,6 @@
                 <input type="date" id="payment-term"><br />
             </div>
             <div class="cc">
-                <!-- Company Section -->
                 <div class="company">
                     <h2 style="color: #d89994;">Company</h2>
                     <hr>
@@ -150,7 +177,6 @@
                     <input type="text" id="company-phone" placeholder="Enter seller phone nr"><br />
                 </div>
 
-                <!-- Client Section -->
                 <div class="client">
                     <h2 style="color: cadetblue;">Client</h2>
                     <hr>
@@ -165,8 +191,6 @@
                 </div>
 
             </div>
-            
-            <!-- Purchase Section -->
             <div class="purchase">
                 <h2 style="color: gray;">Purchase</h2>
                 <hr>
@@ -185,21 +209,16 @@
                         <!-- Existing purchase rows will go here -->
                     </tbody>
                 </table>
-            
-                <!-- <button class="calculate">Calculate</button><br>
-                <button class="reset">Reset</button><br> -->
                 <button class="list-next-purchase" style="font-style: italic;">+ ADD + NEXT + PURCHASE + TO + LIST +</button>
                 <br>
             </div>
             <br>
 
-            <!-- Transportation Costs Section -->
             <div class="other-expenses">
                 <span class="titles">Transportation costs:</span> <br>
                 <input type="number" id="transportation-costs" placeholder="Enter transportation costs"><br />
             </div>
 
-            <!-- VAT and Final Amount Section -->
             <div>
                 <span class="titles" style="color: red;">VAT (21%):</span>
                 <div id="vat" class="count"></div><br />
@@ -208,9 +227,8 @@
             </div>
 
             <button class="calculate">Calculate</button><br>
-                <button class="reset">Reset</button><br>
+            <button class="reset">Reset</button><br>
 
-            <!-- Reset and PDF Buttons -->
             <div class="finalButtons">
                 <button id="generate-pdf" style="background-color: rgb(235, 208, 183);">Generate PDF</button><br>
                 <button id="reset-form" style="background-color: rgba(245, 69, 5, 0.574);">Reset all</button>
@@ -221,142 +239,116 @@
         <button class="print-button" onclick="window.print()">Print Invoice</button>
     </div>
 
-      <!-- PDF Download Button -->
-      <button onclick="downloadPDF()">Download PDF</button>
+    <!-- PDF Download Button -->
+    <button onclick="downloadPDF()">Download PDF</button>
 
-      <!-- Include html2pdf.js -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <!-- Include html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <script>
-// Function to calculate subtotal for each purchase row
-function calculateSubtotal(row) {
-    const quantityInput = row.querySelector('.quantity');
-    const priceInput = row.querySelector('.price');
-    const discountInput = row.querySelector('.discount');
-    const subtotalElement = row.querySelector('.subtotal');
-    
-    const qty = parseFloat(quantityInput.value);
-    const price = parseFloat(priceInput.value);
-    const discount = parseFloat(discountInput.value) / 100;
-    
-    if (!isNaN(qty) && !isNaN(price)) {
-        let subtotal = qty * price;
-        if (!isNaN(discount)) {
-            subtotal -= subtotal * discount;  // Apply discount
+    // Function to calculate subtotal for each purchase row
+    function calculateSubtotal(row) {
+        const quantityInput = row.querySelector('.quantity');
+        const priceInput = row.querySelector('.price');
+        const discountInput = row.querySelector('.discount');
+        const subtotalElement = row.querySelector('.subtotal');
+        
+        const qty = parseFloat(quantityInput.value);
+        const price = parseFloat(priceInput.value);
+        const discount = parseFloat(discountInput.value) / 100;
+        
+        if (!isNaN(qty) && !isNaN(price)) {
+            let subtotal = qty * price;
+            if (!isNaN(discount)) {
+                subtotal -= subtotal * discount;  // Apply discount
+            }
+            subtotalElement.textContent = '€' + subtotal.toFixed(2);
         }
-        subtotalElement.textContent = '€' + subtotal.toFixed(2);
     }
-}
 
-// Add New Purchase Row
-document.querySelector('.list-next-purchase').addEventListener('click', () => {
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td><input type="number" class="item" placeholder="Enter list number"></td>
-        <td><input type="text" class="description" placeholder="Enter item name"></td>
-        <td><input type="number" class="quantity" placeholder="Enter quantity"></td>
-        <td><input type="number" class="price" placeholder="Enter price"></td>
-        <td><input type="number" class="discount" placeholder="Enter discount %"></td>
-        <td><div class="subtotal">€0.00</div></td>
-    `;
-    document.getElementById('list-body').appendChild(newRow);
+    // Add New Purchase Row
+    document.querySelector('.list-next-purchase').addEventListener('click', () => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="number" class="item" placeholder="Enter list number"></td>
+            <td><input type="text" class="description" placeholder="Enter item name"></td>
+            <td><input type="number" class="quantity" placeholder="Enter quantity"></td>
+            <td><input type="number" class="price" placeholder="Enter price"></td>
+            <td><input type="number" class="discount" placeholder="Enter discount %"></td>
+            <td><div class="subtotal">€0.00</div></td>
+        `;
+        document.getElementById('list-body').appendChild(newRow);
 
-    // Add event listeners to recalculate subtotal whenever inputs change
-    newRow.querySelectorAll('input').forEach(input => {
-        input.addEventListener('input', () => {
-            calculateSubtotal(newRow);  // Recalculate subtotal for that row
+        // Add event listeners to recalculate subtotal whenever inputs change
+        newRow.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => {
+                calculateSubtotal(newRow);  // Recalculate subtotal for that row
+            });
         });
     });
-});
 
-// Calculate Button functionality for VAT and Final Amount
-document.querySelector('.calculate').addEventListener('click', () => {
-    let totalWithoutVat = 0;
-
-    // Loop through each purchase row and calculate the subtotal
-    const rows = document.querySelectorAll('#list-body tr');
-    rows.forEach(row => {
-        calculateSubtotal(row);
-        const subtotal = parseFloat(row.querySelector('.subtotal').textContent.replace('€', ''));
-        if (!isNaN(subtotal)) {
-            totalWithoutVat += subtotal;
-        }
-    });
-
-    // Add transportation costs if entered
-    const transportationCosts = parseFloat(document.getElementById('transportation-costs').value);
-    if (!isNaN(transportationCosts)) {
-        totalWithoutVat += transportationCosts;
-    }
-
-    // VAT Calculation (21%)
-    const vatAmount = totalWithoutVat * 0.21;
-    document.getElementById('vat').textContent = '€' + vatAmount.toFixed(2);
-
-    // Final amount including VAT
-    const finalAmount = totalWithoutVat + vatAmount;
-    document.getElementById('final-amount').textContent = '€' + finalAmount.toFixed(2);
-});
-
-// Reset function to clear all inputs and calculations
-function resetAll() {
-    const allInputs = document.querySelectorAll('input');
-    const allCalculatedFields = document.querySelectorAll('.count');
-    allInputs.forEach(input => input.value = '');
-    allCalculatedFields.forEach(field => field.textContent = '');
-    const listBody = document.getElementById('list-body');
-    listBody.innerHTML = ''; // Clear all purchase rows
-}
-
-// Event listener for Reset all button
-document.getElementById('reset-form').addEventListener('click', resetAll);
-
-// Generate PDF
-document.getElementById('generate-pdf').addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    // Capture the bill content (you can expand this logic to include all fields)
-    const invoiceContent = document.querySelector('.mainContainer').innerHTML;
-    doc.html(invoiceContent, {
-        callback: function (doc) {
-            doc.save('invoice.pdf');
-        }
-    });
-});
-
-
-function downloadPDF() {
-            const invoiceElement = document.querySelector('.invoice'); // Target your invoice div
-            html2pdf().from(invoiceElement).save('invoice.pdf');
-        }
-       
-    function downloadPDF() {
-        const invoiceElement = document.querySelector('.invoice'); // Target your invoice div
-        const options = {
-            margin:       10,  // Set margins
-            filename:     'invoice.pdf', // Set filename
-            image:        { type: 'jpeg', quality: 0.98 }, // Image quality
-            html2canvas:  {
-                scale: 4, // Resolution, higher number = better quality
-                letterRendering: true, // Ensure better font rendering
-                useCORS: true // Handle CORS issues for external resources (like fonts)
-            },
-            jsPDF:        {
-                unit: 'mm', // Unit of measurement for pdf
-                format: 'a4', // PDF format
-                orientation: 'portrait', // Page orientation
+    // Function to calculate the total of all purchase rows
+    function calculateTotal() {
+        let total = 0;
+        const rows = document.querySelectorAll('#purchase-list tbody tr');
+        
+        rows.forEach(row => {
+            const subtotalText = row.querySelector('.subtotal').textContent;
+            const subtotal = parseFloat(subtotalText.replace('€', ''));
+            if (!isNaN(subtotal)) {
+                total += subtotal;
             }
-        };
-        html2pdf().from(invoiceElement).set(options).save(); // Apply options
+        });
+        
+        return total;
     }
 
+    // Function to calculate VAT (21%)
+    function calculateVAT(total) {
+        return total * 0.21;
+    }
 
+    // Function to calculate final amount (total + VAT)
+    function calculateFinalAmount() {
+        const total = calculateTotal();
+        const vat = calculateVAT(total);
+        const finalAmount = total + vat;
 
+        // Display VAT and final amount
+        document.getElementById('vat').textContent = '€' + vat.toFixed(2);
+        document.getElementById('final-amount').textContent = '€' + finalAmount.toFixed(2);
+    }
 
+    // Calculate button logic
+    document.querySelector('.calculate').addEventListener('click', () => {
+        calculateFinalAmount();
+    });
+
+    // Reset form logic
+    document.querySelector('.reset').addEventListener('click', () => {
+        document.getElementById('number').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('payment-term').value = '';
+        document.getElementById('company-name').value = '';
+        document.getElementById('company-address').value = '';
+        document.getElementById('company-email-address').value = '';
+        document.getElementById('company-phone').value = '';
+        document.getElementById('client-name').value = '';
+        document.getElementById('client-address').value = '';
+        document.getElementById('client-email-address').value = '';
+        document.getElementById('client-phone').value = '';
+        document.getElementById('transportation-costs').value = '';
+        document.querySelectorAll('.purchase-table tbody tr').forEach(row => {
+            row.remove();
+        });
+    });
+
+    // Download PDF function
+    function downloadPDF() {
+        const element = document.querySelector('.mainContainer');
+        html2pdf().from(element).save();
+    }
 </script>
 
 </body>
