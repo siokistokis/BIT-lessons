@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: flex-start;
             font-family: Arial, sans-serif;
-            background-color: rgb(221, 195, 161);
+            background-color: rgba(245, 69, 5, 0.574);
             background: lemonchiffon;
             overflow: auto;
         }
@@ -33,7 +33,7 @@
             padding: 20px;
             border: 2px solid #ccc;
             box-sizing: border-box;
-            background-color: #ebdae4;
+            background-color: rgba(218, 124, 89, 0.574);
             border-radius: 5%;
             overflow-y: auto;
         }
@@ -109,6 +109,7 @@
 
         .purchase-table input {
             width: 90%;
+            text-align: right; /* Align the unit price input to the right */
         }
 
         /* Print-Specific Styles */
@@ -121,8 +122,9 @@
             .purchase-table input { /* Optionally hide inputs in the table */
                 display: none;
             }
+        }
 
-            /* Ensure the table and its contents are styled for printing */
+        @media print {
             .purchase-table {
                 width: 100%;
                 border-collapse: collapse;
@@ -137,19 +139,15 @@
             .purchase-table .subtotal {
                 font-weight: bold;
             }
-
-            .purchase-table {
-                display: table; /* Ensure the table is displayed */
-            }
         }
     </style>
 </head>
-
 <body>
 
 <section class="mainContainer">
     <div class="bill">
-        <h1 style="color: #8fb07d;">INVOICE</h1>
+        <h1 style="color: #4a7a30;">INVOICE</h1>
+        <h4 style="color: #4a7a30;">FOR ANY CURRENCY</h4>
         <hr />
 
         <div class="enter">
@@ -165,7 +163,7 @@
             </div>
             <div class="cc">
                 <div class="company">
-                    <h2 style="color: #d89994;">Company</h2>
+                    <h2 style="color: #d22d21;">Company</h2>
                     <hr>
                     <span class="titles">Company name</span>
                     <input type="text" id="company-name" placeholder="Enter seller name"><br />
@@ -178,7 +176,7 @@
                 </div>
 
                 <div class="client">
-                    <h2 style="color: cadetblue;">Client</h2>
+                    <h2 style="color: rgb(45, 112, 115);">Client</h2>
                     <hr>
                     <span class="titles">Client name</span>
                     <input type="text" id="client-name" placeholder="Enter buyer name"><br />
@@ -192,7 +190,7 @@
 
             </div>
             <div class="purchase">
-                <h2 style="color: gray;">Purchase</h2>
+                <h2 style="color: rgb(96, 72, 72);">Purchase</h2>
                 <hr>
                 <table id="purchase-list" class="purchase-table">
                     <thead>
@@ -201,7 +199,7 @@
                             <th><span class="titles">Description</span></th>
                             <th><span class="titles">Quantity</span></th>
                             <th><span class="titles">Unit Price</span></th>
-                            <th><span class="titles">Discount</span></th>
+                            <th><span class="titles">Discount %</span></th>
                             <th><span class="titles" style="color: blue;">Subtotal:</span></th>
                         </tr>
                     </thead>
@@ -216,7 +214,7 @@
 
             <div class="other-expenses">
                 <span class="titles">Transportation costs:</span> <br>
-                <input type="number" id="transportation-costs" placeholder="Enter transportation costs"><br />
+                <input type="text" id="transportation-costs" placeholder="0.00"><br />
             </div>
 
             <div>
@@ -227,11 +225,11 @@
             </div>
 
             <button class="calculate">Calculate</button><br>
-            <button class="reset">Reset</button><br>
+            <button class="reset">Reset Purchase</button><br>
 
             <div class="finalButtons">
                 <button id="generate-pdf" style="background-color: rgb(235, 208, 183);">Generate PDF</button><br>
-                <button id="reset-form" style="background-color: rgba(245, 69, 5, 0.574);">Reset all</button>
+                <button id="reset-form" style="background-color: rgba(245, 69, 5, 0.574);">Reset All</button>
             </div>
         </div>
 
@@ -247,6 +245,61 @@
 </section>
 
 <script>
+    let currentItemNumber = 1;
+
+    // Function to format money as €0.00 with two digits
+    function formatMoney(value) {
+        let number = parseFloat(value.replace('', '').replace(',', '').trim());
+        if (isNaN(number)) return '0.00';
+        return '' + number.toFixed(2);  // Limit to two decimal places
+    }
+
+    // Function to update price input field with money format
+    function updatePriceField(input) {
+        let formattedValue = formatMoney(input.value);
+        input.value = formattedValue;
+    }
+
+    // Event listener for price and transportation cost inputs
+    function addMoneyFormattingListeners() {
+        const priceInputs = document.querySelectorAll('.price, #transportation-costs');
+        priceInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                updatePriceField(this);
+            });
+
+            input.addEventListener('input', function() {
+                let value = this.value;
+                value = value.replace(/[^0-9.,€]/g, '').replace(',', '.'); // Ensure valid number formatting
+                this.value = value;
+            });
+        });
+    }
+
+    // Add Money Formatting to new rows when added
+    document.querySelector('.list-next-purchase').addEventListener('click', () => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `  
+            <td>${currentItemNumber++}</td>
+            <td><input type="text" class="description" placeholder="Enter item name"></td>
+            <td><input type="number" class="quantity" min="0" placeholder="Enter quantity"></td>
+            <td><input type="text" class="price" placeholder="0.00"></td>
+            <td><input type="number" class="discount" min="0" max="100" placeholder="0 %" step="0"></td>
+            <td><div class="subtotal">0.00</div></td>
+        `;
+        document.getElementById('list-body').appendChild(newRow);
+
+        // Add money formatting listeners to the new row inputs
+        addMoneyFormattingListeners();
+
+        // Add event listeners to recalculate subtotal whenever inputs change
+        newRow.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => {
+                calculateSubtotal(newRow);  // Recalculate subtotal for that row
+            });
+        });
+    });
+
     // Function to calculate subtotal for each purchase row
     function calculateSubtotal(row) {
         const quantityInput = row.querySelector('.quantity');
@@ -255,7 +308,7 @@
         const subtotalElement = row.querySelector('.subtotal');
         
         const qty = parseFloat(quantityInput.value);
-        const price = parseFloat(priceInput.value);
+        const price = parseFloat(priceInput.value.replace('€', '').trim());
         const discount = parseFloat(discountInput.value) / 100;
         
         if (!isNaN(qty) && !isNaN(price)) {
@@ -267,26 +320,8 @@
         }
     }
 
-    // Add New Purchase Row
-    document.querySelector('.list-next-purchase').addEventListener('click', () => {
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td><input type="number" class="item" placeholder="Enter list number"></td>
-            <td><input type="text" class="description" placeholder="Enter item name"></td>
-            <td><input type="number" class="quantity" placeholder="Enter quantity"></td>
-            <td><input type="number" class="price" placeholder="Enter price"></td>
-            <td><input type="number" class="discount" placeholder="Enter discount %"></td>
-            <td><div class="subtotal">€0.00</div></td>
-        `;
-        document.getElementById('list-body').appendChild(newRow);
-
-        // Add event listeners to recalculate subtotal whenever inputs change
-        newRow.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', () => {
-                calculateSubtotal(newRow);  // Recalculate subtotal for that row
-            });
-        });
-    });
+    // Add Money Formatting to Price Inputs
+    addMoneyFormattingListeners();
 
     // Function to calculate the total of all purchase rows
     function calculateTotal() {
@@ -306,49 +341,71 @@
 
     // Function to calculate VAT (21%)
     function calculateVAT(total) {
-        return total * 0.21;
+        return total * 0.21;  // 21% VAT
     }
 
-    // Function to calculate final amount (total + VAT)
-    function calculateFinalAmount() {
-        const total = calculateTotal();
+    // Function to update final amount including VAT
+    function updateFinalAmount() {
+        const transportationCosts = parseFloat(document.getElementById('transportation-costs').value.replace('€', '').trim()) || 0;
+        const total = calculateTotal() + transportationCosts;
         const vat = calculateVAT(total);
         const finalAmount = total + vat;
 
-        // Display VAT and final amount
+        // Display VAT and Final Amount
         document.getElementById('vat').textContent = '€' + vat.toFixed(2);
         document.getElementById('final-amount').textContent = '€' + finalAmount.toFixed(2);
     }
 
-    // Calculate button logic
+    // Event Listener for Calculate Button
     document.querySelector('.calculate').addEventListener('click', () => {
-        calculateFinalAmount();
-    });
-
-    // Reset form logic
-    document.querySelector('.reset').addEventListener('click', () => {
-        document.getElementById('number').value = '';
-        document.getElementById('date').value = '';
-        document.getElementById('payment-term').value = '';
-        document.getElementById('company-name').value = '';
-        document.getElementById('company-address').value = '';
-        document.getElementById('company-email-address').value = '';
-        document.getElementById('company-phone').value = '';
-        document.getElementById('client-name').value = '';
-        document.getElementById('client-address').value = '';
-        document.getElementById('client-email-address').value = '';
-        document.getElementById('client-phone').value = '';
-        document.getElementById('transportation-costs').value = '';
-        document.querySelectorAll('.purchase-table tbody tr').forEach(row => {
-            row.remove();
+        // Recalculate subtotal for each row
+        const rows = document.querySelectorAll('#purchase-list tbody tr');
+        rows.forEach(row => {
+            calculateSubtotal(row);
         });
+
+        // Recalculate total, VAT, and final amount including transportation costs
+        updateFinalAmount();
     });
 
-    // Download PDF function
-    function downloadPDF() {
-        const element = document.querySelector('.mainContainer');
-        html2pdf().from(element).save();
-    }
+    // Event Listener for Reset Purchase Button (Resets only the purchase section)
+    document.querySelector('.reset').addEventListener('click', () => {
+        const purchaseInputs = document.querySelectorAll('#purchase-list tbody input');
+        purchaseInputs.forEach(input => input.value = '');
+
+        const subtotals = document.querySelectorAll('.subtotal');
+        subtotals.forEach(subtotal => subtotal.textContent = '0.00');
+
+        document.getElementById('vat').textContent = '';
+        document.getElementById('final-amount').textContent = '';
+    });
+
+    // Event Listener for Reset All Button (Resets the entire form)
+    document.getElementById('reset-form').addEventListener('click', () => {
+        // Reset all input fields and purchase list
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => input.value = '');
+
+        document.getElementById('list-body').innerHTML = ''; // Clear purchase list
+        currentItemNumber = 1; // Reset item number
+
+        document.getElementById('vat').textContent = '';
+        document.getElementById('final-amount').textContent = '';
+    });
+
+    document.querySelector('.print-button').addEventListener('click', () => {
+        // Ensure all purchase rows are visible and their subtotals are calculated before printing
+        const rows = document.querySelectorAll('#purchase-list tbody tr');
+        rows.forEach(row => {
+            calculateSubtotal(row);  // Recalculate subtotal for that row
+        });
+        
+        // Recalculate VAT and final amount as well
+        updateFinalAmount();
+
+        // Trigger the print function
+        window.print();
+    });
 </script>
 
 </body>
