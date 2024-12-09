@@ -152,8 +152,8 @@
 
         <div class="enter">
             <div>
-                <span class="titles">Number</span> <br>
-                <input type="text" id="number" placeholder="Enter number"><br />
+                <!-- <span class="titles">Number</span> <br>
+                <input type="text" id="number" placeholder="Enter number"><br /> -->
 
                 <span class="titles">Date</span> <br>
                 <input type="date" id="date"><br />
@@ -163,15 +163,15 @@
             </div>
             <div class="cc">
                 <div class="company">
-                    <h2 style="color: #d22d21;">Company</h2>
+                    <h2 style="color: #d22d21;">Service</h2>
                     <hr>
-                    <span class="titles">Company name</span>
+                    <span class="titles">Service name</span>
                     <input type="text" id="company-name" placeholder="Enter seller name"><br />
-                    <span class="titles">Company address</span>
+                    <span class="titles">Service address</span>
                     <input type="text" id="company-address" placeholder="Enter seller address"><br />
-                    <span class="titles">Company email address</span>
+                    <span class="titles">Service email address</span>
                     <input type="text" id="company-email-address" placeholder="Enter seller email address"><br />
-                    <span class="titles">Company phone nr</span>
+                    <span class="titles">Service phone nr</span>
                     <input type="text" id="company-phone" placeholder="Enter seller phone nr"><br />
                 </div>
 
@@ -190,7 +190,7 @@
 
             </div>
             <div class="purchase">
-                <h2 style="color: rgb(96, 72, 72);">Purchase</h2>
+                <h2 style="color: rgb(96, 72, 72);">Purchase order</h2>
                 <hr>
                 <table id="purchase-list" class="purchase-table">
                     <thead>
@@ -218,9 +218,7 @@
             </div>
 
             <div>
-                <span class="titles" style="color: red;">VAT (21%):</span>
-                <div id="vat" class="count"></div><br />
-                <span class="titles" style="color: blue;">Final amount including VAT:</span>
+                <span class="titles" style="color: blue;">Final amount:</span>
                 <div id="final-amount" class="count"></div><br />
             </div>
 
@@ -237,8 +235,13 @@
         <button class="print-button" onclick="window.print()">Print Invoice</button>
     </div>
 
-    <!-- PDF Download Button -->
+        <!-- PDF Download Button -->
     <button onclick="downloadPDF()">Download PDF</button>
+    <div>
+    <h2 style="color: #4a7a30;">Payment Confirmation</h2>
+    <img src="./images/tick.png" alt="">
+    </div>
+    
 
     <!-- Include html2pdf.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
@@ -247,7 +250,7 @@
 <script>
     let currentItemNumber = 1;
 
-    // Function to format money as €0.00 with two digits
+    // Function to format money as 0.00 with two digits
     function formatMoney(value) {
         let number = parseFloat(value.replace('', '').replace(',', '').trim());
         if (isNaN(number)) return '0.00';
@@ -270,7 +273,7 @@
 
             input.addEventListener('input', function() {
                 let value = this.value;
-                value = value.replace(/[^0-9.,€]/g, '').replace(',', '.'); // Ensure valid number formatting
+                value = value.replace(/[^0-9.,]/g, '').replace(',', '.'); // Ensure valid number formatting
                 this.value = value;
             });
 
@@ -326,7 +329,7 @@
             if (!isNaN(discount)) {
                 subtotal -= subtotal * discount;  // Apply discount
             }
-            subtotalElement.textContent = '€' + subtotal.toFixed(2);
+            subtotalElement.textContent = subtotal.toFixed(2);
         }
     }
 
@@ -340,7 +343,7 @@
         
         rows.forEach(row => {
             const subtotalText = row.querySelector('.subtotal').textContent;
-            const subtotal = parseFloat(subtotalText.replace('€', ''));
+            const subtotal = parseFloat(subtotalText);
             if (!isNaN(subtotal)) {
                 total += subtotal;
             }
@@ -349,21 +352,13 @@
         return total;
     }
 
-    // Function to calculate VAT (21%)
-    function calculateVAT(total) {
-        return total * 0.21;  // 21% VAT
-    }
-
-    // Function to update final amount including VAT
+    // Function to update final amount (without VAT)
     function updateFinalAmount() {
         const transportationCosts = parseFloat(document.getElementById('transportation-costs').value.replace('€', '').trim()) || 0;
         const total = calculateTotal() + transportationCosts;
-        const vat = calculateVAT(total);
-        const finalAmount = total + vat;
 
-        // Display VAT and Final Amount
-        document.getElementById('vat').textContent = '€' + vat.toFixed(2);
-        document.getElementById('final-amount').textContent = '€' + finalAmount.toFixed(2);
+        // Display final amount
+        document.getElementById('final-amount').textContent = total.toFixed(2);
     }
 
     // Event Listener for Calculate Button
@@ -374,7 +369,7 @@
             calculateSubtotal(row);
         });
 
-        // Recalculate total, VAT, and final amount including transportation costs
+        // Recalculate final amount without VAT
         updateFinalAmount();
     });
 
@@ -386,7 +381,6 @@
         const subtotals = document.querySelectorAll('.subtotal');
         subtotals.forEach(subtotal => subtotal.textContent = '0.00');
 
-        document.getElementById('vat').textContent = '';
         document.getElementById('final-amount').textContent = '';
     });
 
@@ -399,7 +393,6 @@
         document.getElementById('list-body').innerHTML = ''; // Clear purchase list
         currentItemNumber = 1; // Reset item number
 
-        document.getElementById('vat').textContent = '';
         document.getElementById('final-amount').textContent = '';
     });
 
@@ -409,8 +402,8 @@
         rows.forEach(row => {
             calculateSubtotal(row);  // Recalculate subtotal for that row
         });
-        
-        // Recalculate VAT and final amount as well
+
+        // Recalculate final amount as well
         updateFinalAmount();
 
         // Trigger the print function
