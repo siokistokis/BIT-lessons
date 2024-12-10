@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --wath server.js",
+    "start": "node --watch server.js",
     "front": "npx mix watch"
   },
   "keywords": [
@@ -17,6 +17,7 @@
   "description": "Books CRUD application",
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "cookie-parser": "^1.4.7",
     "express": "^4.21.1",
     "handlebars": "^4.7.8",
     "laravel-mix": "^6.0.49",
