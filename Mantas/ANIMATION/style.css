@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.disco {
+    background-image: url(./img/5234906.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: yellow;
+    animation: danceFloor 2s ease-in-out infinite alternate;
+}
+
+@keyframes danceFloor {
+    0% {
+        background-color: yellow;
+    }
+    25% {
+        background-color: tomato;
+    }
+    50% {
+        background-color: springgreen;
+    }
+    75% {
+        background-color: sandybrown;
+    }
+    100% {
+        background-color: royalblue;
+    }
+}
+
+.movingBackground {
+    background-image: linear-gradient(to right top, 
+    red, 
+    blue, 
+    green, 
+    violet, 
+    brown, 
+    black, 
+    yellow, 
+    grey, 
+    tomato, 
+    white,
+    pink,
+    skyblue, 
+    orange  
+    );
+    background-size: 200%;
+    animation: backgroundChange 2s infinite alternate;
+}
+
+@keyframes backgroundChange {
+    /* 0% {
+        background-position: 0% 100%;
+    }
+    50% {
+        background-position: 100% 200%;
+    }
+    100% {
+        background-position: 0% 100%;
+    } */
+
+    from {
+        background-position: 0% 100%;
+    }
+    to {
+        background-position: 100% 0%;
+    }
+}
+
+.cold {
+    background-image: url(./img/img_20190609_140908_burst003.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.cold img {
+    width: 200px;
+    animation: cold 1ms infinite alternate;
+    /* animation-delay: 2s; */
+}
+
+@keyframes cold {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(2deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(-2deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+    
+    /* from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(-360deg);
+    } */
+
+
+}
+
+.car {
+    position: relative;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+.imgRoad {
+    position: absolute;
+    /* min-height: 100vh;
+    min-width: 100%; */
+    width: 100%;
+    z-index: -1;
+}
+
+.imgCar {
+    position: absolute;
+    width: 400px;
+    top: 500px;
+    animation: carMoving 1.5s infinite;
+}
+
+@keyframes carMoving {
+    from {
+        transform: translate(-1000px);
+    }
+    to {
+        transform: translate(2000px);
+    }
+
+}
+
+.heart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart img {
+    width: 250px;
+    animation: heartBeat infinite 1s;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.5);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+
+
+    
+}
