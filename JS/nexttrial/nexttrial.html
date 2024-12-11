@@ -184,6 +184,96 @@
         .date-container input[type="date"] {
             width: 40%; /* Reduced width */
         }
+
+        .tick {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: tickBeat infinite 1s;
+}
+
+/* .tick img {
+    width: 250px;
+    animation: tickBeat infinite 1s;
+} */
+
+@keyframes tickBeat {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.5);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+    
+}
+
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.066);
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.modalContent {
+    width: 50rem;
+    background-color: rgb(255, 255, 255);
+    margin: 15% auto;
+    height: 200px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    animation: slideDown ease-in-out 0.5s;
+}
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor:  pointer;
+    color: tomato;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-30rem);
+    }
+    100% {
+        transform: translateY(0);
+        transform: scale(2);
+    }
+}
+
+
+.slideUp {
+    animation: slideUp 1s ease-in-out;
+}
+
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-40rem);
+    }
+}
     </style>
 </head>
 
@@ -274,11 +364,30 @@
                     <button onclick="downloadPDF()">Download PDF</button>
                 </div>
             </div>
+            <main>
+                <section class="container">
+                    <h1><span>Let's</span>click</h1>
+                    <p>Click button below</p>
+                    <button class="btn">BillPrintPreviewer</button>
+                </section>
+        
+                <section class="modal">
+                    <div class="modalContent">
+                        <span class="close">&times;</span>
+                        <h2></h2>
+                        <hr>
+                        <p></p>
+                    </div>
+                    
+                </section>
+        
+            </main>
+        
 
         </div>
-
-        <div>
-            <h2 style="color: #4a7a30;">Payment Confirmation</h2>
+            
+        <div class="tick">
+            <h2 class="tick" style="color: #4a7a30;">Payment Confirmation</h2>
             <img src="./images/tick.png" alt="">
         </div>
 
@@ -431,6 +540,27 @@
             const element = document.querySelector('.mainContainer');
             html2pdf().from(element).save('invoice.pdf');
         }
+
+        const btn = document.querySelector(".btn")
+const close = document.querySelector(".close")
+const modal = document.querySelector(".modal")
+const modalContent = document.querySelector(".modalContent")
+
+btn.addEventListener("click", openModal)
+close.addEventListener("click", closeModal)
+modal.addEventListener("click",closeModal)
+
+function openModal() {
+    modal.style.display = "block"
+}
+function closeModal() {
+    modalContent.classList.add("slideUp")
+
+setTimeout(()=> {
+    modalContent.classList.remove("slideUp")
+    modal.style.display = "none"
+}, 700)
+}
     </script>
 
 </body>
