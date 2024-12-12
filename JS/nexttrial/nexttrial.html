@@ -16,6 +16,7 @@
         body,
         html {
             height: 100%;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -23,6 +24,85 @@
             background-color: rgba(245, 69, 5, 0.502);
             background: lemonchiffon;
             overflow: auto;
+        }
+
+        body {
+            background: linear-gradient(
+                to right top,
+                rgb(189, 189, 230),
+                rgb(218, 206, 232),
+                white,
+                rgb(186, 232, 239),
+                rgb(207, 222, 234),
+                white,
+                rgb(116, 248, 202),
+                rgb(178, 232, 209),
+                white,
+                rgb(146, 248, 153),
+                white
+            );
+            background-size: 400%;
+            position: relative;
+            animation: linerBackground 8s infinite alternate;
+        }
+
+        @keyframes LinerBackground {
+            from {
+                background-position: 0%;
+            }
+            to {
+                background-position: 100%;
+            }
+            
+        }
+
+
+        .cube {
+            width: 5px;
+            height: 5px;
+            border: 0.2px solid white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            animation: cubeRotate 10s infinite;
+        }
+
+       
+        .cube:nth-child(2) {
+            animation-delay: 2.5;
+            top: 30%;
+            left: 90%;
+        }
+        .cube:nth-child(3) {
+            animation-delay: 3s;
+            top: 10%;
+            left: 80%;
+        }
+        .cube:nth-child(4) {
+            animation-delay: 3.5s;
+            top: 40%;
+            left: 60%;
+        }
+        .cube:nth-child(5) {
+            animation-delay: 4.5s;
+            top: 50%;
+            left: 20%;
+        }
+        .cube:nth-child(6) {
+            animation-delay: 5s;
+            top: 90%;
+            left: 10%;
+        }
+
+        @keyframes cubeRotate {
+            from {
+                transform: scale(0) rotate(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(20) rotate(1000deg);
+                opacity: 0;
+            }
         }
 
         .mainContainer {
@@ -278,6 +358,13 @@
 </head>
 
 <body>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+
 
     <section class="mainContainer">
         <div class="bill">
