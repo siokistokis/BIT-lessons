@@ -40,6 +40,23 @@ app.post('/items', (req, resp) => {
     resp.status(201).json(newItem);
 })
 
+app.put('/items/:id', (req, resp) => {
+    const id = parseInt(req.params.id);
+    const elementIndex = items.findIndex(element => element.id === id);
+    if (elementIndex !== -1) {
+        items[elementIndex] = { id, name: req.body.name };
+        resp.json(items[elementIndex]);
+    }else {
+        resp.status(404).send('elementas nerastas');
+    }
+})
+
+app.delete('/items/:id', (req, resp) => {
+    const id = parentInt(req.params.id);
+    items = items.filter(element => element.id !== id);
+    resp.status(200).send('elementas pasalintas')
+})
+
 app.listen(PORT, () => {
     console.log("Server Listening on PORT:", PORT);
 });
