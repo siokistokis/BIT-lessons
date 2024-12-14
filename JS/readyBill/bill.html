@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
-    <link rel="icon" href="me copy.png">
+    <title>Bill</title>
+    <link rel="icon" href="myIcon.png">
     <style>
         * {
             margin: 0;
@@ -145,7 +145,7 @@
             padding: 10px;
             font-size: 1em;
             margin-bottom: 5px;
-            width: 50%;
+            width: 100%;
             border: 1px solid #ab7777;
             border-radius: 5px;
             border: transparent;
@@ -449,7 +449,7 @@
     <section class="mainContainer">
         <div class="bill">
             <h1 style="color: #4a7a30;">INVOICE</h1>
-            <h4 style="color: #4a7a30;">FOR ANY CURRENCY</h4>
+            <h4 style="color: #4a7a30;">FOR ANY BUSINESS & CURRENCY</h4>
             <hr />
 
             <div class="enter">
@@ -466,26 +466,26 @@
                     <div class="company">
                         <h2 style="color: #d22d21;">Service</h2>
                         <hr>
-                        <span class="titles">Service name:</span>
+                        <span class="titles"></span>
                         <input type="text" id="company-name" placeholder="Enter seller name"><br />
-                        <span class="titles">Service address:</span>
+                        <span class="titles"></span>
                         <input type="text" id="company-address" placeholder="Enter seller address"><br />
-                        <span class="titles">Service email:</span>
+                        <span class="titles"></span>
                         <input type="text" id="company-email-address" placeholder="Enter seller email address"><br />
-                        <span class="titles">Service phone:</span>
+                        <span class="titles"></span>
                         <input type="text" id="company-phone" placeholder="Enter seller phone nr"><br />
                     </div>
 
                     <div class="client">
                         <h2 style="color: rgb(45, 112, 115);">Client</h2>
                         <hr>
-                        <span class="titles">Client name:</span>
+                        <span class="titles"></span>
                         <input type="text" id="client-name" placeholder="Enter buyer name"><br />
-                        <span class="titles">Client address:</span>
+                        <span class="titles"></span>
                         <input type="text" id="client-address" placeholder="Enter buyer address"><br />
-                        <span class="titles">Client email:</span>
+                        <span class="titles"></span>
                         <input type="text" id="client-email-address" placeholder="Enter buyer email address"><br />
-                        <span class="titles">Client phone:</span>
+                        <span class="titles"></span>
                         <input type="text" id="client-phone" placeholder="Enter buyer phone nr"><br />
                     </div>
                 </div>
@@ -496,10 +496,10 @@
                         <thead>
                             <tr>
                                 <th style="color: blue;">List:</th>
-                                <th><span class="titles">- Description - </span></th>
-                                <th><span class="titles">Quantity</span></th>
-                                <th><span class="titles"> - Unit Price - </span></th>
-                                <th><span class="titles">Discount</span></th>
+                                <th><span class="titles">Description:</span></th>
+                                <th><span class="titles">Quantity:</span></th>
+                                <th><span class="titles">Unit Price:</span></th>
+                                <th><span class="titles">Discount:</span></th>
                                 <th><span class="titles" style="color: blue;">Subtotal:</span></th>
                             </tr>
                         </thead>
@@ -512,7 +512,7 @@
                 <br>
 
                 <div class="other-expenses">
-                    <span class="titles">Other expenses, storage, costoms, packing, Shipping, Transportation costs:</span>
+                    <span class="titles">Shipping costs and other expenses:</span>
                     <input type="text" id="transportation-costs" placeholder="0.00"><br />
                 </div>
 
@@ -528,13 +528,8 @@
 
                     
                     <!-- Print button -->
-                    <button class="print-button" onclick="prepareInvoiceForPrint()">Print Invoice</button>
-                    <!-- PDF Download Button -->
-                    <!-- <button onclick="downloadPDF()">Download PDF</button> -->
+                    <button class="print-button" onclick="prepareInvoiceForPrint()">Print Bill</button>
                     
-                   
-                    <!-- <button class="print-button" onclick="window.print()">Print Invoice</button>
-                    <button onclick="downloadPDF()">Download PDF</button> -->
 
                 </div>
             </div>
@@ -561,7 +556,7 @@
         </div>
             
         <div class="tick">
-            <h2 class="tick" style="color: #4a7a30;">Payment Confirmation</h2>
+            <h2 class="tick" style="color: #4a7a30;">Payment Confirmation Bill</h2>
             <!-- <img src="./images/tick.png" alt=""> -->
         </div>
 
@@ -747,108 +742,6 @@ setTimeout(()=> {
 
 
 
-
-
-
-
-
-
-
-// // Function to replace input fields with their values for print and PDF
-// function replaceInputWithValue() {
-//     const inputs = document.querySelectorAll('input');
-//     inputs.forEach(input => {
-//         const value = input.value;
-//         const span = document.createElement('span');
-//         span.textContent = value;
-//         input.parentNode.replaceChild(span, input);
-//     });
-// }
-
-// // Function to revert back the input fields for further editing
-// function restoreInputFields() {
-//     const spans = document.querySelectorAll('span');
-//     spans.forEach(span => {
-//         const input = document.createElement('input');
-//         input.value = span.textContent;
-//         span.parentNode.replaceChild(input, span);
-//     });
-// }
-
-// // Modify the print button functionality
-// document.querySelector('.print-button').addEventListener('click', () => {
-//     replaceInputWithValue(); // Replace input with its value
-//     window.print();           // Print the page
-//     restoreInputFields();    // Restore inputs for further use
-// });
-
-// // Modify the PDF download function
-// function downloadPDF() {
-//     replaceInputWithValue(); // Replace input with its value
-//     const element = document.querySelector('.mainContainer');
-//     html2pdf().from(element).save('invoice.pdf');
-//     restoreInputFields();    // Restore inputs for further use
-// }
-
-
-// function prepareInvoiceForPrint() {
-//     const printableInvoice = document.createElement("div");
-//     printableInvoice.classList.add("invoice-print");
-    
-//     // Copy data from the inputs to the printable container
-//     const inputData = {
-//         date: document.getElementById("date").value,
-//         paymentTerm: document.getElementById("payment-term").value,
-//         companyName: document.getElementById("company-name").value,
-//         companyAddress: document.getElementById("company-address").value,
-//         companyEmail: document.getElementById("company-email-address").value,
-//         companyPhone: document.getElementById("company-phone").value,
-//         clientName: document.getElementById("client-name").value,
-//         clientAddress: document.getElementById("client-address").value,
-//         clientEmail: document.getElementById("client-email-address").value,
-//         clientPhone: document.getElementById("client-phone").value,
-//         transportationCosts: document.getElementById("transportation-costs").value,
-//         finalAmount: document.getElementById("final-amount").textContent,
-//     };
-
-//     // Append data to the printable div
-//     for (const [key, value] of Object.entries(inputData)) {
-//         const p = document.createElement("p");
-//         p.innerHTML = `<strong>${key}:</strong> ${value}`;
-//         printableInvoice.appendChild(p);
-//     }
-
-//     // Append the printable invoice to the body (you can hide it later)
-//     document.body.appendChild(printableInvoice);
-
-//     // Trigger the print dialog
-//     window.print();
-
-//     // Remove the printable invoice after printing
-//     document.body.removeChild(printableInvoice);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function downloadPDF() {
     const element = document.querySelector('.mainContainer');
     html2pdf()
@@ -930,76 +823,6 @@ function downloadPDF() {
             html2pdf().from(element).save('invoice.pdf');
             restoreInputFields();    // Restore inputs for further use
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//         function downloadPDF() {
-//     const element = document.querySelector('.mainContainer');
-//     const options = {
-//         filename: 'invoice.pdf',
-//         image: { type: 'jpeg', quality: 0.98 },
-//         html2canvas: { scale: 2 },
-//         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-//         margin: [10, 10, 10, 10],  // Set margins for the PDF
-//     };
-
-//     // Convert HTML to PDF and download it
-//     html2pdf().from(element).set(options).save();
-// }
-// function prepareInvoiceForPrint() {
-//     // Replace input values with static text before printing
-//     replaceInputWithValue();
-//     window.print();  // Open the print dialog
-//     restoreInputFields();  // Restore editable inputs
-// }
-// function replaceInputWithValue() {
-//     const inputs = document.querySelectorAll('input');
-//     inputs.forEach(input => {
-//         const value = input.value;
-//         const span = document.createElement('span');
-//         span.textContent = value;
-//         input.parentNode.replaceChild(span, input);
-//     });
-// }
-
-// function restoreInputFields() {
-//     const spans = document.querySelectorAll('span');
-//     spans.forEach(span => {
-//         const input = document.createElement('input');
-//         input.value = span.textContent;
-//         span.parentNode.replaceChild(input, span);
-//     });
-// }
-
-
-
-
-
 
 
 
