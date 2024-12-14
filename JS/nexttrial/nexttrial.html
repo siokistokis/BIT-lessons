@@ -354,6 +354,75 @@
         transform: translateY(-40rem);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .mainContainer {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .bill {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #d3d3d3;
+    }
+
+    h1, h2, h3 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .titles {
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        margin: 10px 0;
+        border-collapse: collapse;
+    }
+
+    table th, table td {
+        padding: 8px;
+        border: 1px solid #d3d3d3;
+        text-align: left;
+    }
+
+    button {
+        display: none;
+    }
+
+    .cube {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 
@@ -446,7 +515,7 @@
                     <button class="reset">Reset Purchase</button>
                     <button class="resetAll" id="reset-form" style="background-color: rgba(245, 69, 5, 0.424);">Reset All</button>
                     <!-- Print button -->
-                    <button class="print-button" onclick="window.print()">Print Invoice</button>
+                    <button class="print-button" onclick="prepareInvoiceForPrint()">Print Invoice</button>
                     <!-- PDF Download Button -->
                     <button onclick="downloadPDF()">Download PDF</button>
                 </div>
@@ -648,6 +717,110 @@ setTimeout(()=> {
     modal.style.display = "none"
 }, 700)
 }
+
+
+
+
+
+
+
+
+
+function downloadPDF() {
+    const element = document.querySelector('.mainContainer');
+    html2pdf()
+        .from(element)
+        .toPdf()
+        .get('pdf')
+        .then(function (pdf) {
+            pdf.text(document.querySelector("#company-name").value, 10, 10);  // You can manually adjust where data is placed
+            pdf.save('invoice.pdf');
+        });
+}
+
+// Function to replace input fields with their values for print and PDF
+function replaceInputWithValue() {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        const value = input.value;
+        const span = document.createElement('span');
+        span.textContent = value;
+        input.parentNode.replaceChild(span, input);
+    });
+}
+
+// Function to revert back the input fields for further editing
+function restoreInputFields() {
+    const spans = document.querySelectorAll('span');
+    spans.forEach(span => {
+        const input = document.createElement('input');
+        input.value = span.textContent;
+        span.parentNode.replaceChild(input, span);
+    });
+}
+
+// Modify the print button functionality
+document.querySelector('.print-button').addEventListener('click', () => {
+    replaceInputWithValue(); // Replace input with its value
+    window.print();           // Print the page
+    restoreInputFields();    // Restore inputs for further use
+});
+
+// Modify the PDF download function
+function downloadPDF() {
+    replaceInputWithValue(); // Replace input with its value
+    const element = document.querySelector('.mainContainer');
+    html2pdf().from(element).save('invoice.pdf');
+    restoreInputFields();    // Restore inputs for further use
+} // Function to replace input fields with their values for print and PDF
+        function replaceInputWithValue() {
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                const value = input.value;
+                const span = document.createElement('span');
+                span.textContent = value;
+                input.parentNode.replaceChild(span, input);
+            });
+        }
+
+        // Function to revert back the input fields for further editing
+        function restoreInputFields() {
+            const spans = document.querySelectorAll('span');
+            spans.forEach(span => {
+                const input = document.createElement('input');
+                input.value = span.textContent;
+                span.parentNode.replaceChild(input, span);
+            });
+        }
+
+        // Modify the print button functionality
+        function prepareInvoiceForPrint() {
+            replaceInputWithValue(); // Replace input with its value
+            window.print();           // Print the page
+            restoreInputFields();    // Restore inputs for further use
+        }
+
+        // Modify the PDF download function
+        function downloadPDF() {
+            replaceInputWithValue(); // Replace input with its value
+            const element = document.querySelector('.mainContainer'); // Container for the invoice
+            html2pdf().from(element).save('invoice.pdf');
+            restoreInputFields();    // Restore inputs for further use
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
 
 </body>
