@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Date</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #clock {
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .time {
+            font-size: 60px;
+        }
+
+        .date {
+            font-size: 30px;
+            margin-top: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="clock">
+        <div class="time" id="time"></div>
+        <div class="date" id="date"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const clockElement = document.getElementById('time');
+            const dateElement = document.getElementById('date');
+            const currentTime = new Date();
+
+            // Time
+            const hours = String(currentTime.getHours()).padStart(2, '0');
+            const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+            const seconds = String(currentTime.getSeconds()).padStart(2, '0');
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+
+            // Date
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+            const dayOfWeek = daysOfWeek[currentTime.getDay()];
+            const dayOfMonth = currentTime.getDate();
+            const month = months[currentTime.getMonth()];
+            const year = currentTime.getFullYear();
+
+            dateElement.textContent = `${dayOfWeek}, ${month} ${dayOfMonth}, ${year}`;
+        }
+
+        setInterval(updateClock, 1000);  // Update clock every second
+        updateClock();  // Initial call to display clock immediately
+    </script>
+
+</body>
+</html>

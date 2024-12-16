@@ -179,3 +179,32 @@
 
     
 }
+
+
+
+
+
+
+
+.line {
+    position: absolute;
+    animation: lineMoving 1.5s infinite;
+    color: aquamarine;
+    width: 15px;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    animation: lineMoving 5s infinite alternate ;
+
+    
+}
+
+@keyframes lineMoving {
+    from {
+        transform: translate(-1000px);
+    }
+    to {
+        transform: translate(2000px);
+    }
+
+}

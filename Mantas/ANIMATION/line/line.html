@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Line</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+
+       
+
+        .line {
+    position: absolute;
+    top: 50%;  /* Vertically center the line */
+    left: -100%;  /* Start off-screen to the left */
+    width: 100%;  /* Full width of the viewport */
+    height: 3px;  /* Line thickness */
+    background-color: aquamarine;  /* Line color */
+    animation: lineMoving 3s linear infinite alternate;  /* Animation for line movement */
+}
+
+        /* @keyframes lineMoving {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(100vw);
+            }
+        } */
+
+
+        
+
+        @keyframes lineMoving {
+    0% {
+        transform: translateX(-100%);  /* Start off-screen to the left */
+    }
+    100% {
+        transform: translateX(100%);  /* Move to the right end of the screen */
+    }
+}
+
+    .line:nth-child(1) {
+            background-color: lightseagreen;
+            animation-delay: 1s;
+            top: 20%;
+            left: 40%;
+        }
+
+        .line:nth-child(2) {
+            background-color: lightcoral;
+            animation-delay: 2s;
+            top: 40%;
+            left: 60%;
+            height: 6px;
+        }
+
+        .line:nth-child(3) {
+            background-color: lightgreen;
+            animation-delay: 3s;
+            top: 10%;
+            left: 50%;
+        }
+
+        .line:nth-child(4) {
+            background-color: lightgrey;
+            animation-delay: 4s;
+            top: 30%;
+            left: 35%;
+            height: 8px;
+        }
+
+        .line:nth-child(5) {
+            background-color: lightsalmon;
+            animation-delay: 5s;
+            top: 70%;
+            left: 20%;
+            height: 10px;
+        }
+
+        .line:nth-child(6) {
+            background-color: rgb(226, 226, 99);
+            animation-delay: 6s;
+            top: 80%;
+            left: 30%;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- body {
+    position: relative;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    position: relative;
+} -->
+
+
+
+
+
