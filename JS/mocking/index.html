@@ -14,6 +14,14 @@
         }
 
         body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+       
+       
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -30,9 +38,7 @@
         
         }
 
-        
-
-
+    
         body::after {
             content: '';
             position: absolute;
@@ -120,37 +126,31 @@
             background-color: #555;
         }
 
+
+       
+
         .cube {
-            width: 10px; /* Larger cube */
-            height: 10px;
+            width: 20px; /* Larger cube */
+            height: 20px;
             position: absolute;
-            animation: cubeRotate 10s infinite;
+            animation: cubeRotate 10s infinite alternate;
+            /* z-index: 1500; */
         }
 
-        /* Cube animation */
-        @keyframes cubeRotate {
-            from {
-                transform: scale(0) rotate(0);
-                opacity: 1;
-            }
-            to {
-                transform: scale(20) rotate(1000deg);
-                opacity: 0;
-            }
-        }
+
 
         /* Adding color and animation delay to cubes */
         .cube:nth-child(1) {
             background-color: lightseagreen;
             animation-delay: 2s;
-            top: 20%;
+            top: 15%;
             left: 40%;
         }
 
         .cube:nth-child(2) {
             background-color: lightcoral;
             animation-delay: 3s;
-            top: 40%;
+            top: 35%;
             left: 60%;
         }
 
@@ -170,16 +170,29 @@
 
         .cube:nth-child(5) {
             background-color: lightsalmon;
-            animation-delay: 7s;
+            animation-delay: 6s;
             top: 70%;
             left: 20%;
         }
 
         .cube:nth-child(6) {
             background-color: rgb(226, 226, 99);
-            animation-delay: 8s;
+            animation-delay: 7s;
             top: 80%;
             left: 30%;
+        }
+
+        
+        /* Cube animation */
+        @keyframes cubeRotate {
+            from {
+                transform: scale(0) rotate(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(15) rotate(1000deg);
+                opacity: 0;
+            }
         }
 
         /* Media Queries for small screens */
@@ -282,13 +295,13 @@
 
 
         #clock {
-            font-size: 30px;
+            font-size: 20px;
             font-weight: bold;
             color: #967d7d;
             background-color: rgb(248, 234, 234);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(245, 121, 121, 0.8);
             text-align: center;
             position: absolute; /* Position absolutely */
             bottom: 20px; /* Set bottom distance */
@@ -296,8 +309,7 @@
              transform: translateX(-40%); 
              /* Adjust horizontal position */
             
-           
-          
+              
         }
 
         .time {
@@ -307,77 +319,10 @@
         .date {
             font-size: 30px;
             margin-top: 10px;
-            color: #275a4f;
+            color: #40907e;
         }
 
 
-
-
-        .line {
-        position: absolute;
-        /* top: 50%;  */
-         /* Vertically center the line */
-        /* left: -100%;  */
-         /* Start off-screen to the left */
-        width: 30%;  /* Full width of the viewport */
-        height: 3px;  /* Line thickness */
-        background-color: aquamarine;  /* Line color */
-        animation: lineMoving 5s linear infinite alternate;  /* Animation for line movement */
-        z-index: 1000;  /* Ensure that lines are stacked correctly */
-        }
-
-
-
-        @keyframes lineMoving {
-    0% {
-        transform: translateX(-100%);  /* Start off-screen to the left */
-    }
-    100% {
-        transform: translateX(100%);  /* Move to the right end of the screen */
-    }
-}
-
-    
-
-
-        .line:nth-child(1) {
-    background-color: lightseagreen;
-    animation-delay: 1s;
-    top: 10%;  /* Adjusted position */
-}
-
-.line:nth-child(2) {
-    background-color: lightcoral;
-    animation-delay: 2s;
-    top: 25%;  /* Adjusted position */
-    height: 6px;
-}
-
-.line:nth-child(3) {
-    background-color: lightgreen;
-    animation-delay: 3s;
-    top: 40%;  /* Adjusted position */
-}
-
-.line:nth-child(4) {
-    background-color: lightgrey;
-    animation-delay: 4s;
-    top: 55%;  /* Adjusted position */
-    height: 8px;
-}
-
-.line:nth-child(5) {
-    background-color: lightsalmon;
-    animation-delay: 5s;
-    top: 70%;  /* Adjusted position */
-    height: 10px;
-}
-
-.line:nth-child(6) {
-    background-color: rgb(226, 226, 99);
-    animation-delay: 6s;
-    top: 85%;  /* Adjusted position */
-}
 
 
 
@@ -385,20 +330,7 @@
     </style>
 </head>
 <body>
-    
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
 
-    
-    <p style="top: 10%; left: 50%; color: rgb(202, 226, 247); font-size: larger;">PAINTING & decoration</p>
-    <p style="top: 20%; left: 30%; color: rgb(248, 222, 189);font-size: medium;">PAINTING & DECORATION</p>
-    <p style="top: 30%; left: 20%; color: rgb(191, 243, 243);">painting & DECORATION</p>
-    <p style="top: 40%; left: 40%; color: rgb(244, 244, 142);font-size: smaller;">PAINTING & decoration</p>
-    <p style="top: 50%; left: 10%; color: rgb(253, 218, 175);font-size: xx-large;">painting & DECORATION</p>
 
     <div class="menu-icon" onclick="toggleMenu()">
         <div class="bar"></div>
@@ -415,18 +347,29 @@
         </ul>
     </div>
 
+    
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+
+    
+    <p style="top: 10%; left: 50%; color: rgb(202, 226, 247); font-size: larger;">PAINTING & decoration</p>
+    <p style="top: 20%; left: 30%; color: rgb(248, 222, 189);font-size: medium;">PAINTING & DECORATION</p>
+    <p style="top: 30%; left: 20%; color: rgb(191, 243, 243);">painting & DECORATION</p>
+    <p style="top: 40%; left: 40%; color: rgb(244, 244, 142);font-size: smaller;">PAINTING & decoration</p>
+    <p style="top: 50%; left: 10%; color: rgb(253, 218, 175);font-size: xx-large;">painting & DECORATION</p>
+
+   
     <div id="clock">
         <div class="time" id="time"></div>
         <div class="date" id="date"></div>
     </div> 
 
 
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
+   
 
     <script>
         function toggleMenu() {
