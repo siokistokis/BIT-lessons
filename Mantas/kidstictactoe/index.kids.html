@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Tic Tac Toe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .screen {
+            text-align: center;
+            background-color: #ffebcd;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 380px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #ff6347;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            font-size: 1.2rem;
+            color: #2f4f4f;
+            margin-bottom: 20px;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            background-color: #f5deb3;
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .cell:hover {
+            background-color: #fffacd;
+            transform: scale(1.1);
+        }
+
+        .cell.x {
+            color: #ff6347;
+        }
+
+        .cell.o {
+            color: #1e90ff;
+        }
+
+        .new {
+            background-color: #98fb98;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .new:hover {
+            background-color: #32cd32;
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .cell.x, .cell.o {
+            animation: bounce 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="screen">
+        <h1>Kids Tic Tac Toe</h1>
+        <div class="info">Turn: <span id="whoGo">X</span></div>
+
+        <div class="board" id="board">
+            <!-- Cells will be dynamically added here -->
+        </div>
+
+        <div class="result">
+            <div class="win">Winner: <span id="whoWin"></span></div>
+            <div class="new" id="newGameBtn">Start New Game</div>
+        </div>
+    </div>
+
+    <script>
+        const boardElement = document.getElementById('board');
+        const whoGoSpan = document.getElementById('whoGo');
+        const whoWinSpan = document.getElementById('whoWin');
+        const newGameBtn = document.getElementById('newGameBtn');
+        
+        let currentPlayer = 'X'; // X starts the game
+        let gameBoard = Array(9).fill(''); // empty 3x3 board
+        let isGameOver = false;
+
+        // Generate 3x3 board grid
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.dataset.index = i;
+            cell.addEventListener('click', handleCellClick);
+            boardElement.appendChild(cell);
+        }
+
+        // Winning combinations for 3x3 grid
+        const winningCombinations = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+            [0, 4, 8], [2, 4, 6] // diagonals
+        ];
+
+        // Check if a player has won
+        function checkWinner() {
+            for (let combination of winningCombinations) {
+                const [a, b, c] = combination;
+                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                    isGameOver = true;
+                    whoWinSpan.textContent = currentPlayer; // Current player won
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Handle cell click event
+        function handleCellClick(event) {
+            const index = event.target.dataset.index;
+
+            if (gameBoard[index] || isGameOver) {
+                return; // Ignore if cell is already filled or game is over
+            }
+
+            // Fill the cell with the current player's mark
+            gameBoard[index] = currentPlayer;
+            event.target.textContent = currentPlayer;
+            event.target.classList.add(currentPlayer.toLowerCase());
+
+            // Animate the cell (bounce effect)
+            event.target.style.animation = "bounce 0.5s ease";
+
+            // Check for a winner after the move
+            if (checkWinner()) {
+                return;
+            }
+
+            // Change the turn to the other player
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            whoGoSpan.textContent = currentPlayer;
+        }
+
+        // Reset the game
+        function resetGame() {
+            gameBoard = Array(9).fill(''); // empty 3x3 board
+            isGameOver = false;
+            currentPlayer = 'X';
+            whoGoSpan.textContent = currentPlayer;
+            whoWinSpan.textContent = '';
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('x', 'o');
+                cell.style.animation = '';
+            });
+        }
+
+        // New game button click event
+        newGameBtn.addEventListener('click', resetGame);
+    </script>
+
+</body>
+</html>

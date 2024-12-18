@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6x6 Tic Tac Toe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100vh;
+            background: #f2d1a7;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 10px 50px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .info {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .board {
+            width: 470px;
+            height: 470px;
+            margin: 10px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2px;
+            padding: 2px;
+        }
+
+        .cell {
+            background-color: #f4f4f4;
+            height: 70px;
+            width: 70px;
+            color: #2a2a2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cell:hover {
+            background-color: #e0e0e0;
+        }
+
+        .new {
+            background-color: #d4edda;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin: 10px auto;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            max-width: 470px
+            
+        }
+
+
+
+        .new:hover {
+            background-color: #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <h1>6x6 Tic Tac Toe</h1>
+        <div class="info">Current turn: <span id="whoGo">X</span></div>
+
+        <div class="board" id="board">
+            <!-- Cells will be dynamically added here -->
+        </div>
+
+        <div class="result">
+            <div class="win">Winner: <span id="whoWin"></span></div>
+            <div class="new" id="newGameBtn">Start New Game</div>
+        </div>
+    </div>
+
+    <script>
+        const boardElement = document.getElementById('board');
+        const whoGoSpan = document.getElementById('whoGo');
+        const whoWinSpan = document.getElementById('whoWin');
+        const newGameBtn = document.getElementById('newGameBtn');
+        
+        let currentPlayer = 'X'; // X starts the game
+        let gameBoard = Array(36).fill(''); // empty 6x6 board
+        let isGameOver = false;
+
+        // Generate 6x6 board grid
+        for (let i = 0; i < 36; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.dataset.index = i;
+            cell.addEventListener('click', handleCellClick);
+            boardElement.appendChild(cell);
+        }
+
+        // Winning combinations for 6x6 grid
+        const winningCombinations = [
+            // Rows
+            [0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17], [18, 19, 20, 21, 22, 23], [24, 25, 26, 27, 28, 29], [30, 31, 32, 33, 34, 35],
+            // Columns
+            [0, 6, 12, 18, 24, 30], [1, 7, 13, 19, 25, 31], [2, 8, 14, 20, 26, 32], [3, 9, 15, 21, 27, 33], [4, 10, 16, 22, 28, 34], [5, 11, 17, 23, 29, 35],
+            // Diagonals
+            [0, 7, 14, 21, 28, 35], [5, 10, 15, 20, 25, 30]
+        ];
+
+        // Check if a player has won
+        function checkWinner() {
+            for (let combination of winningCombinations) {
+                const [a, b, c, d, e, f] = combination;
+                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c] && gameBoard[a] === gameBoard[d] && gameBoard[a] === gameBoard[e] && gameBoard[a] === gameBoard[f]) {
+                    isGameOver = true;
+                    whoWinSpan.textContent = currentPlayer; // Current player won
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Handle cell click event
+        function handleCellClick(event) {
+            const index = event.target.dataset.index;
+
+            if (gameBoard[index] || isGameOver) {
+                return; // Ignore if cell is already filled or game is over
+            }
+
+            // Fill the cell with the current player's mark
+            gameBoard[index] = currentPlayer;
+            event.target.textContent = currentPlayer;
+
+            // Check for a winner after the move
+            if (checkWinner()) {
+                return;
+            }
+
+            // Change the turn to the other player
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            whoGoSpan.textContent = currentPlayer;
+        }
+
+        // Reset the game
+        function resetGame() {
+            gameBoard = Array(36).fill(''); // empty 6x6 board
+            isGameOver = false;
+            currentPlayer = 'X';
+            whoGoSpan.textContent = currentPlayer;
+            whoWinSpan.textContent = '';
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.textContent = '';
+            });
+        }
+
+        // New game button click event
+        newGameBtn.addEventListener('click', resetGame);
+    </script>
+</body>
+</html>
