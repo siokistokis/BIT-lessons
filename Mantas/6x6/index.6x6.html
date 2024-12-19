@@ -67,11 +67,17 @@
             margin: 10px auto;
             border-radius: 10px;
             font-size: 1.2rem;
-            max-width: 470px
-            
+            max-width: 470px;
         }
 
+        .new:hover {
+            background-color: rgb(240, 200, 185);
+        }
 
+        .winColor {
+            color: #c3e6cb;
+            background-color: gold;
+        }
 
         .new:hover {
             background-color: #c3e6cb;
@@ -94,84 +100,190 @@
     </div>
 
     <script>
-        const boardElement = document.getElementById('board');
-        const whoGoSpan = document.getElementById('whoGo');
-        const whoWinSpan = document.getElementById('whoWin');
+        const board = document.getElementById('board');
+        const whoGo = document.getElementById('whoGo');
+        const whoWin = document.getElementById('whoWin');
         const newGameBtn = document.getElementById('newGameBtn');
         
-        let currentPlayer = 'X'; // X starts the game
-        let gameBoard = Array(36).fill(''); // empty 6x6 board
-        let isGameOver = false;
+        let step = 'cross';  // 'cross' for 'X' and 'circle' for 'O'
+        let boardState = Array(36).fill(null); // 6x6 board, 36 cells
+        let winner = null;
+        
+        const winComb = [
+            // Horizontal wins
+            [0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17], 
+            [18, 19, 20, 21, 22, 23], [24, 25, 26, 27, 28, 29], [30, 31, 32, 33, 34, 35],
+            // Vertical wins
+            [0, 6, 12, 18, 24, 30], [1, 7, 13, 19, 25, 31], [2, 8, 14, 20, 26, 32],
+            [3, 9, 15, 21, 27, 33], [4, 10, 16, 22, 28, 34], [5, 11, 17, 23, 29, 35],
+            // Diagonal wins
+            [0, 7, 14, 21, 28, 35], [5, 10, 15, 20, 25, 30], 
+            [6, 13, 20, 27, 34], [11, 16, 21, 26, 31], [12, 17, 22, 27, 32], [17, 22, 27, 32, 33],
+        ];
 
-        // Generate 6x6 board grid
+        // Set up the board with cells
         for (let i = 0; i < 36; i++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.dataset.index = i;
-            cell.addEventListener('click', handleCellClick);
-            boardElement.appendChild(cell);
+            board.appendChild(cell);
         }
 
-        // Winning combinations for 6x6 grid
-        const winningCombinations = [
-            // Rows
-            [0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17], [18, 19, 20, 21, 22, 23], [24, 25, 26, 27, 28, 29], [30, 31, 32, 33, 34, 35],
-            // Columns
-            [0, 6, 12, 18, 24, 30], [1, 7, 13, 19, 25, 31], [2, 8, 14, 20, 26, 32], [3, 9, 15, 21, 27, 33], [4, 10, 16, 22, 28, 34], [5, 11, 17, 23, 29, 35],
-            // Diagonals
-            [0, 7, 14, 21, 28, 35], [5, 10, 15, 20, 25, 30]
-        ];
+        // Handle cell click
+        board.addEventListener('click', (event) => {
+            const index = event.target.dataset.index;
+            if (event.target.classList.contains('cell') && !boardState[index] && !winner) {
+                boardState[index] = step;
+                event.target.innerText = step === 'cross' ? 'X' : 'O';
+                event.target.classList.add(step);
 
-        // Check if a player has won
-        function checkWinner() {
-            for (let combination of winningCombinations) {
-                const [a, b, c, d, e, f] = combination;
-                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c] && gameBoard[a] === gameBoard[d] && gameBoard[a] === gameBoard[e] && gameBoard[a] === gameBoard[f]) {
-                    isGameOver = true;
-                    whoWinSpan.textContent = currentPlayer; // Current player won
-                    return true;
+                if (checkWinner(step)) {
+                    winner = step;
+                    whoWin.innerText = step === 'cross' ? 'X' : 'O';
+                    highlightWinner(step);
+                } else {
+                    step = step === 'cross' ? 'circle' : 'cross';
+                    whoGo.innerText = step === 'cross' ? 'X' : 'O';
                 }
             }
-            return false;
+        });
+
+        // Check if a player has won
+        function checkWinner(player) {
+            return winComb.some(combination => 
+                combination.every(index => boardState[index] === player)
+            );
         }
 
-        // Handle cell click event
-        function handleCellClick(event) {
-            const index = event.target.dataset.index;
-
-            if (gameBoard[index] || isGameOver) {
-                return; // Ignore if cell is already filled or game is over
-            }
-
-            // Fill the cell with the current player's mark
-            gameBoard[index] = currentPlayer;
-            event.target.textContent = currentPlayer;
-
-            // Check for a winner after the move
-            if (checkWinner()) {
-                return;
-            }
-
-            // Change the turn to the other player
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            whoGoSpan.textContent = currentPlayer;
-        }
-
-        // Reset the game
-        function resetGame() {
-            gameBoard = Array(36).fill(''); // empty 6x6 board
-            isGameOver = false;
-            currentPlayer = 'X';
-            whoGoSpan.textContent = currentPlayer;
-            whoWinSpan.textContent = '';
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach(cell => {
-                cell.textContent = '';
+        // Highlight the winning combination
+        function highlightWinner(player) {
+            winComb.forEach(combination => {
+                if (combination.every(index => boardState[index] === player)) {
+                    combination.forEach(index => {
+                        document.querySelectorAll('.cell')[index].classList.add('winColor');
+                    });
+                }
             });
         }
 
-        // New game button click event
-        newGameBtn.addEventListener('click', resetGame);
+        // Start a new game
+        newGameBtn.addEventListener('click', () => {
+            boardState.fill(null);
+            winner = null;
+            step = 'cross';
+            whoGo.innerText = 'X';
+            whoWin.innerText = '';
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.classList.remove('cross', 'circle', 'winColor');
+                cell.innerText = '';
+            });
+        });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // const boardElement = document.getElementById('board');
+        // const whoGoSpan = document.getElementById('whoGo');
+        // const whoWinSpan = document.getElementById('whoWin');
+        // const newGameBtn = document.getElementById('newGameBtn');
+        
+        // let currentPlayer = 'X'; // X starts the game
+        // let gameBoard = Array(36).fill(''); // empty 6x6 board
+        // let isGameOver = false;
+
+        // // Generate 6x6 board grid
+        // for (let i = 0; i < 36; i++) {
+        //     const cell = document.createElement('div');
+        //     cell.classList.add('cell');
+        //     cell.dataset.index = i;
+        //     cell.addEventListener('click', handleCellClick);
+        //     boardElement.appendChild(cell);
+        // }
+
+        // // Winning combinations for 6x6 grid
+        // const winningCombinations = [
+        //     // Rows
+        //     [0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17], [18, 19, 20, 21, 22, 23], [24, 25, 26, 27, 28, 29], [30, 31, 32, 33, 34, 35],
+        //     // Columns
+        //     [0, 6, 12, 18, 24, 30], [1, 7, 13, 19, 25, 31], [2, 8, 14, 20, 26, 32], [3, 9, 15, 21, 27, 33], [4, 10, 16, 22, 28, 34], [5, 11, 17, 23, 29, 35],
+        //     // Diagonals
+        //     [0, 7, 14, 21, 28, 35], [5, 10, 15, 20, 25, 30]
+        // ];
+
+        // // Check if a player has won
+        // function checkWinner() {
+        //     for (let combination of winningCombinations) {
+        //         const [a, b, c, d, e, f] = combination;
+        //         if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c] && gameBoard[a] === gameBoard[d] && gameBoard[a] === gameBoard[e] && gameBoard[a] === gameBoard[f]) {
+        //             isGameOver = true;
+        //             whoWinSpan.textContent = currentPlayer; // Current player won
+        //             return true;
+        //         }
+        //     }
+        //     return false;
+        // }
+
+        // // Handle cell click event
+        // function handleCellClick(event) {
+        //     const index = event.target.dataset.index;
+
+        //     if (gameBoard[index] || isGameOver) {
+        //         return; // Ignore if cell is already filled or game is over
+        //     }
+
+        //     // Fill the cell with the current player's mark
+        //     gameBoard[index] = currentPlayer;
+        //     event.target.textContent = currentPlayer;
+
+        //     // Check for a winner after the move
+        //     if (checkWinner()) {
+        //         return;
+        //     }
+
+        //     // Change the turn to the other player
+        //     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        //     whoGoSpan.textContent = currentPlayer;
+        // }
+
+        // // Reset the game
+        // function resetGame() {
+        //     gameBoard = Array(36).fill(''); // empty 6x6 board
+        //     isGameOver = false;
+        //     currentPlayer = 'X';
+        //     whoGoSpan.textContent = currentPlayer;
+        //     whoWinSpan.textContent = '';
+        //     const cells = document.querySelectorAll('.cell');
+        //     cells.forEach(cell => {
+        //         cell.textContent = '';
+        //     });
+        // }
+
+        // // New game button click event
+        // newGameBtn.addEventListener('click', resetGame);
+
+
+
+
+
+
+
+
+
     </script>
 </body>
 </html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10x10 Tic Tac Toe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100vh;
+            background: #198bd7;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 5px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .info {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .board {
+            width: 500px;
+            height: 500px;
+            margin: 2px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 2px;
+            padding: 2px;
+        }
+
+        .cell {
+            background-color: #f4f4f4;
+            height: 40px;
+            width: 40px;
+            color: #2a2a2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cell:hover {
+            background-color: #e0e0e0;
+        }
+
+        .new {
+            background-color: #d4edda;
+            padding: 3px 7px;
+            cursor: pointer;
+            margin-top: 5px;
+            margin: 5px auto;
+            border-radius: 10px;
+            font-size: 1rem;
+            max-width: 500px;
+        }
+
+        .new:hover {
+            background-color: rgb(240, 200, 185);
+        }
+
+        .winColor {
+            color: #c3e6cb;
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <h3>10x10 Tic Tac Toe</h3>
+        <div class="info">Current turn: <span id="whoGo">X</span></div>
+
+        <div class="board" id="board">
+            <!-- Cells will be dynamically added here -->
+        </div>
+
+        <div class="result">
+            <div class="win">Winner: <span id="whoWin"></span></div>
+            <div class="new" id="newGameBtn">Start New Game</div>
+        </div>
+    </div>
+
+    <script>
+        const board = document.getElementById('board');
+        const whoGo = document.getElementById('whoGo');
+        const whoWin = document.getElementById('whoWin');
+        const newGameBtn = document.getElementById('newGameBtn');
+
+        let step = 'cross';  // 'cross' for 'X' and 'circle' for 'O'
+        let boardState = Array(100).fill(null); // 10x10 board, 100 cells
+        let winner = null;
+
+        const winComb = [
+            // Horizontal wins
+            ...Array(10).fill(0).map((_, i) => Array.from({ length: 10 }, (_, j) => i * 10 + j)),
+            // Vertical wins
+            ...Array(10).fill(0).map((_, i) => Array.from({ length: 10 }, (_, j) => j * 10 + i)),
+            // Diagonal wins
+            Array.from({ length: 10 }, (_, i) => i * 11),
+            Array.from({ length: 10 }, (_, i) => (i + 1) * 9 - 1)
+        ];
+
+        // Set up the board with cells
+        for (let i = 0; i < 100; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.dataset.index = i;
+            board.appendChild(cell);
+        }
+
+        // Handle cell click
+        board.addEventListener('click', (event) => {
+            const index = event.target.dataset.index;
+            if (event.target.classList.contains('cell') && !boardState[index] && !winner) {
+                boardState[index] = step;
+                event.target.innerText = step === 'cross' ? 'X' : 'O';
+                event.target.classList.add(step);
+
+                if (checkWinner(step)) {
+                    winner = step;
+                    whoWin.innerText = step === 'cross' ? 'X' : 'O';
+                    highlightWinner(step);
+                } else {
+                    step = step === 'cross' ? 'circle' : 'cross';
+                    whoGo.innerText = step === 'cross' ? 'X' : 'O';
+                }
+            }
+        });
+
+        // Check if a player has won
+        function checkWinner(player) {
+            return winComb.some(combination => 
+                combination.every(index => boardState[index] === player)
+            );
+        }
+
+        // Highlight the winning combination
+        function highlightWinner(player) {
+            winComb.forEach(combination => {
+                if (combination.every(index => boardState[index] === player)) {
+                    combination.forEach(index => {
+                        document.querySelectorAll('.cell')[index].classList.add('winColor');
+                    });
+                }
+            });
+        }
+
+        // Start a new game
+        newGameBtn.addEventListener('click', () => {
+            boardState.fill(null);
+            winner = null;
+            step = 'cross';
+            whoGo.innerText = 'X';
+            whoWin.innerText = '';
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.classList.remove('cross', 'circle', 'winColor');
+                cell.innerText = '';
+            });
+        });
+    </script>
+</body>
+</html>
