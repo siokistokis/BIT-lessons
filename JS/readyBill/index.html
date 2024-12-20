@@ -200,6 +200,7 @@
             margin-top: 20px;
             width: 60%;
             justify-items: center;
+            flex-wrap: wrap;
         }
 
         .finalButtons button {
@@ -258,6 +259,7 @@
             display: flex;
             align-items: baseline;
             gap: 2rem; /* Added space of 2rem */
+            flex-wrap: wrap;
         }
 
         /* Making the date input shorter */
@@ -353,25 +355,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media print {
     body {
         margin: 0;
@@ -423,13 +406,6 @@
 
 
 
-
-
-
-
-
-
-
     </style>
 </head>
 
@@ -451,11 +427,16 @@
             <div class="enter">
                 <div class="left-align">
                     <div class="date-container">
-                        <span class="titles">Date:</span>
-                        <input type="date" id="date"><br />
-
-                        <span class="titles">Payment term:</span>
-                        <input type="date" id="payment-term"><br />
+                        <span>
+                            <span class="titles">Date:</span>
+                            <input type="date" id="date" class="calendar"><br />
+                        </span>
+                        <span>
+                            <span class="titles">Payment term:</span>
+                            <input type="date" id="payment-term" class="calendar><br /> 
+                        </span>
+                        
+                        
                     </div>
                 </div>
                 <div class="cc">
