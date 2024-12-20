@@ -14,11 +14,12 @@
         .screen {
             width: 100%;
             height: 100vh;
-            background: #f2d1a7;
-            color: #4a4a4a;
+            background: #1928c7;
+            color: #faf6f6;
             text-align: center;
             padding: 10px 50px;
             font-family: Arial, sans-serif;
+            flex-wrap: wrap;
         }
 
         h1 {
@@ -34,7 +35,7 @@
             width: 470px;
             height: 470px;
             margin: 10px auto;
-            background-color: #fff;
+            background-color: #3c35bd;
             border-radius: 10px;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -50,7 +51,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             border-radius: 5px;
         }
@@ -59,8 +60,20 @@
             background-color: #e0e0e0;
         }
 
+        @media (max-width: 600px) {
+    .board {
+        width: 100%;
+        height: auto;
+    }
+    .cell {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
         .new {
-            background-color: #d4edda;
+            background-color: #527a5b;
             padding: 5px 10px;
             cursor: pointer;
             margin-top: 10px;
@@ -75,12 +88,12 @@
         }
 
         .winColor {
-            color: #c3e6cb;
+            color: #56c370;
             background-color: gold;
         }
 
         .new:hover {
-            background-color: #c3e6cb;
+            background-color: #35cb58;
         }
     </style>
 </head>
