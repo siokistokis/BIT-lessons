@@ -135,6 +135,19 @@
             border: 1px solid #ccc;
         }
 
+
+        @media (max-width: 500px) {
+            .calendar-fields {
+                width: 100%;
+                display: inline-flex;
+            
+            }
+
+            .titles-of-calendars {
+                width: 120px;
+            }
+        }
+
         .titles {
             font-size: 1em;
             margin-bottom: 5px;
@@ -158,6 +171,12 @@
             display: flex;
             justify-content: space-between;
             text-align: left;
+        }
+
+        @media (max-width: 600px) {
+            .cc {
+                flex-direction: column;
+            }
         }
 
         button {
@@ -258,7 +277,6 @@
         .date-container {
             display: flex;
             align-items: baseline;
-            gap: 2rem; /* Added space of 2rem */
             flex-wrap: wrap;
         }
 
@@ -427,13 +445,13 @@
             <div class="enter">
                 <div class="left-align">
                     <div class="date-container">
-                        <span>
-                            <span class="titles">Date:</span>
+                        <span class="calendar-fields">
+                            <span class="titles-of-calendars">Date:</span>
                             <input type="date" id="date" class="calendar"><br />
                         </span>
-                        <span>
-                            <span class="titles">Payment term:</span>
-                            <input type="date" id="payment-term" class="calendar><br /> 
+                        <span class="calendar-fields">
+                            <span class="titles-of-calendars">Payment term:</span>
+                            <input type="date" id="payment-term" class="calendar"><br /> 
                         </span>
                         
                         
@@ -571,23 +589,40 @@
             });
         }
 
+        function updateRowNumbers() {
+            const rows = document.querySelectorAll('#purchase-list tbody tr');
+            rows.forEach((row, index) => {
+                const cell = row.querySelector('.purchase-id');
+                if (cell) {
+                    cell.textContent = index + 1; // Atitinkamai atnaujina numerį
+                }
+            });
+        }
+
         document.querySelector('.list-next-purchase').addEventListener('click', () => {
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td>${currentItemNumber++}</td>
+                <td class="purchase-id">${currentItemNumber++}</td>
                 <td><input type="text" class="description" placeholder="Enter item name"></td>
                 <td><input type="number" class="quantity" min="0" placeholder="Enter quantity"></td>
                 <td><input type="text" class="price" placeholder="0.00"></td>
                 <td><input type="number" class="discount" min="0" max="100" placeholder="0 %" step="0"></td>
                 <td><div class="subtotal">0.00</div></td>
+                <td><button class="list-remove-purchase">-</button></td>
             `;
             document.getElementById('list-body').appendChild(newRow);
+            newRow.querySelector(".list-remove-purchase").addEventListener("click", function () {
+                newRow.remove();
+                currentItemNumber--;
+                updateRowNumbers();
 
+            });
             addMoneyFormattingListeners();
 
             newRow.querySelectorAll('input').forEach(input => {
                 input.addEventListener('input', () => {
                     calculateSubtotal(newRow);
+
                 });
             });
         });

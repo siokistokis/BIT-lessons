@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENU</title>
-    <link rel="icon" href="myI.png">
+    <link rel="icon" href="img/myI.png">
 
     <style>
         * {
@@ -13,8 +14,8 @@
             box-sizing: border-box;
         }
 
-       
-       
+
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -29,10 +30,10 @@
             position: relative;
             align-items: flex-end;
             justify-content: center;
-        
+
         }
 
-    
+
         body::after {
             content: '';
             position: absolute;
@@ -57,70 +58,77 @@
             0% {
                 transform: scale(1);
             }
+
             25% {
                 transform: scale(1.5);
             }
+
             50% {
                 transform: scale(1);
             }
+
             75% {
                 transform: scale(1.5);
             }
+
             100% {
                 transform: scale(1);
             }
         }
 
-       
 
 
-/* Default bar color */
-.menu-icon .bar {
-    height: 4px;
-    background-color: #80f0d8;
-    border-radius: 2px;
-    transition: background-color 0.3s; /* Smooth transition */
-   
 
-}
+        /* Default bar color */
+        .menu-icon .bar {
+            height: 4px;
+            background-color: #80f0d8;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+            /* Smooth transition */
 
-/* Bar color when menu is active */
-.menu-icon.active .bar {
-    background-color: white; /* Change the bar color to white when active */
 
-}
+        }
 
-/* For the menu icon position */
-.menu-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    margin: 20px;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10001;
-}
+        /* Bar color when menu is active */
+        .menu-icon.active .bar {
+            background-color: white;
+            /* Change the bar color to white when active */
 
-.menu {
-    display: none;
-    background-color: #ae9d9d;
-    color: white;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 250px;
-    height: 100vh;
-    padding-top: 50px;
-    z-index: 10000;
-}
+        }
 
-.menu.active {
-    display: block; /* Show the menu when active */
-}
+        /* For the menu icon position */
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            margin: 20px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+        }
+
+        .menu {
+            display: none;
+            background-color: #ae9d9d;
+            color: white;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100vh;
+            padding-top: 50px;
+            z-index: 10000;
+        }
+
+        .menu.active {
+            display: block;
+            /* Show the menu when active */
+        }
 
 
 
@@ -147,7 +155,7 @@
         }
 
 
-       
+
 
         .cube {
             width: 20px;
@@ -202,13 +210,14 @@
             left: 30%;
         }
 
-        
+
         /* Cube animation */
         @keyframes cubeRotate {
             from {
                 transform: scale(0) rotate(0);
                 opacity: 1;
             }
+
             to {
                 transform: scale(15) rotate(1000deg);
                 opacity: 0;
@@ -229,7 +238,7 @@
                 width: 200px;
             }
 
-          
+
 
             /* Reduce size of the cubes */
             .cube {
@@ -249,7 +258,7 @@
                 font-size: 1rem;
             }
 
-           
+
             /* Adjust menu layout for mobile */
             .menu {
                 width: 100%;
@@ -270,20 +279,23 @@
         #clock {
             font-size: 20px;
             font-weight: bold;
-            color:white;
+            color: white;
             background-color: #ae9d9d;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 8px 12px rgba(99, 242, 220, 0.8);
             text-align: center;
-            position: absolute; /* Position absolutely */
-            bottom: 20px; /* Set bottom distance */
-            left: 60%; /* Center horizontally */
-             transform: translateX(-40%); 
-             /* Adjust horizontal position */
-             z-index: 10001;
-            
-              
+            position: absolute;
+            /* Position absolutely */
+            bottom: 20px;
+            /* Set bottom distance */
+            left: 60%;
+            /* Center horizontally */
+            transform: translateX(-40%);
+            /* Adjust horizontal position */
+            z-index: 10001;
+
+
         }
 
         .time {
@@ -295,14 +307,9 @@
             margin-top: 10px;
             color: #80f0d8;
         }
-
-
-
-
-
-
     </style>
 </head>
+
 <body>
 
     <div class="menu-icon" onclick="toggleMenu()">
@@ -321,7 +328,7 @@
         </ul>
     </div>
 
-    
+
     <div class="cube"></div>
     <div class="cube"></div>
     <div class="cube"></div>
@@ -329,35 +336,35 @@
     <div class="cube"></div>
     <div class="cube"></div>
 
-    
+
     <p style="top: 10%; left: 50%; color: rgb(202, 226, 247); font-size: larger;">PAINTING & decoration</p>
     <p style="top: 20%; left: 30%; color: rgb(248, 213, 169); font-size: medium;">PAINTING & DECORATION</p>
     <p style="top: 30%; left: 20%; color: rgb(191, 243, 243); font-size: xx-large;">painting & DECORATION</p>
     <p style="top: 40%; left: 40%; color: rgb(213, 244, 142); font-size: smaller;">PAINTING & decoration</p>
     <p style="top: 50%; left: 10%; color: rgb(249, 181, 134); font-size: x-large;">painting & DECORATION</p>
 
-   
+
     <div id="clock">
         <div class="time" id="time"></div>
         <div class="date" id="date"></div>
-    </div> 
+    </div>
 
 
-   
+
 
     <script>
 
 
 
 
-function toggleMenu() {
-    const menu = document.querySelector('.menu');
-    const menuIcon = document.querySelector('.menu-icon');
-    
-    // Toggle the 'active' class on the menu and the menu icon
-    menu.classList.toggle('active');
-    menuIcon.classList.toggle('active');
-}
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const menuIcon = document.querySelector('.menu-icon');
+
+            // Toggle the 'active' class on the menu and the menu icon
+            menu.classList.toggle('active');
+            menuIcon.classList.toggle('active');
+        }
 
 
 
@@ -367,7 +374,7 @@ function toggleMenu() {
         function toggleMenu() {
             const menu = document.querySelector('.menu');
             menu.style.display = menu.
-            style.display === 'block' ? 'none' : 'block';
+                style.display === 'block' ? 'none' : 'block';
         }
 
 
@@ -397,18 +404,8 @@ function toggleMenu() {
         setInterval(updateClock, 1000);  // Update clock every second
         updateClock();  // Initial call to display clock immediately
 
-    
+
     </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
