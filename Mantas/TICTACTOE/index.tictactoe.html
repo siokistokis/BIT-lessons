@@ -37,13 +37,11 @@
             to {
                 background-position: 100%;
             }
-            
         }
 
         .screen {
             width: 100%;
             height: 100vh;
-            /* background: rgb(213, 155, 132); */
             color: aliceblue;
             text-align: center;
             padding: 10px 60px;
@@ -58,7 +56,7 @@
             width: 470px;
             height: 470px;
             margin: 10px auto;
-            background-color: rgba(255, 255, 255, 1);
+            background-color: rgb(145, 186, 236);
             border-radius: 10px;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -67,7 +65,7 @@
         }
 
         .cell {
-            background-color: beige;
+            background-color: rgb(148, 240, 198);
             height: 80px;
             width: 80px;
             color: #0f0c29;
@@ -80,6 +78,21 @@
 
         .cell:hover {
             background-color: #e1e1e1;
+        }
+
+        .cell.winner {
+            background-color: gold; /* Winner cells will be golden */
+        }
+
+        @media (max-width: 600px) {
+            .board {
+                width: 100%;
+                height: auto;
+            }
+            .cell {
+                width: 35px;
+                height: 35px;
+            }
         }
 
         .new {
@@ -133,6 +146,7 @@
 
         <div class="result">
             <div class="win">WINNER: <span id="whoWin"></span></div>
+            <div class="draw" id="drawMessage"></div>
             <div class="new" id="newGameBtn">START NEW GAME</div>
         </div>
     </div>
@@ -141,6 +155,8 @@
         const cells = document.querySelectorAll('.cell');
         const whoGoSpan = document.getElementById('whoGo');
         const whoWinSpan = document.getElementById('whoWin');
+        const board = document.getElementById('board');
+        const drawMessage = document.getElementById('drawMessage');
         const newGameBtn = document.getElementById('newGameBtn');
         let currentPlayer = 'X'; // X starts the game
         let gameBoard = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']; // empty 5x5 board
@@ -162,10 +178,22 @@
                 if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c] && gameBoard[a] === gameBoard[d] && gameBoard[a] === gameBoard[e]) {
                     isGameOver = true;
                     whoWinSpan.textContent = currentPlayer; // Current player won
+                    // Highlight the winning cells
+                    combination.forEach(index => {
+                        cells[index].classList.add('winner');
+                    });
                     return true;
                 }
             }
             return false;
+        }
+
+        // Check if the game is a draw (board is full, no winner)
+        function checkDraw() {
+            if (gameBoard.every(cell => cell !== '') && !isGameOver) {
+                drawMessage.textContent = "It's a draw!";
+                isGameOver = true;
+            }
         }
 
         // Handle cell click event
@@ -185,6 +213,8 @@
                 return;
             }
 
+            checkDraw();
+
             // Change the turn to the other player
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             whoGoSpan.textContent = currentPlayer;
@@ -199,8 +229,11 @@
             whoWinSpan.textContent = '';
             cells.forEach(cell => {
                 cell.textContent = '';
+                cell.classList.remove('winner'); // Remove the golden highlight
             });
         }
+
+           
 
         // Add event listeners for cells
         cells.forEach(cell => {
@@ -209,7 +242,12 @@
 
         // New game button click event
         newGameBtn.addEventListener('click', resetGame);
+
+
+        // const endGame = (winner)=> {
+        //     board.style.pointerEvents = 'none'
+        // }
+
     </script>
 </body>
 </html>
-

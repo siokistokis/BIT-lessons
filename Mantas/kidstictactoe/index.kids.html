@@ -11,25 +11,34 @@
             box-sizing: border-box;
         }
 
-        body {
+        /* body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
+        } */
 
         .screen {
+            width: 100%;
+            /* height: 100vh; */
             text-align: center;
             background-color: #ffebcd;
             border-radius: 20px;
-            padding: 30px;
+            padding: 10px 80px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            width: 380px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+           
         }
 
         h1 {
+            margin-bottom: 10px;
+
+        }
+
+        /* h1 {
             font-size: 2rem;
             color: #ff6347;
             margin-bottom: 20px;
@@ -39,60 +48,82 @@
             font-size: 1.2rem;
             color: #2f4f4f;
             margin-bottom: 20px;
-        }
+        } */
 
         .board {
-            display: grid;
+            width: 450px;
+            height: 450px;
+            margin: 10px auto;
+            background-color: #1e90ff;
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px;
+            /* display: grid;
             grid-template-columns: repeat(3, 100px);
             grid-template-rows: repeat(3, 100px);
             gap: 10px;
             margin-bottom: 20px;
-            justify-content: center;
+            justify-content: center; */
         }
 
         .cell {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2rem;
+            font-size: 80px;
+            font-weight: 700;
             background-color: #f5deb3;
+            color: #ff6347;
             border: 2px solid #8b4513;
             border-radius: 10px;
             cursor: pointer;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            /* transition: transform 0.2s ease, background-color 0.2s ease; */
         }
 
-        .cell:hover {
-            background-color: #fffacd;
+         .cell:hover {
+            background-color: #abeadb;
             transform: scale(1.1);
         }
 
-        .cell.x {
+        /*.cell.x {
             color: #ff6347;
         }
 
         .cell.o {
             color: #1e90ff;
-        }
+        } */
 
         .new {
             background-color: #98fb98;
-            padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 1.2rem;
+            padding: 5px 10px;
+            /* margin-top: 10px; */
+            /* font-size: 1.2rem; */
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            max-width: 450px;
+            margin: 5px auto;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            /* transition: background-color 0.3s ease; */
         }
 
         .new:hover {
             background-color: #32cd32;
         }
 
-        /* Animation Effects */
+        .winColor {
+            color: rgb(20, 188, 20);
+            background-color: gold;
+            font-size: 100px;
+            font-weight: 900;
+        }
+
+        /* Animation Effects
         @keyframes bounce {
             0% {
                 transform: scale(1);
@@ -107,7 +138,7 @@
 
         .cell.x, .cell.o {
             animation: bounce 0.5s ease;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -117,97 +148,257 @@
         <div class="info">Turn: <span id="whoGo">X</span></div>
 
         <div class="board" id="board">
-            <!-- Cells will be dynamically added here -->
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
         </div>
 
         <div class="result">
             <div class="win">Winner: <span id="whoWin"></span></div>
-            <div class="new" id="newGameBtn">Start New Game</div>
+            <div class="new" id="new">Start New Game</div>
         </div>
     </div>
 
     <script>
-        const boardElement = document.getElementById('board');
-        const whoGoSpan = document.getElementById('whoGo');
-        const whoWinSpan = document.getElementById('whoWin');
-        const newGameBtn = document.getElementById('newGameBtn');
-        
-        let currentPlayer = 'X'; // X starts the game
-        let gameBoard = Array(9).fill(''); // empty 3x3 board
-        let isGameOver = false;
 
-        // Generate 3x3 board grid
-        for (let i = 0; i < 9; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.dataset.index = i;
-            cell.addEventListener('click', handleCellClick);
-            boardElement.appendChild(cell);
+        let step = '';
+        let winner = '';
+        let counter = 0;
+
+        const winComb = [
+            [0, 1, 2, 3, 4],
+            [5, 6, 7, 8, 9],
+            [10, 11, 12, 13, 14],
+            [15, 16, 17, 18, 19],
+            [20, 21, 22, 23, 24],
+            [0, 5, 10, 15, 20],
+            [1, 6, 11, 16, 21],
+            [2, 7, 12, 17, 22],
+            [3, 8, 13, 18, 23],
+            [4, 9, 14, 19, 24],
+            [0, 6, 12, 18, 24],
+            [4, 8, 12, 16, 20],
+        ]
+
+        const cell = document.querySelectorAll('.cell');
+        const whoGo = document.getElementById('whoGo');
+        const whoWin = document.getElementById('whoWin');
+        const board = document.getElementById('board');
+        const newGameBtn = document.getElementById('new');
+
+        const who = () => {
+            if(step == 'cross'){
+                step = 'circle';
+                whoGo.innerText = 'circles';
+            }
+            else {
+                step = 'cross';
+                whoGo.innerText = 'crosses';
+            }
+            counter++;
         }
+        who();
 
-        // Winning combinations for 3x3 grid
-        const winningCombinations = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-            [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-            [0, 4, 8], [2, 4, 6] // diagonals
-        ];
 
-        // Check if a player has won
-        function checkWinner() {
-            for (let combination of winningCombinations) {
-                const [a, b, c] = combination;
-                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-                    isGameOver = true;
-                    whoWinSpan.textContent = currentPlayer; // Current player won
+
+        cell.forEach((item) =>{
+            item.addEventListener('click', ()=>{
+                if(!item.classList.contains('circle') && !item.classList.contains('cross')){
+                    item.classList.add(step);
+                    if(step == 'cross'){
+                        item.innerText = 'x';
+                    }
+                    if(step == 'circle'){
+                        item.innerText = 'o';
+                    }
+
+                    who();
+                    crossWin();
+                    circleWin();
+                    noWin();
+                }
+            })
+        })
+
+        const crossWin = () =>{
+            for(let i=0; i<winomb.length; i++){
+                if(
+                    cell[winComb[i][0]].classList.contains('cross') &&
+                    cell[winComb[i][1]].classList.contains('cross') &&
+                    cell[winComb[i][2]].classList.contains('cross') &&
+                    cell[winComb[i][3]].classList.contains('cross') &&
+                    cell[winComb[i][4]].classList.contains('cross') 
+                ){
+                    cell[winComb[i][0]].classList.add('winColor')
+                    cell[winComb[i][1]].classList.add('winColor')
+                    cell[winComb[i][2]].classList.add('winColor')
+                    cell[winComb[i][3]].classList.add('winColor')
+                    cell[winComb[i][4]].classList.add('winColor')
+
+                    winner = 'crosses';
+                    endGame(winner);
                     return true;
                 }
             }
-            return false;
+            return false;    
         }
 
-        // Handle cell click event
-        function handleCellClick(event) {
-            const index = event.target.dataset.index;
 
-            if (gameBoard[index] || isGameOver) {
-                return; // Ignore if cell is already filled or game is over
+
+        const circleWin = () =>{
+            for(let i=0; i<winomb.length; i++){
+                if(
+                    cell[winComb[i][0]].classList.contains('circle') &&
+                    cell[winComb[i][1]].classList.contains('circle') &&
+                    cell[winComb[i][2]].classList.contains('circle') &&
+                    cell[winComb[i][3]].classList.contains('circle') &&
+                    cell[winComb[i][4]].classList.contains('circle') 
+                ){
+                    cell[winComb[i][0]].classList.add('winColor')
+                    cell[winComb[i][1]].classList.add('winColor')
+                    cell[winComb[i][2]].classList.add('winColor')
+                    cell[winComb[i][3]].classList.add('winColor')
+                    cell[winComb[i][4]].classList.add('winColor')
+
+                    winner = 'circles';
+                    endGame(winner);
+
+                    return true;
+                }
             }
+            return false;    
+        }
 
-            // Fill the cell with the current player's mark
-            gameBoard[index] = currentPlayer;
-            event.target.textContent = currentPlayer;
-            event.target.classList.add(currentPlayer.toLowerCase());
-
-            // Animate the cell (bounce effect)
-            event.target.style.animation = "bounce 0.5s ease";
-
-            // Check for a winner after the move
-            if (checkWinner()) {
-                return;
+        const noWin = () => {
+            if (!crossWin() && !circleWin() && counter >= 25){
+                winner = 'no one';
+                endGame(winner);
             }
-
-            // Change the turn to the other player
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            whoGoSpan.textContent = currentPlayer;
         }
 
-        // Reset the game
-        function resetGame() {
-            gameBoard = Array(9).fill(''); // empty 3x3 board
-            isGameOver = false;
-            currentPlayer = 'X';
-            whoGoSpan.textContent = currentPlayer;
-            whoWinSpan.textContent = '';
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach(cell => {
-                cell.textContent = '';
-                cell.classList.remove('x', 'o');
-                cell.style.animation = '';
-            });
+        const endGame = (winner)=> {
+            board.style.pointerEvents = 'none';
+            whoWin.innerText = winner;
         }
 
-        // New game button click event
-        newGameBtn.addEventListener('click', resetGame);
+        newGameBtn.addEventListener('click', ()=>{
+            document.location.reload();
+        })
+
+
+
+        // const boardElement = document.getElementById('board');
+        // const whoGoSpan = document.getElementById('whoGo');
+        // const whoWinSpan = document.getElementById('whoWin');
+        // const board = document.getElementById('board');
+        // const newGameBtn = document.getElementById('newGameBtn');
+        
+        // let currentPlayer = 'X'; // X starts the game
+        // let gameBoard = Array(9).fill(''); // empty 3x3 board
+        // let isGameOver = false;
+
+        // // Generate 3x3 board grid
+        // for (let i = 0; i < 9; i++) {
+        //     const cell = document.createElement('div');
+        //     cell.classList.add('cell');
+        //     cell.dataset.index = i;
+        //     cell.addEventListener('click', handleCellClick);
+        //     boardElement.appendChild(cell);
+        // }
+
+        // function checkWinner() {
+        //     const winningCombinations = [
+        //         // Check rows
+        //         [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10, 11, 12, 13, 14], [15, 16, 17, 18, 19], [20, 21, 22, 23, 24], 
+        //         // Check columns
+        //         [0, 5, 10, 15, 20], [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24], 
+        //         // Check diagonals
+        //         [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
+        //     ];
+
+        // // Check if a player has won
+        // function checkWinner() {
+        //     for (let combination of winningCombinations) {
+        //         const [a, b, c] = combination;
+        //         if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+        //             isGameOver = true;
+        //             whoWinSpan.textContent = currentPlayer; // Current player won
+        //             return true;
+        //         }
+        //     }
+        //     return false;
+        // }
+
+        // // Handle cell click event
+        // function handleCellClick(event) {
+        //     const index = event.target.dataset.index;
+
+        //     if (gameBoard[index] || isGameOver) {
+        //         return; // Ignore if cell is already filled or game is over
+        //     }
+
+        //     // Fill the cell with the current player's mark
+        //     gameBoard[index] = currentPlayer;
+        //     event.target.textContent = currentPlayer;
+        //     event.target.classList.add(currentPlayer.toLowerCase());
+
+        //     // Animate the cell (bounce effect)
+        //     event.target.style.animation = "bounce 0.5s ease";
+
+        //     // Check for a winner after the move
+        //     if (checkWinner()) {
+        //         return;
+        //     }
+
+        //     // Change the turn to the other player
+        //     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        //     whoGoSpan.textContent = currentPlayer;
+        // }
+
+        // // Reset the game
+        // function resetGame() {
+        //     gameBoard = Array(9).fill(''); // empty 3x3 board
+        //     isGameOver = false;
+        //     currentPlayer = 'X';
+        //     whoGoSpan.textContent = currentPlayer;
+        //     whoWinSpan.textContent = '';
+        //     const cells = document.querySelectorAll('.cell');
+        //     cells.forEach(cell => {
+        //         cell.textContent = '';
+        //         cell.classList.remove('x', 'o');
+        //         cell.style.animation = '';
+        //     });
+        // }
+
+        // // New game button click event
+        // newGameBtn.addEventListener('click', resetGame);
     </script>
 
 </body>
