@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Add and Remove Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #dataList {
+      margin-top: 20px;
+      padding: 0;
+    }
+    #dataList li {
+      padding: 8px;
+      margin: 5px 0;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+    }
+    .remove-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 5px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .remove-btn:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Manage Data with Add and Remove</h1>
+
+  <!-- Input and buttons to add/remove data -->
+  <input type="text" id="dataInput" placeholder="Enter data" />
+  <button onclick="addData()">Add Data</button>
+
+  <ul id="dataList">
+    <!-- Dynamic data will appear here -->
+  </ul>
+
+  <script>
+    // Function to add data
+    function addData() {
+      const input = document.getElementById('dataInput');
+      const data = input.value.trim();
+
+      if (data) {
+        // Create a new list item with data
+        const li = document.createElement('li');
+        li.textContent = data;
+
+        // Create remove button for each item
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.classList.add('remove-btn');
+        removeBtn.onclick = function () {
+          removeData(li);
+        };
+
+        // Append remove button to the list item
+        li.appendChild(removeBtn);
+
+        // Append the list item to the data list
+        document.getElementById('dataList').appendChild(li);
+
+        // Clear the input field
+        input.value = '';
+      } else {
+        alert("Please enter some data.");
+      }
+    }
+
+    // Function to remove data
+    function removeData(item) {
+      item.remove();
+    }
+  </script>
+
+</body>
+</html>
