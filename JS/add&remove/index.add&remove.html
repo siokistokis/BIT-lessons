@@ -1,86 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Add and Remove Data</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #dataList {
-      margin-top: 20px;
-      padding: 0;
-    }
-    #dataList li {
-      padding: 8px;
-      margin: 5px 0;
-      background-color: #f4f4f4;
-      border-radius: 5px;
-    }
-    .remove-btn {
-      background-color: red;
-      color: white;
-      border: none;
-      padding: 5px;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-    .remove-btn:hover {
-      background-color: darkred;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
 
-  <h1>Manage Data with Add and Remove</h1>
+    <!-- Invoice Form -->
+    <div id="invoice-list-container">
+        <h1>VAT Invoice List</h1>
+        <button onclick="showCreateInvoice()">Create Invoice</button>
+        <div id="invoice-list"></div>
+    </div>
 
-  <!-- Input and buttons to add/remove data -->
-  <input type="text" id="dataInput" placeholder="Enter data" />
-  <button onclick="addData()">Add Data</button>
+    <div id="create-invoice-container" style="display: none;">
+        <h2>NEW VAT INVOICE</h2>
+        <div id="new-invoice-data"></div>
+        <div class="button-group">
+            <button onclick="saveInvoice()">Save</button>
+            <button onclick="andateInvoice()">Update</button>
+            <button onclick="cancelInvoice()">Cancel</button>
+        </div>
+    </div>
 
-  <ul id="dataList">
-    <!-- Dynamic data will appear here -->
-  </ul>
+    <script>
+      const API_URL = 'https://in3.dev/inv/';
+      let currentInvoice = null; // Holds the current invoice to be edited or saved
 
-  <script>
-    // Function to add data
-    function addData() {
-      const input = document.getElementById('dataInput');
-      const data = input.value.trim();
+      // Show the form to create or edit an invoice
+      async function showCreateInvoice() {
+          document.getElementById('invoice-list-container').style.display = 'none';
+          document.getElementById('create-invoice-container').style.display = 'block';
 
-      if (data) {
-        // Create a new list item with data
-        const li = document.createElement('li');
-        li.textContent = data;
+          // Fetch data for a new invoice or an existing one if editing
+          const invoice = await fetchNewInvoice();
+          if (!invoice) return;
 
-        // Create remove button for each item
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove';
-        removeBtn.classList.add('remove-btn');
-        removeBtn.onclick = function () {
-          removeData(li);
-        };
-
-        // Append remove button to the list item
-        li.appendChild(removeBtn);
-
-        // Append the list item to the data list
-        document.getElementById('dataList').appendChild(li);
-
-        // Clear the input field
-        input.value = '';
-      } else {
-        alert("Please enter some data.");
+          currentInvoice = invoice; // Store the invoice we are working on
+          displayInvoiceForm(invoice, 'new-invoice-data', true);
       }
-    }
 
-    // Function to remove data
-    function removeData(item) {
-      item.remove();
-    }
-  </script>
+      // Fetch invoice data (could be new or an existing one)
+      async function fetchNewInvoice() {
+          try {
+              const response = await fetch(API_URL);
+              if (!response.ok) throw new Error('Data could not be retrieved');
+              const data = await response.json();
+              return data;
+          } catch (error) {
+              showMessage('Error while retrieving data from API', 'error');
+              console.error(error);
+              return null;
+          }
+      }
 
+      // Display the invoice form (editable or read-only)
+      function displayInvoiceForm(invoice, containerId, isEditable = false) {
+          const container = document.getElementById(containerId);
+          let html = `
+              <div>
+                  <label for="invoice-number">Invoice Number</label>
+                  <input type="text" id="invoice-number" value="${invoice.number}" ${isEditable ? '' : 'disabled'} />
+              </div>
+              <div>
+                  <label for="invoice-date">Invoice Date</label>
+                  <input type="date" id="invoice-date" value="${invoice.date}" ${isEditable ? '' : 'disabled'} />
+              </div>
+              <div>
+                  <label for="customer-name">Customer Name</label>
+                  <input type="text" id="customer-name" value="${invoice.customerName}" ${isEditable ? '' : 'disabled'} />
+              </div>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Item</th>
+                          <th>Amount</th>
+                          <th>Price</th>
+                          <th>Discount</th>
+                          <th>Total</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+          `;
+
+          invoice.items.forEach((item, index) => {
+              let discount = item.discount ? item.discount.value : 0;
+              let total = (item.quantity * item.price) - discount;
+
+              html += `
+                  <tr>
+                      <td>${item.description}</td>
+                      <td><input type="number" value="${item.quantity}" ${isEditable ? '' : 'disabled'} /></td>
+                      <td><input type="number" value="${item.price.toFixed(2)}" ${isEditable ? '' : 'disabled'} /></td>
+                      <td><input type="number" value="${discount}" ${isEditable ? '' : 'disabled'} /></td>
+                      <td><input type="number" value="${total.toFixed(2)}" ${isEditable ? '' : 'disabled'} /></td>
+                  </tr>
+              `;
+          });
+
+          html += `</tbody></table>`;
+          container.innerHTML = html;
+      }
+
+      // Save the invoice (either new or edited)
+      async function saveInvoice() {
+          const invoiceData = gatherInvoiceData();
+          if (!invoiceData) {
+              showMessage("Please fill in all fields", "error");
+              return;
+          }
+
+          try {
+              const response = await fetch(API_URL, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(invoiceData),
+              });
+
+              if (!response.ok) throw new Error("Error saving invoice");
+              showMessage("Invoice saved successfully", "success");
+              returnToInvoiceList();
+          } catch (error) {
+              showMessage("Failed to save invoice", "error");
+              console.error(error);
+          }
+      }
+
+      // Update the invoice (based on currentInvoice)
+      async function andateInvoice() {
+          if (!currentInvoice) {
+              showMessage("No invoice selected to update", "error");
+              return;
+          }
+
+          const invoiceData = gatherInvoiceData();
+          if (!invoiceData) {
+              showMessage("Please fill in all fields", "error");
+              return;
+          }
+
+          try {
+              const response = await fetch(`${API_URL}/${currentInvoice.id}`, {
+                  method: 'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(invoiceData),
+              });
+
+              if (!response.ok) throw new Error("Error updating invoice");
+              showMessage("Invoice updated successfully", "success");
+              returnToInvoiceList();
+          } catch (error) {
+              showMessage("Failed to update invoice", "error");
+              console.error(error);
+          }
+      }
+
+      // Cancel the invoice creation/editing
+      function cancelInvoice() {
+          returnToInvoiceList();
+      }
+
+      // Return to the invoice list view
+      function returnToInvoiceList() {
+          document.getElementById('create-invoice-container').style.display = 'none';
+          document.getElementById('invoice-list-container').style.display = 'block';
+      }
+
+      // Gather data from the form (this could be used for both save and update)
+      function gatherInvoiceData() {
+          const invoiceNumber = document.getElementById('invoice-number').value;
+          const invoiceDate = document.getElementById('invoice-date').value;
+          const customerName = document.getElementById('customer-name').value;
+          
+          if (!invoiceNumber || !invoiceDate || !customerName) {
+              return null;
+          }
+
+          // Gather the items (including any changes)
+          const items = [];
+          const rows = document.querySelectorAll('#new-invoice-data table tbody tr');
+          rows.forEach(row => {
+              const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value);
+              const price = parseFloat(row.querySelector('td:nth-child(3) input').value);
+              const discount = parseFloat(row.querySelector('td:nth-child(4) input').value);
+
+              items.push({
+                  description: row.querySelector('td:nth-child(1)').textContent, // Assuming description is in the first column
+                  quantity,
+                  price,
+                  discount: { value: discount }
+              });
+          });
+
+          return {
+              number: invoiceNumber,
+              date: invoiceDate,
+              customerName,
+              items
+          };
+      }
+
+      // Show messages (success or error)
+      function showMessage(message, type) {
+          alert(`${type.toUpperCase()}: ${message}`);
+      }
+    </script>
 </body>
 </html>
