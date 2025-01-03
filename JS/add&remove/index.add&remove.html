@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,8 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             text-align: center;
         }
 
@@ -86,7 +88,8 @@
             border-collapse: collapse;
         }
 
-        table th, table td {
+        table th,
+        table td {
             padding: 10px;
             text-align: left;
             border: 1px solid #ddd;
@@ -115,6 +118,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Invoice List Container -->
@@ -158,15 +162,21 @@
     </div>
 
     <script>
-
         const API_URL = 'https://in3.dev/inv/';
         let currentInvoice = null; // Holds the current invoice to be edited or saved
 
-        let invoiceList = document.getElementById('invoice-list');
-        const userData = JSON.parse(localStorage.getItem('invoice'));
-        invoiceList.innerHTML = `
-            <p><strong>Šioks toks tekstas: </strong> ${userData.bandymas}</p>
-        `;
+        //TODO Sąskaitų faktūrų sąrašo formavimas.
+        let invoiceList = localStorage.getItem('invoices');
+        const invoiceListFromHtml = document.getElementById('invoice-list');
+        let invoiceListParsed = JSON.parse(invoiceList);
+        invoiceListParsed.forEach((element, index) => {
+            console.log(`${index} ${element}`);
+            const parsedElement = JSON.parse(element);
+            invoiceListFromHtml.innerHTML += `
+                <p>${parsedElement.invoiceNumber} ${parsedElement.invoiceDate}</p>
+            `;
+        });
+
 
         // Show the form to create or edit an invoice
         async function showCreateInvoice() {
@@ -240,27 +250,36 @@
             }
 
             try {
-                // const response = await fetch(API_URL, {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify(invoiceData),
-                // });
+                /*
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(invoiceData),
+                });
+                
+                if (!response.ok) throw new Error("Error saving invoice");
+                */
+                //TODO Sąskaitos išsaugojimas localStorage.
 
-                // if (!response.ok) throw new Error("Error saving invoice");
+                // Surenkame reikšmes iš formos laukų
+                const invoiceNumber = document.getElementById('invoice-number').value;
+                const invoiceDate = document.getElementById('invoice-date').value;
 
-               
+                // Ištraukiame sąskaitų sąrašą iš localStorage
+                let invoicesRaw = localStorage.getItem('invoices');
+                let invoices = invoicesRaw ? JSON.parse(invoicesRaw) : [];
 
-               let bandymas = 'rezultatas';
-               let invoice = {
-                    bandymas
-               };
-               localStorage.setItem('invoice', JSON.stringify(invoice));
+                // Sukuriame naują sąskaitą
+                const invoice = {
+                    invoiceNumber,
+                    invoiceDate
+                };
 
-               let invoices = [];
-               bandymas = 'b1';
-               
-               invoices.push();
 
+                // Pridedame naują sąskaitą į masyvą
+                invoices.push(JSON.stringify(invoice));
+                // Išsaugome atnaujintą sąrašą į localStorage
+                localStorage.setItem('invoices', JSON.stringify(invoices));
 
                 showMessage("Invoice saved successfully", "success");
                 returnToInvoiceList();
@@ -353,4 +372,5 @@
     </script>
 
 </body>
+
 </html>
