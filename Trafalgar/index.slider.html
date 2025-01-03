@@ -19,10 +19,96 @@
         .testimonials {
             max-width: 1220px;
             min-height: 450px;
-            background: linear-gradient(208.18deg, #67c3f3 9.05%);
+            background: linear-gradient(208.18deg, #67c3f3 9.05%, #5A98F2 76.74%);
             border-radius: 24px;
             position: relative;
         }
+
+        .dots1, .dots2 {
+            position: absoliute;
+        }
+
+        .dots1 {
+            left: -50px;
+            bottom: 40px;
+        }
+
+        .dots2 {
+            right: -50px;
+            top: -15px;
+        }
+
+        .title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 36px;
+        }
+
+        .line {
+            background-color: white;
+            width: 56px;
+            height: 2px;
+            border-radius: 6px;
+            margin: 25px auto;
+            opacity: 0.5;
+        }
+
+        .card {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            font-weight: 400;
+        }
+
+        .card_client {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .client_name {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .client_position {
+            font-size: 18px;
+        }
+
+        card_text {
+            max-width: 420px;
+            font-size: 19px;
+            line-height: 1.5;
+            align-self: center;
+            margin-right: 0;
+            margin-left: auto;
+        }
+
+        .slider_nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #5A98F2;
+            margin: 0 15px;
+
+        }
+
+        .prev {
+            rotate: 180deg;
+            margin-right: 90px;
+            cursor: pointer;
+        }
+
+        .next {
+            margin-left: 90px;
+        }
+
+
 
         
     </style>
@@ -30,7 +116,7 @@
 <body>
     <section class="wrapper">
         <div class="testimonials">
-            <img src="./images/dots.svg" alt="dots">
+            <img class="dots1" src="./images/dots1.svg" alt="dots">
             <h2>What our custtomers are saying</h2>
             <div class="line"></div>
             <div class="slider">
@@ -38,7 +124,7 @@
                     <img class="card_img" src="./images/Maskface.svg" alt="client_1">
                     <div class="card_client">
                         <div class="client_name">Edward Newgate</div>
-                        <div class="client_position"></div>
+                        <div class="client_position">Founder Circle</div>
                     </div>
                     <p class="client_text">
                         “Our dedicated patient engagement app and <br> web portal allow you to access information
@@ -47,6 +133,7 @@
                     </p>
                 </div>
             </div>
+            <img class="dots2" src="./images/dots2.svg" alt="">
         </div>
         <div class="slider_nav">
             <a class="prev" href=""><img src="./images/Vector.svg" alt="arrow"></a>

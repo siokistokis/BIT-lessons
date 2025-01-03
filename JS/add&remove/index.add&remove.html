@@ -158,8 +158,15 @@
     </div>
 
     <script>
+
         const API_URL = 'https://in3.dev/inv/';
         let currentInvoice = null; // Holds the current invoice to be edited or saved
+
+        let invoiceList = document.getElementById('invoice-list');
+        const userData = JSON.parse(localStorage.getItem('invoice'));
+        invoiceList.innerHTML = `
+            <p><strong>Šioks toks tekstas: </strong> ${userData.bandymas}</p>
+        `;
 
         // Show the form to create or edit an invoice
         async function showCreateInvoice() {
@@ -233,13 +240,28 @@
             }
 
             try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(invoiceData),
-                });
+                // const response = await fetch(API_URL, {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(invoiceData),
+                // });
 
-                if (!response.ok) throw new Error("Error saving invoice");
+                // if (!response.ok) throw new Error("Error saving invoice");
+
+               
+
+               let bandymas = 'rezultatas';
+               let invoice = {
+                    bandymas
+               };
+               localStorage.setItem('invoice', JSON.stringify(invoice));
+
+               let invoices = [];
+               bandymas = 'b1';
+               
+               invoices.push();
+
+
                 showMessage("Invoice saved successfully", "success");
                 returnToInvoiceList();
             } catch (error) {
