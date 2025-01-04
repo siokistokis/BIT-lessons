@@ -156,50 +156,30 @@
 
         <div class="button-group">
             <button onclick="saveInvoice()">Save</button>
-            <button onclick="andateInvoice()">Update</button>
+            <button onclick="updateInvoice()">Update</button>
             <button onclick="cancelInvoice()">Cancel</button>
         </div>
     </div>
 
     <script>
-        const API_URL = 'https://in3.dev/inv/';
-        let currentInvoice = null; // Holds the current invoice to be edited or saved
-
-        //TODO Sąskaitų faktūrų sąrašo formavimas.
-         let invoiceList = localStorage.getItem('invoices');
-         const invoiceListFromHtml = document.getElementById('invoice-list');
-         let invoiceListParsed = JSON.parse(invoiceList);
-         invoiceListParsed.forEach((element, index) => {
-             console.log(`${index} ${element}`);
-             const parsedElement = JSON.parse(element);
-             invoiceListFromHtml.innerHTML += `
-                 <p>${parsedElement.invoiceNumber} ${parsedElement.invoiceDate}</p>
-             `;
-         });
-
-
-
-
-
-
+        let currentInvoice = null;
 
         // Show the form to create or edit an invoice
         async function showCreateInvoice() {
             document.getElementById('invoice-list-container').style.display = 'none';
             document.getElementById('create-invoice-container').style.display = 'block';
 
-            // Fetch data for a new invoice or an existing one if editing
             const invoice = await fetchNewInvoice();
             if (!invoice) return;
 
-            currentInvoice = invoice; // Store the invoice we are working on
+            currentInvoice = invoice;
             displayInvoiceForm(invoice, 'new-invoice-data', true);
         }
 
         // Fetch invoice data (could be new or an existing one)
         async function fetchNewInvoice() {
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch('https://in3.dev/inv/');
                 if (!response.ok) throw new Error('Data could not be retrieved');
                 const data = await response.json();
                 return data;
@@ -210,7 +190,7 @@
             }
         }
 
-        // Display the invoice form (editable or read-only)
+        // Display the invoice form
         function displayInvoiceForm(invoice, containerId, isEditable = false) {
             const container = document.getElementById(containerId);
             let html = `
@@ -227,26 +207,61 @@
                     <tbody>
             `;
 
-            invoice.items.forEach((item) => {
-                let discount = item.discount ? item.discount.value : 0;
-                let total = (item.quantity * item.price) - discount;
+            invoice.items.forEach((item, index) => {
+                let quantity = item.quantity || 0;
+                let price = item.price || 0;
+                let discount = item.discount || 0;
+                let total = (quantity * price) - discount;
+
+                // Ensure valid numbers
+                if (isNaN(total)) total = 0;
 
                 html += `
                     <tr>
-                        <td>${item.description}</td>
-                        <td><input type="number" value="${item.quantity}" ${isEditable ? '' : 'disabled'} /></td>
-                        <td><input type="number" value="${item.price.toFixed(2)}" ${isEditable ? '' : 'disabled'} /></td>
-                        <td><input type="number" value="${discount}" ${isEditable ? '' : 'disabled'} /></td>
-                        <td><input type="number" value="${total.toFixed(2)}" ${isEditable ? '' : 'disabled'} /></td>
+                        <td><input type="text" value="${item.description}" ${isEditable ? '' : 'disabled'} /></td>
+                        <td><input type="number" value="${quantity}" ${isEditable ? '' : 'disabled'} onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${price}" ${isEditable ? '' : 'disabled'} onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${discount}" ${isEditable ? '' : 'disabled'} onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${total.toFixed(2)}" disabled /></td>
                     </tr>
                 `;
             });
 
             html += `</tbody></table>`;
             container.innerHTML = html;
+
+            // Recalculate all totals
+            recalculateAllTotals();
         }
 
-        // Save the invoice (either new or edited)
+        // Recalculate total for a specific row
+        function recalculateTotal(index) {
+            const row = document.querySelector(`#new-invoice-data table tbody tr:nth-child(${index + 1})`);
+            const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value) || 0;
+            const price = parseFloat(row.querySelector('td:nth-child(3) input').value) || 0;
+            const discount = parseFloat(row.querySelector('td:nth-child(4) input').value) || 0;
+
+            const total = (quantity * price) - discount;
+            row.querySelector('td:nth-child(5) input').value = total.toFixed(2);
+
+            // Recalculate grand total
+            recalculateAllTotals();
+        }
+
+        // Recalculate all totals in the invoice
+        function recalculateAllTotals() {
+            const rows = document.querySelectorAll('#new-invoice-data table tbody tr');
+            let grandTotal = 0;
+
+            rows.forEach(row => {
+                const total = parseFloat(row.querySelector('td:nth-child(5) input').value) || 0;
+                grandTotal += total;
+            });
+
+            console.log('Grand Total:', grandTotal);
+        }
+
+        // Save the invoice
         async function saveInvoice() {
             const invoiceData = gatherInvoiceData();
             if (!invoiceData) {
@@ -255,35 +270,21 @@
             }
 
             try {
-                /*
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(invoiceData),
-                });
-                
-                if (!response.ok) throw new Error("Error saving invoice");
-                */
-                //TODO Sąskaitos išsaugojimas localStorage.
-
-                // Surenkame reikšmes iš formos laukų
                 const invoiceNumber = document.getElementById('invoice-number').value;
                 const invoiceDate = document.getElementById('invoice-date').value;
 
-                // Ištraukiame sąskaitų sąrašą iš localStorage
                 let invoicesRaw = localStorage.getItem('invoices');
                 let invoices = invoicesRaw ? JSON.parse(invoicesRaw) : [];
 
-                // Sukuriame naują sąskaitą
                 const invoice = {
                     invoiceNumber,
-                    invoiceDate
+                    invoiceDate,
+                    customerName: document.getElementById('customer-name').value,
+                    companyName: document.getElementById('company-name').value,
+                    items: invoiceData.items
                 };
 
-
-                // Pridedame naują sąskaitą į masyvą
                 invoices.push(JSON.stringify(invoice));
-                // Išsaugome atnaujintą sąrašą į localStorage
                 localStorage.setItem('invoices', JSON.stringify(invoices));
 
                 showMessage("Invoice saved successfully", "success");
@@ -294,47 +295,7 @@
             }
         }
 
-        // Update the invoice (based on currentInvoice)
-        async function andateInvoice() {
-            if (!currentInvoice) {
-                showMessage("No invoice selected to update", "error");
-                return;
-            }
-
-            const invoiceData = gatherInvoiceData();
-            if (!invoiceData) {
-                showMessage("Please fill in all fields", "error");
-                return;
-            }
-
-            try {
-                const response = await fetch(`${API_URL}/${currentInvoice.id}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(invoiceData),
-                });
-
-                if (!response.ok) throw new Error("Error updating invoice");
-                showMessage("Invoice updated successfully", "success");
-                returnToInvoiceList();
-            } catch (error) {
-                showMessage("Failed to update invoice", "error");
-                console.error(error);
-            }
-        }
-
-        // Cancel the invoice creation/editing
-        function cancelInvoice() {
-            returnToInvoiceList();
-        }
-
-        // Return to the invoice list view
-        function returnToInvoiceList() {
-            document.getElementById('create-invoice-container').style.display = 'none';
-            document.getElementById('invoice-list-container').style.display = 'block';
-        }
-
-        // Gather data from the form (this could be used for both save and update)
+        // Gather data from the form
         function gatherInvoiceData() {
             const invoiceNumber = document.getElementById('invoice-number').value;
             const invoiceDate = document.getElementById('invoice-date').value;
@@ -345,19 +306,18 @@
                 return null;
             }
 
-            // Gather the items (including any changes)
             const items = [];
             const rows = document.querySelectorAll('#new-invoice-data table tbody tr');
             rows.forEach(row => {
-                const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value);
-                const price = parseFloat(row.querySelector('td:nth-child(3) input').value);
-                const discount = parseFloat(row.querySelector('td:nth-child(4) input').value);
+                const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value) || 0;
+                const price = parseFloat(row.querySelector('td:nth-child(3) input').value) || 0;
+                const discount = parseFloat(row.querySelector('td:nth-child(4) input').value) || 0;
 
                 items.push({
-                    description: row.querySelector('td:nth-child(1)').textContent, // Assuming description is in the first column
+                    description: row.querySelector('td:nth-child(1) input').value,
                     quantity,
                     price,
-                    discount: { value: discount }
+                    discount
                 });
             });
 
@@ -370,7 +330,13 @@
             };
         }
 
-        // Show messages (success or error)
+        // Return to the invoice list view
+        function returnToInvoiceList() {
+            document.getElementById('create-invoice-container').style.display = 'none';
+            document.getElementById('invoice-list-container').style.display = 'block';
+        }
+
+        // Show messages
         function showMessage(message, type) {
             alert(`${type.toUpperCase()}: ${message}`);
         }
