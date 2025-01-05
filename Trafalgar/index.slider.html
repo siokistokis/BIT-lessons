@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,16 @@
             box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Mulish', sans-serif;
+            background-color: #f7f7f7;
+        }
+
         .wrapper {
             max-width: 1220px;
             margin: 200px auto;
+            color: white;
+            padding: 20px;
         }
 
         .testimonials {
@@ -22,26 +30,15 @@
             background: linear-gradient(208.18deg, #67c3f3 9.05%, #5A98F2 76.74%);
             border-radius: 24px;
             position: relative;
-        }
-
-        .dots1, .dots2 {
-            position: absoliute;
-        }
-
-        .dots1 {
-            left: -50px;
-            bottom: 40px;
-        }
-
-        .dots2 {
-            right: -50px;
-            top: -15px;
+            padding: 60px 30px 60px 100px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .title {
             text-align: center;
             font-weight: 700;
             font-size: 36px;
+            color: white;
         }
 
         .line {
@@ -53,17 +50,37 @@
             opacity: 0.5;
         }
 
+        .slider {
+            position: relative;
+        }
+
         .card {
             display: flex;
+            flex-direction: row;
             gap: 20px;
             padding: 20px;
-            font-weight: 400;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card.active {
+            opacity: 1;
+        }
+
+        .card img {
+            max-width: 100px;
+            border-radius: 50%;
         }
 
         .card_client {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            gap: 10px;
         }
 
         .client_name {
@@ -75,76 +92,212 @@
             font-size: 18px;
         }
 
-        card_text {
+        .card_text {
             max-width: 420px;
             font-size: 19px;
             line-height: 1.5;
-            align-self: center;
-            margin-right: 0;
             margin-left: auto;
+            margin-right: 0;
+            text-align: center;
         }
 
         .slider_nav {
             display: flex;
             justify-content: center;
+            margin-top: 20px;
         }
 
         .dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background-color: #5A98F2;
-            margin: 0 15px;
+            background-color: #fff;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
 
+        .dot.active {
+            background-color: #5A98F2;
+        }
+
+        /* Align arrows and dots in one line */
+        .arrows-dots-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .prev,
+        .next {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(182, 193, 244, 0.9);
+        }
+
+        .prev img,
+        .next img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
         }
 
         .prev {
-            rotate: 180deg;
-            margin-right: 90px;
-            cursor: pointer;
+            transform: rotate(180deg);
         }
 
-        .next {
-            margin-left: 90px;
-        }
+        /* Responsiveness */
+        /* @media (max-width: 768px) {
+            .card {
+                flex-direction: column;
+                padding: 20px 10px;
+                text-align: center;
+            }
 
-
-
-        
+            .card_text {
+                margin-top: 20px;
+            }
+        } */
     </style>
 </head>
+
 <body>
     <section class="wrapper">
         <div class="testimonials">
-            <img class="dots1" src="./images/dots1.svg" alt="dots">
-            <h2>What our custtomers are saying</h2>
+            <h2 class="title">What our customers are saying</h2>
             <div class="line"></div>
             <div class="slider">
-                <div class="card">
+                <!-- Slide 1 -->
+                <div class="card active">
                     <img class="card_img" src="./images/Maskface.svg" alt="client_1">
                     <div class="card_client">
                         <div class="client_name">Edward Newgate</div>
                         <div class="client_position">Founder Circle</div>
                     </div>
-                    <p class="client_text">
-                        “Our dedicated patient engagement app and <br> web portal allow you to access information
-                            <br>instantaneously (no tedeous form, long calls,<br> or administrative hassle) and
-                            securely”
+                    <p class="card_text">
+                        “Our dedicated patient engagement app and web portal allow you to access information instantaneously
+                        (no tedious forms, long calls, or administrative hassle) and securely.”
+                    </p>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="card">
+                    <img class="card_img" src="./images/client_2.svg" alt="client_2">
+                    <div class="card_client">
+                        <div class="client_name">Jane Doe</div>
+                        <div class="client_position">CEO TechCo</div>
+                    </div>
+                    <p class="card_text">
+                        “A game changer in customer service. The platform is intuitive, fast, and easy to use.”
+                    </p>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="card">
+                    <img class="card_img" src="./images/client_3.svg" alt="client_3">
+                    <div class="card_client">
+                        <div class="client_name">Mark Smith</div>
+                        <div class="client_position">Marketing Director</div>
+                    </div>
+                    <p class="card_text">
+                        “Fantastic experience! The platform provides all the tools we need in one place. Highly recommend.”
+                    </p>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="card">
+                    <img class="card_img" src="./images/client_4.svg" alt="client_4">
+                    <div class="card_client">
+                        <div class="client_name">Sarah Johnson</div>
+                        <div class="client_position">Product Manager</div>
+                    </div>
+                    <p class="card_text">
+                        “This tool saved us hours of work every week. It's simple yet extremely powerful.”
                     </p>
                 </div>
             </div>
-            <img class="dots2" src="./images/dots2.svg" alt="">
         </div>
-        <div class="slider_nav">
-            <a class="prev" href=""><img src="./images/Vector.svg" alt="arrow"></a>
-            <div>
+
+        <div class="arrows-dots-container">
+            <!-- Arrows and Dots aligned in a single line -->
+            <div id="prev" class="prev"><img src="./images/Vector.svg" alt="Previous"></div>
+            <div class="slider_nav">
+                <span class="dot active"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
             </div>
-            <a class="next" href=""><img src="./images/Vector.svg" alt="arrow"></a>
-            <!-- <img src="./images/arrow nav.svg" alt=""> -->
+            <div id="next" class="next"><img src="./images/Vector.svg" alt="Next"></div>
         </div>
     </section>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.card');
+        const totalSlides = slides.length;
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
+        const dots = document.querySelectorAll('.dot');
+
+        // Function to show the slide based on index
+        function showSlides(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');  // Hide all slides
+                dots[i].classList.remove('active');  // Deactivate all dots
+            });
+            slides[index].classList.add('active');  // Show current slide
+            dots[index].classList.add('active');  // Activate current dot
+        }
+
+        // Function to go to next slide
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % totalSlides;
+            showSlides(slideIndex);
+        }
+
+        // Function to go to previous slide
+        function prevSlide() {
+            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+            showSlides(slideIndex);
+        }
+
+        // Add event listeners to prev and next buttons
+        prev.addEventListener('click', (e) => {
+            e.preventDefault();
+            prevSlide();
+        });
+
+        next.addEventListener('click', (e) => {
+            e.preventDefault();
+            nextSlide();
+        });
+
+        // Add event listeners to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                slideIndex = index;
+                showSlides(slideIndex);
+            });
+        });
+
+        // Start automatic slide change every 3 seconds
+        // setInterval(nextSlide, 3000);
+
+        // Show initial slide
+        showSlides(slideIndex);
+    </script>
 </body>
+
 </html>
