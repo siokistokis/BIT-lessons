@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen background setup */
+        .background {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: rgb(243, 183, 161);
+        }
+
+        /* Styling for the moving lines */
+        .line {
+            position: absolute;
+            top: 50%;  /* Vertically center the line */
+            left: -100%;  /* Start off-screen to the left */
+            width: 100%;  /* Full width of the viewport */
+            height: 3px;  /* Line thickness */
+            background-color: aquamarine;  /* Line color */
+            animation: lineMoving 3s linear infinite alternate;  /* Animation for line movement */
+            z-index: 1;  /* Ensure lines are behind the form */
+        }
+
+        /* Keyframes for the line animation */
+        @keyframes lineMoving {
+            0% {
+                transform: translateX(-100%);  /* Start off-screen to the left */
+            }
+            100% {
+                transform: translateX(100%);  /* Move to the right end of the screen */
+            }
+        }
+
+        /* Different line colors and animation delays */
+        .line:nth-child(1) {
+            background-color: lightseagreen;
+            animation-delay: 1s;
+            top: 20%;
+        }
+
+        .line:nth-child(2) {
+            background-color: lightcoral;
+            animation-delay: 2s;
+            top: 40%;
+            height: 6px;
+        }
+
+        .line:nth-child(3) {
+            background-color: lightgreen;
+            animation-delay: 3s;
+            top: 10%;
+        }
+
+        .line:nth-child(4) {
+            background-color: lightgrey;
+            animation-delay: 4s;
+            top: 30%;
+            height: 8px;
+        }
+
+        .line:nth-child(5) {
+            background-color: lightsalmon;
+            animation-delay: 5s;
+            top: 70%;
+            height: 10px;
+        }
+
+        .line:nth-child(6) {
+            background-color: rgb(226, 226, 99);
+            animation-delay: 6s;
+            top: 80%;
+        }
+
+        /* Form Container Styling */
+        .form-container {
+            position: relative;
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            z-index: 2;  /* Ensure the form appears above the lines */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #333;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 90%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .password-strength {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .password-strength.weak {
+            color: red;
+        }
+
+        .password-strength.medium {
+            color: orange;
+        }
+
+        .password-strength.strong {
+            color: green;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        button {
+            width: 90%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body class="background">
+
+    <!-- Moving Lines (add more if you want) -->
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <h2>Register</h2>
+
+        <form id="registrationForm" onsubmit="return handleSubmit(event)">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required placeholder="e.g. +1234567890">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required oninput="checkPasswordStrength()">
+                <div id="password-strength" class="password-strength"></div>
+            </div>
+            <div class="form-group">
+                <label for="repeatPassword">Repeat Password:</label>
+                <input type="password" id="repeatPassword" name="repeatPassword" required>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+            <button type="submit">Register</button>
+            <div id="successMessage" class="success-message"></div>
+        </form>
+    </div>
+
+    <script>
+        // Password strength checker
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthIndicator = document.getElementById('password-strength');
+            const regexWeak = /[a-z]/;
+            const regexMedium = /[A-Z]/;
+            const regexStrong = /[0-9]/;
+
+            let strength = '';
+            if (password.length < 6) {
+                strength = 'Weak';
+                strengthIndicator.className = 'password-strength weak';
+                strengthIndicator.textContent = 'Weak (Must be at least 6 characters)';
+            } else if (regexWeak.test(password) && regexMedium.test(password) && regexStrong.test(password)) {
+                strength = 'Strong';
+                strengthIndicator.className = 'password-strength strong';
+                strengthIndicator.textContent = 'Strong';
+            } else {
+                strength = 'Medium';
+                strengthIndicator.className = 'password-strength medium';
+                strengthIndicator.textContent = 'Medium';
+            }
+        }
+
+        // Form submission handling
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            const password = document.getElementById('password').value;
+            const repeatPassword = document.getElementById('repeatPassword').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // Validate password match
+            if (password !== repeatPassword) {
+                document.getElementById('passwordError').textContent = 'Passwords do not match!';
+                return false;
+            }
+
+            // Clear previous error message if passwords match
+            document.getElementById('passwordError').textContent = '';
+
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.textContent = `Registration successful! Welcome, ${email}.`;
+            
+            // Optionally, you can clear the form
+            document.getElementById('registrationForm').reset();
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>
