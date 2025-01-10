@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastermind Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 18px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .game-board {
+            margin: 20px 0;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #feedback {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #previous-guesses {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .guess-row {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        #hint {
+            margin-top: 20px;
+            font-size: 18px;
+            color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mastermind Game</h1>
+        <div id="feedback"></div>
+        <div class="game-board">
+            <div class="row">
+                <input type="number" id="guess1" min="0" max="5" class="input" />
+                <input type="number" id="guess2" min="0" max="5" class="input" />
+                <input type="number" id="guess3" min="0" max="5" class="input" />
+                <input type="number" id="guess4" min="0" max="5" class="input" />
+                <button onclick="makeGuess()">Guess</button>
+            </div>
+        </div>
+        <div id="previous-guesses"></div>
+        <div id="hint"></div>
+    </div>
+
+    <script>
+        // Generate a random 4-digit code with digits between 0 and 5
+        let secretCode = generateSecretCode();
+        let guessCount = 0;  // Track number of guesses
+
+        // Keep track of previous guesses and feedback
+        let previousGuesses = [];
+
+        // Function to generate the secret code
+        function generateSecretCode() {
+            let code = [];
+            for (let i = 0; i < 4; i++) {
+                code.push(Math.floor(Math.random() * 6)); // Random number between 0 and 5
+            }
+            return code;
+        }
+
+        // Function to check the guess and provide feedback
+        function checkGuess(guess) {
+            let blackPegs = 0;
+            let whitePegs = 0;
+            let secretCodeCopy = [...secretCode];
+
+            // Check for black pegs (correct number and position)
+            for (let i = 0; i < 4; i++) {
+                if (guess[i] === secretCode[i]) {
+                    blackPegs++;
+                    secretCodeCopy[i] = null; // Mark this position as already checked
+                }
+            }
+
+            // Check for white pegs (correct number, wrong position)
+            for (let i = 0; i < 4; i++) {
+                if (guess[i] !== secretCode[i] && secretCodeCopy.includes(guess[i])) {
+                    whitePegs++;
+                    secretCodeCopy[secretCodeCopy.indexOf(guess[i])] = null; // Remove this number from the copy
+                }
+            }
+
+            return { blackPegs, whitePegs };
+        }
+
+        // Function to handle a guess
+        function makeGuess() {
+            const guess1 = document.getElementById('guess1').value;
+            const guess2 = document.getElementById('guess2').value;
+            const guess3 = document.getElementById('guess3').value;
+            const guess4 = document.getElementById('guess4').value;
+
+            if (guess1 === '' || guess2 === '' || guess3 === '' || guess4 === '') {
+                alert("Please fill in all the fields.");
+                return;
+            }
+
+            const guess = [parseInt(guess1), parseInt(guess2), parseInt(guess3), parseInt(guess4)];
+            guessCount++;
+
+            // Check the guess and get feedback
+            const feedback = checkGuess(guess);
+
+            // Display feedback
+            const feedbackText = `${feedback.blackPegs} Black Peg(s), ${feedback.whitePegs} White Peg(s)`;
+            document.getElementById('feedback').innerText = feedbackText;
+
+            // Display previous guesses
+            previousGuesses.push({ guess: guess.join(''), feedback: feedbackText });
+            displayPreviousGuesses();
+
+            // Check if the guess is correct
+            if (feedback.blackPegs === 4) {
+                setTimeout(() => alert("Congratulations! You guessed the code!"), 100);
+                resetGame();
+            }
+
+            // Provide a hint after every 3 guesses
+            if (guessCount % 3 === 0) {
+                showHint();
+            }
+        }
+
+        // Function to display previous guesses
+        function displayPreviousGuesses() {
+            const previousGuessesDiv = document.getElementById('previous-guesses');
+            previousGuessesDiv.innerHTML = ''; // Clear previous guesses
+            previousGuesses.forEach(guessData => {
+                const guessRow = document.createElement('div');
+                guessRow.classList.add('guess-row');
+                guessRow.innerText = `Guess: ${guessData.guess} - Feedback: ${guessData.feedback}`;
+                previousGuessesDiv.appendChild(guessRow);
+            });
+        }
+
+        // Function to show a hint after every 3 guesses
+        function showHint() {
+            const hint = secretCode[Math.floor(Math.random() * 4)];
+            document.getElementById('hint').innerText = `Hint: One of the digits is ${hint}`;
+        }
+
+        // Function to reset the game
+        function resetGame() {
+            secretCode = generateSecretCode(); // Generate new secret code
+            previousGuesses = []; // Clear previous guesses
+            guessCount = 0; // Reset the guess count
+            document.getElementById('feedback').innerText = ''; // Clear feedback
+            document.getElementById('previous-guesses').innerHTML = ''; // Clear previous guesses list
+            document.getElementById('hint').innerText = ''; // Clear hint
+            document.getElementById('guess1').value = '';
+            document.getElementById('guess2').value = '';
+            document.getElementById('guess3').value = '';
+            document.getElementById('guess4').value = '';
+        }
+    </script>
+</body>
+</html>

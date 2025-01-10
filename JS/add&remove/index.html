@@ -163,6 +163,20 @@
 
     <script>
         let currentInvoice = null;
+        let invoiceList = document.getElementById('invoice-list');
+        let invoicesFromLocalStorageRaw = localStorage.getItem('invoices');
+        if (invoicesFromLocalStorageRaw == null) {
+            invoicesFromLocalStorageRaw = [];
+        }
+        if ((invoicesFromLocalStorageRaw.length > 0) && (invoicesFromLocalStorageRaw.startsWith = '[')) {
+            invoicesFromLocalStorage = JSON.parse(invoicesFromLocalStorageRaw);
+            invoicesFromLocalStorage.forEach(invoice => {
+                let pp = document.createElement('p');
+                let data = JSON.parse(invoice);
+                pp.innerHTML = `${data.invoiceNumber} ${data.invoiceDate}`;
+                invoiceList.appendChild(pp);
+            })
+        }
 
         // Show the form to create or edit an invoice
         async function showCreateInvoice() {
@@ -208,6 +222,7 @@
             `;
 
             invoice.items.forEach((item, index) => {
+                
                 let quantity = item.quantity || 0;
                 let price = item.price || 0;
                 let discount = item.discount || 0;
@@ -274,7 +289,12 @@
                 const invoiceDate = document.getElementById('invoice-date').value;
 
                 let invoicesRaw = localStorage.getItem('invoices');
-                let invoices = invoicesRaw ? JSON.parse(invoicesRaw) : [];
+                if (invoicesRaw == null) {
+                    invoicesRaw = [];
+                } else if (!invoicesRaw.startsWith('[')) {
+                    invoicesRaw = `[${invoicesRaw}]`;
+                }
+                let invoices = invoicesRaw && invoicesRaw != [] && invoicesRaw.length > 0 ? JSON.parse(invoicesRaw) : [];
 
                 const invoice = {
                     invoiceNumber,
