@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Manager</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+
+        #invoice-list-container {
+            margin-bottom: 20px;
+        }
+
+        #create-invoice-container {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .button-group button:hover {
+            background-color: #45a049;
+        }
+
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .invoice-details div {
+            width: 48%;
+        }
+
+        .invoice-details label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .invoice-details input[type="text"],
+        .invoice-details input[type="date"],
+        .invoice-details input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        table td:nth-child(2),
+        table td:nth-child(3),
+        table td:nth-child(4),
+        table td:nth-child(5) {
+            text-align: right;
+        }
+
+        table input[type="number"] {
+            width: 100%;
+            text-align: right;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .grand-total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Invoice List Container -->
+    <div id="invoice-list-container">
+        <h1>VAT Invoice List</h1>
+        <button onclick="showCreateInvoice()">Create Invoice</button>
+        <div id="invoice-list"></div>
+    </div>
+
+    <!-- Create Invoice Container -->
+    <div id="create-invoice-container">
+        <h2>NEW VAT INVOICE</h2>
+
+        <!-- Customer and Company Details -->
+        <div class="invoice-details">
+            <div>
+                <label for="customer-name">Customer Name</label>
+                <input type="text" id="customer-name" placeholder="Enter Customer Name" />
+
+                <label for="company-name">Company Name</label>
+                <input type="text" id="company-name" placeholder="Enter Company Name" />
+            </div>
+
+            <div>
+                <label for="invoice-number">Invoice Number</label>
+                <input type="text" id="invoice-number" placeholder="Invoice Number" />
+
+                <label for="invoice-date">Invoice Date</label>
+                <input type="date" id="invoice-date" />
+            </div>
+        </div>
+
+        <!-- Items Table -->
+        <div id="new-invoice-data"></div>
+
+        <div class="button-group">
+            <button onclick="saveInvoice()">Save</button>
+            <button onclick="updateInvoice()">Update</button>
+            <button onclick="cancelInvoice()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInvoice = null;
+        let invoiceList = document.getElementById('invoice-list');
+        let invoicesFromLocalStorageRaw = localStorage.getItem('invoices');
+        let invoicesFromLocalStorage = [];
+
+        // Function to render invoices list
+        function renderInvoiceList() {
+            invoiceList.innerHTML = '';
+            if (invoicesFromLocalStorageRaw) {
+                invoicesFromLocalStorage = JSON.parse(invoicesFromLocalStorageRaw);
+                invoicesFromLocalStorage.forEach((invoiceData, index) => {
+                    let data = JSON.parse(invoiceData);
+                    let pp = document.createElement('p');
+                    pp.innerHTML = `<a href="#" onclick="viewInvoiceDetails(${index})">${data.invoiceNumber} - ${data.invoiceDate}</a>`;
+                    invoiceList.appendChild(pp);
+                });
+            }
+        }
+
+        // Show the form to create or edit an invoice
+        async function showCreateInvoice() {
+            document.getElementById('invoice-list-container').style.display = 'none';
+            document.getElementById('create-invoice-container').style.display = 'block';
+
+            const invoice = await fetchNewInvoice(); // Fetching invoice data from API
+            if (invoice) {
+                currentInvoice = invoice;
+                displayInvoiceForm(invoice);
+            } else {
+                currentInvoice = { items: [] }; // For a new invoice if no data is fetched
+                displayInvoiceForm(currentInvoice);
+            }
+        }
+
+        // Fetch invoice data (could be new or an existing one)
+        async function fetchNewInvoice() {
+            try {
+                const response = await fetch('https://in3.dev/inv/');
+                if (!response.ok) throw new Error('Data could not be retrieved');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                showMessage('Error while retrieving data from API', 'error');
+                console.error(error);
+                return null;
+            }
+        }
+
+        // Display the invoice form
+        function displayInvoiceForm(invoice) {
+            const container = document.getElementById('new-invoice-data');
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            invoice.items.forEach((item, index) => {
+                let quantity = item.quantity || 0;
+                let price = item.price || 0;
+                let discount = item.discount || 0;
+                let total = (quantity * price) - discount;
+
+                html += `
+                    <tr>
+                        <td><input type="text" value="${item.description || ''}" onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${quantity}" onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${price}" onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${discount}" onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${total.toFixed(2)}" disabled /></td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table><div class="grand-total">Total: <span id="grand-total">0.00</span></div>`;
+            container.innerHTML = html;
+            recalculateAllTotals();
+        }
+
+        // Recalculate total for a specific row
+        function recalculateTotal(index) {
+            const row = document.querySelector(`#new-invoice-data table tbody tr:nth-child(${index + 1})`);
+            const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value) || 0;
+            const price = parseFloat(row.querySelector('td:nth-child(3) input').value) || 0;
+            const discount = parseFloat(row.querySelector('td:nth-child(4) input').value) || 0;
+
+            const total = (quantity * price) - discount;
+            row.querySelector('td:nth-child(5) input').value = total.toFixed(2);
+
+            recalculateAllTotals();
+        }
+
+        // Recalculate all totals in the invoice
+        function recalculateAllTotals() {
+            const rows = document.querySelectorAll('#new-invoice-data table tbody tr');
+            let grandTotal = 0;
+
+            rows.forEach(row => {
+                const total = parseFloat(row.querySelector('td:nth-child(5) input').value) || 0;
+                grandTotal += total;
+            });
+
+            document.getElementById('grand-total').innerText = grandTotal.toFixed(2);
+        }
+
+        // Save the invoice
+        function saveInvoice() {
+            const invoiceData = gatherInvoiceData();
+            if (!invoiceData) {
+                alert("Please fill in all fields");
+                return;
+            }
+
+            invoicesFromLocalStorage.push(JSON.stringify(invoiceData));
+            localStorage.setItem('invoices', JSON.stringify(invoicesFromLocalStorage));
+
+            alert("Invoice saved successfully!");
+            renderInvoiceList();
+            returnToInvoiceList();
+        }
+
+        // Gather data from the form
+        function gatherInvoiceData() {
+            const invoiceNumber = document.getElementById('invoice-number').value;
+            const invoiceDate = document.getElementById('invoice-date').value;
+            const customerName = document.getElementById('customer-name').value;
+            const companyName = document.getElementById('company-name').value;
+
+            if (!invoiceNumber || !invoiceDate || !customerName || !companyName) {
+                return null;
+            }
+
+            const items = [];
+            const rows = document.querySelectorAll('#new-invoice-data table tbody tr');
+            rows.forEach(row => {
+                const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value) || 0;
+                const price = parseFloat(row.querySelector('td:nth-child(3) input').value) || 0;
+                const discount = parseFloat(row.querySelector('td:nth-child(4) input').value) || 0;
+                const description = row.querySelector('td:nth-child(1) input').value;
+
+                items.push({ description, quantity, price, discount });
+            });
+
+            return { invoiceNumber, invoiceDate, customerName, companyName, items };
+        }
+
+        // Show details of a specific invoice
+        function viewInvoiceDetails(index) {
+            currentInvoice = JSON.parse(invoicesFromLocalStorage[index]);
+            displayInvoiceForm(currentInvoice);
+            document.getElementById('invoice-list-container').style.display = 'none';
+            document.getElementById('create-invoice-container').style.display = 'block';
+        }
+
+        // Return to the invoice list view
+        function returnToInvoiceList() {
+            document.getElementById('create-invoice-container').style.display = 'none';
+            document.getElementById('invoice-list-container').style.display = 'block';
+        }
+
+        // Show message
+        function showMessage(message, type) {
+            alert(`${type.toUpperCase()}: ${message}`);
+        }
+
+        // Render invoices on load
+        renderInvoiceList();
+    </script>
+
+</body>
+
+</html>
