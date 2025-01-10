@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #72de92;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,11 +20,17 @@
             width: 400px;
             padding: 20px;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
         }
 
         h1 {
             margin-bottom: 20px;
+            /* font-style: oblique; */
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: #4CAF50;
+            shape-image-threshold: initial;
+            text-shadow:  0 0 10px rgba(0, 0, 0, 0.6);;
         }
 
         input {
@@ -34,7 +40,8 @@
             font-size: 18px;
             text-align: center;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #120202;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
         }
 
         button {
@@ -45,10 +52,12 @@
             color: white;
             cursor: pointer;
             border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #5a605c;
+            
         }
 
         .game-board {
@@ -64,7 +73,7 @@
         #feedback {
             margin-bottom: 20px;
             font-size: 18px;
-            color: #333;
+            color: #1e8a32;
         }
 
         #previous-guesses {
@@ -75,6 +84,7 @@
         .guess-row {
             margin: 5px 0;
             font-size: 16px;
+            color: #1e8a32;
         }
 
         #hint {
