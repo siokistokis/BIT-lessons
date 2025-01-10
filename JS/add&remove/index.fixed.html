@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Invoice Manager</title>
     <style>
         /* General styling */
         body {
@@ -25,8 +25,7 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1,
-        h2 {
+        h1, h2 {
             text-align: center;
         }
 
@@ -50,7 +49,6 @@
             background-color: #45a049;
         }
 
-        /* Invoice Form Styling */
         .invoice-details {
             display: flex;
             justify-content: space-between;
@@ -77,19 +75,13 @@
             border: 1px solid #ccc;
         }
 
-        /* Align numbers to the right for all numeric fields */
-        .invoice-details input[type="number"] {
-            text-align: right;
-        }
-
         table {
             width: 100%;
             margin-top: 20px;
             border-collapse: collapse;
         }
 
-        table th,
-        table td {
+        table th, table td {
             padding: 10px;
             text-align: left;
             border: 1px solid #ddd;
@@ -99,7 +91,6 @@
             background-color: #f2f2f2;
         }
 
-        /* Align numbers on the right */
         table td:nth-child(2),
         table td:nth-child(3),
         table td:nth-child(4),
@@ -107,7 +98,6 @@
             text-align: right;
         }
 
-        /* Optional: Style for inputs inside table cells */
         table input[type="number"] {
             width: 100%;
             text-align: right;
@@ -115,6 +105,12 @@
             font-size: 14px;
             border: 1px solid #ddd;
             border-radius: 5px;
+        }
+
+        .grand-total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -165,17 +161,16 @@
         let currentInvoice = null;
         let invoiceList = document.getElementById('invoice-list');
         let invoicesFromLocalStorageRaw = localStorage.getItem('invoices');
-        if (invoicesFromLocalStorageRaw == null) {
-            invoicesFromLocalStorageRaw = [];
-        }
-        if ((invoicesFromLocalStorageRaw.length > 0) && (invoicesFromLocalStorageRaw.startsWith = '[')) {
+        let invoicesFromLocalStorage = [];
+
+        if (invoicesFromLocalStorageRaw) {
             invoicesFromLocalStorage = JSON.parse(invoicesFromLocalStorageRaw);
             invoicesFromLocalStorage.forEach(invoice => {
                 let pp = document.createElement('p');
                 let data = JSON.parse(invoice);
                 pp.innerHTML = `${data.invoiceNumber} ${data.invoiceDate}`;
                 invoiceList.appendChild(pp);
-            })
+            });
         }
 
         // Show the form to create or edit an invoice
@@ -183,11 +178,14 @@
             document.getElementById('invoice-list-container').style.display = 'none';
             document.getElementById('create-invoice-container').style.display = 'block';
 
-            const invoice = await fetchNewInvoice();
-            if (!invoice) return;
-
-            currentInvoice = invoice;
-            displayInvoiceForm(invoice, 'new-invoice-data', true);
+            const invoice = await fetchNewInvoice(); // Fetching invoice data from API
+            if (invoice) {
+                currentInvoice = invoice;
+                displayInvoiceForm(invoice);
+            } else {
+                currentInvoice = { items: [] }; // For a new invoice if no data is fetched
+                displayInvoiceForm(currentInvoice);
+            }
         }
 
         // Fetch invoice data (could be new or an existing one)
@@ -205,8 +203,8 @@
         }
 
         // Display the invoice form
-        function displayInvoiceForm(invoice, containerId, isEditable = false) {
-            const container = document.getElementById(containerId);
+        function displayInvoiceForm(invoice) {
+            const container = document.getElementById('new-invoice-data');
             let html = `
                 <table>
                     <thead>
@@ -222,30 +220,24 @@
             `;
 
             invoice.items.forEach((item, index) => {
-                
                 let quantity = item.quantity || 0;
                 let price = item.price || 0;
                 let discount = item.discount || 0;
                 let total = (quantity * price) - discount;
 
-                // Ensure valid numbers
-                if (isNaN(total)) total = 0;
-
                 html += `
                     <tr>
-                        <td><input type="text" value="${item.description}" ${isEditable ? '' : 'disabled'} /></td>
-                        <td><input type="number" value="${quantity}" ${isEditable ? '' : 'disabled'} onchange="recalculateTotal(${index})" /></td>
-                        <td><input type="number" value="${price}" ${isEditable ? '' : 'disabled'} onchange="recalculateTotal(${index})" /></td>
-                        <td><input type="number" value="${discount}" ${isEditable ? '' : 'disabled'} onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="text" value="${item.description || ''}" onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${quantity}" onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${price}" onchange="recalculateTotal(${index})" /></td>
+                        <td><input type="number" value="${discount}" onchange="recalculateTotal(${index})" /></td>
                         <td><input type="number" value="${total.toFixed(2)}" disabled /></td>
                     </tr>
                 `;
             });
 
-            html += `</tbody></table>`;
+            html += `</tbody></table><div class="grand-total">Grand Total: $<span id="grand-total">0.00</span></div>`;
             container.innerHTML = html;
-
-            // Recalculate all totals
             recalculateAllTotals();
         }
 
@@ -259,7 +251,6 @@
             const total = (quantity * price) - discount;
             row.querySelector('td:nth-child(5) input').value = total.toFixed(2);
 
-            // Recalculate grand total
             recalculateAllTotals();
         }
 
@@ -273,46 +264,22 @@
                 grandTotal += total;
             });
 
-            console.log('Grand Total:', grandTotal);
+            document.getElementById('grand-total').innerText = grandTotal.toFixed(2);
         }
 
         // Save the invoice
-        async function saveInvoice() {
+        function saveInvoice() {
             const invoiceData = gatherInvoiceData();
             if (!invoiceData) {
-                showMessage("Please fill in all fields", "error");
+                alert("Please fill in all fields");
                 return;
             }
 
-            try {
-                const invoiceNumber = document.getElementById('invoice-number').value;
-                const invoiceDate = document.getElementById('invoice-date').value;
+            invoicesFromLocalStorage.push(JSON.stringify(invoiceData));
+            localStorage.setItem('invoices', JSON.stringify(invoicesFromLocalStorage));
 
-                let invoicesRaw = localStorage.getItem('invoices');
-                if (invoicesRaw == null) {
-                    invoicesRaw = [];
-                } else if (!invoicesRaw.startsWith('[')) {
-                    invoicesRaw = `[${invoicesRaw}]`;
-                }
-                let invoices = invoicesRaw && invoicesRaw != [] && invoicesRaw.length > 0 ? JSON.parse(invoicesRaw) : [];
-
-                const invoice = {
-                    invoiceNumber,
-                    invoiceDate,
-                    customerName: document.getElementById('customer-name').value,
-                    companyName: document.getElementById('company-name').value,
-                    items: invoiceData.items
-                };
-
-                invoices.push(JSON.stringify(invoice));
-                localStorage.setItem('invoices', JSON.stringify(invoices));
-
-                showMessage("Invoice saved successfully", "success");
-                returnToInvoiceList();
-            } catch (error) {
-                showMessage("Failed to save invoice", "error");
-                console.error(error);
-            }
+            alert("Invoice saved successfully!");
+            returnToInvoiceList();
         }
 
         // Gather data from the form
@@ -332,22 +299,12 @@
                 const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value) || 0;
                 const price = parseFloat(row.querySelector('td:nth-child(3) input').value) || 0;
                 const discount = parseFloat(row.querySelector('td:nth-child(4) input').value) || 0;
+                const description = row.querySelector('td:nth-child(1) input').value;
 
-                items.push({
-                    description: row.querySelector('td:nth-child(1) input').value,
-                    quantity,
-                    price,
-                    discount
-                });
+                items.push({ description, quantity, price, discount });
             });
 
-            return {
-                number: invoiceNumber,
-                date: invoiceDate,
-                customerName,
-                companyName,
-                items
-            };
+            return { invoiceNumber, invoiceDate, customerName, companyName, items };
         }
 
         // Return to the invoice list view
@@ -356,15 +313,10 @@
             document.getElementById('invoice-list-container').style.display = 'block';
         }
 
-        // Show messages
+        // Show message
         function showMessage(message, type) {
             alert(`${type.toUpperCase()}: ${message}`);
         }
-
-
-
-
-
     </script>
 
 </body>
