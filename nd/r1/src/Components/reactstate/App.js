@@ -1,12 +1,10 @@
-
-
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
+// Main App component
 function App() {
-  // Būsenos nustatymas, kad nuspręstume, ar tai bus apskritimas, ar kvadratas
   const [isCircle, setIsCircle] = useState(true);
 
-  // Funkcija, kuri keičia formą (apskritimą į kvadratą ir atvirkščiai)
   const toggleShape = () => {
     setIsCircle(!isCircle);
   };
@@ -16,7 +14,7 @@ function App() {
       <div
         style={{
           ...styles.shape,
-          borderRadius: isCircle ? '50%' : '0%', // Jei apskritimas, nustatome borderRadius į 50%
+          borderRadius: isCircle ? '50%' : '0%', // Toggle between circle and square
         }}
       />
       <button onClick={toggleShape} style={styles.button}>
@@ -26,7 +24,7 @@ function App() {
   );
 }
 
-// Paprasti stiliai
+// Styles
 const styles = {
   container: {
     display: 'flex',
@@ -53,4 +51,10 @@ const styles = {
   },
 };
 
-export default App;
+// ReactDOM rendering (entry point)
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root') // Ensure this div exists in your `index.html`
+);
