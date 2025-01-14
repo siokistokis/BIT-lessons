@@ -186,32 +186,11 @@
         }
 
         // Show the form to create or edit an invoice
-        async function showCreateInvoice() {
+        function showCreateInvoice() {
             document.getElementById('invoice-list-container').style.display = 'none';
             document.getElementById('create-invoice-container').style.display = 'block';
-
-            const invoice = await fetchNewInvoice(); // Fetching invoice data from API
-            if (invoice) {
-                currentInvoice = invoice;
-                displayInvoiceForm(invoice);
-            } else {
-                currentInvoice = { items: [] }; // For a new invoice if no data is fetched
-                displayInvoiceForm(currentInvoice);
-            }
-        }
-
-        // Fetch invoice data (could be new or an existing one)
-        async function fetchNewInvoice() {
-            try {
-                const response = await fetch('https://in3.dev/inv/');
-                if (!response.ok) throw new Error('Data could not be retrieved');
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                showMessage('Error while retrieving data from API', 'error');
-                console.error(error);
-                return null;
-            }
+            currentInvoice = { items: [] }; // For a new invoice
+            displayInvoiceForm(currentInvoice);
         }
 
         // Display the invoice form
@@ -306,6 +285,21 @@
             returnToInvoiceList();
         }
 
+        // Delete the invoice
+        function cancelInvoice() {
+            if (currentInvoice !== null) {
+                // Remove the current invoice from local storage
+                invoicesFromLocalStorage = invoicesFromLocalStorage.filter(invoiceData => JSON.parse(invoiceData).invoiceNumber !== currentInvoice.invoiceNumber);
+                localStorage.setItem('invoices', JSON.stringify(invoicesFromLocalStorage));
+
+                alert("Invoice deleted successfully!");
+                renderInvoiceList();
+                returnToInvoiceList();
+            } else {
+                alert("No invoice to delete.");
+            }
+        }
+
         // Gather data from the form
         function gatherInvoiceData() {
             const invoiceNumber = document.getElementById('invoice-number').value;
@@ -343,11 +337,6 @@
         function returnToInvoiceList() {
             document.getElementById('create-invoice-container').style.display = 'none';
             document.getElementById('invoice-list-container').style.display = 'block';
-        }
-
-        // Show message
-        function showMessage(message, type) {
-            alert(`${type.toUpperCase()}: ${message}`);
         }
 
         // Render invoices on load
