@@ -157,6 +157,7 @@
 
         <!-- Items Table -->
         <div id="new-invoice-data"></div>
+        <button onclick="addInvoiceItem()">Add Item</button>
 
         <div class="button-group">
             <button onclick="saveInvoice()">Save</button>
@@ -170,6 +171,19 @@
         let invoiceList = document.getElementById('invoice-list');
         let invoicesFromLocalStorageRaw = localStorage.getItem('invoices');
         let invoicesFromLocalStorage = [];
+
+        // Fetch invoice data (could be new or an existing one)
+        async function fetchNewInvoice() {
+            try {
+                const response = await fetch('https://in3.dev/inv/');
+                if (!response.ok) throw new Error('Data could not be retrieved');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
 
         // Function to render invoices list
         function renderInvoiceList() {
@@ -186,10 +200,13 @@
         }
 
         // Show the form to create or edit an invoice
-        function showCreateInvoice() {
+        async function showCreateInvoice() {
             document.getElementById('invoice-list-container').style.display = 'none';
             document.getElementById('create-invoice-container').style.display = 'block';
-            currentInvoice = { items: [] }; // For a new invoice
+            currentInvoice = await fetchNewInvoice(); // Fetch the new invoice data
+            if (!currentInvoice) {
+                currentInvoice = { items: [] }; // Default to empty if no data
+            }
             displayInvoiceForm(currentInvoice);
         }
 
@@ -236,6 +253,12 @@
             recalculateAllTotals();
         }
 
+        // Add a new row (item) to the invoice
+        function addInvoiceItem() {
+            currentInvoice.items.push({ description: '', quantity: 0, price: 0, discount: 0 });
+            displayInvoiceForm(currentInvoice);
+        }
+
         // Recalculate total for a specific row
         function recalculateTotal(index) {
             const row = document.querySelector(`#new-invoice-data table tbody tr:nth-child(${index + 1})`);
@@ -269,7 +292,7 @@
             document.getElementById('total-vat').innerText = totalVat.toFixed(2);
         }
 
-        // Save the invoice
+        // Save the invoice to localStorage
         function saveInvoice() {
             const invoiceData = gatherInvoiceData();
             if (!invoiceData) {
@@ -285,11 +308,15 @@
             returnToInvoiceList();
         }
 
-        // Delete the invoice
+        // Cancel (delete) the invoice
         function cancelInvoice() {
             if (currentInvoice !== null) {
                 // Remove the current invoice from local storage
-                invoicesFromLocalStorage = invoicesFromLocalStorage.filter(invoiceData => JSON.parse(invoiceData).invoiceNumber !== currentInvoice.invoiceNumber);
+                invoicesFromLocalStorage = invoicesFromLocalStorage.filter(invoiceData => {
+                    const parsedInvoice = JSON.parse(invoiceData);
+                    return parsedInvoice.invoiceNumber !== currentInvoice.invoiceNumber;
+                });
+
                 localStorage.setItem('invoices', JSON.stringify(invoicesFromLocalStorage));
 
                 alert("Invoice deleted successfully!");
