@@ -1,6 +1,12 @@
-export default function H2() {
+export default function H2({text, color}) {
 
     return (
-        <h1 className="h2">H2</h1>
+        <h1 className="h2" style={{color}}>{text}</h1>
     );
 }
+
+
+
+
+
+
