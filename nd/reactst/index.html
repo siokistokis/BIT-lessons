@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forma Keitimas</title>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    
+    <!-- Babel CDN, kad galėtume naudoti JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .shape {
+        width: 100px;
+        height: 100px;
+        background-color: #3498db;
+        margin-bottom: 20px;
+      }
+      .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div> <!-- React atvaizduos čia aplikaciją -->
+
+    <script type="text/babel">
+      // Importuojame React ir ReactDOM
+      const { useState } = React;
+
+      // Pagrindinė App komponentė
+      function App() {
+        const [isCircle, setIsCircle] = useState(true); // Naudojame useState, kad sekti, ar tai apskritimas ar kvadratas
+
+        const toggleShape = () => {
+          setIsCircle(!isCircle); // Paspaudus mygtuką, keičiame formą
+        };
+
+        return (
+          <div className="container">
+            <div
+              className="shape"
+              style={{
+                borderRadius: isCircle ? '50%' : '0%', // Jei yra apskritimas, radius 50%, jei kvadratas - 0%
+              }}
+            />
+            <button onClick={toggleShape} className="button">
+              Change
+            </button>
+          </div>
+        );
+      }
+
+      // Atvaizduojame App komponentą į HTML elementą su id "root"
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
