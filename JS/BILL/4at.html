@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice PDF Print Preview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .invoice-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .invoice-header h1 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        .invoice-header p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .invoice-details {
+            margin-bottom: 40px;
+        }
+
+        .invoice-details .to, .invoice-details .from {
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .invoice-details .to p, .invoice-details .from p {
+            margin: 10px 0;
+        }
+
+        .invoice-items {
+            width: 100%;
+            margin-bottom: 40px;
+            border-collapse: collapse;
+            table-layout: fixed; /* Ensures the table columns don't overflow */
+        }
+
+        .invoice-items th, .invoice-items td {
+            padding: 10px;
+            text-align: right;
+            border: 1px solid #ddd;
+            word-wrap: break-word; /* Ensures content wraps in cells */
+        }
+
+        .invoice-items th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        .invoice-footer {
+            text-align: right;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .print-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .print-button:hover {
+            background-color: #45a049;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .action-buttons button {
+            padding: 12px 24px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .action-buttons .add, .action-buttons .minus {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .action-buttons .clear {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Media Queries for print layout */
+        @media print {
+            body {
+                font-size: 12px;
+            }
+
+            .invoice-container {
+                width: 100%;
+                padding: 0;
+                border: none;
+                background-color: white;
+            }
+
+            .invoice-header, .invoice-footer {
+                margin: 0;
+                text-align: left;
+            }
+
+            .print-button {
+                display: none;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .hidden-print {
+                display: none;
+            }
+        }
+
+        /* Align unit price and subtotal numbers to the right */
+        .unit-price, .quantity, .subtotal {
+            text-align: right;
+        }
+
+        .unit-price, .subtotal {
+            width: 100px;
+        }
+
+        /* Mobile Layout Adjustments */
+        @media (max-width: 768px) {
+            .invoice-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .invoice-header h1 {
+                font-size: 24px;
+            }
+
+            .invoice-header p {
+                font-size: 16px;
+            }
+
+            .invoice-items th, .invoice-items td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .invoice-items input {
+                width: 100%; /* Make input fields fill available width */
+                font-size: 14px;
+                padding: 6px;
+            }
+
+            .invoice-items {
+                overflow-x: auto; /* Allow horizontal scrolling if necessary */
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .action-buttons button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .print-button {
+                width: 100%;
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invoice-container" id="invoice">
+        <div class="invoice-header">
+            <h1>Invoice</h1>
+            <span>Invoice Number:</span>
+            <input type="text"><br>
+            <span>Date: 2025-01-18</span>
+            <input type="date" id="date" class="calendar">
+        </div>
+
+        <div class="invoice-details">
+            <div class="to">
+                <h3>Bill To:</h3>
+                <span>Name:</span>
+                <input type="text"><br>
+                <span>Address:</span>
+                <input type="text"><br>
+                <span>Email:</span>
+                <input type="text">
+            </div>
+
+            <div class="from">
+                <h3>From:</h3>
+                <span>Company:</span>
+                <input type="text"><br>
+                <span>Address:</span>
+                <input type="text"><br>
+                <span>Email:</span>
+                <input type="text">
+            </div>
+        </div>
+
+        <table class="invoice-items">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th> 
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-items-body">
+                <tr>
+                    <td><input type="text" placeholder="Item Description"></td>
+                    <td><input type="number" class="unit-price" placeholder="Unit Price"></td>
+                    <td><input type="number" class="quantity" placeholder="Quantity" min="1" value="1"></td>
+                    <td><span class="subtotal">0.00</span></td>
+                    <td><button class="delete-item">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="invoice-footer">
+            <span><strong>Total:</strong> <span id="total-amount">0.00</span></span>
+        </div>
+
+        <div class="action-buttons">
+            <button class="add">Add Item</button>
+            <button class="clear">Clear All</button>
+        </div>
+
+        <button class="print-button" onclick="printInvoice()">Print Invoice</button>
+    </div>
+
+    <!-- Hidden section for printing -->
+    <div id="print-section" class="hidden-print"></div>
+
+    <script>
+        // Function to print invoice
+        function printInvoice() {
+            var invoiceContent = document.getElementById('invoice').innerHTML;
+            var printSection = document.getElementById('print-section');
+            printSection.innerHTML = invoiceContent;
+            window.print();
+        }
+
+        // Function to calculate subtotal
+        function calculateSubtotal(row) {
+            const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
+            const quantity = parseFloat(row.querySelector('.quantity').value) || 1;
+            const subtotal = unitPrice * quantity;
+            row.querySelector('.subtotal').textContent = subtotal.toFixed(2);
+            return subtotal;
+        }
+
+        // Add new row for new item
+        document.querySelector('.add').addEventListener('click', function() {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="text" placeholder="Item Description"></td>
+                <td><input type="number" class="unit-price" placeholder="Unit Price"></td>
+                <td><input type="number" class="quantity" placeholder="Quantity" min="1" value="1"></td>
+                <td><span class="subtotal">0.00</span></td>
+                <td><button class="delete-item">Delete</button></td>
+            `;
+            document.getElementById('invoice-items-body').appendChild(row);
+        });
+
+        // Calculate totals automatically whenever values change
+        document.querySelector('#invoice-items-body').addEventListener('input', function(event) {
+            if (event.target.classList.contains('unit-price') || event.target.classList.contains('quantity')) {
+                const row = event.target.closest('tr');
+                calculateSubtotal(row);
+                updateTotal();
+            }
+        });
+
+        // Update total amount
+        function updateTotal() {
+            let totalAmount = 0;
+            const rows = document.querySelectorAll('#invoice-items-body tr');
+            rows.forEach(row => {
+                totalAmount += parseFloat(row.querySelector('.subtotal').textContent) || 0;
+            });
+            document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+        }
+
+        // Clear all fields
+        document.querySelector('.clear').addEventListener('click', function() {
+            document.querySelectorAll('input').forEach(input => input.value = '');
+            document.getElementById('total-amount').textContent = '0.00';
+            document.getElementById('invoice-items-body').innerHTML = `
+                <tr>
+                    <td><input type="text" placeholder="Item Description"></td>
+                    <td><input type="number" class="unit-price" placeholder="Unit Price"></td>
+                    <td><input type="number" class="quantity" placeholder="Quantity" min="1" value="1"></td>
+                    <td><span class="subtotal">0.00</span></td>
+                    <td><button class="delete-item">Delete</button></td>
+                </tr>
+            `;
+        });
+
+        // Delete individual item
+        document.querySelector('#invoice-items-body').addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-item')) {
+                event.target.closest('tr').remove();
+                updateTotal();
+            }
+        });
+    </script>
+
+</body>
+</html>
