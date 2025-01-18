@@ -137,13 +137,13 @@
 
 
         @media (max-width: 500px) {
-            .calendar-fields {
+            .calendar-field {
                 width: 100%;
                 display: inline-flex;
             
             }
 
-            .titles-of-calendars {
+            .title-of-calendar {
                 width: 120px;
             }
         }
@@ -282,8 +282,22 @@
 
         /* Making the date input shorter */
         .date-container input[type="date"] {
-            width: 40%; /* Reduced width */
+            width: 70%; /* Reduced width */
         }
+
+
+        /* Ensure the Nr input looks like the date input */
+    .nr-field input[type="text"] {
+        width: 70%; /* Same width as the date input */
+        padding: 10px;
+        font-size: 1em;
+        margin-bottom: 5px;
+        border: 1px solid #ab7777;
+        border-radius: 5px;
+        border: transparent;
+        text-align: left;
+    }
+
 
         .tick {
     display: flex;
@@ -445,15 +459,14 @@
             <div class="enter">
                 <div class="left-align">
                     <div class="date-container">
-                        <span class="calendar-fields">
-                            <span class="titles-of-calendars">Date:</span>
+                        <span class="calendar-field">
+                            <span class="title-of-calendar">Date:</span>
                             <input type="date" id="date" class="calendar"><br />
                         </span>
-                        <span class="calendar-fields">
-                            <span class="titles-of-calendars">Payment term:</span>
-                            <input type="date" id="payment-term" class="calendar"><br /> 
+                        <span class="nr-field">
+                            <span class="title-of-nr">Nr:</span>
+                            <input type="text" id="data" placeholder="Enter nr."><br /> 
                         </span>
-                        
                         
                     </div>
                 </div>
@@ -483,12 +496,12 @@
                     <table id="purchase-list" class="purchase-table">
                         <thead>
                             <tr>
-                                <th style="color: blue;">List:</th>
-                                <th><span class="titles">Description:</span></th>
-                                <th><span class="titles">Quantity:</span></th>
-                                <th><span class="titles">Unit Price:</span></th>
-                                <th><span class="titles">Discount:</span></th>
-                                <th><span class="titles" style="color: blue;">Subtotal:</span></th>
+                                <th style="color: blue;">List</th>
+                                <th><span class="titles">Description</span></th>
+                                <th><span class="titles">Quantity</span></th>
+                                <th><span class="titles">Unit Price</span></th>
+                                <th><span class="titles">Discount</span></th>
+                                <th><span class="titles" style="color: blue;">Subtotal</span></th>
                             </tr>
                         </thead>
                         <tbody id="list-body">

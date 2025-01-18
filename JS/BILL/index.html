@@ -38,9 +38,9 @@
         }
 
         .invoice-details {
+            margin-bottom: 40px;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 40px;
         }
 
         .invoice-details .to, .invoice-details .from {
@@ -85,25 +85,6 @@
         .unit-price, .subtotal {
             width: 120px;
             text-align: right;
-        }
-
-        .action-buttons button {
-            padding: 12px 24px;
-            margin: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        .action-buttons .add, .action-buttons .minus {
-            background-color: #2196F3;
-            color: white;
-        }
-
-        .action-buttons .clear {
-            background-color: #f44336;
-            color: white;
         }
 
         .invoice-footer {
@@ -160,17 +141,16 @@
                 display: none;
             }
 
-            /* Layout for Bill To and From in the same row and centered */
+            /* Invoice Details in PDF (side by side) */
             .invoice-details {
                 display: flex;
                 justify-content: space-between;
+                align-items: flex-start;
                 margin-bottom: 20px;
-                width: 100%;
-                padding: 0 10px;
             }
 
             .invoice-details .to, .invoice-details .from {
-                width: 48%;
+                width: 48%; /* Ensures each section takes up 48% of the width */
             }
 
             .invoice-details input {
