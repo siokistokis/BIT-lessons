@@ -27,11 +27,6 @@
             margin: 0;
         }
 
-        .invoice-header p {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-
         .invoice-details {
             margin-bottom: 40px;
         }
@@ -135,8 +130,81 @@
                 display: none;
             }
 
+            .delete-item {
+                display: none; /* Hide delete buttons in print view */
+            }
+
             .hidden-print {
                 display: none;
+            }
+
+            .invoice-container input {
+                display: none;
+            }
+
+            /* Show values in the print preview */
+            .invoice-items input {
+                display: none;
+            }
+
+            .invoice-items td {
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+
+            .invoice-items td span {
+                display: inline-block;
+                padding: 5px;
+                border: none;
+                text-align: left;
+                font-size: 14px;
+            }
+
+            .invoice-footer span {
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 600px) {
+            .invoice-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .invoice-header h1 {
+                font-size: 24px;
+            }
+
+            .invoice-header p {
+                font-size: 16px;
+            }
+
+            .invoice-details .to, .invoice-details .from {
+                width: 100%;
+                display: block;
+            }
+
+            .invoice-items th, .invoice-items td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .invoice-footer {
+                font-size: 16px;
+            }
+
+            .print-button {
+                width: 100%;
+                font-size: 18px;
+                padding: 12px;
+            }
+
+            .action-buttons button {
+                width: 100%;
+                padding: 14px;
+                font-size: 18px;
             }
         }
 
@@ -156,30 +224,29 @@
         <div class="invoice-header">
             <h1>Invoice</h1>
             <span>Invoice Number:</span>
-            <input type="text"><br>
-            <span>Date: 2025-01-18</span>
-            <input type="date" id="date" class="calendar">
+            <input type="text" id="invoice-number"><br>
+            <span>Date: </span><input type="date" id="date" class="calendar">
         </div>
 
         <div class="invoice-details">
             <div class="to">
                 <h3>Bill To:</h3>
                 <span>Name:</span>
-                <input type="text"><br>
+                <input type="text" id="bill-name"><br>
                 <span>Address:</span>
-                <input type="text"><br>
+                <input type="text" id="bill-address"><br>
                 <span>Email:</span>
-                <input type="text">
+                <input type="text" id="bill-email">
             </div>
 
             <div class="from">
                 <h3>From:</h3>
                 <span>Company:</span>
-                <input type="text"><br>
+                <input type="text" id="company"><br>
                 <span>Address:</span>
-                <input type="text"><br>
+                <input type="text" id="company-address"><br>
                 <span>Email:</span>
-                <input type="text">
+                <input type="text" id="company-email">
             </div>
         </div>
 
@@ -190,12 +257,11 @@
                     <th>Unit Price</th>
                     <th>Quantity</th>
                     <th>Subtotal</th> 
-                    
                 </tr>
             </thead>
             <tbody id="invoice-items-body">
                 <tr>
-                    <td><input type="text" placeholder="Item Description"></td>
+                    <td><input type="text" placeholder="Item Description" class="description"></td>
                     <td><input type="number" class="unit-price" placeholder="Unit Price"></td>
                     <td><input type="number" class="quantity" placeholder="Quantity" min="1" value="1"></td>
                     <td><span class="subtotal">0.00</span></td>
@@ -222,10 +288,22 @@
     <script>
         // Function to print invoice
         function printInvoice() {
+            // Grab the content of the invoice and prepare for printing
             var invoiceContent = document.getElementById('invoice').innerHTML;
+
+            // Create a new div for printing (hidden)
             var printSection = document.getElementById('print-section');
             printSection.innerHTML = invoiceContent;
-            window.print();
+
+            // Replace all input fields with their values
+            printSection.innerHTML = printSection.innerHTML.replace(/<input[^>]*value="([^"]*)"[^>]*>/g, function(match, value) {
+                return '<span>' + value + '</span>';
+            });
+
+            // Trigger the print dialog after content has been copied
+            setTimeout(function() {
+                window.print();
+            }, 100); // small delay to ensure content is rendered
         }
 
         // Function to calculate subtotal
@@ -241,7 +319,7 @@
         document.querySelector('.add').addEventListener('click', function() {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td><input type="text" placeholder="Item Description"></td>
+                <td><input type="text" placeholder="Item Description" class="description"></td>
                 <td><input type="number" class="unit-price" placeholder="Unit Price"></td>
                 <td><input type="number" class="quantity" placeholder="Quantity" min="1" value="1"></td>
                 <td><span class="subtotal">0.00</span></td>
@@ -275,7 +353,7 @@
             document.getElementById('total-amount').textContent = '0.00';
             document.getElementById('invoice-items-body').innerHTML = `
                 <tr>
-                    <td><input type="text" placeholder="Item Description"></td>
+                    <td><input type="text" placeholder="Item Description" class="description"></td>
                     <td><input type="number" class="unit-price" placeholder="Unit Price"></td>
                     <td><input type="number" class="quantity" placeholder="Quantity" min="1" value="1"></td>
                     <td><span class="subtotal">0.00</span></td>
