@@ -289,19 +289,31 @@
         // Function to print invoice
         function printInvoice() {
             // Grab the content of the invoice and prepare for printing
-            var invoiceContent = document.getElementById('invoice').innerHTML;
-
+            // var invoiceContent = document.getElementById('invoice').innerHTML;
+            // console.log(invoiceContent)
             // Create a new div for printing (hidden)
-            var printSection = document.getElementById('print-section');
-            printSection.innerHTML = invoiceContent;
+            // var printSection = document.getElementById('print-section');
+            // console.log(printSection)
+            // printSection.innerHTML = invoiceContent;
+            let inputValues = [];
 
+            let inputs = document.querySelectorAll('#invoice input');
+            inputs.forEach(input => {
+       inputValues.push(input.value);  
+       let span = document.createElement('span'); 
+       span.textContent = input.value;
+        // const span = document.createElement('span');
+        // span.textContent = value;
+        input.parentNode.replaceChild(span, input);
+    }); 
+            console.log(inputValues);
             // Replace all input fields with their values
             printSection.innerHTML = printSection.innerHTML.replace(/<input[^>]*value="([^"]*)"[^>]*>/g, function(match, value) {
                 return '<span>' + value + '</span>';
             });
 
             // Trigger the print dialog after content has been copied
-            setTimeout(function() {
+            setTimeout(() => {
                 window.print();
             }, 100); // small delay to ensure content is rendered
         }
@@ -312,7 +324,7 @@
             const quantity = parseFloat(row.querySelector('.quantity').value) || 1;
             const subtotal = unitPrice * quantity;
             row.querySelector('.subtotal').textContent = subtotal.toFixed(2);
-            return subtotal;
+            return subtotal;n
         }
 
         // Add new row for new item
