@@ -1,13 +1,13 @@
 
-// import './App.css';
+import './App.css';
 
-// function App() {
-//   return (
-//     <div className="App">
+function App() {
+  return (
+    <div className="App">
       
-//     </div>
-//   );
-// }
+    </div>
+  );
+}
 
 // export default App;
 
@@ -67,4 +67,5 @@ const Header = () => {
   );
 };
 
-export default Header;
+// export default Header;
+export default App;
