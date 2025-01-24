@@ -1,64 +1,60 @@
 /* Sample styling for the header */
+
+.header-bg {
+  min-height: 60px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  position: relative;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: inherit;
+   
   }
-  
-  .logo img {
-    width: 150px;
-  }
-  
-  .nav-links ul {
+
+  .header-links {
+    width: 40%;
     display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    justify-content: space-between;
+
   }
-  
-  .nav-links li {
-    margin-right: 20px;
+
+  .header-links a {
+    color: black;
+    font-weight: 400;
+    font-size: 17px;
+    transition: all .3s ease-in-out;
   }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
+
+  .header-links a:hover {
+    color: var(--dGreen);
+    text-shadow: 2px 2px 2px #508065;
   }
-  
-  .nav-links a:hover {
-    color: #4CAF50; /* Green color for hover effect */
-  }
-  
-  .header-actions {
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-bar input {
-    padding: 5px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .user-account img, .cart img {
-    width: 30px;
-    height: 30px;
-    margin-left: 20px;
-  }
-  
-  .cart-count {
+  /* .header-right {
+
+  } */
+
+  .shopcart {
+    padding: 0 25px;
+    position: relative;
+    height: 100%;
+    display: inline-block;
+    /* border-left: 1px solid var(--grey); */
+}
+ 
+.shopcart::before {
+    content: "";
+    height: 46px;
+    width: 1px;
+    background-color: var(--grey);
     position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: #f44336;
-    color: white;
-    padding: 5px;
-    border-radius: 50%;
-    font-size: 12px;
-  }
-  
+    left: 0;
+    top: -10px;
+}
+ 
+.shopcart img {
+    margin-right: 5px;
+}

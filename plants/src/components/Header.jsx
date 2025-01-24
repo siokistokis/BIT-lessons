@@ -1,49 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css';  // If you have the CSS file
-
-const Header = () => {
+import './Header.css';
+import headerLogo from '../img/Logo.svg';
+import SearchLogo from '../img/Search.svg';
+import Vector from '../img/Vector.svg';
+export default function Header() {
   return (
-    <header className="header">
-      <div className="logo">
-        <Link to="/">
-          <img src="/assets/logo.png" alt="Green Plant Shop Logo" />
-        </Link>
-      </div>
-      <nav className="nav-links">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/shop">Shop</Link>
-          </li>
-          <li>
-            <Link to="/about">About Us</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
-      <div className="header-actions">
-        <div className="search-bar">
-          <input type="text" placeholder="Search for plants..." />
-        </div>
-        <div className="user-account">
-          <Link to="/account">
-            <img src="/assets/user-icon.png" alt="User Account" />
-          </Link>
-        </div>
-        <div className="cart">
-          <Link to="/cart">
-            <img src="/assets/cart-icon.png" alt="Shopping Cart" />
-            <span className="cart-count">2</span>
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-};
+    <div className='header-bg'>
+      <div className='wrapper header'>
+      <a href="#"><img src={headerLogo} alt="logo"></img></a>
 
-export default Header; // Make sure you export the Header component correctly
+    <div className='header-links'>
+    <a href="">Home</a>
+    <a href="">Product</a>
+    <a href="">About us</a>
+    <a href="">Contact</a>
+
+    </div>
+    <div className='header-right'>
+      <input type="text" />
+      <img src={SearchLogo} alt="" />
+      <a href="#">
+      <img src={Vector} alt="" />
+      </a>
+    </div>
+  </div>
+
+  </div>
+  )
+}
+
+
+

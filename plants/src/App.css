@@ -1,64 +1,43 @@
-/* src/components/Header.css */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+:root {
+  --dGreen: #50806B;
+  --lGreen: #E8EDDE;
+  --red: #D11F1F;
+  --grey: #7C8087;
+}
+
+.wrapper {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-family: "Poppins", serif;
+  font-style: normal;
+}
+
+
+
+
+  /* .poppins-light {
+    font-family: "Poppins", serif;
+    font-weight: 300;
+    font-style: normal;
   }
   
-  .logo img {
-    width: 150px;
+  .poppins-regular {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
   }
   
-  .nav-links ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .poppins-semibold {
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-style: normal;
   }
-  
-  .nav-links li {
-    margin-right: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-  }
-  
-  .nav-links a:hover {
-    color: #4CAF50; /* Green color for hover effect */
-  }
-  
-  .header-actions {
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-bar input {
-    padding: 5px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .user-account img, .cart img {
-    width: 30px;
-    height: 30px;
-    margin-left: 20px;
-  }
-  
-  .cart-count {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: #f44336;
-    color: white;
-    padding: 5px;
-    border-radius: 50%;
-    font-size: 12px;
-  }
-  
+   */

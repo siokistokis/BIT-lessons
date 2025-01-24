@@ -1,12 +1,16 @@
 import React from 'react';
-import Header from './Header'; // Import Header from the correct path
+
 import './App.css';
+import TopLine from './components/TopLine';
+import Header from './components/Header';
+import Hero from './components/Hero';
 
 const App = () => {
   return (
     <div>
-      <Header /> {/* Render the Header component here */}
-      <h1>Welcome to the Green Plant Shop!</h1> {/* Example content */}
+      <TopLine/>
+      <Header/>
+      <Hero/>
     </div>
   );
 };
