@@ -9,7 +9,6 @@
       min-height: 100vh; 
       z-index: 1;
     }
-
     
     .bg-plants {
       position: absolute;
@@ -23,9 +22,11 @@
     .plant-left, .plant-right {
       position: absolute;
       bottom: 0;
-
+      object-fit: contain;
+      z-index: 0; 
+     
     }
-    
+
     .plant-left {
       left: 0;
     }
@@ -83,7 +84,43 @@
     .hero-btn:hover {
       background-color: #cbdccc;
     }
+
+    .border {
+      background-color: var(--dGreen);
+      color: #50806B;
+      min-height: 45px;
+      position: absolute;
+      bottom: 0; 
+      width: 100%; 
+      height: 45px; 
+    
+  }
      */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,6 +136,7 @@
       background-color: #f1f9f1;
       min-height: 100vh; /* Make sure it fills the screen */
       z-index: 1;
+      overflow: hidden; /* Prevent overflow */
     }
     
     .bg-plants {
@@ -113,16 +151,17 @@
     .plant-left, .plant-right {
       position: absolute;
       bottom: 0;
+   
       object-fit: contain;
-     
+      z-index: 0; 
     }
-
+    
     .plant-left {
-      left: 0;
+      left: 0%; 
     }
     
     .plant-right {
-      right: 0;
+      right: 0%; 
     }
     
     .BG {
@@ -173,5 +212,14 @@
     
     .hero-btn:hover {
       background-color: #cbdccc;
+    }
+    
+    .border {
+      position: absolute;
+      bottom: 0; 
+      width: 100%; 
+      height: 45px; 
+      background-color: var(--dGreen);
+      /* color: #50806B; */
     }
     
