@@ -1,6 +1,6 @@
-// // import './Hero.css';
 
-import React from 'react'; 
+
+// import React from 'react'; 
 import './Hero.css';
 import plantRight from '../img/plantRight.svg'; 
 import plantLeft from '../img/plantLeft.svg';   
