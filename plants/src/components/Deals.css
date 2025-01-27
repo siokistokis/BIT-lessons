@@ -1,0 +1,14 @@
+.deal {
+    width: 250px;
+height: 320px;
+padding: 20px 0px 0px 0px;
+gap: 16px;
+border-radius: 16px 0px 0px 0px;
+opacity: 0px;
+cursor: pointer;
+
+}
+
+.deal:hover {
+    background-color: #cbdccc;
+  }

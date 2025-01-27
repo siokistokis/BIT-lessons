@@ -1,15 +1,18 @@
 import './BestSelling.css';
+import shopAll from '../img/shopAll.svg';
 import card3 from '../img/Card 3.svg';
 import card6 from '../img/Card 6.svg';
-import card7 from '../img/Card 7.svg'
+import card7 from '../img/Card 7.svg';
 
 
-export default function Category() {
+export default function BestSelling() {
     return(
       <section className="best-selling">
-        <div className="">
+        <div className="best-selling-header">
         <h>Best Selling</h>
-        <a href="#" className="shop-all"> SHOP ALL  </a>
+        <img className="shop-all" src={shopAll} alt="" />
+
+        {/* <a href="#" className="shop-all"> SHOP ALL  </a> */}
         <hr />
         </div>
 

@@ -1,0 +1,11 @@
+.testemonials {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: #E8EDDE;
+    ;
+    /* background-color: #f1f9f1; */
+    min-height: 100vh; /* Make sure it fills the screen */
+    z-index: 1;
+    overflow: hidden; /* Prevent overflow */
+  }
