@@ -21,11 +21,16 @@ text-decoration-skip-ink: none;
 }
 
 .shop-now {
-    width: Fill (384px)px;
-height: Fill (424px)px;
+    width: 350px;
+height: 420px;
 padding: 20px 0px 0px 0px;
 gap: 16px;
 border-radius: 16px 0px 0px 0px;
 opacity: 0px;
+cursor: pointer;
 
 }
+
+.shop-now:hover {
+    background-color: #cbdccc;
+  }

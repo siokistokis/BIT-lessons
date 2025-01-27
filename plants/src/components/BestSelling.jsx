@@ -14,6 +14,7 @@ export default function Category() {
         </div>
 
         <div className="cards-best-selling">
+
           <img className="shop-now" src={card3} alt="" />
           <img className="shop-now" src={card6} alt="" />
           <img className="shop-now" src={card7} alt="" />
