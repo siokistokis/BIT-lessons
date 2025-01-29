@@ -1,0 +1,21 @@
+.btn {
+    display: inline-block;
+    font-weight: 600;
+
+}
+
+.white-btn {
+    color: black;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 22px;
+    text-transform: uppercase;
+    width: 262px;
+    height: 70px;
+    line-height: 70px;
+    border: solid 2px white;
+} 
+
+.white-btn:hover {
+    background-color: #cbdccc;
+  }

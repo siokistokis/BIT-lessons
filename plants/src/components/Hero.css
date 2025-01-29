@@ -1,24 +1,17 @@
 
-
-     .hero {
+    .hero {
+      width: 100%;
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background-color: #f1f9f1;
-      min-height: 100vh; /* Make sure it fills the screen */
+      min-height: 710px;
       z-index: 1;
-      overflow: hidden; /* Prevent overflow */
+      overflow: hidden;
     }
     
     .bg-plants {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0; /* Plants are behind the BG and text */
+      min-height: inherit;
     }
+
     
     .plant-left, .plant-right {
       position: absolute;
@@ -29,24 +22,29 @@
     }
     
     .plant-left {
-      left: 0%; 
+      left: 0%;
+      rotate: -270DEG; 
     }
     
     .plant-right {
       right: 0%; 
     }
     
-    .BG {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); /* Center the background image */
-      z-index: 1; /* BG is above the plants */
-      width: 60%; /* Adjust width as needed */
-      height: 100%;
+    .hero-mid {
+      min-height: inherit;
+      max-width: 594px;
+      margin: 0 auto;
+      background: rgba(80, 128, 107, 0.2);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
     }
     
-    .BG img {
+    .hero-mid img {
       width: 100%;
       height: 100%;
       object-fit: cover; /* Ensure background covers the area */
@@ -60,31 +58,20 @@
     }
     
     .hero-title {
-      font-size: 3rem;
-      font-weight: 700;
+      font-size: 80px;
+      font-weight: 600;
       color: black;
+      letter-spacing: 0.03em;
     }
     
     .hero-description {
-      font-size: 1.25rem;
-      margin-top: 15px;
+      font-size: 22px;
+      line-height: 1.5;
+      font-weight: 400;
+      margin: 15px 0 38px 0;
       color: black;
     }
     
-    .hero-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: white;
-      color: black;
-      font-size: 1.1rem;
-      border: solid #a6b7a7;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    
-    .hero-btn:hover {
-      background-color: #cbdccc;
-    }
     
     .border {
       position: absolute;
