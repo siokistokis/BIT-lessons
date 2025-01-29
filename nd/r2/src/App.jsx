@@ -1,37 +1,82 @@
-//5. Sukurti naują komponentą View, kuriame atvaizduoti counter skaičių h2 tage.
-//  Iš Counter komponento h2 tagą ištrinti. Naudoti state uplifting principą.
-// View komponentą įdėti į App komponentą.
-
-//6. App komponente sukurti mygtuką, kuris kaitaliotų counterio esančio View komponente spalvą žalia/raudona.
-//7. App komponente sukurti range tipo input1, kuris kaitaliotų counterio esančio View komponente spalvą fonto dydį nuo 10px iki 60px.
-
-
+import { useReducer, useState } from 'react';
 import './app.css';
 import './buttons.scss';
-import { useState } from 'react';
-import Counter from './Components/055/Counter';
-import View from './Components/055/View';
+import countReducer from './Reducers/countReducer';
+import NiceCounter from './Components/056/NiceCounter';
+
 
 function App() {
 
-    const [count, setCount] = useState(0);
-    const [color, setColor] = useState(false);
-    const [size, setSize] = useState(20);
+    const [count, dispachCount] = useReducer(countReducer, 0);
+    const [addInput, setAddInput] = useState(0);
+    const [multiInput, setMultiInput] = useState(0);
 
-    const changeColor = _ => setColor(c => !c);
+    const add1 = _ => {
+        const action = {
+            type: 'addOne' // nurodo ką daryti su state
+        };
+        dispachCount(action);
+    }
 
-    const changeSize = e => setSize(e.target.value);
+    const rem1 = _ => {
+        const action = {
+            type: 'remOne' // nurodo ką daryti su state
+        };
+        dispachCount(action);
+    }
+
+    const add = _ => {
+        const action = {
+            type: 'add',
+            payload: parseInt(addInput),
+        };
+        dispachCount(action);
+    }
+
+    const multi = _ => {
+        const action = {
+            type: 'multi',
+            payload: parseInt(multiInput),
+        };
+        dispachCount(action);
+    }
+
 
     return (
         <div className="app">
             <header className="app-header">
-                <Counter count={count} setCount={setCount} />
-                <View count={count} color={color} size={size} />
-                <button className="yellow" onClick={changeColor}>Change color</button>
-                <input type="range" className="win10-thumb" min="10" max="60" onChange={changeSize} value={size} />
+                <NiceCounter />
+                <h2>Counter: {count}</h2>
+                <div>
+                    <button className="yellow" onClick={add1}>+1</button>
+                    <button className="blue" onClick={rem1}>-1</button>
+                    <button className="green" onClick={add}>Add</button>
+                    <input
+                        type="number"
+                        onChange={e => setAddInput(e.target.value)}
+                        value={addInput}
+                        style={{
+                            width: '50px',
+                            height: '38px',
+                            margin: '10px 10px 0 10px',
+                        }} />
+                    <button className="green" onClick={multi}>Multi</button>
+                    <input
+                        type="number"
+                        onChange={e => setMultiInput(e.target.value)}
+                        value={multiInput}
+                        style={{
+                            width: '50px',
+                            height: '38px',
+                            margin: '10px 10px 0 10px',
+                        }} />
+                </div>
             </header>
         </div>
     );
 }
 
 export default App;
+
+//1. Patobulinti kodą taip, kad būtų galima atimti vienetą nuo skaičiaus.
+//2. Patobulinti kodą taip, kad būtų galima esamą skaičių padauginti iš bet kokio skaičiaus.
