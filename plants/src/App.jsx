@@ -13,12 +13,14 @@ import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <TopLine/>
       <Header/>
       <Hero/>
-      {/* <Category/>
-      <BestSelling/>
+      <Category/>
+      <Title text1="Stop" text2="by Category"/>
+      <Category CardTitle="Bonsai" catImg="./"/>
+      {/* <BestSelling/>
       <Hottest/>
       <Deals/>
       <Testimonials/>
