@@ -148,9 +148,9 @@ function App() {
           <div id="sheep">{renderAnimals(sheep, 'sheep')}</div>
         </div>
       </div>
-      <button id="to-pasture" onClick={populatePasture}>
+      {/* <button id="to-pasture" onClick={populatePasture}>
         To the Pasture
-      </button>
+      </button> */}
       <button id="clean-pasture" onClick={populatePasture}>
         Clean Pastures
       </button>
