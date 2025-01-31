@@ -1,82 +1,53 @@
-import { useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './app.css';
 import './buttons.scss';
-import countReducer from './Reducers/countReducer';
-import NiceCounter from './Components/056/NiceCounter';
+
+import Home from './Components/057/Home';
+import Shop from './Components/057/Shop';
+import Contacts from './Components/057/Contacts';
+import About from './Components/057/About';
 
 
 function App() {
 
-    const [count, dispachCount] = useReducer(countReducer, 0);
-    const [addInput, setAddInput] = useState(0);
-    const [multiInput, setMultiInput] = useState(0);
+    const [hash, setHash] = useState(window.location.hash.replace('#', ''));
 
-    const add1 = _ => {
-        const action = {
-            type: 'addOne' // nurodo ką daryti su state
-        };
-        dispachCount(action);
-    }
+    useEffect(_ => {
+        // hash change event JS
+        window.addEventListener('hashchange', _ => {
+            let hash = window.location.hash.replace('#', '');
+            setHash(hash);
+        });
+    }, []);
 
-    const rem1 = _ => {
-        const action = {
-            type: 'remOne' // nurodo ką daryti su state
-        };
-        dispachCount(action);
-    }
+    useEffect(_ => {
 
-    const add = _ => {
-        const action = {
-            type: 'add',
-            payload: parseInt(addInput),
-        };
-        dispachCount(action);
-    }
+        console.log('hash', hash);
 
-    const multi = _ => {
-        const action = {
-            type: 'multi',
-            payload: parseInt(multiInput),
-        };
-        dispachCount(action);
-    }
+    }, [hash]);
+
 
 
     return (
         <div className="app">
             <header className="app-header">
-                <NiceCounter />
-                <h2>Counter: {count}</h2>
-                <div>
-                    <button className="yellow" onClick={add1}>+1</button>
-                    <button className="blue" onClick={rem1}>-1</button>
-                    <button className="green" onClick={add}>Add</button>
-                    <input
-                        type="number"
-                        onChange={e => setAddInput(e.target.value)}
-                        value={addInput}
-                        style={{
-                            width: '50px',
-                            height: '38px',
-                            margin: '10px 10px 0 10px',
-                        }} />
-                    <button className="green" onClick={multi}>Multi</button>
-                    <input
-                        type="number"
-                        onChange={e => setMultiInput(e.target.value)}
-                        value={multiInput}
-                        style={{
-                            width: '50px',
-                            height: '38px',
-                            margin: '10px 10px 0 10px',
-                        }} />
-                </div>
+                <nav className="top-menu">
+                    <ul>
+                        <li><a href="/#">Home</a></li>
+                        <li><a href="/#shop">Shop</a></li>
+                        <li><a href="/#contacts">Contacts</a></li>
+                        <li><a href="/#about">About</a></li>
+                    </ul>
+                </nav>
+                {hash === 'shop' && <Shop />}
+                {hash === 'contacts' && <Contacts />}
+                {hash === 'about' && <About />}
+                {hash === '' && <Home />}
+
+
             </header>
         </div>
     );
 }
 
 export default App;
-
-//1. Patobulinti kodą taip, kad būtų galima atimti vienetą nuo skaičiaus.
-//2. Patobulinti kodą taip, kad būtų galima esamą skaičių padauginti iš bet kokio skaičiaus.

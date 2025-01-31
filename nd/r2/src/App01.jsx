@@ -6,6 +6,8 @@
 //7. App komponente sukurti range tipo input1, kuris kaitaliotų counterio esančio View komponente spalvą fonto dydį nuo 10px iki 60px.
 
 
+// Rytoj useReduser ir useContext
+
 import './app.css';
 import './buttons.scss';
 import { useState } from 'react';
