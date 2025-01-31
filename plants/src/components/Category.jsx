@@ -11,15 +11,13 @@ import './Category.css';
 
 
 
-export default function Category({CardTitle, cardImg}) {
-const path="../image/";
-constImgSrc='${path}${catImg}';
+export default function Category({title, imageSrc}) {
 
     return(
 
-      <div className=''>
-        <img src={cardImg} alt="" className='cardImage' />
-        <h3 className='cardTitle'>{CardTitle}</h3>
+      <div className='card'>
+        <img src={imageSrc} alt={title} className='card-img' />
+        <h3 className='card-title'>{title}</h3>
       
       </div>
 

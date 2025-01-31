@@ -1,4 +1,4 @@
-body {
+ /* body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -54,19 +54,292 @@ body {
     transform: scale(1.1);
   }
   
-  /* Sheep styling - circles on the right side */
+ 
   .sheep {
     background-color: lightblue;
     width: 60px;
     height: 60px;
-    border-radius: 50%; /* Circle */
+    border-radius: 50%; 
   }
   
-  /* Cow styling - squares on the left side */
+ 
   .cow {
     background-color: lightgreen;
     width: 60px;
-    height: 40px; /* Square */
-    border-radius: 0%; /* Square */
+    height: 40px; 
+    border-radius: 0%; 
+  }
+
+  .horses {
+    background-color: rgb(238, 144, 144);
+    width: 50px;
+    height: 50px; 
+    border-radius: 30%;
   }
   
+
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /* body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    
+    .App {
+      text-align: center;
+    }
+    
+    #pasture {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+    }
+    
+    .side {
+      width: 30%;
+      padding: 20px;
+      border: 2px solid #000;
+      min-height: 400px;
+      text-align: center;
+      position: relative;
+    }
+    
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+    
+    .animal {
+      margin: 10px;
+      padding: 10px;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .animal:hover {
+      transform: scale(1.1);
+    }
+    
+    
+    .sheep {
+      background-color: lightblue;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%; 
+    }
+    
+    .cow {
+      background-color: lightgreen;
+      width: 60px;
+      height: 60px; 
+      border-radius: 0%; 
+    }
+    
+    .horse {
+      background-color: rgb(238, 144, 144);
+      width: 60px;
+      height: 60px; 
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%); 
+    }
+    
+    .animal-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    button {
+      margin-top: 20px;
+    }
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.App {
+  text-align: center;
+}
+
+#pasture {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.side {
+  width: 30%;
+  padding: 20px;
+  border: 2px solid #000;
+  min-height: 400px;
+  text-align: center;
+  position: relative;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.animal {
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.animal:hover {
+  transform: scale(1.1);
+}
+
+/* Animal Shapes */
+.sheep {
+  background-color: lightblue;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Circle */
+}
+
+.cow {
+  background-color: lightgreen;
+  width: 60px;
+  height: 60px; /* Square */
+  border-radius: 0%; /* Square */
+}
+
+.horse {
+  background-color: rgb(238, 144, 144);
+  width: 60px;
+  height: 60px; 
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
+}
+
+.animal-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     

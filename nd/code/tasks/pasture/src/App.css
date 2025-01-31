@@ -1,0 +1,93 @@
+.App {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.animal-form {
+  margin-bottom: 20px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input, select, button {
+  margin-bottom: 10px;
+}
+
+.pasture {
+  margin-top: 40px;
+}
+
+.animal-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.animal-card {
+  background-color: #f0f8ff;
+  border: 2px solid #8b99b6;
+  border-radius: 10px;
+  padding: 20px;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.animal-card:hover {
+  transform: scale(1.1);
+  background-color: #e0f7fa;
+}
+
+.animal-icon {
+  font-size: 40px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+button {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.close-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #007bff;
+  color: white;
+}

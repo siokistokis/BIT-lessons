@@ -1,29 +1,14 @@
 
 import './App.css';
-import TopLine from './components/TopLine';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Category from './components/Category';
-import BestSelling from './components/BestSelling';
-import Hottest from './components/Hottest';
-import Deals from './components/Deals';
-import Testimonials from './components/Testimonials';
-import Footer from './components/Footer';
+import SectionCategories from './components/SectionCategories';
+import SectionHero from './components/SectionHero';
 
 const App = () => {
   return (
     <div className="App">
-      <TopLine/>
-      <Header/>
-      <Hero/>
-      <Category/>
-      <Title text1="Stop" text2="by Category"/>
-      <Category CardTitle="Bonsai" catImg="./"/>
-      {/* <BestSelling/>
-      <Hottest/>
-      <Deals/>
-      <Testimonials/>
-      <Footer/> */}
+      <SectionHero/>
+      <SectionCategories/>
+    
     </div>
   );
 };
