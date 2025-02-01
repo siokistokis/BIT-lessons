@@ -1,271 +1,38 @@
- /* body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-  }
-  
-  .App {
-    text-align: center;
-  }
-  
-  #pasture {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-  }
-  
-  .side {
-    width: 45%;
-    padding: 20px;
-    border: 2px solid #000;
-    min-height: 400px;
-    text-align: center;
-    position: relative;
-  }
-  
-  button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  .animal {
-    margin: 10px;
-    padding: 10px;
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .animal:hover {
-    transform: scale(1.1);
-  }
-  
  
-  .sheep {
-    background-color: lightblue;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; 
-  }
-  
- 
-  .cow {
-    background-color: lightgreen;
-    width: 60px;
-    height: 40px; 
-    border-radius: 0%; 
-  }
-
-  .horses {
-    background-color: rgb(238, 144, 144);
-    width: 50px;
-    height: 50px; 
-    border-radius: 30%;
-  }
-  
-
-    */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     /* body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-    
-    .App {
-      text-align: center;
-    }
-    
-    #pasture {
-      display: flex;
-      justify-content: space-between;
-      width: 80%;
-    }
-    
-    .side {
-      width: 30%;
-      padding: 20px;
-      border: 2px solid #000;
-      min-height: 400px;
-      text-align: center;
-      position: relative;
-    }
-    
-    button {
-      padding: 10px 20px;
-      margin-top: 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    
-    button:hover {
-      background-color: #45a049;
-    }
-    
-    .animal {
-      margin: 10px;
-      padding: 10px;
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .animal:hover {
-      transform: scale(1.1);
-    }
-    
-    
-    .sheep {
-      background-color: lightblue;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%; 
-    }
-    
-    .cow {
-      background-color: lightgreen;
-      width: 60px;
-      height: 60px; 
-      border-radius: 0%; 
-    }
-    
-    .horse {
-      background-color: rgb(238, 144, 144);
-      width: 60px;
-      height: 60px; 
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%); 
-    }
-    
-    .animal-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    
-    button {
-      margin-top: 20px;
-    }
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
-}
 
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
+  background: url('img/bg.jpg');
 }
 
 #pasture {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: transparent;
+
 }
 
 .side {
   width: 30%;
-  padding: 20px;
-  border: 2px solid #000;
-  min-height: 400px;
+  padding: 10px;
+  border: 3px solid #ddd;
+  border-radius: 20px;
   text-align: center;
-  position: relative;
-}
-
-button {
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
+  background-color: rgba(60, 151, 60, 0.793);
   cursor: pointer;
-  font-size: 16px;
 }
 
-button:hover {
-  background-color: #45a049;
+.side:hover {
+  background-color: rgba(137, 196, 153, 0.805);
 }
+
+h2 {
+  margin-bottom: 10px;
+  color: white;
+}
+
 
 .animal {
   margin: 10px;
@@ -274,42 +41,56 @@ button:hover {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  
 }
 
 .animal:hover {
   transform: scale(1.1);
 }
 
-/* Animal Shapes */
-.sheep {
-  background-color: lightblue;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%; /* Circle */
+img {
+  border: 3px solid grey;
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px gray;
+}
+ 
+.animal img {
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  margin-bottom: 10px;
+
 }
 
-.cow {
-  background-color: lightgreen;
-  width: 60px;
-  height: 60px; /* Square */
-  border-radius: 0%; /* Square */
+.animal img:hover {
+  transform: scale(1.1);
 }
 
-.horse {
-  background-color: rgb(238, 144, 144);
-  width: 60px;
-  height: 60px; 
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Triangle shape */
-}
-
-.animal-container {
+ 
+ .animal-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-button {
+
+
+
+/* Button Styling */
+#clean-pasture {
   margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: darkgreen;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+#clean-pasture:hover {
+  background-color: green;
+
 }
 
 
