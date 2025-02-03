@@ -98,12 +98,6 @@
 
 
 
-
-
-
-
-
-
 // import React, { useState, useEffect } from 'react';
 // import './Slideshow.css'; // Make sure to have the correct CSS for styling the slideshow
 
@@ -173,29 +167,25 @@
 
 
 
-
-
-
-
 import React, { useState, useEffect } from 'react';
-import './Slideshow.css';  // For styling the slideshow (see next step)
+import './Slideshow.css';
 
 const Slideshow = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const slides = [
     {
-      src: './img/aerial.jpg',
+      src: 'public/img/aerial.jpg',
       alt: 'Slide 1',
       description: 'This is Slide 1 with a description about...',
     },
     {
-      src: './img/animals.jpg',
+      src: 'public/img/animals.jpg',
       alt: 'Slide 2',
       description: 'This is Slide 2 with a description about...',
     },
     {
-      src: './img/art.jpg',
+      src: 'public/img/art.jpg',
       alt: 'Slide 3',
       description: 'This is Slide 3 with a description about...',
     },
@@ -232,3 +222,9 @@ const Slideshow = () => {
 };
 
 export default Slideshow;
+
+
+
+
+
+

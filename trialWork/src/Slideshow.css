@@ -1,25 +1,25 @@
 
-/* Slideshow container */
-.slideshow-container {
+
+/* .slideshow-container {
   max-width: 800px;
   margin: auto;
   position: relative;
   overflow: hidden;
 }
 
-/* Slide */
+
 .mySlides {
   display: none;
   position: relative;
 }
 
-/* Images */
+
 .mySlides img {
   width: 100%;
   height: auto;
 }
 
-/* Description text */
+
 .text {
   position: absolute;
   bottom: 10px;
@@ -29,7 +29,7 @@
   padding: 10px;
 }
 
-/* Next & Previous buttons */
+
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -53,5 +53,139 @@
 
 .prev:hover, .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+ /* .slideshow-container {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+}
+
+.mySlides {
+  display: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.fade {
+  animation: fade 1.5s ease-in-out;
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.text {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  color: white;
+  font-size: 20px;
+  padding: 8px 12px;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.prev {
+  left: 0;
+  transform: translate(0, -50%);
+}
+
+.next {
+  right: 0;
+  transform: translate(0, -50%);
+} */
+
+
+
+
+
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+}
+
+.mySlides {
+  display: none;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.3s ease;
+  user-select: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(172, 164, 164, 0.8);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.text {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  color: white;
+  font-size: 20px;
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
