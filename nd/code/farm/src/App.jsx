@@ -1,10 +1,9 @@
 
-
 // import React, { useState, useEffect } from 'react';
 // import './App.css';
 // import sheepImage from './img/sheep.png';   // Import the sheep image
 // import cowImage from './img/cow.png';       // Import the cow image
-// // import horseImage from './img/horse.png';   // Import the horse image
+// import horseImage from './img/horse.png';   // Import the horse image
 
 // // Function to generate a random 7-digit number
 // const generateRandomNumber = () => {
@@ -26,29 +25,29 @@
 // function App() {
 //   // State to track sheep, cows, horses, and their movements
 
-//   // const [animals] 
+  
 //   const [sheep, setSheep] = useState([]);
 //   const [cows, setCows] = useState([]);
-//   // const [horses, setHorses] = useState([]);
-//   // const [sheepMoved, setSheepMoved] = useState([]); // Track sheep that have moved
-//   // const [cowsMoved, setCowsMoved] = useState([]); // Track cows that have moved
-//   // const [horsesMoved, setHorsesMoved] = useState([]); // Track horses that have moved
+//   const [horses, setHorses] = useState([]);
+//   const [sheepMoved, setSheepMoved] = useState([]); // Track sheep that have moved
+//   const [cowsMoved, setCowsMoved] = useState([]); // Track cows that have moved
+//   const [horsesMoved, setHorsesMoved] = useState([]); // Track horses that have moved
 
 //   // Function to populate pastures with mixed-up animals
 //   const populatePasture = () => {
 //     const numSheep = 7; // Fixed number of sheep
 //     const numCows = 7; // Fixed number of cows
-//     // const numHorses = 7; // Fixed number of horses
+//     const numHorses = 7; // Fixed number of horses
 
 //     // Create sheep, cows, and horses
 //     const newSheep = Array.from({ length: numSheep }, () => createAnimal('sheep'));
 //     const newCows = Array.from({ length: numCows }, () => createAnimal('cow'));
-//     // const newHorses = Array.from({ length: numHorses }, () => createAnimal('horse'));
+//     const newHorses = Array.from({ length: numHorses }, () => createAnimal('horse'));
 
 //     // Mix up the animals by randomly placing some sheep in the cow pasture, cows in the sheep pasture, etc.
 //     const mixedSheep = newSheep.slice();
 //     const mixedCows = newCows.slice();
-//     // const mixedHorses = newHorses.slice();
+//     const mixedHorses = newHorses.slice();
 
 //     // Distribute horses randomly between sheep, cows, and horses boxes
 //     const sheepInCowPasture = mixedSheep.splice(Math.floor(Math.random() * mixedSheep.length), 5);

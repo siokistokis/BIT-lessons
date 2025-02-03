@@ -11,7 +11,7 @@
 .wrapper {
   max-width: 1260px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
   font-family: "Poppins", serif;
   font-style: normal;
 }
@@ -27,13 +27,13 @@
 #pasture {
   display: flex;
   justify-content: space-between; 
-  padding: 20px;
+  padding: 10px;
   background-color: transparent;
   flex-wrap: wrap; 
 }
 
 .side {
-  width: 40%; 
+  width: 30%; 
   padding: 10px;
   border: 3px solid #ddd;
   border-radius: 20px;
@@ -57,21 +57,17 @@ h2 {
 .animal-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; 
+  gap: 5px; 
   justify-content: center;
-
- 
-
 }
 
 .animal {
   margin: 10px;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
   flex-basis: calc(33% - 20px);
- 
 }
 
 .animal:hover {
@@ -85,8 +81,8 @@ img {
 }
 
 .animal img {
-  width: 60px; 
-  height: 60px; 
+  width: 50px; 
+  height: 50px; 
   margin-bottom: 10px;
   
 }
@@ -97,7 +93,6 @@ img {
 
 
 #clean-pasture {
-
   padding: 10px 15px;
   font-size: 16px;
   background-color: darkgreen;
