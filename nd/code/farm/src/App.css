@@ -1,27 +1,48 @@
- 
+
+
+
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.wrapper {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-family: "Poppins", serif;
+  font-style: normal;
+}
 
 .App {
   text-align: center;
   font-family: Arial, sans-serif;
-  background: url('img/bg.jpg');
+  background: url('img/bg.jpg') no-repeat center center;
+  background-size: cover;
+  height: 100vh; 
 }
 
 #pasture {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; 
   padding: 20px;
   background-color: transparent;
-
+  flex-wrap: wrap; 
 }
 
 .side {
-  width: 30%;
+  width: 40%; 
   padding: 10px;
   border: 3px solid #ddd;
   border-radius: 20px;
   text-align: center;
   background-color: rgba(60, 151, 60, 0.793);
   cursor: pointer;
+  margin-bottom: 10px;
+
+  
 }
 
 .side:hover {
@@ -33,15 +54,24 @@ h2 {
   color: white;
 }
 
+.animal-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+  justify-content: center;
+
+ 
+
+}
 
 .animal {
   margin: 10px;
   padding: 10px;
-  display: inline-block;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+  flex-basis: calc(33% - 20px);
+ 
 }
 
 .animal:hover {
@@ -53,31 +83,21 @@ img {
   border-radius: 15px;
   box-shadow: 10px 10px 5px gray;
 }
- 
-.animal img {
-  width: 50px; /* Adjust size as needed */
-  height: 50px;
-  margin-bottom: 10px;
 
+.animal img {
+  width: 60px; 
+  height: 60px; 
+  margin-bottom: 10px;
+  
 }
 
 .animal img:hover {
   transform: scale(1.1);
 }
 
- 
- .animal-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
 
-
-
-
-/* Button Styling */
 #clean-pasture {
-  margin-top: 20px;
+
   padding: 10px 15px;
   font-size: 16px;
   background-color: darkgreen;
@@ -85,31 +105,44 @@ img {
   border: 2px solid white;
   border-radius: 5px;
   cursor: pointer;
-
 }
 
 #clean-pasture:hover {
   background-color: green;
-
 }
 
+#delete-animals {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: darkred;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+#delete-animals:hover {
+  background-color: red;
+}
 
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: darkgreen;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+button:hover {
+  background-color: green;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+img {
+  cursor: pointer;
+}
+ 
 
 
 
