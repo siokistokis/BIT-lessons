@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Cube from './Cube';
 import Menu from './Menu';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
       {/* Background Image */}
       <div className="background">
         {/* Cube Animations */}
-        <Cube />
+        <Cube/>
         {/* Animated Text */}
         <div className="animated-text">
           <p className="text1">FUNDATING support CHARITY donation</p>
