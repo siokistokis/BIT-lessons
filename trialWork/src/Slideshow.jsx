@@ -6,7 +6,7 @@
 
 //   const slides = [
 //     {
-//       src: './img/aerial.jpg',
+//       src: './img/aerial.jpg',  
 //       alt: 'Slide 1',
 //       description: 'This is Slide 1 with a description about suporting.',
 //     },
@@ -170,12 +170,14 @@
 import React, { useState, useEffect } from 'react';
 import './Slideshow.css';
 
+
+
 const Slideshow = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const slides = [
     {
-      src: 'public/img/aerial.jpg',
+      src: '/img/aerial.jpg',
       alt: 'Slide 1',
       description: 'This is Slide 1 with a description about...',
     },

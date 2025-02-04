@@ -3,9 +3,11 @@ import './app.css';
 import './buttons.scss';
 
 
-import { Router } from './Components/058/Router';
-import Main from './Components/058/Main';
-import Nav from './Components/058/Nav';
+import { Router } from './Components/059/Router';
+import Main from './Components/059/Main';
+import Nav from './Components/059/Nav';
+import Wrapper from './Components/059/Wrapper';
+import {Auth} from './Components/059/Auth';
 
 
 
@@ -13,14 +15,14 @@ function App() {
 
     return (
         <Router>
-            <div className="app">
-                <header className="app-header">
+            <Auth>
+                <Wrapper>
 
                     <Nav />
                     <Main />
 
-                </header>
-            </div>
+                </Wrapper>
+            </Auth>
         </Router>
     );
 }
