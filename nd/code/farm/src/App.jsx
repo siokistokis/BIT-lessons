@@ -224,10 +224,222 @@
 
 
 
+// import React, { useState, useEffect } from 'react';
+// import './App.css';
+// import sheepImage from './img/sheep.png'; // Import the sheep image
+// import cowImage from './img/cow.png'; // Import the cow image
+
+// // Function to generate a random 7-digit number
+// const generateRandomNumber = () => {
+//   return Math.floor(Math.random() * 10000000); // 7-digit random number
+// };
+
+// // Function to generate an animal (sheep or cow)
+// const createAnimal = (type) => {
+//   return {
+//     id: type === 'sheep' ? `S${generateRandomNumber()}` :
+//       type === 'cow' ? `C${generateRandomNumber()}` : null,
+//     type: type,
+//     weight: Math.floor(Math.random() * 100) + 10 // Random weight for each animal
+//   };
+// };
+
+// function App() {
+//   const [animals, setAnimals] = useState({
+//     sheep: [],
+//     cows: [],
+//   });
+
+//   // Function to populate pastures with mixed-up animals
+//   const populatePasture = () => {
+//     const numSheep = 7;
+//     const numCows = 7;
+
+//     const newSheep = Array.from({ length: numSheep }, () => createAnimal('sheep'));
+//     const newCows = Array.from({ length: numCows }, () => createAnimal('cow'));
+
+//     const shuffledAnimals = [...newSheep, ...newCows].sort(() => Math.random() - 0.5);
+
+//     const sheepAnimals = shuffledAnimals.filter(animal => animal.type === 'sheep');
+//     const cowAnimals = shuffledAnimals.filter(animal => animal.type === 'cow');
+
+//     setAnimals({
+//       sheep: sheepAnimals,
+//       cows: cowAnimals,
+//     });
+
+//     localStorage.setItem('animals', JSON.stringify({ sheep: sheepAnimals, cows: cowAnimals }));
+//   };
+
+//   // Load the stored animals from localStorage (if any)
+//   useEffect(() => {
+//     const storedAnimals = JSON.parse(localStorage.getItem('animals'));
+//     if (storedAnimals && storedAnimals.sheep && storedAnimals.cows) {
+//       setAnimals(storedAnimals);
+//     } else {
+//       populatePasture();
+//     }
+//   }, []);
+
+//   // Move animal to another pasture
+//   const moveAnimal = (animal, currentPasture) => {
+//     if (currentPasture === 'sheep') {
+//       setAnimals(prevAnimals => ({
+//         sheep: prevAnimals.sheep.filter(s => s.id !== animal.id),
+//         cows: [...prevAnimals.cows, animal],
+//       }));
+//     } else if (currentPasture === 'cows') {
+//       setAnimals(prevAnimals => ({
+//         cows: prevAnimals.cows.filter(c => c.id !== animal.id),
+//         sheep: [...prevAnimals.sheep, animal],
+//       }));
+//     }
+//   };
+
+//   // Render animals (sheep or cows) in their respective pastures
+//   const renderAnimals = (type) => {
+//     // Make sure animals[type] is defined and an array
+//     if (Array.isArray(animals[type])) {
+//       return animals[type].map((animal) => {
+//         let animalImage;
+//         if (animal.type === 'sheep') {
+//           animalImage = sheepImage;
+//         } else if (animal.type === 'cow') {
+//           animalImage = cowImage;
+//         }
+
+//         return (
+//           <div
+//             key={animal.id}
+//             className={`${animal.type}`}
+//             onClick={() => moveAnimal(animal, type)}
+//           >
+//             <img src={animalImage} alt={animal.type} style={{ width: '50px', height: '50px' }} />
+//             <div>{animal.id} - {animal.weight} kg</div>
+//           </div>
+//         );
+//       });
+//     }
+//     return null; // Return nothing if animals[type] is not an array or is undefined
+//   };
+
+//   // Function to delete all animals
+//   const deleteAnimals = () => {
+//     setAnimals({
+//       sheep: [],
+//       cows: [],
+//     });
+//     localStorage.removeItem('animals');
+//   };
+
+//   return (
+//     <div className="App">
+//       <div id="pasture">
+//       <h2>Cows</h2>
+//         <div id="left-side" className="side">
+//           {/* <h2>Cows</h2> */}
+//           <div id="cows">{renderAnimals('cows')}</div>
+//         </div>
+//         <h2>Sheep</h2>
+//         <div id="middle-side" className="side">
+//           {/* <h2>Sheep</h2> */}
+//           <div id="sheep">{renderAnimals('sheep')}</div>
+//         </div>
+//       </div>
+//       <button id="clean-pasture" onClick={populatePasture}>
+//         Start
+//       </button>
+//       {/* Add the Delete Animals button */}
+//       <button id="delete-animals" onClick={deleteAnimals}>
+//         Delete Animals
+//       </button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import sheepImage from './img/sheep.png'; // Import the sheep image
-import cowImage from './img/cow.png'; // Import the cow image
+import sheepImage from './img/sheep.png';  // Ensure the path is correct
+import cowImage from './img/cow.png';    // Ensure the path is correct
 
 // Function to generate a random 7-digit number
 const generateRandomNumber = () => {
@@ -245,12 +457,8 @@ const createAnimal = (type) => {
 };
 
 function App() {
-  const [animals, setAnimals] = useState({
-    sheep: [],
-    cows: [],
-  });
+  const [animals, setAnimals] = useState([]);  // Ensure animals is an array
 
-  // Function to populate pastures with mixed-up animals
   const populatePasture = () => {
     const numSheep = 7;
     const numCows = 7;
@@ -260,47 +468,22 @@ function App() {
 
     const shuffledAnimals = [...newSheep, ...newCows].sort(() => Math.random() - 0.5);
 
-    const sheepAnimals = shuffledAnimals.filter(animal => animal.type === 'sheep');
-    const cowAnimals = shuffledAnimals.filter(animal => animal.type === 'cow');
-
-    setAnimals({
-      sheep: sheepAnimals,
-      cows: cowAnimals,
-    });
-
-    localStorage.setItem('animals', JSON.stringify({ sheep: sheepAnimals, cows: cowAnimals }));
+    setAnimals(shuffledAnimals);
+    localStorage.setItem('animals', JSON.stringify(shuffledAnimals));
   };
 
-  // Load the stored animals from localStorage (if any)
   useEffect(() => {
     const storedAnimals = JSON.parse(localStorage.getItem('animals'));
-    if (storedAnimals && storedAnimals.sheep && storedAnimals.cows) {
+    if (Array.isArray(storedAnimals)) {
       setAnimals(storedAnimals);
     } else {
       populatePasture();
     }
   }, []);
 
-  // Move animal to another pasture
-  const moveAnimal = (animal, currentPasture) => {
-    if (currentPasture === 'sheep') {
-      setAnimals(prevAnimals => ({
-        sheep: prevAnimals.sheep.filter(s => s.id !== animal.id),
-        cows: [...prevAnimals.cows, animal],
-      }));
-    } else if (currentPasture === 'cows') {
-      setAnimals(prevAnimals => ({
-        cows: prevAnimals.cows.filter(c => c.id !== animal.id),
-        sheep: [...prevAnimals.sheep, animal],
-      }));
-    }
-  };
-
-  // Render animals (sheep or cows) in their respective pastures
   const renderAnimals = (type) => {
-    // Make sure animals[type] is defined and an array
-    if (Array.isArray(animals[type])) {
-      return animals[type].map((animal) => {
+    if (Array.isArray(animals)) {
+      return animals.filter(animal => animal.type === type).map((animal) => {
         let animalImage;
         if (animal.type === 'sheep') {
           animalImage = sheepImage;
@@ -320,36 +503,42 @@ function App() {
         );
       });
     }
-    return null; // Return nothing if animals[type] is not an array or is undefined
+    return null;
   };
 
-  // Function to delete all animals
-  const deleteAnimals = () => {
-    setAnimals({
-      sheep: [],
-      cows: [],
+  const moveAnimal = (animal, currentPasture) => {
+    setAnimals(prevAnimals => {
+      const updatedAnimals = prevAnimals.filter(a => a.id !== animal.id);
+      if (currentPasture === 'sheep') {
+        animal.type = 'cow';
+      } else {
+        animal.type = 'sheep';
+      }
+      updatedAnimals.push(animal);
+      return updatedAnimals;
     });
+  };
+
+  const deleteAnimals = () => {
+    setAnimals([]);
     localStorage.removeItem('animals');
   };
 
   return (
     <div className="App">
       <div id="pasture">
-      <h2>Cows</h2>
+        <h2>Cows</h2>
         <div id="left-side" className="side">
-          {/* <h2>Cows</h2> */}
-          <div id="cows">{renderAnimals('cows')}</div>
+          <div id="cows">{renderAnimals('cow')}</div>
         </div>
         <h2>Sheep</h2>
         <div id="middle-side" className="side">
-          {/* <h2>Sheep</h2> */}
           <div id="sheep">{renderAnimals('sheep')}</div>
         </div>
       </div>
       <button id="clean-pasture" onClick={populatePasture}>
         Start
       </button>
-      {/* Add the Delete Animals button */}
       <button id="delete-animals" onClick={deleteAnimals}>
         Delete Animals
       </button>
@@ -357,4 +546,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;  // Make sure to export the App component
