@@ -174,13 +174,13 @@ function Menu() {
       {/* Menu */}
       <div className={`menu ${isOpen ? 'open' : ''}`}>
         <ul>
-          <li><a href="#" onClick={() => handlePageChange('home')}>Home</a></li>
-          <li><a href="#" onClick={() => handlePageChange('about')}>About</a></li>
-          <li><a href="#" onClick={() => handlePageChange('gallery')}>Gallery</a></li>
-          <li><a href="#" onClick={() => handlePageChange('fscd')}>FSCD</a></li>
-          <li><a href="#" onClick={() => handlePageChange('contact')}>Contact</a></li>
-          <li><a href="#" onClick={() => handlePageChange('login')}>Login</a></li>
-          <li><a href="#" onClick={() => handlePageChange('search')}>Search</a></li>
+          <li><a href="home.js" onClick={() => handlePageChange('home')}>Home</a></li>
+          <li><a href="home.js" onClick={() => handlePageChange('about')}>About</a></li>
+          <li><a href="home.js" onClick={() => handlePageChange('gallery')}>Gallery</a></li>
+          <li><a href="home.js" onClick={() => handlePageChange('fscd')}>FSCD</a></li>
+          <li><a href="home.js" onClick={() => handlePageChange('contact')}>Contact</a></li>
+          <li><a href="home.js" onClick={() => handlePageChange('login')}>Login</a></li>
+          <li><a href="home.js" onClick={() => handlePageChange('search')}>Search</a></li>
         </ul>
       </div>
 

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Cube from './Cube';
 import Menu from './Menu';
