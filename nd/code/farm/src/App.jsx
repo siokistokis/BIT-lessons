@@ -457,8 +457,9 @@ const createAnimal = (type) => {
 };
 
 function App() {
-  const [animals, setAnimals] = useState([]);  // Ensure animals is an array
+  const [animals, setAnimals] = useState({ sheep: [], cows: [] }); // Initializing animals as objects with sheep and cows arrays
 
+  // Function to populate pastures with mixed-up animals
   const populatePasture = () => {
     const numSheep = 7;
     const numCows = 7;
@@ -468,22 +469,45 @@ function App() {
 
     const shuffledAnimals = [...newSheep, ...newCows].sort(() => Math.random() - 0.5);
 
-    setAnimals(shuffledAnimals);
-    localStorage.setItem('animals', JSON.stringify(shuffledAnimals));
+    // Set the animals into separate sheep and cow pastures
+    setAnimals({
+      sheep: shuffledAnimals.filter(animal => animal.type === 'sheep'),
+      cows: shuffledAnimals.filter(animal => animal.type === 'cow')
+    });
+
+    localStorage.setItem('animals', JSON.stringify({ sheep: shuffledAnimals.filter(animal => animal.type === 'sheep'), cows: shuffledAnimals.filter(animal => animal.type === 'cow') }));
   };
 
+  // Load the stored animals from localStorage (if any)
   useEffect(() => {
     const storedAnimals = JSON.parse(localStorage.getItem('animals'));
-    if (Array.isArray(storedAnimals)) {
+    if (storedAnimals && storedAnimals.sheep && storedAnimals.cows) {
       setAnimals(storedAnimals);
     } else {
       populatePasture();
     }
   }, []);
 
+  // Function to move an animal to another pasture
+  const moveAnimal = (animal, currentPasture) => {
+    if (currentPasture === 'sheep') {
+      setAnimals(prevAnimals => ({
+        sheep: prevAnimals.sheep.filter(s => s.id !== animal.id),
+        cows: [...prevAnimals.cows, animal],  // Move the animal to cows without changing type
+      }));
+    } else if (currentPasture === 'cows') {
+      setAnimals(prevAnimals => ({
+        cows: prevAnimals.cows.filter(c => c.id !== animal.id),
+        sheep: [...prevAnimals.sheep, animal],  // Move the animal to sheep without changing type
+      }));
+    }
+  };
+
+  // Render animals (sheep or cows) in their respective pastures
   const renderAnimals = (type) => {
-    if (Array.isArray(animals)) {
-      return animals.filter(animal => animal.type === type).map((animal) => {
+    const animalsOfType = animals[type];
+    if (Array.isArray(animalsOfType)) {
+      return animalsOfType.map((animal) => {
         let animalImage;
         if (animal.type === 'sheep') {
           animalImage = sheepImage;
@@ -503,24 +527,15 @@ function App() {
         );
       });
     }
-    return null;
+    return null; // Return nothing if animals[type] is not an array or is undefined
   };
 
-  const moveAnimal = (animal, currentPasture) => {
-    setAnimals(prevAnimals => {
-      const updatedAnimals = prevAnimals.filter(a => a.id !== animal.id);
-      if (currentPasture === 'sheep') {
-        animal.type = 'cow';
-      } else {
-        animal.type = 'sheep';
-      }
-      updatedAnimals.push(animal);
-      return updatedAnimals;
-    });
-  };
-
+  // Function to delete all animals
   const deleteAnimals = () => {
-    setAnimals([]);
+    setAnimals({
+      sheep: [],
+      cows: [],
+    });
     localStorage.removeItem('animals');
   };
 
@@ -529,7 +544,7 @@ function App() {
       <div id="pasture">
         <h2>Cows</h2>
         <div id="left-side" className="side">
-          <div id="cows">{renderAnimals('cow')}</div>
+          <div id="cows">{renderAnimals('cows')}</div>
         </div>
         <h2>Sheep</h2>
         <div id="middle-side" className="side">
