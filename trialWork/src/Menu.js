@@ -339,8 +339,12 @@ const Menu = () => {
                 <Link to="/signin">
                     <button className="sign-in-btn">Sign In</button>
                 </Link>
+                <Link to="/fundme">
+                    <button className="fundme-btn">Start FundMe Project</button>
+                </Link>
+                
 
-                <button className="fundme-btn">Start FundMe Project</button>
+
             </div>
 
             { /* Side Menu */}
@@ -352,9 +356,14 @@ const Menu = () => {
                     <li><a href="services.js">Services</a></li>
                     <li><a href="contact.js">Contact</a></li>
                 </ul>
+            
             </nav>
+            
         </div>
     );
 };
 
 export default Menu;
+
+
+

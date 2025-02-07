@@ -45,6 +45,7 @@ function Gallery() {
             {/* Navigation Bar */}
             <nav className="navbar">
                 <div className="logo">Fundation</div>
+                <h3>Welcome to the Art Fundraiser</h3>
                 <div className="hamburger" onClick={toggleMenu}>☰</div>
                 <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
@@ -55,6 +56,7 @@ function Gallery() {
                 </ul>
             </nav>
 
+           
             {/* Slideshow Section */}
             <div className="slideshow">
                 <img src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} className="slide-image" />

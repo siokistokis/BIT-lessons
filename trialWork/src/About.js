@@ -13,6 +13,7 @@ function About() {
         <div className="about-page">
             <nav className="navbar">
                 <div className="logo">Fondation</div>
+                <h3>Welcome to the Art Fundraiser</h3>
                 <div className="hamburger" onClick={toggleMenu}>☰</div>
                 {/* Navigation Links */}
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>

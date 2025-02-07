@@ -8,6 +8,7 @@ import Menu from './Menu';
 import Gallery from './Gallery';
 import About from './About';
 import SignIn from './SignIn';
+import FundMePage from './FundMePage';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
                   <p className="text2">fundation SUPPORT charity DONATION</p>
                   <p className="text3">FUNDATION support CHARITY donation</p>
                   <p className="text4">fundation SUPPORT charity DONATION</p>
-                  <p className="text5">FUNDATION support CHARITY DONATION</p>
+                  <p className="text5">FUNDATION support CHARITY donation</p>
                 </div>
 
                 {/* Menu Component */}
@@ -44,8 +45,9 @@ function App() {
         <Route path="/Gallery" element={<Gallery />} />
         <Route path="/About" element={<About />} />
         <Route path="/SignIn" element={<SignIn/>} />
+        <Route path="/FundMePage" element={<FundMePage/>} />
         </Routes>
-
+        
 
       </div>
     </Router>
