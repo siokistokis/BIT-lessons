@@ -9,6 +9,7 @@ import Gallery from './Gallery';
 import About from './About';
 import SignIn from './SignIn';
 import FundMePage from './FundMePage';
+import Contact from './Contact';
 
 function App() {
   return (
@@ -45,13 +46,16 @@ function App() {
         <Route path="/Gallery" element={<Gallery />} />
         <Route path="/About" element={<About />} />
         <Route path="/SignIn" element={<SignIn/>} />
-        <Route path="/FundMePage" element={<FundMePage/>} />
+        <Route path="/fundme" element={<FundMePage/>} />
+        <Route path="contact" element={<Contact/>} />
         </Routes>
         
 
       </div>
     </Router>
   );
+
+
 }
 
 export default App;

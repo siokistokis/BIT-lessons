@@ -69,6 +69,7 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     width:200px;
+    margin-top: 50%;
   } 
 
   @media (max-width:768px) {
@@ -86,14 +87,18 @@
     color: black;
   }
   
-  .fundme-btn {
-    border-color: orange;
-    background-color: orange;
-    color:black;
+
+  @media (max-width:768px) {
+    .fundme-btn {
+      /*padding:5px;
+      font-size: 12px;
+      width:150px;*/
+      display: none;
+    }
   }
   
   .fundme-btn:hover {
-    background-color: orange;
+    background-color: white;
     color: black;
   }
 
