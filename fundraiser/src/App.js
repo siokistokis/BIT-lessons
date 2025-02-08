@@ -11,6 +11,7 @@ import SignIn from './SignIn';
 import FundMePage from './FundMePage';
 import Contact from './Contact';
 import Start from './Start';
+import Feedback from './Feedback';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/fundme" element={<FundMePage/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/Start" element={<Start/>} />
+        <Route path="/Feedback" element ={<Feedback/>} />
         </Routes>
         
 

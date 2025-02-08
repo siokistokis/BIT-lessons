@@ -26,15 +26,15 @@ db.connect((err) => {
 
 // Handle fundraiser creation
 app.post('/fundraisers', (req, res) => {
-    const { title, goalAmount, description, organizer, cause } = req.body;
+    const { title, goalAmount, description, organiser, cause } = req.body;
     
     // Validate the input
-    if (!title || !goalAmount || !description || !organizer || !cause) {
+    if (!title || !goalAmount || !description || !organiser || !cause) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const sql = "INSERT INTO fundraisers (title, goalAmount, description, organizer, cause) VALUES (?, ?, ?, ?, ?)";
-    db.query(sql, [title, goalAmount, description, organizer, cause], (err, result) => {
+    const sql = "INSERT INTO fundraisers (title, goalAmount, description, organiser, cause) VALUES (?, ?, ?, ?, ?)";
+    db.query(sql, [title, goalAmount, description, organiser, cause], (err, result) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
