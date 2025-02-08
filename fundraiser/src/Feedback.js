@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Feedback.css";
 
+
 function Feedback() {
+        const [isOpen, setIsOpen] = useState(false);
+      
+        // Toggle menu visibility
+        const toggleMenu = () => {
+          setIsOpen(!isOpen);
+        };
    
     return(
 
@@ -34,8 +41,6 @@ function Feedback() {
     </div>
 
 )
-
-
+ }
     
-}
 export default Feedback;
