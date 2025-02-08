@@ -20,7 +20,7 @@ function FundMePage() {
                 <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
-                    <li><Link to="/services" onClick={toggleMenu}>Services</Link></li>
+                    {/* <li><Link to="/services" onClick={toggleMenu}>Services</Link></li> */}
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                 </ul>
@@ -61,7 +61,7 @@ function FundMePage() {
                 </form>
 
                 <div className="support-art">
-                    <h3>We are truly grateful for the support of our generous donors. Your contributions help provide the tools and resources for the next generation of artists. Together, we can make the art world flourish and create meaningful change.</h3>
+                    <p>We are truly grateful for the support of our generous donors. Your contributions help provide the tools and resources for the next generation of artists. Together, we can make the art world flourish and create meaningful change.</p>
                     <h3>Thank you for your help and continued support!</h3>
                 </div>
             </div>
