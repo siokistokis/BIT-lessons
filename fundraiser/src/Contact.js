@@ -26,7 +26,7 @@ function Contact() {
 
 
             <div className="contact-page">
-            <h1>Contact Us</h1>
+            <h3>Contact Us</h3>
             <p>If you have any questions or inquiries, please feel free to reach out to us!</p>
 
             <form>
@@ -47,6 +47,10 @@ function Contact() {
 
                 <button type="submit">Submit</button>
             </form>
+
+            <p>Also you can cntact us by:</p>
+            <p>Phone Nuber: +44 (0)721156463</p>
+            <p>e-mail: info@fundraiser.com</p>
         </div>
          
             <footer className="footer-to-left">

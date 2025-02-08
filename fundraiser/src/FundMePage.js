@@ -28,12 +28,10 @@ function FundMePage() {
 
             {/* Main Page Content */}
             <div className="fundraiser-content">
-                <h3>Support beautiful, forward-looking, classical art, art education and also people's creativity. Develop the branches of art with your help and participate in this development.</h3>
-                <h3>Your donation will help fund various art projects. Join us in supporting talented artists!</h3>
 
-                <div>
+                <form className="donate-form">
                     <h3>Join us in supporting the arts!</h3>
-                    <p>Choose a sphere, branch, or section of art, please.</p>
+                    <p>Choose a sphere, branch or section of art, please:</p>
                     <select id="donationAmount">
                         <option value="Dance">Dance</option>
                         <option value="Aerial">Aerial</option>
@@ -60,7 +58,7 @@ function FundMePage() {
                     </select>
 
                     <button className="btn-style">Donate Now</button>
-                </div>
+                </form>
 
                 <div className="support-art">
                     <h3>We are truly grateful for the support of our generous donors. Your contributions help provide the tools and resources for the next generation of artists. Together, we can make the art world flourish and create meaningful change.</h3>

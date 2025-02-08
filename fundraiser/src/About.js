@@ -38,7 +38,9 @@ function About() {
       <div className="page">
 
         <h2>Who We Are!</h2>
-        <p>Our foundation is dedicated to uplifting communities by supporting various causes, including mentorship, education, and essential aid for underprivileged children. Through our initiatives, we provide food, clothing, and personal care items, ensuring that every child has the opportunity to thrive. We believe in nurturing potential, fostering hope, and creating a lasting impact in the lives of those we serve. Join us in making a difference—one act of kindness at a time.</p>
+        <p>Our foundation is dedicated to uplifting communities by supporting various causes, including mentorship, education, and essential aid for underprivileged children. Through our initiatives, we provide food, clothing, and personal care items, ensuring that every child has the opportunity to thrive. We believe in nurturing potential, fostering hope, and creating a lasting impact in the lives of those we serve. Join us in making a difference—one act of kindness at a time.</p> 
+        <p>Support beautiful, forward-looking, classical art, art education and also people's creativity. Develop the branches of art with your help and participate in this development.</p>
+        <p>Your donation will help fund various art projects. Join us in supporting talented artists! </p>
         <button className="start">Start A GoFundMe</button>
         <div className="images">
             <h3>OUR CAUSES</h3>
