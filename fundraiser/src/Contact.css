@@ -1,3 +1,24 @@
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+}
+
+/* Fix potential body margin issues */
+html, body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents any unwanted horizontal scrolling */
+}
+
+body {
+    overflow-y: auto;
+}
+
+
 .footer-to-left {
     display: flex;
     justify-content: center;
@@ -12,6 +33,34 @@
     left: 0;
     position: fixed;
     z-index: 1000;
+}
+
+.contact-page {
+    overflow-y: auto;
+}
+
+.contact-form {
+    background-color: rgb(55, 102, 104);
+    color: white;
+}
+
+#name {
+    border-radius: 10px;
+}
+
+#email {
+    border-radius: 10px;
+
+}
+
+#message {
+    border-radius: 10px;
+    width: 250px;
+}
+
+#submit {
+    border-radius: 10px;
+    width: 250px;
 }
 
 .contact-details {
@@ -29,7 +78,8 @@
 }
 
 .social-icons {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .social-icons a {
@@ -40,7 +90,7 @@
 }
 
 .social-icons a:hover {
-    color: #4CAF50; 
+    color: white; 
 }
 
 .social-icons .fab {

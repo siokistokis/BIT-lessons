@@ -13,7 +13,7 @@ function Contact() {
     }
 
     return (
-        <div>
+        <div className="contact-page">
             {/* Navbar */}
             <nav className="navbar">
                 <div className="logo">Fundation</div>
@@ -32,7 +32,7 @@ function Contact() {
                 <h3>Contact Us</h3>
                 <p>If you have any questions or inquiries, please feel free to reach out to us!</p>
 
-                <form>
+                <form className='contact-form'>
                     <div>
                         <label htmlFor="name">Name:</label>
                         <input type="text" id="name" name="name" required />
@@ -48,7 +48,7 @@ function Contact() {
                         <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="submit">Submit</button>
                 </form>
                 <div className='contact-details'>
                     <p>Also, you can contact us by:  </p>

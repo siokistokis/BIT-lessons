@@ -339,9 +339,13 @@ const Menu = () => {
                 <Link to="/signin">
                     <button className="sign-in-btn">Sign In</button>
                 </Link>
-                <Link to="/fundme">
-                    <button className="fundme-btn">Start FundMe Project</button>
-                </Link>
+            
+                    {/* <button className="fundme-btn">Start FundMe Project</button> */}
+                    <button onClick={() => window.location.href = '/start'} className="fundme-btn">Start FundMe Project</button>
+
+
+                
+                
                 
 
 

@@ -10,6 +10,7 @@ import About from './About';
 import SignIn from './SignIn';
 import FundMePage from './FundMePage';
 import Contact from './Contact';
+import Start from './Start';
 
 function App() {
   return (
@@ -47,7 +48,8 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/SignIn" element={<SignIn/>} />
         <Route path="/fundme" element={<FundMePage/>} />
-        <Route path="contact" element={<Contact/>} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/Start" element={<Start/>} />
         </Routes>
         
 
