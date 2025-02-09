@@ -357,7 +357,7 @@ const Menu = () => {
                     <li><a href="/">Home</a></li>
                     <li><Link to="/About">About</Link></li>
                     <li><Link to="/Gallery">Gallery</Link></li>
-                    {/* <li><a href="services.js">Services</a></li> */}
+                    <li><Link to="/Donate">Donate</Link></li>
                     <li><Link to="/Contact">Contact</Link></li>
                 </ul>
             

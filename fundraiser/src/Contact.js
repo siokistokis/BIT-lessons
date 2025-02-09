@@ -1,16 +1,45 @@
 
 
-
-
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import './Contact.css';
+import axios from 'axios';
 
 function Contact() {
     const [isOpen, setIsOpen] = useState(false);
+    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [submitted, setSubmitted] = useState(false);
+
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     }
+
+    // Handle form input changes
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("http://localhost:5000/contact", formData);
+            setSubmitted(true);
+
+                // Redirect to welcome page after 3 seconds
+        setTimeout(() => {
+            window.location.href = "/Response";  // Replace with your actual welcome page URL
+        }, 3000); // 3 seconds delay
+
+
+        } catch (error) {
+            console.error("Error sending message:", error);
+        }
+    };
+
+
 
     return (
         <div className="contact-page">
@@ -22,7 +51,7 @@ function Contact() {
                 <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
-                    {/* <li><Link to="/services" onClick={toggleMenu}>Services</Link></li> */}
+                    <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                 </ul>
@@ -32,7 +61,7 @@ function Contact() {
                 <h3>Contact Us</h3>
                 <p>If you have any questions or inquiries, please feel free to reach out to us!</p>
 
-                <form className='contact-form'>
+                 {/* <form className='contact-form'>
                     <div>
                         <label htmlFor="name">Name:</label>
                         <input type="text" id="name" name="name" required />
@@ -49,11 +78,36 @@ function Contact() {
                     </div>
 
                     <button type="submit" id="submit">Submit</button>
-                </form>
+                </form> */}
+
+
+
+                {/* Contact Form */}
+                <div className="contact-form">
+                    {submitted ? (
+                        <p className="success-message">Thank you for reaching out! We'll get back to you soon.</p>
+                    ) : (
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+
+                            <label htmlFor="email">Email:</label>
+                            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+
+                            <label htmlFor="message">Message:</label>
+                            <textarea id="message" name="message" value={formData.message} onChange={handleChange} required />
+
+                            <button type="submit" className="btn-submit">Send Message</button>
+                        </form>
+                    )}
+                </div>
+
+
+
                 <div className='contact-details'>
                     <p>Also, you can contact us by:  </p>
-                <p> Phone Number: +44 (0)721156463 </p>
-                <p> Email: info@fundraiser.com</p>
+                Phone Number: <a href='tel:+44721156463'>+44 (0)721156463 </a>
+                Email:<a href='mailto:info@fundraiser.com' className='email'> info@fundraiser.com </a>
                 </div>
                 
 

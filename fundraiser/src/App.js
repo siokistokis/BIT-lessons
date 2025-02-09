@@ -8,7 +8,7 @@ import Menu from './Menu';
 import Gallery from './Gallery';
 import About from './About';
 import SignIn from './SignIn';
-import FundMePage from './FundMePage';
+import Donate from './Donate';
 import Contact from './Contact';
 import Start from './Start';
 import Feedback from './Feedback';
@@ -48,7 +48,7 @@ function App() {
         <Route path="/Gallery" element={<Gallery />} />
         <Route path="/About" element={<About />} />
         <Route path="/SignIn" element={<SignIn/>} />
-        <Route path="/fundme" element={<FundMePage/>} />
+        <Route path="/donate" element={<Donate/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/Start" element={<Start/>} />
         <Route path="/Feedback" element ={<Feedback/>} />

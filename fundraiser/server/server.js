@@ -43,6 +43,28 @@ app.post('/fundraisers', (req, res) => {
     });
 });
 
+//handle contact details
+
+app.post('/contact', (req, res) => {
+    const { name, email, message } = req.body;
+
+    console.log("Received Contact Form Data:", req.body); // Debugging line
+
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    const sql = "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)";
+    db.query(sql, [name, email, message], (err, result) => {
+        if (err) {
+            console.error("Database Error:", err);
+            return res.status(500).json({ error: err.message });
+        }
+
+        res.status(200).json({ message: 'Message sent successfully!' });
+    });
+});
+
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });
