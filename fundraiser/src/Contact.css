@@ -39,9 +39,14 @@ body {
     overflow-y: auto;
 }
 
-.contact-form {
-    background-color: rgb(55, 102, 104);
+/* .contact-form {
+    background-color: rgb(55, 102, 104) !important;
     color: white;
+} */
+
+
+form {
+    background-color: rgb(55, 102, 104);
 }
 
 #name {
