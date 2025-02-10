@@ -14,12 +14,22 @@ function FundMePage() {
         setIsOpen(!isOpen);
     };
 
+    // useEffect(() => {
+    //     // Fetch the fundraiser details by ID
+    //     axios.get(`http://localhost:5000/api/fundraisers/${id}`)
+    //         .then(response => setFundraiser(response.data))
+    //         .catch(error => console.error('Error fetching fundraiser details:', error));       
+    // }, [id]);
+
+
     useEffect(() => {
-        // Fetch the fundraiser details by ID
-        axios.get(`http://localhost:5000/api/fundraisers/${id}`)
-            .then(response => setFundraiser(response.data))
-            .catch(error => console.error('Error fetching fundraiser details:', error));
-    }, [id]);
+        axios.get('http://localhost:5000/api/fundraisers')
+            .then(response => {
+                console.log("API Response:", response.data);  // Debugging
+                setFundraiser(response.data);
+            })
+            .catch(error => console.error('Error fetching fundraisers:', error));
+    }, []);
 
     const handleDonate = async (e) => {
         e.preventDefault();
