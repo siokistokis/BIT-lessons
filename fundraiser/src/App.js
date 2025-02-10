@@ -14,6 +14,8 @@ import Start from './Start';
 import Feedback from './Feedback';
 import Response from './Response';
 import CodeVerification from './CodeVerification';
+import Public from './Public';
+import FundMePage from './FundMePage';
 
 function App() {
   return (
@@ -56,6 +58,9 @@ function App() {
         <Route path="/Feedback" element={<Feedback/>} />
         <Route path="/Response" element={<Response/>} />
         <Route path="/code" element={<CodeVerification/>} />
+        <Route path="/Public" element={<Public/>} />
+        <Route path="/FundMePage" element={<FundMePage/>} />
+ 
         </Routes> 
         
 
