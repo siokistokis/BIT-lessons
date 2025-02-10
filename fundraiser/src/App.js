@@ -13,6 +13,7 @@ import Contact from './Contact';
 import Start from './Start';
 import Feedback from './Feedback';
 import Response from './Response';
+import CodeVerification from './CodeVerification';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path="/Start" element={<Start/>} />
         <Route path="/Feedback" element={<Feedback/>} />
         <Route path="/Response" element={<Response/>} />
+        <Route path="/code" element={<CodeVerification/>} />
         </Routes> 
         
 
