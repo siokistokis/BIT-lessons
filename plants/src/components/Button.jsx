@@ -1,9 +1,16 @@
 import "./Button.css"
 
-export default function Button({className="", children, href="#", ...props}) {
+export default function Buttons({className="", children='shop', href="#", ...props}) {
 
     return(
-     <a href={href} className={`btn ${className}`}>{children}</a>
+     <a 
+        className={`button ${className}`}
+        href={href}
+        target="_blank" 
+       
+        >
+          {children}
+        </a>
     );
   }
   
