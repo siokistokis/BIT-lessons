@@ -11,6 +11,12 @@ function Public() {
 
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:5000/api/fundraisers')
+            .then(response => setFundraisers(response.data))
+            .catch(error => console.error('Error fetching fundraisers:', error));
+    }, []);
+
     return (
         <div>
             {/* Navigation Bar */}
