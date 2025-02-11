@@ -29,7 +29,7 @@ function Public() {
                     <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
-                    <li><Link to="/FundMe" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
                     <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
             </nav>
@@ -48,6 +48,7 @@ function Public() {
                                 <p><strong>Cause:</strong> {fundraiser.cause}</p>
                                 <p><strong>Description:</strong> {fundraiser.description}</p>
                                 <p><strong>Fundraising Goal:</strong> £{fundraiser.goalAmount}</p>
+                                <p><strong>Donated Amount:</strong>£{fundraiser.donatedAmount}</p>
                                 <p><strong>Remaining Amount:</strong> £{remainingAmount}</p>
                                 <p><strong>Started:</strong> {new Date(fundraiser.createdAt).toLocaleDateString()}</p>
                                 

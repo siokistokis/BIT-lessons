@@ -322,6 +322,7 @@ import './Menu.css';
 const Menu = () => {
     // Checks whether the Menu is currently open or not
     const [isOpen, setIsOpen] = useState(false);
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
     return (
     
@@ -356,7 +357,23 @@ const Menu = () => {
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><Link to="/About">About</Link></li>
-                    <li><Link to="/Gallery">Gallery</Link></li>
+
+                    {/* <li><Link to="/Gallery">Gallery</Link></li> */}
+                    {/* Gallery Dropdown */}
+                    <li className="gallery-menu"
+                        onMouseEnter={() => setIsGalleryOpen(true)}
+                        onMouseLeave={() => setIsGalleryOpen(false)}
+                    >
+                        <span>Gallery ▾</span>
+                        {isGalleryOpen && (
+                            <ul className="gallery-dropdown">
+                                <li><Link to="/Gallery">Art</Link></li>
+                                <li><Link to="/Sport">Sport</Link></li>
+                                <li><Link to="/Dance">Dance</Link></li>
+                            </ul>
+                        )}
+                    </li>
+
                     <li><Link to="/Donate">Donate</Link></li>
                     <li><Link to="/Contact">Contact</Link></li>
                     <li onClick={() => window.location.href = '/Start'}><Link to="/Start">FundMe</Link></li>

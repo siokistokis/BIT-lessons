@@ -16,6 +16,8 @@ import Response from './Response';
 import CodeVerification from './CodeVerification';
 import Public from './Public';
 import FundMePage from './FundMePage';
+import Sport from './Sport';
+import Dance from './Dance';
 
 function App() {
   return (
@@ -64,6 +66,8 @@ function App() {
         <Route path="/code" element={<CodeVerification/>} />
         <Route path="/Public" element={<Public/>} />
         <Route path="/FundMePage/:id" element={<FundMePage/>} />
+        <Route path="/Sport" element={<Sport/>} />
+        <Route path="/Dance" element={<Dance/>} />
  
         </Routes> 
         

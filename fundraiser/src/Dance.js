@@ -2,16 +2,11 @@ import React, {useState, useEffect} from "react";
 import './Gallery.css';
 import { Link } from "react-router-dom";
 
-import img1 from "./img/aerial.jpg";
-import img2 from "./img/animals.jpg";
-import img3 from "./img/art.jpg";
-import img4 from "./img/ballet.jpg";
-import img5 from "./img/event.jpg";
-import img6 from "./img/gymnastic.jpg";
-import img7 from "./img/music.jpg";
-import img8 from "./img/skating.jpg";
-import img9 from "./img/sport.jpg";
-import img10 from "./img/theatre.jpg";
+import img1 from "./img/ballet.jpg";
+import img2 from "./img/aerial.jpg";
+import img3 from "./img/skating.jpg";
+import img4 from "./img/gymnastic.jpg";
+
 
 // const images = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10];
 
@@ -19,18 +14,10 @@ const slides = [
     { image: img1, description: "Explore beautiful art pieces from around the world." },
     { image: img2, description: "Experience the elegance and passion of ballet performances." },
     { image: img3, description: "Capture moments through the lens of talented photographers." },
-    { image: img4, description: "Explore beautiful art pieces from around the world." },
-    { image: img5, description: "Experience the elegance and passion of ballet performances." },
-    { image: img6, description: "Capture moments through the lens of talented photographers." },
-    { image: img7, description: "Explore beautiful art pieces from around the world." },
-    { image: img8, description: "Experience the elegance and passion of ballet performances." },
-    { image: img9, description: "Capture moments through the lens of talented photographers." },
-    { image: img10, description: "Explore beautiful art pieces from around the world." }
-    // { image: img11, description: "Experience the elegance and passion of ballet performances." },
-    // { image: img12, description: "Capture moments through the lens of talented photographers." }
+    { image: img4, description: "Explore beautiful art pieces from around the world." }
 ];
 
-function Gallery() {
+function Dance() {
     const [isOpen, setIsOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -49,11 +36,7 @@ function Gallery() {
         setIsOpen(!isOpen);
     };
 
-    // Automatically cycle through images every 3 seconds
-    // useEffect(() => {
-    //     const interval = setInterval(goToNext, 3000);
-    //     return () => clearInterval(interval);
-    // }, []);
+
 
     return (
         <div className="about-page">
@@ -65,7 +48,7 @@ function Gallery() {
                 <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
-                    <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
+                    {/* <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li> */}
                     <li><Link className="gallery" to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                     <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
@@ -90,4 +73,4 @@ function Gallery() {
 
     
 }
-export default Gallery;
+export default Dance;
