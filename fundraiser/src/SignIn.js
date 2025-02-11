@@ -30,9 +30,8 @@ const toggleMenu = () => {
 
     return (
 
-
+        
         <div className="signin-container">
-
              
              <nav className="navbar">
                 <div className="logo">Fundation</div>
@@ -44,11 +43,14 @@ const toggleMenu = () => {
                     <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
             </nav>  
 
-          
+      
             <form onSubmit={handleSubmit}>
+              SignIn
                 <h2>WELCOME</h2>
                 <p id="paragraph">Login to continue</p>
                 <button type="button" className="google-signin" onClick={handleRedirectToCodePage}>Continue with Google</button>

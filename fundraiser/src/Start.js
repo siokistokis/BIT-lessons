@@ -46,10 +46,12 @@ function Start() {
                     <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
             </nav>
             <div className="fundraiser-content">
-
+                Start - FundMe
                 <div className="left">
                     <h2>Start Your Own Fundraiser</h2>
                     <p>Launch a fundraiser to support a cause that matters to you.</p>
@@ -74,9 +76,21 @@ function Start() {
                         <label htmlFor="cause">Select Cause:</label>
                         <select id="cause" value={cause} onChange={(e) => setCause(e.target.value)} required>
                             <option value="">Select a Cause</option>
-                            <option value="Potter">Potter</option>
-                            <option value="Photography">Photography</option>
+                            <option value="Aerial">Aerial</option>
                             <option value="Art">Art</option>
+                            <option value="Ballet">Ballet</option>
+                            <option value="Circus">Circus</option>
+                            <option value="Dance">Dance</option>
+                            <option value="Education">Education</option>
+                            <option value="Gymnastics">Gymnastics</option>
+                            <option value="Music">Music</option>
+                            <option value="Pets">Pets</option>
+                            <option value="Painting">Painting</option>
+                            <option value="Photography">Photography</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Skating">Skating</option>
+                            <option value="Theatre">Theatre</option>
+                          
                         </select>
 
                         <button className="btn-style" type="submit">Start Fundraiser</button>

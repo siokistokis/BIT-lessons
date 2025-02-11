@@ -33,14 +33,18 @@ function App() {
                   {/* Cubes */}
                   <Cube />
                 </div>
-
+                {/* Home */}
                 {/* Animated Text */}
                 <div className="animated-text">
-                  <p className="text1">FUNDATION support CHARITY donation</p>
-                  <p className="text2">fundation SUPPORT charity DONATION</p>
-                  <p className="text3">FUNDATION support CHARITY donation</p>
-                  <p className="text4">fundation SUPPORT charity DONATION</p>
-                  <p className="text5">FUNDATION support CHARITY donation</p>
+                  <p className="text1">FUNDATION support CHARITY donation <br/>Welcome To The Art Fundraiser</p>
+                  <p className="text2">fundation SUPPORT charity DONATION <br/>Welcome To The Art Fundraiser</p>
+                  <p className="text3">FUNDATION support CHARITY donation <br/>Welcome To The Art Fundraiser</p>
+                  <p className="text4">fundation SUPPORT charity DONATION <br/>Welcome To The Art Fundraiser</p>
+                  <p className="text5">FUNDATION support CHARITY donation <br/>Welcome To The Art Fundraiser</p>
+                </div>
+
+                <div className='art'>
+                <p className="art">ART</p>
                 </div>
 
                 {/* Menu Component */}
@@ -59,7 +63,7 @@ function App() {
         <Route path="/Response" element={<Response/>} />
         <Route path="/code" element={<CodeVerification/>} />
         <Route path="/Public" element={<Public/>} />
-        <Route path="/FundMePage" element={<FundMePage/>} />
+        <Route path="/FundMePage/:id" element={<FundMePage/>} />
  
         </Routes> 
         

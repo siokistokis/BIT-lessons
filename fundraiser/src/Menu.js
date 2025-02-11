@@ -324,6 +324,7 @@ const Menu = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
+    
         <div className="menu-container">
             
             { /* Left: Hamburger Icon */}
@@ -332,7 +333,7 @@ const Menu = () => {
                 <div className="bar"></div>
                 <div className="bar"></div>
             </div>
-
+                Home
             { /* Center: Buttons */}
             <div className="top-buttons">
                 {/* Sign In Button linked to /signin route */}
@@ -340,13 +341,12 @@ const Menu = () => {
                     <button className="sign-in-btn">Sign In</button>
                 </Link>
             
+
+            {/* <Link>
+            <button onClick={() => window.location.href = '/start'} className="fundme-btn">Start FundMe Project</button>
+            </Link> */}
                     {/* <button className="fundme-btn">Start FundMe Project</button> */}
                     <button onClick={() => window.location.href = '/start'} className="fundme-btn">Start FundMe Project</button>
-
-
-                
-                
-                
 
 
             </div>
@@ -359,6 +359,9 @@ const Menu = () => {
                     <li><Link to="/Gallery">Gallery</Link></li>
                     <li><Link to="/Donate">Donate</Link></li>
                     <li><Link to="/Contact">Contact</Link></li>
+                    <li onClick={() => window.location.href = '/Start'}><Link to="/Start">FundMe</Link></li>
+                    {/* <li><Link to="/Start">FundMe</Link></li> */}
+                    <li><Link to="/SignIn">SignIn</Link></li>
                 </ul>
             
             </nav>

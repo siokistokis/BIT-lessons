@@ -22,9 +22,12 @@ function About() {
           <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
           <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
           <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+          <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
+          <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
           
         </ul>
             </nav>
+            
             {/* Hero Section */}
       <div className="hero">
         <img src={'/helping.jpg'} alt="Fundation - Making a Difference" className="hero-image" />

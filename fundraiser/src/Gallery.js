@@ -53,12 +53,15 @@ function Gallery() {
                     <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
             </nav>
 
            
             {/* Slideshow Section */}
             <div className="slideshow">
+                Galery
                 <img src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} className="slide-image" />
                 
                 {/* Navigation buttons placed below */}

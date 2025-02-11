@@ -96,4 +96,20 @@ h3 {
     margin-top: 20px;
 }
 
+.ftr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    background-color: rgb(55, 102, 104);
+    color:white;
+    margin-top: 20px;
+    position:fixed;
+    bottom: 0;
+    width:230vh;
+    left: 0;
+    position: fixed;
+    z-index: 1000;
+}
+
 

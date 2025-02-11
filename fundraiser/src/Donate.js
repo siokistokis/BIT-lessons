@@ -23,29 +23,35 @@ function FundMePage() {
                     <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
             </nav>
 
             {/* Main Page Content */}
             <div className="fundraiser-content">
+                Donate
 
                 <form className="donate-form">
                     <h3>Join us in supporting the arts!</h3>
                     <p>Choose a sphere, branch or section of art, please:</p>
                     <select id="donationAmount">
-                        <option value="Dance">Dance</option>
+                        <option value="">Select a branch</option>
                         <option value="Aerial">Aerial</option>
-                        <option value="Circus">Circus</option>
-                        <option value="Music">Music</option>
-                        <option value="Sport">Sport</option>
-                        <option value="Painting">Painting</option>
-                        <option value="Theatre">Theatre</option>
                         <option value="Art">Art</option>
-                        <option value="Gymnastics">Gymnastics</option>
-                        <option value="Skating">Skating</option>
                         <option value="Ballet">Ballet</option>
+                        <option value="Circus">Circus</option>
+                        <option value="Dance">Dance</option>
                         <option value="Education">Education</option>
+                        <option value="Gymnastics">Gymnastics</option>
+                        <option value="Music">Music</option>
                         <option value="Pets">Pets</option>
+                        <option value="Painting">Painting</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Sport">Sport</option>
+                        <option value="Skating">Skating</option>
+                        <option value="Theatre">Theatre</option>
+                          
                     </select>
 
                     <label htmlFor="donationAmount">Select Amount to Donate:</label>
@@ -66,7 +72,7 @@ function FundMePage() {
                 </div>
             </div>
 
-            <footer>
+            <footer className='ftr'>
                 <p>© 2025 Fundation. All Rights Reserved.</p>
             </footer>
         </div>

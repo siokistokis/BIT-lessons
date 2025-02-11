@@ -10,9 +10,9 @@ function Cube() {
       <div className="cube"></div>
       <div className="cube"></div>
     </>
+
+    
   );
 }
-
-
 
 export default Cube;
