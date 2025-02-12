@@ -1,32 +1,33 @@
-* {
+/* * {
     box-sizing: border-box;
     padding: 0;
     margin:0;
 }
 
-/* Fix potential body margin issues */
+
 html, body {
     width: 100%;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevents any unwanted horizontal scrolling */
+    overflow-x: hidden;
 }
+
 
 body {
     overflow-y: auto !important;
-}
+} 
+
 
 .about-page {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     text-align: center;
-}
+  
+} */
 
-
-
-.navbar {
+/* .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,9 +39,8 @@ body {
     position: fixed;
     width: 100%;
     z-index: 1000;
-}
+} */
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
       display: block;
@@ -72,7 +72,7 @@ body {
   }
 
 
-  /* Navigation Links */
+ 
   .nav-links {
     list-style: none;
     display: flex;
@@ -98,7 +98,7 @@ body {
   .hero {
     position: relative;
     width: 100vw;
-    min-height: 580px; /* Adjust height as needed */
+    min-height: 580px; 
     overflow: hidden;
     top:0;
     left:0;
@@ -115,7 +115,7 @@ body {
     min-width: 100vw;
     height: 450px;
     object-fit: cover;
-    filter: brightness(0.7); /* Darkens the image for better text readability */
+    filter: brightness(0.7); 
   }
   
   .hero-text {
@@ -142,8 +142,8 @@ body {
     text-align: center;
   }
 
-  /* Responsive Design */
-@media (max-width: 768px) {
+ 
+/* @media (max-width: 768px) {
     .hero-text h1 {
         font-size: 36px;
     }
@@ -151,9 +151,9 @@ body {
     .hero-text p {
         font-size: 16px;
     }
-}
+} */
 
-/* User Reviews Section */
+
 .user-reviews {
     padding: 30px 20px;
     text-align: center;
@@ -210,15 +210,15 @@ body {
     font-style: italic;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+
+/* @media (max-width: 768px) {
     .reviews-container {
         flex-direction: column;
         align-items: center;
     }
-}
+} */
 
-/* Footer */
+
 footer {
     display: flex;
     justify-content: center;
@@ -254,7 +254,7 @@ footer {
         height:270px;
     }
     
-    @media(max-width:1200px) {
+     /* @media(max-width:1200px) {
         .image-pics {
             display:grid;
             grid-template-columns: repeat(3,1fr);
@@ -281,25 +281,25 @@ footer {
             grid-auto-flow: row;
             gap:20px;
             justify-content: center;
-        }
+        } 
 
-        .polaroid img {
+         .polaroid img {
            width:100%;
            max-width: 100% !important;
            height:250px !important;
            padding:20px;
         }
     
-    }
+    } 
 
-    @media(max-width:350px) {
+     @media(max-width:350px) {
         .polaroid img {
             width:250px;
             max-width: 100% !important;
             height:250px !important;
             padding:20px;
          }
-    }
+    }  */
 
     .start {
       max-width: 260px;
@@ -339,3 +339,28 @@ footer {
       padding: 0 30px;
     }
 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

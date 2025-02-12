@@ -19,7 +19,7 @@ function About() {
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
           <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
           <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
-          <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
+          {/* <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li> */}
           <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
           <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
           <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
@@ -88,7 +88,7 @@ function About() {
         </div>
         </section> 
 
-        <button className="start" id="first">Start A GoFundMe</button>
+        {/* <button className="start" id="first">Start A GoFundMe</button> */}
 
     </div>
 

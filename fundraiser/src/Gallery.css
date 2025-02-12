@@ -1,21 +1,21 @@
-* {
+/* * {
     box-sizing: border-box;
     padding: 0;
     margin:0;
 }
 
-/* Fix potential body margin issues */
+
 html, body {
     width: 100%;
     min-height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevents any unwanted horizontal scrolling */
+    overflow-x: hidden; 
 }
 
 body {
     overflow-y: auto !important;
-}
+} */
 
 .about-page {
     text-align: center;
@@ -25,7 +25,6 @@ body {
     overflow-y: auto;
   }
   
-  /* Navbar Styles */
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -45,7 +44,6 @@ body {
     font-weight: bold;
   }
   
-  /* Navigation Links */
   .nav-links {
     list-style: none;
     display: flex;
@@ -68,14 +66,13 @@ body {
     border-radius: 5px;
   }
   
-  /* Hamburger Menu */
   .hamburger {
     font-size: 28px;
     cursor: pointer;
     display: none;
   }
   
-  /* Responsive Design */
+ 
   @media (max-width: 768px) {
     .hamburger {
       display: block;
@@ -121,7 +118,6 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 
-/* Navigation Buttons */
 .slideshow-controls {
     display: flex;
     justify-content: center;
@@ -214,7 +210,6 @@ body {
 
 .about-page {
     text-align: center;
-    padding-top: 60px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
