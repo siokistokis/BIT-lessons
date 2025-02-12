@@ -8,8 +8,11 @@
 :root {
   --green: #50806B;
   --bggreen: #E8EDDE;
+  --lgreen: #5bc08A;
+  --black: #000;
   --red: #D11F1F;
-  --grey: #7C8087;
+  --textgrey: #7C8087;
+  --white: #fff;
 }
 
 .wrapper {

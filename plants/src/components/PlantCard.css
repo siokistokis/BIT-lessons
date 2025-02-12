@@ -1,0 +1,27 @@
+.plant-card {
+    padding: 20px;
+    width: 282px;
+    height: 418.5px;
+    background: #ffffff;
+    box-shadow: 0px 8px 23px rgb(80, 107, 82,0.13);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.img-box {
+    position: reletive;
+}
+
+.discount-block {
+    position: absolute;
+    color: #ffffff;
+    background-image:url(../img/plants/discount-bg.svg);
+    background-position: center;
+    width: 64px;
+    height: 64px;
+    right: 0;
+    font-size: 12px;
+
+}
