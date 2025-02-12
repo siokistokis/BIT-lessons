@@ -40,5 +40,5 @@ export default function SectionAllProducts(){
         <SectionHot allProducts = {allProducts}/>
  
         </>
-    )
-}
+    );
+};
