@@ -2,7 +2,7 @@ import PlantCard from "./PlantCard";
 
 export default function HotCardList({allProducts, rating}){
 
-    // const filtredProducts = allProducts.filter(product => product.rating === rating);
+    const filtredProducts = allProducts.filter(product => product.rating === rating);
  
         console.log(allProducts);
 
@@ -23,3 +23,6 @@ export default function HotCardList({allProducts, rating}){
    
     );
 };
+
+
+
