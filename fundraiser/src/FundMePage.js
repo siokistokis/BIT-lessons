@@ -65,7 +65,7 @@ function FundMePage() {
                 <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
-                    <li><Link to="/services" onClick={toggleMenu}>Services</Link></li>
+                    {/* <li><Link to="/services" onClick={toggleMenu}>Services</Link></li> */}
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                     <li><Link to="/FundMe" onClick={toggleMenu}>FundMe</Link></li>
@@ -75,8 +75,8 @@ function FundMePage() {
 
             {/* Main Page Content */}
             <div className="fundraiser-content">
-                <h2 id="title">{fundraiser.title}</h2>
-                <p>{fundraiser.description}</p>
+                <h2 id="title">{}</h2>
+                <p>{}</p>
 
                 {/* Donation Form */}
                 <div className="donation-form">
@@ -110,6 +110,9 @@ function FundMePage() {
                     <p><b>Thank you for your help and continued support!</b></p>
                 </div>
             </div>
+            <footer className="footer-to-left">
+                <p>© 2025 Fundation. All Rights Reserved.</p>
+            </footer>
         </div>
     );
 }
