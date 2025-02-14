@@ -245,11 +245,10 @@ function Gallery() {
                         <span>Gallery ▾</span>
                         {isGalleryOpen && (
                             <ul className="gallery">
-                                {/* <li><Link to="/Art" onClick={toggleMenu}>Gallery</Link></li> */}
+                              
                                 <li><Link to="/Sport" onClick={toggleMenu}>Sport</Link></li>
                                 <li><Link to="/Dance" onClick={toggleMenu}>Dance</Link></li>
-                                {/* <li><Link to="/Ballet" onClick={toggleMenu}>Ballet</Link></li>
-                                <li><Link to="/Painting" onClick={toggleMenu}>Painting</Link></li> */}
+                               
                             </ul>
                         )}
                     </li>
