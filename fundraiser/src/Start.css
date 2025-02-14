@@ -85,7 +85,6 @@ body {
       display: none;
       flex-direction: column;
       position: absolute;
-      top: 60px;
       left: 0;
       width: 100%;
       background-color: #333;
@@ -101,32 +100,10 @@ body {
     }
   }
 
-  /* Form Styles*/ 
-.fundraiser-content {
-    padding-top: 130px;
-    position: relative;
-}
 
-.left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.fundraiser-content p {
-    padding-bottom:20px;
-}
-
-#firstelement {
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-}
-
-/* CSS in Start.css */
 
 form {
-   width:30rem;
+   width:300rem;
 }
 
 .fundraiser-form input,
@@ -134,42 +111,15 @@ form {
 .fundraiser-form select {
     display: block;
     width: 100%;
-    margin: 0 !important; /* Remove all spacing */   
+    margin: 0 !important;   
     padding: 6px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
 }
 
-.fundraiser-form input {
-    display: inline-block;
-    margin-top: 0; /* Removes extra space above input */
-}
-
-.fundraiser-form label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 0; /* Remove label bottom margin */
-    font-size: 16px;
-}
-
-.fundraiser-form input:not(:last-child),
-.fundraiser-form textarea:not(:last-child),
-.fundraiser-form select:not(:last-child) {
-    margin-bottom: 2px; /* Maintain spacing between fields */
-}
-
-.fundraiser-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: #fff;
-    font-size: 18px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.fundraiser-form button:hover {
-    background-color: #45a049;
-}
+.start {
+  background-color: #555;
+  padding: 8px;
+  border-radius: 5px;
+} 

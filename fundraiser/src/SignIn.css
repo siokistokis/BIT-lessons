@@ -114,3 +114,10 @@ input, button {
     background-color: black;
 }
 
+.signIn {
+    background-color: #555;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  } 
+

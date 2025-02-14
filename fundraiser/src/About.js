@@ -18,7 +18,7 @@ function About() {
                 {/* Navigation Links */}
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
           <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
-          <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
+          <li><Link className="about" to="/About" onClick={toggleMenu}>About</Link></li>
           {/* <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li> */}
           <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
           <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
@@ -44,6 +44,7 @@ function About() {
         <p>Our foundation is dedicated to uplifting communities by supporting various causes, including mentorship, education, and essential aid for underprivileged children. Through our initiatives, we provide food, clothing, and personal care items, ensuring that every child has the opportunity to thrive. We believe in nurturing potential, fostering hope, and creating a lasting impact in the lives of those we serve. Join us in making a difference—one act of kindness at a time.</p> 
         <p>Support beautiful, forward-looking, classical art, art education and also people's creativity. Develop the branches of art with your help and participate in this development.</p>
         <p>Your donation will help fund various art projects. Join us in supporting talented artists! </p>
+        <p>Launch a fundraiser to support a cause that matters to you.</p>
         <button className="start" onClick={()=>window.location.href='/start'}>Start A GoFundMe</button>
         <div className="images">
             <h3>OUR CAUSES</h3>

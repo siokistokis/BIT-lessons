@@ -51,9 +51,9 @@ function Contact() {
                 <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
-                    <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
+                    {/* <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li> */}
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
-                    <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+                    <li><Link className="contact" to="/contact" onClick={toggleMenu}>Contact</Link></li>
                     <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
                     <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
@@ -63,27 +63,7 @@ function Contact() {
                 <h3>Contact Us</h3>
                 <p>If you have any questions or inquiries, please feel free to reach out to us!</p>
 
-                 {/* <form className='contact-form'>
-                    <div>
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" id="name" name="name" required />
-                    </div>
-
-                    <div>
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" required />
-                    </div>
-
-                    <div>
-                        <label htmlFor="message">Message:</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                    </div>
-
-                    <button type="submit" id="submit">Submit</button>
-                </form> */}
-
-
-
+            
                 {/* Contact Form */}
                 <div className="contact-form">
                     {submitted ? (

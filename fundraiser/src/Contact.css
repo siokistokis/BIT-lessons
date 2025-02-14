@@ -39,10 +39,6 @@ body {
     overflow-y: auto;
 }
 
-/* .contact-form {
-    background-color: rgb(55, 102, 104) !important;
-    color: white;
-} */
 
 
 form {
@@ -100,3 +96,10 @@ form {
 .social-icons .fab {
     transition: color 0.3s;
 } 
+
+.contact {
+    background-color: #555;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  } 

@@ -59,7 +59,6 @@ function Sport() {
            
             {/* Slideshow Section */}
             <div className="slideshow">
-                Galery
                 <img src={slides[currentIndex].image} alt={`Slide ${currentIndex + 1}`} className="slide-image" />
                 <p className="slide-description">{slides[currentIndex].description}</p>
                 {/* Navigation buttons placed below */}

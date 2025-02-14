@@ -40,17 +40,16 @@ const toggleMenu = () => {
                 <ul className={`nav-links ${isOpen ? "open" : ""}`}>
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
-                    <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li>
+                    {/* <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li> */}
                     <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                     <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
-                    <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
+                    <li><Link className="signIn" to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
             </nav>  
 
       
             <form onSubmit={handleSubmit}>
-              SignIn
                 <h2>WELCOME</h2>
                 <p id="paragraph">Login to continue</p>
                 <button type="button" className="google-signin" onClick={handleRedirectToCodePage}>Continue with Google</button>
@@ -62,6 +61,9 @@ const toggleMenu = () => {
                 <Link to="/" className="back-link">Back to home</Link>
 
             </form>
+            <footer className="footer-to-left">
+                <p>© 2025 Fundation. All Rights Reserved.</p>
+            </footer>
         </div>
     )
 }

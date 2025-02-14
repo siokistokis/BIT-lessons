@@ -6,6 +6,15 @@ import img1 from "./img/ballet.jpg";
 import img2 from "./img/aerial.jpg";
 import img3 from "./img/skating.jpg";
 import img4 from "./img/gymnastic.jpg";
+import img5 from "./img/Img13.jpg";
+import img6 from "./img/Img14.jpg";
+import img7 from "./img/Img15.jpg";
+import img8 from "./img/Img16.jpg";
+import img9 from "./img/Img17.jpg";
+import img10 from "./img/Img18.jpg";
+import img11  from "./img/Img19.jpg";
+import img12 from "./img/Img20.jpg";
+import img13 from "./img/Img21.jpg";
 
 
 // const images = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10];
@@ -14,7 +23,16 @@ const slides = [
     { image: img1, description: "Explore beautiful art pieces from around the world." },
     { image: img2, description: "Experience the elegance and passion of ballet performances." },
     { image: img3, description: "Capture moments through the lens of talented photographers." },
-    { image: img4, description: "Explore beautiful art pieces from around the world." }
+    { image: img4, description: "Explore beautiful art pieces from around the world." },
+    { image: img5, description: "Explore beautiful art pieces from around the world." },
+    { image: img6, description: "Experience the elegance and passion of ballet performances." },
+    { image: img7, description: "Capture moments through the lens of talented photographers." },
+    { image: img8, description: "Explore beautiful art pieces from around the world." },
+    { image: img9, description: "Explore beautiful art pieces from around the world." },
+    { image: img10, description: "Experience the elegance and passion of ballet performances." },
+    { image: img11, description: "Capture moments through the lens of talented photographers." },
+    { image: img12, description: "Explore beautiful art pieces from around the world." },
+    { image: img13, description: "Explore beautiful art pieces from around the world." }
 ];
 
 function Dance() {
@@ -59,7 +77,6 @@ function Dance() {
            
             {/* Slideshow Section */}
             <div className="slideshow">
-                Galery
                 <img src={slides[currentIndex].image} alt={`Slide ${currentIndex + 1}`} className="slide-image" />
                 <p className="slide-description">{slides[currentIndex].description}</p>
                 {/* Navigation buttons placed below */}

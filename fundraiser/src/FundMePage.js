@@ -22,14 +22,7 @@ function FundMePage() {
     }, [id]);
 
 
-    // useEffect(() => {
-    //     axios.get('http://localhost:5000/api/fundraisers')
-    //         .then(response => {
-    //             console.log("API Response:", response.data);  // Debugging
-    //             setFundraiser(response.data);
-    //         })
-    //         .catch(error => console.error('Error fetching fundraisers:', error));
-    // }, []);
+   
 
     const handleDonate = async (e) => {
         e.preventDefault();
