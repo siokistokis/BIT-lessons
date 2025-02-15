@@ -12,7 +12,9 @@ function About() {
     return (
         <div className="about-page">
             <nav className="navbar">
-                <div className="logo">Fondation</div>
+                <div className="logo">Fundation
+                    {/* <img src="myIcon.png"></img> */}
+                    </div>
                 <h3>Welcome to the Art Fundraiser</h3>
                 <div className="hamburger" onClick={toggleMenu}>☰</div>
                 {/* Navigation Links */}
