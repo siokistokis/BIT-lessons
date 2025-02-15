@@ -146,6 +146,10 @@ function CodeVerification() {
           
         </div>
       )}
+
+    <footer>
+        <p>© 2025 Fundation. All Rights Reserved.</p>
+    </footer>
     </div>
   );
 }

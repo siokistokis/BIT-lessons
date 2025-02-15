@@ -65,6 +65,9 @@ function Public() {
                     <p>No fundraisers available</p>
                 )}
             </div>
+            <footer>
+                <p>© 2025 Fundation. All Rights Reserved.</p>
+            </footer> 
         </div>
     );
 } 

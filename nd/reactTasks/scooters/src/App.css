@@ -1,38 +1,268 @@
-.App {
+/* App.css */
+
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h1 {
   text-align: center;
+  color: #2a2a72;
+  margin-top: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  color: #2a2a72;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Styling the main container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Form styles */
+form {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 60%;
+  padding: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+form input, form label, form button {
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+form input[type="datetime-local"],
+form input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+form button {
+  background-color: #2a2a72;
   color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+form button:hover {
+  background-color: #4c4c97;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Scooter list styles */
+ul {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+li {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+li p {
+  font-size: 16px;
+  color: #555;
+  margin: 0 0 10px;
+}
+
+button {
+  background-color: #2a2a72;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #4c4c97;
+}
+
+/* Status Styling */
+.free {
+  color: green;
+  font-weight: bold;
+}
+
+.busy {
+  color: red;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
   }
-  to {
-    transform: rotate(360deg);
+
+  form {
+    width: 100%;
   }
+
+  ul {
+    padding: 10px;
+  }
+
+  li {
+    padding: 15px;
+  }
+
+  button {
+    padding: 10px;
+  }
+}
+
+
+
+/* Add this to your App.css */
+
+/* Modal Background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Button Styling */
+button {
+  background-color: #2a2a72;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #4c4c97;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add this in your App.css */
+.edit-form {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 300px;
+}
+
+.edit-form input {
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+.edit-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.edit-form button:hover {
+  background-color: #45a049;
+}
+
+.edit-form button:nth-child(2) {
+  background-color: #f44336;
+}
+
+.edit-form button:nth-child(2):hover {
+  background-color: #da190b;
 }

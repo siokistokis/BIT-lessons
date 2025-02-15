@@ -45,7 +45,9 @@ function About() {
         <p>Support beautiful, forward-looking, classical art, art education and also people's creativity. Develop the branches of art with your help and participate in this development.</p>
         <p>Your donation will help fund various art projects. Join us in supporting talented artists! </p>
         <p>Launch a fundraiser to support a cause that matters to you.</p>
+        
         <button className="start" onClick={()=>window.location.href='/start'}>Start A GoFundMe</button>
+        
         <div className="images">
             <h3>OUR CAUSES</h3>
             <div className="image-pics">

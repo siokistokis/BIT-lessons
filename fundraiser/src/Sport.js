@@ -67,6 +67,9 @@ function Sport() {
                     <button className="next" onClick={goToNext}>❯</button>
                 </div>
             </div>
+            <footer>
+                <p>© 2025 Fundation. All Rights Reserved.</p>
+            </footer>
         </div>
     );
 

@@ -1,4 +1,6 @@
+
 import React, { useState } from "react";
+
 
 const ScooterForm = ({ addScooter, editScooter, scooterToEdit }) => {
   // Move the function definition to the top to avoid referencing it before initialization

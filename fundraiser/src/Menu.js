@@ -19,7 +19,7 @@ const Menu = () => {
                 <div className="bar"></div>
                 <div className="bar"></div>
             </div>
-                Home
+            
             { /* Center: Buttons */}
             <div className="top-buttons">
                 {/* Sign In Button linked to /signin route */}

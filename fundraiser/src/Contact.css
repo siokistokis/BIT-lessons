@@ -5,15 +5,15 @@
     margin:0;
 }
 
-/* Fix potential body margin issues */
-html, body {
+
+/* html, body {
     width: 100%;
     min-height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevents any unwanted horizontal scrolling */
-}
-
+    overflow-x: hidden; 
+} */
+   
 body {
     overflow-y: auto;
 }
