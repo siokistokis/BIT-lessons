@@ -53,7 +53,7 @@ const Menu = () => {
                         )}
                     </li>
 
-                    {/* <li><Link to="/Donate">Donate</Link></li> */}
+                    <li><Link to="/AdminRegister">Admin</Link></li>
                     <li><Link to="/Contact">Contact</Link></li>
                     <li onClick={() => window.location.href = '/Start'}><Link to="/Start">FundMe</Link></li>
                     <li><Link to="/SignIn">SignIn</Link></li>

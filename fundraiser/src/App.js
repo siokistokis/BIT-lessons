@@ -18,6 +18,7 @@ import Public from './Public';
 import FundMePage from './FundMePage';
 import Sport from './Sport';
 import Dance from './Dance';
+import AdminRegister from './AdminRegister';
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
         <Route path="/FundMePage/:id" element={<FundMePage/>} />
         <Route path="/Sport" element={<Sport/>} />
         <Route path="/Dance" element={<Dance/>} />
+        <Route path="/adminRegister" element={<AdminRegister/>} />
  
         </Routes> 
         
