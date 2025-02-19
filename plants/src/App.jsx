@@ -4,6 +4,8 @@ import SectionAllProducts from './components/SectionAllProducts';
 import SectionBest from './components/SectionBest';
 import SectionCategories from './components/SectionCategories';
 import SectionHero from './components/SectionHero';
+import SectionTestemonials from './components/SectionTestimonials';
+
 
 const App = () => {
   return (
@@ -12,6 +14,7 @@ const App = () => {
       <SectionCategories />
       <SectionBest />
       <SectionAllProducts />
+      <SectionTestemonials />
     </div>
   );
 };
