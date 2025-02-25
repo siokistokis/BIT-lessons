@@ -3,20 +3,21 @@ import './App.css';
 import SectionAllProducts from './components/SectionAllProducts';
 import SectionBest from './components/SectionBest';
 import SectionCategories from './components/SectionCategories';
+import SectionFooter from './components/SectionFooter';
 import SectionHero from './components/SectionHero';
-import SectionTestemonials from './components/SectionTestimonials';
+import SectionTestimonials from './components/SectionTestimonials';
 
-
-const App = () => {
+function App() {
   return (
     <div className="App">
-      <SectionHero />
-      <SectionCategories />
-      <SectionBest />
-      <SectionAllProducts />
-      <SectionTestemonials />
+      <SectionHero/>
+      <SectionCategories/>
+      <SectionBest/>
+      <SectionAllProducts/>
+      <SectionTestimonials/>
+      <SectionFooter/>
     </div>
   );
-};
+}
 
 export default App;
