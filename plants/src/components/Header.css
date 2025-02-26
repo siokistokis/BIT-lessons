@@ -31,7 +31,12 @@
 
   .header-links a:hover {
     color: var(--dGreen);
-    text-shadow: 2px 2px 2px #508065;
+    text-shadow: 2px 2px 1px #508065;
+  }
+
+  .header-links a.active {
+    color: var(--dGreen);
+    text-shadow: 2px 2px 1px #508065;
   }
   /* .header-right {
 
