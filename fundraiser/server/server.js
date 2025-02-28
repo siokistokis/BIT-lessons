@@ -205,7 +205,8 @@ app.post('/admin/confirm-fundraiser', (req, res) => {
 
 // API Endpoint to fetch all table data
 app.get('/api/fundraisers', (req, res) => {
-    const sql = "SELECT * FROM fundraisers";
+    // const sql = "SELECT * FROM fundraisers";
+    const sql = "SELECT * FROM fundraisers WHERE confirmed = TRUE ORDER BY donatedAmount ASC";
     db.query(sql, (err, results) => {
         if (err) {
             console.error("Database Error:", err);
