@@ -19,6 +19,7 @@ import FundMePage from './FundMePage';
 import Sport from './Sport';
 import Dance from './Dance';
 import AdminRegister from './AdminRegister';
+import AdminLogin from './AdminLogin';
 
 function App() {
   return (
@@ -70,7 +71,7 @@ function App() {
         <Route path="/Sport" element={<Sport/>} />
         <Route path="/Dance" element={<Dance/>} />
         <Route path="/AdminRegister" element={<AdminRegister/>} />
- 
+        <Route path="/AdminLogin" element={<AdminLogin/>} />
         </Routes> 
         
 

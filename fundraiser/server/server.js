@@ -147,6 +147,38 @@ app.post('/admin/register', (req, res) => {
     });
 });
 
+//admin login
+app.post('/admin/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Validate input
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Username and password are required' });
+    }
+
+    // Check if the username and password match in the database
+    const sql = "SELECT * FROM admins WHERE username = ?";
+    db.query(sql, [username], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Database query failed' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'Admin not found' });
+        }
+
+        const admin = results[0];
+        
+        // Check if the password matches
+        if (admin.password !== password) {
+            return res.status(401).json({ error: 'Incorrect password' });
+        }
+
+        // Successful login
+        res.status(200).json({ message: 'Login successful' });
+    });
+});
+
 // API Endpoint to fetch all table data
 app.get('/api/fundraisers', (req, res) => {
     const sql = "SELECT * FROM fundraisers";
