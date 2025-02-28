@@ -1,6 +1,6 @@
 export default function ContatPage() {
     return (
-      <div>ContactPage</div>
+      <div className="example">ContactPage</div>
     )
   }
    

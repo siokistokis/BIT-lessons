@@ -17,10 +17,25 @@
 
 .wrapper {
   max-width: 1260px;
+  min-height: inherit;
   margin: 0 auto;
   padding: 0 20px;
   font-family: "Poppins", serif;
   font-style: normal;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.example {
+  font-weight: 600;
+  font-family: "Poppins", 'serif';
+  font-size: 48px;
+  text-align: center;
 }
 
 

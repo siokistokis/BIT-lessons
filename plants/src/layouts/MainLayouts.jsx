@@ -5,14 +5,17 @@ import { Outlet } from "react-router-dom";
 
 export default function MainLayouts() {
     return (
-      <>
-      <TopLine/>
-      <Header/>
-      
-        <Outlet/>
+      <div className="container">
+        <div>
+          <TopLine/>
+          <Header/>
+        </div>
+        <main>
+          <Outlet/>
+        </main>
       
       <SectionFooter/>
-      </>
+      </div>
     )
   }
    
