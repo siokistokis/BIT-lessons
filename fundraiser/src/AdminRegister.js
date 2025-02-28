@@ -154,6 +154,7 @@ function AdminRegister() {
               <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
               <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               <button type="submit">Register</button>
+              <button className="login" onClick={()=>window.location.href='/AdminLogin'}>Login</button>
           </form>
           {message && <p>{message}</p>}
       </div>

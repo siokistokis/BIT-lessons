@@ -20,6 +20,7 @@ import Sport from './Sport';
 import Dance from './Dance';
 import AdminRegister from './AdminRegister';
 import AdminLogin from './AdminLogin';
+import AdminDashboard from './AdminDashboard';
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function App() {
         <Route path="/Dance" element={<Dance/>} />
         <Route path="/AdminRegister" element={<AdminRegister/>} />
         <Route path="/AdminLogin" element={<AdminLogin/>} />
+        <Route path="/AdminDashboard" element={<AdminDashboard/>} />
         </Routes> 
         
 

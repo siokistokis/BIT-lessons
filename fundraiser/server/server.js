@@ -179,6 +179,30 @@ app.post('/admin/login', (req, res) => {
     });
 });
 
+//Fetching unconfirmed
+
+app.get('/admin/fundraisers', (req, res) => {
+    const sql = "SELECT * FROM fundraisers WHERE confirmed = FALSE";
+    db.query(sql, (err, results) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.status(200).json(results);
+    });
+});
+
+
+//Confirm a Fundraiser
+
+app.post('/admin/confirm-fundraiser', (req, res) => {
+    const { fundraiserId } = req.body;
+
+    const sql = "UPDATE fundraisers SET confirmed = TRUE WHERE id = ?";
+    db.query(sql, [fundraiserId], (err, result) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ message: "Fundraiser confirmed successfully!" });
+    });
+});
+
+
 // API Endpoint to fetch all table data
 app.get('/api/fundraisers', (req, res) => {
     const sql = "SELECT * FROM fundraisers";
