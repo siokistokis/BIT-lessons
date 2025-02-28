@@ -127,6 +127,26 @@ app.post('/contact', (req, res) => {
     });
 });
 
+//Admin registration
+app.post('/admin/register', (req, res) => {
+    const { username, password } = req.body;
+
+    // Validate input
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Username and password are required' });
+    }
+
+    // Insert admin into the database
+    const sql = "INSERT INTO admins (username, password) VALUES (?, ?)";
+    db.query(sql, [username, password], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: 'Registration failed: ' + err.message });
+        }
+
+        res.status(200).json({ message: 'Admin registered successfully!' });
+    });
+});
+
 // API Endpoint to fetch all table data
 app.get('/api/fundraisers', (req, res) => {
     const sql = "SELECT * FROM fundraisers";

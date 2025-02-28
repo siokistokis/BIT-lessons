@@ -69,7 +69,7 @@ function App() {
         <Route path="/FundMePage/:id" element={<FundMePage/>} />
         <Route path="/Sport" element={<Sport/>} />
         <Route path="/Dance" element={<Dance/>} />
-        <Route path="/adminRegister" element={<AdminRegister/>} />
+        <Route path="/AdminRegister" element={<AdminRegister/>} />
  
         </Routes> 
         
