@@ -4,10 +4,10 @@ import axios from 'axios';
 import './AdminDashboard.css';
 import { Link } from 'react-router-dom';
 
-
 function AdminDashboard() {
     const [fundraisers, setFundraisers] = useState([]);
     const [message, setMessage] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const fetchFundraisers = async () => {
@@ -18,7 +18,6 @@ function AdminDashboard() {
                 console.error("Error fetching fundraisers", error);
             }
         };
-
         fetchFundraisers();
     }, []);
 
@@ -32,54 +31,48 @@ function AdminDashboard() {
         }
     };
 
-    const [isOpen, setIsOpen] = useState(false);
- 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     return (
-    
         <div>
-        <nav className="navbar">
-            <div className="logo">Fundation</div>
-              <h3>Welcome to the Art Fundraiser</h3>
-            <div className="hamburger" onClick={toggleMenu}>☰</div>
-         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-           <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
-           <li><Link className="about" to="/About" onClick={toggleMenu}>About</Link></li>
-           <li><Link to="/Gallery" onClick={toggleMenu}>NEWS</Link></li>
-           <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
-           <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
-           <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
-         </ul>
-       </nav>
-        
+            <nav className="navbar">
+                <div className="logo">Fundation</div>
+                <h3>Welcome to the Art Fundraiser</h3>
+                <div className="hamburger" onClick={toggleMenu}>☰</div>
+                <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+                    <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+                    <li><Link className="about" to="/About" onClick={toggleMenu}>About</Link></li>
+                    <li><Link to="/Gallery" onClick={toggleMenu}>NEWS</Link></li>
+                    <li><Link to="/AdminRegister" onClick={toggleMenu}>Admin</Link></li>
+                    <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
+                </ul>
+            </nav>
 
-        <div className='dashboard-container'>
-
-            <h2>AdminDashboard</h2>
-            {message && <p>{message}</p>}
-            <ul>
-            {fundraisers.map(fundraiser => (
-                    <li key={fundraiser.id}>
-                        <h3>{fundraiser.title}</h3>
-                        <p>{fundraiser.description}</p>
-                        <p>Goal: £{fundraiser.goalAmount}</p>
-                        <p>Organizer: {fundraiser.organizer}</p>
-                        <button onClick={() => handleConfirm(fundraiser.id)} className="confirmation">Confirm</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-
+            <div className="dashboard-container">
+                <h2>Admin Dashboard</h2>
+                {message && <p className="success-message">{message}</p>}
+                <div className="fundraiser-list">
+                    {fundraisers.map(fundraiser => (
+                        <div key={fundraiser.id} className="fundraiser-card">
+                            <h3>{fundraiser.title}</h3>
+                            <p>{fundraiser.description}</p>
+                            <p><strong>Goal:</strong> £{fundraiser.goalAmount}</p>
+                            <p><strong>Organizer:</strong> {fundraiser.organizer}</p>
+                            <button onClick={() => handleConfirm(fundraiser.id)} className="confirm-button">Confirm</button>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             <footer className="footer-to-left">
                 <p>© 2025 Fundation. All Rights Reserved.</p>
             </footer>
         </div>
-    )
-
+    );
 }
 
 export default AdminDashboard;

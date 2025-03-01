@@ -253,7 +253,7 @@ function Gallery() {
                         )}
                     </li>
 
-
+                    <li><Link to="/AdminRegister" onClick={toggleMenu}>Admin</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                     <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
                     <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>

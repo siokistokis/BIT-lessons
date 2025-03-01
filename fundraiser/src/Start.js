@@ -13,26 +13,36 @@ function Start() {
     const [description, setDescription] = useState("");
     const [organizer, setOrganizer] = useState("");
     const [cause, setCause] = useState("");
+    const [image, setImage] = useState(null);
     const [message, setMessage] = useState("");
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]);
+    };
+
     const handleStartFundraiser = async (e) => {
         e.preventDefault();
 
-        const fundraiserData = { 
-            title, 
-            goalAmount, 
-            description, 
-            organizer, 
-            cause,
-            donatedAmount: 0 // Initialize donatedAmount to 0 when creating a new fundraiser
-        };
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("goalAmount", goalAmount);
+        formData.append("description", description);
+        formData.append("organizer", organizer);
+        formData.append("cause", cause);
+        formData.append("donatedAmount", 0);
+        if (image) {
+            formData.append("image", image);
+        }
 
         try {
-            const response = await axios.post("http://localhost:5000/fundraisers", fundraiserData);
+            const response = await axios.post("http://localhost:5000/fundraisers", formData, {
+                headers: { "Content-Type": "multipart/form-data" }
+            });
+
             setMessage(response.data.message);
 
             // Redirect to welcome page after 3 seconds
@@ -56,6 +66,7 @@ function Start() {
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
                     {/* <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li> */}
                     <li><Link to="/Gallery" onClick={toggleMenu}>NEWS</Link></li>
+                    <li><Link to="/AdminRegister" onClick={toggleMenu}>Admin</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                     <li><Link className="start" to="/Start" onClick={toggleMenu}>FundMe</Link></li>
                     <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
@@ -105,6 +116,11 @@ function Start() {
                         
 
                         </select>
+
+                        <label htmlFor="image">
+                            Upload Image
+                        </label>
+                        <input type="file" id='image' accept="image/*" onChange={handleImageChange} />
 
                         <button className="btn-style" type="submit">Start Fundraiser</button>
                     </form>

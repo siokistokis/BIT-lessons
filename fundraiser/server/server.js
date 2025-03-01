@@ -4,11 +4,23 @@ const mysql = require('mysql');
 const cors = require('cors');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
+const multer = require('multer');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve images statically
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname)); // Rename file with timestamp
+    }
+});
 
+const upload = multer({ storage });
 // Database connection
 const db = mysql.createConnection({
     host: 'localhost',
@@ -88,25 +100,25 @@ app.post('/FundMePage', (req, res) => {
 });
 
 // Handle fundraiser creation
-app.post('/fundraisers', (req, res) => {
+// Handle fundraiser creation with image upload
+app.post('/fundraisers', upload.single('image'), (req, res) => {
     const { title, goalAmount, description, organizer, cause } = req.body;
-    
-    // Validate the input
+
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
     if (!title || !goalAmount || !description || !organizer || !cause) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    // Initialize donatedAmount as 0
-    const sql = "INSERT INTO fundraisers (title, goalAmount, description, organizer, cause, donatedAmount) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(sql, [title, goalAmount, description, organizer, cause, 0], (err, result) => {
+    const sql = "INSERT INTO fundraisers (title, goalAmount, description, organizer, cause, donatedAmount, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    db.query(sql, [title, goalAmount, description, organizer, cause, 0, imageUrl], (err, result) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
 
-        res.status(200).json({ message: 'Fundraiser created successfully!' });
+        res.status(200).json({ message: 'Fundraiser created successfully!', imageUrl });
     });
 });
-
 // Handle contact form submissions
 app.post('/contact', (req, res) => {
     const { name, email, message } = req.body;
@@ -201,6 +213,8 @@ app.get('/admin/fundraisers', (req, res) => {
         res.status(200).json(results);
     });
 });
+
+
 
 
 //Confirm a Fundraiser

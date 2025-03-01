@@ -69,7 +69,11 @@ form {
 
 h2 {
     margin-bottom: 20px;
+    color: white;
+}
 
+#welcome {
+    color: white;
 }
 
 p {
