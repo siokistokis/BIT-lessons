@@ -58,7 +58,7 @@ function FundMePage() {
 
     return (
         <div>
-            {/* Navigation Links */}
+            
             <nav className="navbar">
                 <div className="logo">Fundation</div>
                 <div className="hamburger" onClick={toggleMenu}>☰</div>

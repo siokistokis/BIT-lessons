@@ -102,6 +102,7 @@ app.post('/FundMePage', (req, res) => {
 // Handle fundraiser creation
 // Handle fundraiser creation with image upload
 app.post('/fundraisers', upload.single('image'), (req, res) => {
+    console.log("Received File:", req.file); 
     const { title, goalAmount, description, organizer, cause } = req.body;
 
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
