@@ -25,8 +25,34 @@ function AdminLogin() {
         }
     };
 
+    const [isOpen, setIsOpen] = useState(false);
+ 
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
+
         <div>
+
+        <nav className="navbar">
+            <div className="logo">Fundation</div>
+              <h3>Welcome to the Art Fundraiser</h3>
+            <div className="hamburger" onClick={toggleMenu}>☰</div>
+         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+           <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+           <li><Link className="about" to="/About" onClick={toggleMenu}>About</Link></li>
+           <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
+           <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+           <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
+           <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
+         </ul>
+       </nav>
+
+
+
+
+
             <h2>Admin Login</h2>
             <form onSubmit={handleLogin}>
                 <input 
@@ -46,6 +72,13 @@ function AdminLogin() {
                 <button type="submit">Login</button>
             </form>
             {message && <p>{message}</p>}
+
+
+
+
+            <footer className="footer-to-left">
+                <p>© 2025 Fundation. All Rights Reserved.</p>
+            </footer>
         </div>
     );
 }

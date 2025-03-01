@@ -242,7 +242,7 @@ function Gallery() {
                         onMouseEnter={() => setIsGalleryOpen(true)}
                         onMouseLeave={() => setIsGalleryOpen(false)}
                     >
-                        <span>Gallery ▾</span>
+                        <span>NEWS ▾</span>
                         {isGalleryOpen && (
                             <ul className="gallery">
                                 <li><Link to="/Gallery" onClick={toggleMenu}>Art</Link></li>

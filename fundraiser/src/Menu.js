@@ -43,7 +43,7 @@ const Menu = () => {
                         onMouseEnter={() => setIsGalleryOpen(true)}
                         onMouseLeave={() => setIsGalleryOpen(false)}
                     >
-                        <span>Gallery ▾</span>
+                        <span>NEWS ▾</span>
                         {isGalleryOpen && (
                             <ul className="gallery-dropdown">
                                 <li><Link to="/Gallery">Art</Link></li>

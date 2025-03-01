@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 require('dotenv').config();
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(cors());
@@ -128,27 +129,38 @@ app.post('/contact', (req, res) => {
 });
 
 //Admin registration
-app.post('/admin/register', (req, res) => {
-    const { username, password } = req.body;
+// Admin Registration
+app.post('/admin/register', async (req, res) => {
+    console.log("Received data:", req.body);  // Debugging line
+    
+    const { username, email, password, repeatPassword } = req.body;
 
-    // Validate input
-    if (!username || !password) {
-        return res.status(400).json({ error: 'Username and password are required' });
+    if (!username || !email || !password || !repeatPassword) {
+        return res.status(400).json({ error: 'All fields are required' });
     }
 
-    // Insert admin into the database
-    const sql = "INSERT INTO admins (username, password) VALUES (?, ?)";
-    db.query(sql, [username, password], (err, result) => {
-        if (err) {
-            return res.status(500).json({ error: 'Registration failed: ' + err.message });
-        }
+    if (password !== repeatPassword) {
+        return res.status(400).json({ error: 'Passwords do not match' });
+    }
 
-        res.status(200).json({ message: 'Admin registered successfully!' });
-    });
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const sql = "INSERT INTO admins (username, email, password) VALUES (?, ?, ?)";
+        db.query(sql, [username, email, hashedPassword], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: 'Registration failed: ' + err.message });
+            }
+            res.status(200).json({ message: 'Admin registered successfully!' });
+        });
+    } catch (err) {
+        res.status(500).json({ error: 'Error hashing password' });
+    }
 });
 
+
 //admin login
-app.post('/admin/login', (req, res) => {
+// Admin Login Endpoint
+app.post('/admin/login', async (req, res) => {
     const { username, password } = req.body;
 
     // Validate input
@@ -156,9 +168,9 @@ app.post('/admin/login', (req, res) => {
         return res.status(400).json({ error: 'Username and password are required' });
     }
 
-    // Check if the username and password match in the database
+    // Check if the username exists in the database
     const sql = "SELECT * FROM admins WHERE username = ?";
-    db.query(sql, [username], (err, results) => {
+    db.query(sql, [username], async (err, results) => {
         if (err) {
             return res.status(500).json({ error: 'Database query failed' });
         }
@@ -168,14 +180,15 @@ app.post('/admin/login', (req, res) => {
         }
 
         const admin = results[0];
-        
-        // Check if the password matches
-        if (admin.password !== password) {
+
+        // Compare the entered password with the hashed password
+        const passwordMatch = await bcrypt.compare(password, admin.password);
+        if (!passwordMatch) {
             return res.status(401).json({ error: 'Incorrect password' });
         }
 
         // Successful login
-        res.status(200).json({ message: 'Login successful' });
+        res.status(200).json({ message: 'Login successful', admin: { id: admin.id, username: admin.username, email: admin.email } });
     });
 });
 

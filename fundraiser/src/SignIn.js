@@ -41,7 +41,7 @@ const toggleMenu = () => {
                     <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/About" onClick={toggleMenu}>About</Link></li>
                     {/* <li><Link to="/Donate" onClick={toggleMenu}>Donate</Link></li> */}
-                    <li><Link to="/Gallery" onClick={toggleMenu}>Gallery</Link></li>
+                    <li><Link to="/Gallery" onClick={toggleMenu}>NEWS</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
                     <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
                     <li><Link className="signIn" to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
