@@ -159,7 +159,7 @@ app.post('/admin/register', async (req, res) => {
 
 
 //admin login
-// Admin Login Endpoint
+// Admin Login 
 app.post('/admin/login', async (req, res) => {
     const { username, password } = req.body;
 
