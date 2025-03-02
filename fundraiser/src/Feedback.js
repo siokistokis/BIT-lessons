@@ -27,7 +27,7 @@ function Feedback() {
                     <li><Link to="/Gallery" onClick={toggleMenu}>NEWS</Link></li>
                     <li><Link to="/AdminRegister" onClick={toggleMenu}>Admin</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
-                    <li><Link to="/FundMe" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
                     <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
         </nav>

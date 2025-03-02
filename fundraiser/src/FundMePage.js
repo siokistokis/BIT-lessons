@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios'; // Import Axios for HTTP requests
@@ -69,7 +72,7 @@ function FundMePage() {
                     <li><Link to="/Gallery" onClick={toggleMenu}>NEWS</Link></li>
                     <li><Link to="/AdminRegister" onClick={toggleMenu}>Admin</Link></li>
                     <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
-                    <li><Link to="/FundMe" onClick={toggleMenu}>FundMe</Link></li>
+                    <li><Link to="/Start" onClick={toggleMenu}>FundMe</Link></li>
                     <li><Link to="/SignIn" onClick={toggleMenu}>SignIn</Link></li>
                 </ul>
             </nav>
@@ -102,7 +105,7 @@ function FundMePage() {
                 {/* Call to Action */}
                 <div className="cta">
                     <h3>Join us in supporting our causes!</h3>
-                    <button className="btn-style"><a href="#one" id="second">Make a Difference Today</a></button>
+                   
                 </div>
 
                 <div className="support-art">

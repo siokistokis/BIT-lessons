@@ -42,7 +42,7 @@ function Public() {
                         // Calculate remaining amount
                         const remainingAmount = fundraiser.goalAmount - fundraiser.donatedAmount;
                         const imageUrl = fundraiser.image
-                        ? ` http://localhost:5000/uploads/${decodeURIComponent(fundraiser.image)}`
+                        ? `http://localhost:5000${decodeURIComponent(fundraiser.image)}`
                         : 'https://via.placeholder.com/300'; // Placeholder if no image
                         return (
                             <div key={fundraiser.id} className={`fundraiser-card ${fundraiser.goalAmount === 0 ? 'inactive' : ''}`}>

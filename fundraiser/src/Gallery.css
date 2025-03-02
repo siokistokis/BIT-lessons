@@ -111,12 +111,13 @@ body {
 }
 
 .slide-image {
-    width: 50%;
-    height: 50vh; 
+    width: 70%;
+    min-height: 55vh; 
     margin-top: 10%;
     object-fit: cover;
     border-radius: 10px;
     transition: opacity 0.5s ease-in-out;
+
 }
 
 .slideshow-controls {
@@ -152,6 +153,12 @@ body {
     border: 1px solid #ddd;
     display: table-row;
   } 
+
+  img {
+    max-width: 100%;
+    object-fit: cover;
+    
+  }
 
 
 
