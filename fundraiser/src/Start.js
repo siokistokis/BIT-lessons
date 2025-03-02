@@ -80,11 +80,12 @@ function Start() {
                 </div>
 
                 <div className="fundraiser-form">
-                    <form onSubmit={handleStartFundraiser}>
+                    <form onSubmit={handleStartFundraiser} encType="multipart/form-data">
+
                         <h3>Create Your Fundraiser</h3>
                         
-                        {/* <label htmlFor="title" id="firstelement">Fundraiser Title:</label>
-                        <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required /> */}
+                        <label htmlFor="title" id="firstelement">Fundraiser Title:</label>
+                        <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
                         <label htmlFor="goalAmount">Fundraising Goal (£):</label>
                         <input type="number" id="goalAmount" value={goalAmount} onChange={(e) => setGoalAmount(e.target.value)} required />
