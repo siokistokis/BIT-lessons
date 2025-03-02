@@ -41,7 +41,9 @@ function Public() {
                     fundraisers.map(fundraiser => {
                         // Calculate remaining amount
                         const remainingAmount = fundraiser.goalAmount - fundraiser.donatedAmount;
-
+                        const imageUrl = fundraiser.image
+                        ? ` http://localhost:5000/uploads/${decodeURIComponent(fundraiser.image)}`
+                        : 'https://via.placeholder.com/300'; // Placeholder if no image
                         return (
                             <div key={fundraiser.id} className={`fundraiser-card ${fundraiser.goalAmount === 0 ? 'inactive' : ''}`}>
                                 <h3>{fundraiser.title}</h3>
@@ -53,6 +55,7 @@ function Public() {
                                 <p><strong>Remaining Amount:</strong> £{remainingAmount}</p>
                                 <p><strong>Started:</strong> {new Date(fundraiser.createdAt).toLocaleDateString()}</p>
                                 
+                                <img src={imageUrl} alt={fundraiser.title} className="fundraiser-image" />
                                 {/* Link to Donate Page */}
                                 <Link to={`/FundMePage/${fundraiser.id}`}>
                                     <button disabled={remainingAmount <= 0}>
