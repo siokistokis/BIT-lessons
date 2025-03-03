@@ -21,6 +21,19 @@
     transform: translate(-50%, -50%);
 }
 
+.plant-image-block {
+    width: 50%;
+}
+
+.plant-image-block img {
+    width: 50%;
+    padding: 5px 10px;
+}
+
+.plant-data-block {
+    padding-left: 80px;
+}
+
 .plant-title {
     font-weight: 400;
     font-size: 22px;
