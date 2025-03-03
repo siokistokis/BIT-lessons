@@ -7,7 +7,10 @@
 
 body {
     padding: 20px;
+    min-height: 100vh;
+
 }
+
 
 h2 {
     text-align: center;
@@ -15,13 +18,17 @@ h2 {
 
 
 .fundraiser-container {
+    margin-top: 1100px !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     padding: 20px;
     padding-top: 500px;
+    /* flex-grow: 1; */
 }
+
+
 
 .fundraiser-container img {
     width: 100px;
@@ -31,10 +38,10 @@ h2 {
 .fundraiser-card {
     /* width: 100%; */
     /* max-width: 320px; */
-    background: #fff;
+    background: #ffffffbe;
     padding: 15px;
     /* border-radius: 8px; */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     transition: transform 0.3s ease-in-out;
    
@@ -54,8 +61,8 @@ button {
     background-color: #28a745;
     color: white;
     padding: 10px;
-    border: white;
-    border-radius: 5px;
+    border: 2px solid white;
+    border-radius: 10px;
     cursor: pointer;
     width: 100%;
     margin-top: 10px;

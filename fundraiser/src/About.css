@@ -1,11 +1,44 @@
 
 
 
+
+
+
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin:0;
+}
+
+
+html, body {
+  width: 100%;
+  min-height: 100vh !important;
+
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+}
+
+body {
+  overflow-y: auto !important;
+
+}
+
   .about-page {
     width: 100%;
-    height: 100vh;
+   
+      text-align: center;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
     
   }
+
+
 
   /* .logo img {
     height: 50px;
@@ -203,30 +236,6 @@ footer {
       padding: 8px;
       border-radius: 5px;
       border: 1px solid #ddd;
-    } 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     
