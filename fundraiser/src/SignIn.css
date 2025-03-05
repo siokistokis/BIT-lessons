@@ -103,10 +103,12 @@ input, button {
 .google-signin {
     background-color: red;
     color: white;
+    border: 2px solid white;
 }
 
 .apple-signin {
     background-color: black;
+    border: 2px solid white; 
     color: white;
 }
 
