@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Salon Appointment Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: 100vh;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+            width: 1100px;
+            max-width: 100%;
+            overflow: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            width: 40%;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            
+        }
+        select, input[type="date"], input[type="time"] {
+            width: 40%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            width: 30%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .cancel-button {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        }
+        .cancel-button:hover {
+            background-color: rgba(221, 19, 8, 0.818);
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .message {
+            color: green;
+            font-size: 16px;
+            text-align: center;
+        }
+        .worker-availability {
+            width: 40%;
+            margin-top: 20px;
+        
+        }
+        .worker-status {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            
+        }
+        .available {
+            background-color: #d4edda;
+            padding: 5px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .booked {
+            background-color: #f8d7da;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .available:hover {
+            background-color: #c3e6cb;
+        }
+        .booked {
+            background-color: #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hair Salon Appointment Booking</h1>
+        <div class="error" id="errorMessage"></div>
+        <form id="appointmentForm">
+            <label for="worker">Choose a Worker:</label>
+            <select id="worker" name="worker">
+                <!-- Workers will be populated dynamically -->
+            </select>
+
+            <label for="service">Choose a Service:</label>
+            <select id="service" name="service">
+                <option value="gentCut">Gent Cut (30 min)</option>
+                <option value="ladysHighlighting">Lady's Highlighting (3 hours)</option>
+            </select>
+
+            <label for="date">Choose a Date:</label>
+            <input type="date" id="date" name="date" min="" required>
+
+            <label for="time">Choose a Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+
+        <button class="cancel-button" id="cancelButton" style="display: none;" onclick="cancelBooking()">Cancel Appointment</button>
+
+        <div class="message" id="successMessage"></div>
+
+        <div class="worker-availability">
+            <h3>Available Time Slots:</h3>
+            <div id="workerAvailability">
+                <!-- Worker availability will be displayed here -->
+            </div>
+        </div>
+
+        <div id="appointmentsList">
+            <!-- List of user's booked appointments will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+
+        // Simulating workers and their schedules
+        const workers = ['worker1', 'worker2', 'worker3', 'worker4'];
+
+        const services = {
+            gentCut: { duration: 30 }, // 30 minutes for Gent Cut
+            ladysHighlighting: { duration: 180 }, // 3 hours for Lady's Highlighting
+        };
+
+        // Load appointments from localStorage
+        function loadAppointments() {
+            const savedAppointments = localStorage.getItem('appointments');
+            return savedAppointments ? JSON.parse(savedAppointments) : [];
+        }
+
+        // Save appointments to localStorage
+        function saveAppointments(appointments) {
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+        }
+
+        let appointments = loadAppointments();
+        let currentBooking = null; // To store the current booking for cancelation
+
+        // Function to check if the slot is available
+        function isAvailable(worker, date, time) {
+            return !appointments.some(appointment => 
+                appointment.worker === worker && appointment.date === date && appointment.time === time
+            );
+        }
+
+        // Function to display workers in the dropdown
+        function displayWorkers() {
+            const workerSelect = document.getElementById('worker');
+            workerSelect.innerHTML = ''; // Clear previous workers
+            workers.forEach(worker => {
+                const option = document.createElement('option');
+                option.value = worker;
+                option.textContent = worker;
+                workerSelect.appendChild(option);
+            });
+        }
+
+        // Function to display available times based on selected worker and date
+        function displayAvailability(worker, date) {
+            const workerAvailabilityDiv = document.getElementById('workerAvailability');
+            workerAvailabilityDiv.innerHTML = ''; // Clear previous availability display
+
+            // Calculate worker's available slots for the day
+            for (let hour = 9; hour <= 20; hour++) {
+                const time = `${hour < 10 ? '0' : ''}${hour}:00`;
+
+                const statusDiv = document.createElement('div');
+                statusDiv.textContent = `${time}`;
+
+                const isSlotAvailable = isAvailable(worker, date, time);
+
+                if (isSlotAvailable) {
+                    statusDiv.classList.add('available');
+                    statusDiv.onclick = function () {
+                        // Book this slot when clicked
+                        bookSlot(worker, date, time, 'gentCut');
+                    };
+                } else {
+                    // Find out which service is already booked at this time
+                    const bookedService = appointments.find(appointment =>
+                        appointment.worker === worker && appointment.date === date && appointment.time === time
+                    ).service;
+
+                    statusDiv.classList.add('booked');
+                    statusDiv.textContent = `${time} - Booked (Service: ${bookedService})`;
+                    statusDiv.onclick = function () {
+                        // If the user clicks on a booked slot, they can cancel it
+                        currentBooking = { worker, date, time };
+                        showCancelButton();
+                    };
+                }
+
+                workerAvailabilityDiv.appendChild(statusDiv);
+            }
+        }
+
+        // Handle when a worker is selected
+        document.getElementById('worker').addEventListener('change', function () {
+            const worker = this.value;
+            const date = document.getElementById('date').value;
+            if (date) {
+                displayAvailability(worker, date);
+            }
+        });
+
+        // Handle when a date is selected
+        document.getElementById('date').addEventListener('change', function () {
+            const worker = document.getElementById('worker').value;
+            const date = this.value;
+            if (worker) {
+                displayAvailability(worker, date);
+            }
+        });
+
+        // Handle the form submission (booking an appointment)
+        document.getElementById('appointmentForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const worker = document.getElementById('worker').value;
+            const service = document.getElementById('service').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            // Clear previous messages
+            errorMessage.innerHTML = '';
+            successMessage.innerHTML = '';
+
+            // Validation
+            if (!worker || !service || !date || !time) {
+                errorMessage.innerHTML = 'All fields must be selected.';
+                return;
+            }
+
+            // Check if the time slot is available
+            if (!isAvailable(worker, date, time)) {
+                errorMessage.innerHTML = 'This time slot is already booked.';
+                return;
+            }
+
+            // Book the appointment
+            appointments.push({ worker, date, time, service });
+            saveAppointments(appointments); // Save the updated appointments to localStorage
+            successMessage.innerHTML = `Your appointment for ${service} with ${worker} on ${date} at ${time} has been successfully booked!`;
+
+            // Update availability
+            displayAvailability(worker, date);
+        });
+
+        // Function to book the selected slot
+        function bookSlot(worker, date, time, service) {
+            appointments.push({ worker, date, time, service });
+            saveAppointments(appointments);
+            displayAvailability(worker, date);
+        }
+
+        // Function to show the cancel button if an appointment is selected
+        function showCancelButton() {
+            document.getElementById('cancelButton').style.display = 'block';
+        }
+
+        // Function to cancel the booking
+        function cancelBooking() {
+            if (!currentBooking) return;
+
+            // Remove the canceled appointment
+            appointments = appointments.filter(appointment =>
+                !(appointment.worker === currentBooking.worker && appointment.date === currentBooking.date && appointment.time === currentBooking.time)
+            );
+            saveAppointments(appointments);
+
+            // Update the availability list and mark the canceled slot as available
+            displayAvailability(currentBooking.worker, currentBooking.date);
+
+            // Clear the current booking and hide the cancel button
+            currentBooking = null;
+            document.getElementById('cancelButton').style.display = 'none';
+
+            const successMessage = document.getElementById('successMessage');
+            successMessage.innerHTML = 'Your appointment has been successfully canceled.';
+        }
+
+        // Initialize the page
+        displayWorkers();
+    </script>
+</body>
+</html>
