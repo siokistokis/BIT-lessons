@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,26 +22,31 @@
             overflow-x: hidden;
         }
         .container {
+            display: flex;
+            align-content: center;
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
-            width: 1100px;
+            width: 80%;
             max-width: 100%;
-            overflow: auto;
+            display: flex;
+            flex-wrap: wrap;  
+            gap: 20px;  
         }
         h1 {
             text-align: center;
             color: #333;
+            width: 80%;
         }
         label {
             width: 40%;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            margin-top: 22px;
             font-weight: bold;
-            
         }
-        select, input[type="date"], input[type="time"] {
+        select, input[type="date"], input[type="time"], input[type="text"], input[type="tel"] {
             width: 40%;
             padding: 8px;
             margin: 8px 0;
@@ -56,7 +62,9 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-bottom: 10px;
+            margin-top: 25px;
+            margin-right: 300px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
         }
         button:hover {
@@ -83,19 +91,17 @@
         .message {
             color: green;
             font-size: 16px;
-            text-align: center;
+            text-align: left;
         }
         .worker-availability {
-            width: 40%;
-            margin-top: 20px;
-        
+            width: 30%;  
+            margin-top: 10px;
         }
         .worker-status {
             background-color: #f9f9f9;
             margin-bottom: 10px;
             padding: 10px;
             border-radius: 5px;
-            
         }
         .available {
             background-color: #d4edda;
@@ -116,46 +122,74 @@
         .booked {
             background-color: #c3e6cb;
         }
+        #searchResults {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            width: 100%;
+        }
+        #searchResults p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .highlight-time {
+            color: green;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hair Salon Appointment Booking</h1>
-        <div class="error" id="errorMessage"></div>
-        <form id="appointmentForm">
-            <label for="worker">Choose a Worker:</label>
-            <select id="worker" name="worker">
-                <!-- Workers will be populated dynamically -->
-            </select>
+        <div>
+            <h1>Appointment Booking</h1>
+            <div class="error" id="errorMessage"></div>
+            <form id="appointmentForm">
+                <label for="worker">Choose a Worker:</label>
+                <select id="worker" name="worker">
+                    <!-- Workers will be populated dynamically -->
+                </select>
 
-            <label for="service">Choose a Service:</label>
-            <select id="service" name="service">
-                <option value="gentCut">Gent Cut (30 min)</option>
-                <option value="ladysHighlighting">Lady's Highlighting (3 hours)</option>
-            </select>
+                <label for="service">Choose a Service:</label>
+                <select id="service" name="service">
+                    <option value="gentCut">Gent Cut (30 min)</option>
+                    <option value="ladysHighlighting">Lady's Highlighting (3 hours)</option>
+                </select>
 
-            <label for="date">Choose a Date:</label>
-            <input type="date" id="date" name="date" min="" required>
+                <label for="date">Choose a Date:</label>
+                <input type="date" id="date" name="date" min="" required>
 
-            <label for="time">Choose a Time:</label>
-            <input type="time" id="time" name="time" required>
+                <label for="time">Choose a Time:</label>
+                <input type="time" id="time" name="time" required>
 
-            <button type="submit">Book Appointment</button>
-        </form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
 
-        <button class="cancel-button" id="cancelButton" style="display: none;" onclick="cancelBooking()">Cancel Appointment</button>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
 
-        <div class="message" id="successMessage"></div>
+                <button type="submit">Book Appointment</button>
+            </form>
+
+            <button class="cancel-button" id="cancelButton" style="display: none;" onclick="cancelBooking()">Cancel Appointment</button>
+
+            <div class="message" id="successMessage"></div>
+
+            <div>
+                <h2>Search Appointment</h2>
+                <label for="searchInput">Enter Name or Phone Number:</label>
+                <input type="text" id="searchInput" placeholder="Search by Name or Phone">
+                <button id="searchButton" onclick="searchAppointment()">Search</button>
+            </div>
+
+            <div id="searchResults"></div>
+        </div>
 
         <div class="worker-availability">
             <h3>Available Time Slots:</h3>
             <div id="workerAvailability">
                 <!-- Worker availability will be displayed here -->
             </div>
-        </div>
-
-        <div id="appointmentsList">
-            <!-- List of user's booked appointments will be displayed here -->
         </div>
     </div>
 
@@ -205,41 +239,48 @@
         }
 
         // Function to display available times based on selected worker and date
-        function displayAvailability(worker, date) {
+        function displayAvailability(worker, date, searchMatch = null) {
             const workerAvailabilityDiv = document.getElementById('workerAvailability');
             workerAvailabilityDiv.innerHTML = ''; // Clear previous availability display
 
-            // Calculate worker's available slots for the day
+            // Calculate worker's available slots for the day (9 AM to 8 PM, every 30 minutes)
             for (let hour = 9; hour <= 20; hour++) {
-                const time = `${hour < 10 ? '0' : ''}${hour}:00`;
+                for (let minute = 0; minute < 60; minute += 30) {  // Iterate over 30-minute intervals
+                    const time = `${hour < 10 ? '0' : ''}${hour}:${minute === 0 ? '00' : '30'}`;
 
-                const statusDiv = document.createElement('div');
-                statusDiv.textContent = `${time}`;
+                    const statusDiv = document.createElement('div');
+                    statusDiv.textContent = `${time}`;
 
-                const isSlotAvailable = isAvailable(worker, date, time);
+                    const isSlotAvailable = isAvailable(worker, date, time);
 
-                if (isSlotAvailable) {
-                    statusDiv.classList.add('available');
-                    statusDiv.onclick = function () {
-                        // Book this slot when clicked
-                        bookSlot(worker, date, time, 'gentCut');
-                    };
-                } else {
-                    // Find out which service is already booked at this time
-                    const bookedService = appointments.find(appointment =>
-                        appointment.worker === worker && appointment.date === date && appointment.time === time
-                    ).service;
+                    if (isSlotAvailable) {
+                        statusDiv.classList.add('available');
+                        statusDiv.onclick = function () {
+                            // Book this slot when clicked
+                            bookSlot(worker, date, time);
+                        };
+                    } else {
+                        // Find out which service is already booked at this time
+                        const bookedAppointment = appointments.find(appointment =>
+                            appointment.worker === worker && appointment.date === date && appointment.time === time
+                        );
+                        
+                        statusDiv.classList.add('booked');
+                        statusDiv.textContent = `${time} - Booked (Service: ${bookedAppointment.service}, Name: ${bookedAppointment.name}, Phone: ${bookedAppointment.phone})`;
+                        statusDiv.onclick = function () {
+                            // If the user clicks on a booked slot, they can cancel it
+                            currentBooking = bookedAppointment; // Store the current booking for cancellation
+                            showCancelButton();
+                        };
+                    }
 
-                    statusDiv.classList.add('booked');
-                    statusDiv.textContent = `${time} - Booked (Service: ${bookedService})`;
-                    statusDiv.onclick = function () {
-                        // If the user clicks on a booked slot, they can cancel it
-                        currentBooking = { worker, date, time };
-                        showCancelButton();
-                    };
+                    // If the appointment is the one being searched, highlight it in green
+                    if (searchMatch && searchMatch.date === date && searchMatch.time === time) {
+                        statusDiv.classList.add('highlight-time');
+                    }
+
+                    workerAvailabilityDiv.appendChild(statusDiv);
                 }
-
-                workerAvailabilityDiv.appendChild(statusDiv);
             }
         }
 
@@ -269,6 +310,8 @@
             const service = document.getElementById('service').value;
             const date = document.getElementById('date').value;
             const time = document.getElementById('time').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
 
             const errorMessage = document.getElementById('errorMessage');
             const successMessage = document.getElementById('successMessage');
@@ -278,7 +321,7 @@
             successMessage.innerHTML = '';
 
             // Validation
-            if (!worker || !service || !date || !time) {
+            if (!worker || !service || !date || !time || !name || !phone) {
                 errorMessage.innerHTML = 'All fields must be selected.';
                 return;
             }
@@ -290,17 +333,21 @@
             }
 
             // Book the appointment
-            appointments.push({ worker, date, time, service });
+            appointments.push({ worker, date, time, service, name, phone });
             saveAppointments(appointments); // Save the updated appointments to localStorage
-            successMessage.innerHTML = `Your appointment for ${service} with ${worker} on ${date} at ${time} has been successfully booked!`;
+            successMessage.innerHTML = `Your appointment for<br> ${service} with ${worker} on ${date} at ${time}<br> has been successfully booked!`;
 
             // Update availability
             displayAvailability(worker, date);
         });
 
         // Function to book the selected slot
-        function bookSlot(worker, date, time, service) {
-            appointments.push({ worker, date, time, service });
+        function bookSlot(worker, date, time) {
+            const service = document.getElementById('service').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            appointments.push({ worker, date, time, service, name, phone });
             saveAppointments(appointments);
             displayAvailability(worker, date);
         }
@@ -331,7 +378,43 @@
             successMessage.innerHTML = 'Your appointment has been successfully canceled.';
         }
 
-        // Initialize the page
+        // Function to search appointment by name or phone
+        function searchAppointment() {
+            const searchInput = document.getElementById('searchInput').value.trim();
+            const searchResultsDiv = document.getElementById('searchResults');
+
+            // Clear previous search results
+            searchResultsDiv.innerHTML = '';
+
+            // If search input is empty
+            if (!searchInput) {
+                searchResultsDiv.innerHTML = 'Please enter a name or phone number to search.';
+                return;
+            }
+
+            // Search for appointments by name or phone
+            const results = appointments.filter(appointment =>
+                appointment.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+                appointment.phone.includes(searchInput)
+            );
+
+            // Display search results
+            if (results.length > 0) {
+                results.forEach(result => {
+                    const p = document.createElement('p');
+                    p.innerHTML = `${result.name} - ${result.phone}<br>Service: ${result.service}, Date: ${result.date}, Time: ${result.time}`;
+                    p.classList.add('highlight-time');
+                    searchResultsDiv.appendChild(p);
+
+                    // Display available slots that match the search results
+                    displayAvailability(result.worker, result.date, result);
+                });
+            } else {
+                searchResultsDiv.innerHTML = 'No results found.';
+            }
+        }
+
+        // Initial display setup
         displayWorkers();
     </script>
 </body>
