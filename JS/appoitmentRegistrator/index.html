@@ -1,11 +1,12 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hair Salon Appointment Booking</title>
+    <title>Appointment Booking</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,29 +15,26 @@
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
-            align-items: center;  
+            align-items: center;
             height: 100%;
             min-height: 100vh;
             flex-direction: column;
-            overflow-x: hidden;
         }
         .container {
             display: flex;
-            align-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
             width: 80%;
             max-width: 100%;
-            display: flex;
-            flex-wrap: wrap;  /* Allow flex items to wrap */
-            gap: 20px;  /* Add gap between columns */
         }
         h1 {
             text-align: center;
             color: #333;
-            width: 80%;  /* Ensure the header spans the full width */
+            width: 100%;
         }
         label {
             width: 40%;
@@ -77,7 +75,6 @@
             border-radius: 5px;
             cursor: pointer;
             margin-bottom: 10px;
-            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
         }
         .cancel-button:hover {
             background-color: rgba(221, 19, 8, 0.818);
@@ -90,10 +87,9 @@
         .message {
             color: green;
             font-size: 16px;
-            text-align: left;
         }
         .worker-availability {
-            width: 30%;  
+            width: 30%;
             margin-top: 10px;
         }
         .worker-status {
@@ -115,11 +111,8 @@
             margin: 5px 0;
             border-radius: 5px;
         }
-        .available:hover {
-            background-color: #c3e6cb;
-        }
-        .booked {
-            background-color: #c3e6cb;
+        .highlight {
+            background-color: yellow;
         }
     </style>
 </head>
@@ -130,9 +123,7 @@
             <div class="error" id="errorMessage"></div>
             <form id="appointmentForm">
                 <label for="worker">Choose a Worker:</label>
-                <select id="worker" name="worker">
-                    <!-- Workers will be populated dynamically -->
-                </select>
+                <select id="worker" name="worker"></select>
 
                 <label for="service">Choose a Service:</label>
                 <select id="service" name="service">
@@ -146,10 +137,10 @@
                 <label for="time">Choose a Time:</label>
                 <input type="time" id="time" name="time" required>
 
-                <label for="name">Your Name:</label>
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
-                <label for="phone">Your Phone Number:</label>
+                <label for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" required>
 
                 <button type="submit">Book Appointment</button>
@@ -158,57 +149,54 @@
             <button class="cancel-button" id="cancelButton" style="display: none;" onclick="cancelBooking()">Cancel Appointment</button>
 
             <div class="message" id="successMessage"></div>
+
+            <div>
+                <h2>Search Appointment</h2>
+                <label for="searchInput">Enter Name or Phone Number:</label>
+                <input type="text" id="searchInput" placeholder="Search by Name or Phone">
+            </div>
+
+            <div id="searchResults"></div>
         </div>
 
         <div class="worker-availability">
-            <h3>Available Time Slots:</h3>
-            <div id="workerAvailability">
-                <!-- Worker availability will be displayed here -->
-            </div>
+            <h3>Available Date & Time Slots:</h3>
+            <div id="workerAvailability"></div>
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
-    
     <script>
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date').setAttribute('min', today);
 
-        // Simulating workers and their schedules
-        const workers = ['worker1', 'worker2', 'worker3', 'worker4'];
+        const workers = ['John', 'Jane', 'Steve', 'Alice'];
 
         const services = {
-            gentCut: { duration: 30 }, // 30 minutes for Gent Cut
-            ladysHighlighting: { duration: 180 }, // 3 hours for Lady's Highlighting
+            gentCut: { duration: 30 },
+            ladysHighlighting: { duration: 180 },
         };
 
-        // Load appointments from localStorage
         function loadAppointments() {
             const savedAppointments = localStorage.getItem('appointments');
             return savedAppointments ? JSON.parse(savedAppointments) : [];
         }
 
-        // Save appointments to localStorage
         function saveAppointments(appointments) {
             localStorage.setItem('appointments', JSON.stringify(appointments));
         }
 
         let appointments = loadAppointments();
-        let currentBooking = null; // To store the current booking for cancelation
+        let currentBooking = null;
 
-        // Function to check if the slot is available
         function isAvailable(worker, date, time) {
             return !appointments.some(appointment => 
                 appointment.worker === worker && appointment.date === date && appointment.time === time
             );
         }
 
-        // Function to display workers in the dropdown
         function displayWorkers() {
             const workerSelect = document.getElementById('worker');
-            workerSelect.innerHTML = ''; // Clear previous workers
+            workerSelect.innerHTML = '';
             workers.forEach(worker => {
                 const option = document.createElement('option');
                 option.value = worker;
@@ -217,66 +205,84 @@
             });
         }
 
-        // Function to display available times based on selected worker and date
-        function displayAvailability(worker, date) {
-            const workerAvailabilityDiv = document.getElementById('workerAvailability');
-            workerAvailabilityDiv.innerHTML = ''; // Clear previous availability display
+        function highlightText(text, searchTerm) {
+            if (!searchTerm) return text; // Return the text as is if there's no search term
 
-            // Calculate worker's available slots for the day (9 AM to 8 PM, every 30 minutes)
-            for (let hour = 9; hour <= 20; hour++) {
-                for (let minute = 0; minute < 60; minute += 30) {  // Iterate over 30-minute intervals
-                    const time = `${hour < 10 ? '0' : ''}${hour}:${minute === 0 ? '00' : '30'}`;
-
-                    const statusDiv = document.createElement('div');
-                    statusDiv.textContent = `${time}`;
-
-                    const isSlotAvailable = isAvailable(worker, date, time);
-
-                    if (isSlotAvailable) {
-                        statusDiv.classList.add('available');
-                        statusDiv.onclick = function () {
-                            // Book this slot when clicked
-                            bookSlot(worker, date, time);
-                        };
-                    } else {
-                        // Find out which service is already booked at this time
-                        const bookedAppointment = appointments.find(appointment =>
-                            appointment.worker === worker && appointment.date === date && appointment.time === time
-                        );
-                        
-                        statusDiv.classList.add('booked');
-                        statusDiv.textContent = `${time} - Booked (Service: ${bookedAppointment.service}, Name: ${bookedAppointment.name}, Phone: ${bookedAppointment.phone})`;
-                        statusDiv.onclick = function () {
-                            // If the user clicks on a booked slot, they can cancel it
-                            currentBooking = bookedAppointment; // Store the current booking for cancellation
-                            showCancelButton();
-                        };
-                    }
-
-                    workerAvailabilityDiv.appendChild(statusDiv);
-                }
-            }
+            const regex = new RegExp(`(${searchTerm})`, 'gi'); // Match the search term case-insensitively
+            return text.replace(regex, '<span class="highlight">$1</span>'); // Highlight matching text
         }
 
-        // Handle when a worker is selected
+        function formatDateWithWeekday(date) {
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const dateObj = new Date(date);
+            const dayName = daysOfWeek[dateObj.getDay()];
+            return `${dayName}, ${date}`;
+        }
+
+        function displayAvailability(worker, searchTerm = '') {
+            const workerAvailabilityDiv = document.getElementById('workerAvailability');
+            workerAvailabilityDiv.innerHTML = '';
+
+            const availableDates = new Set();
+
+            appointments.forEach(appointment => {
+                if (appointment.worker === worker) {
+                    availableDates.add(appointment.date);
+                }
+            });
+
+            // Sort dates chronologically
+            const sortedDates = Array.from(availableDates).sort((a, b) => new Date(a) - new Date(b));
+
+            sortedDates.forEach(date => {
+                const dateDiv = document.createElement('div');
+                dateDiv.innerHTML = `<strong>${highlightText(formatDateWithWeekday(date), searchTerm)}</strong>`;
+                workerAvailabilityDiv.appendChild(dateDiv);
+
+                for (let hour = 9; hour <= 20; hour++) {
+                    for (let minute = 0; minute < 60; minute += 30) {
+                        const time = `${hour < 10 ? '0' : ''}${hour}:${minute === 0 ? '00' : '30'}`;
+                        const statusDiv = document.createElement('div');
+                        statusDiv.innerHTML = `${highlightText(formatDateWithWeekday(date), searchTerm)} - ${highlightText(time, searchTerm)}`;
+
+                        const isSlotAvailable = isAvailable(worker, date, time);
+
+                        if (isSlotAvailable) {
+                            statusDiv.classList.add('available');
+                            statusDiv.onclick = function () {
+                                bookSlot(worker, date, time);
+                            };
+                        } else {
+                            const bookedAppointment = appointments.find(appointment =>
+                                appointment.worker === worker && appointment.date === date && appointment.time === time
+                            );
+
+                            statusDiv.classList.add('booked');
+                            statusDiv.innerHTML = `${highlightText(time, searchTerm)} - Booked (Service: ${highlightText(bookedAppointment.service, searchTerm)}, Name: ${highlightText(bookedAppointment.name, searchTerm)}, Phone: ${highlightText(bookedAppointment.phone, searchTerm)})`;
+                            statusDiv.onclick = function () {
+                                currentBooking = bookedAppointment;
+                                showCancelButton();
+                            };
+                        }
+
+                        workerAvailabilityDiv.appendChild(statusDiv);
+                    }
+                }
+            });
+        }
+
         document.getElementById('worker').addEventListener('change', function () {
             const worker = this.value;
-            const date = document.getElementById('date').value;
-            if (date) {
-                displayAvailability(worker, date);
-            }
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            displayAvailability(worker, searchTerm);
         });
 
-        // Handle when a date is selected
-        document.getElementById('date').addEventListener('change', function () {
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchTerm = this.value.trim();
             const worker = document.getElementById('worker').value;
-            const date = this.value;
-            if (worker) {
-                displayAvailability(worker, date);
-            }
+            displayAvailability(worker, searchTerm);
         });
 
-        // Handle the form submission (booking an appointment)
         document.getElementById('appointmentForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -290,32 +296,27 @@
             const errorMessage = document.getElementById('errorMessage');
             const successMessage = document.getElementById('successMessage');
 
-            // Clear previous messages
             errorMessage.innerHTML = '';
             successMessage.innerHTML = '';
 
-            // Validation
             if (!worker || !service || !date || !time || !name || !phone) {
                 errorMessage.innerHTML = 'All fields must be selected.';
                 return;
             }
 
-            // Check if the time slot is available
             if (!isAvailable(worker, date, time)) {
                 errorMessage.innerHTML = 'This time slot is already booked.';
                 return;
             }
 
-            // Book the appointment
             appointments.push({ worker, date, time, service, name, phone });
-            saveAppointments(appointments); // Save the updated appointments to localStorage
+            saveAppointments(appointments);
+
             successMessage.innerHTML = `Your appointment for<br> ${service} with ${worker} on ${date} at ${time}<br> has been successfully booked!`;
 
-            // Update availability
-            displayAvailability(worker, date);
+            displayAvailability(worker);
         });
 
-        // Function to book the selected slot
         function bookSlot(worker, date, time) {
             const service = document.getElementById('service').value;
             const name = document.getElementById('name').value;
@@ -323,36 +324,27 @@
 
             appointments.push({ worker, date, time, service, name, phone });
             saveAppointments(appointments);
-            displayAvailability(worker, date);
+            displayAvailability(worker);
         }
 
-        // Function to show the cancel button if an appointment is selected
         function showCancelButton() {
             document.getElementById('cancelButton').style.display = 'block';
         }
 
-        // Function to cancel the booking
         function cancelBooking() {
             if (!currentBooking) return;
 
-            // Remove the canceled appointment
             appointments = appointments.filter(appointment =>
-                !(appointment.worker === currentBooking.worker && appointment.date === currentBooking.date && appointment.time === currentBooking.time)
+                appointment !== currentBooking
             );
             saveAppointments(appointments);
+            displayAvailability(currentBooking.worker);
 
-            // Update the availability list and mark the canceled slot as available
-            displayAvailability(currentBooking.worker, currentBooking.date);
-
-            // Clear the current booking and hide the cancel button
             currentBooking = null;
             document.getElementById('cancelButton').style.display = 'none';
-
-            const successMessage = document.getElementById('successMessage');
-            successMessage.innerHTML = 'Your appointment has been successfully canceled.';
+            document.getElementById('successMessage').innerHTML = 'Appointment successfully canceled.';
         }
 
-        // Initialize the page
         displayWorkers();
     </script>
 </body>

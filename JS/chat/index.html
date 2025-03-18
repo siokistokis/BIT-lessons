@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Chat & Appointment Scheduler</title>
+  <title>WhatsApp-like Chat & Appointment Scheduler</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,87 +15,92 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f4f4f9;
+      background-color: #e5ddd5; /* WhatsApp-like background color */
     }
 
     .container {
-      width: 600px;
+      width: 400px;
+      max-width: 100%;
       background: #fff;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .chat {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
+    .chat-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .chat-header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .chat-header h3 {
+      margin: 0;
     }
 
     .messages {
-      max-height: 200px;
+      max-height: 300px;
       overflow-y: auto;
       margin-bottom: 10px;
+      padding-right: 10px;
     }
 
     .message {
-      margin: 5px 0;
-      padding: 8px;
-      background-color: #f1f1f1;
-      border-radius: 4px;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      max-width: 80%;
+    }
+
+    .sent {
+      background-color: #dcf8c6;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .received {
+      background-color: #fff;
+      margin-right: auto;
+    }
+
+    .message-time {
+      font-size: 10px;
+      color: #777;
+      margin-top: 5px;
     }
 
     .input-area {
       display: flex;
+      align-items: center;
     }
 
     .input-area input {
       flex: 1;
       padding: 10px;
       border: 1px solid #ddd;
-      border-radius: 4px;
+      border-radius: 20px;
+      margin-right: 10px;
+      font-size: 14px;
     }
 
     .input-area button {
       padding: 10px;
-      background-color: #5cb85c;
+      background-color: #25d366; /* WhatsApp-like green */
       border: none;
       color: white;
-      border-radius: 4px;
+      border-radius: 50%;
       cursor: pointer;
-      margin-left: 10px;
     }
 
-    .appointments {
-      margin-top: 20px;
-    }
-
-    .appointments ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .appointments li {
-      background-color: #fafafa;
-      padding: 8px;
-      margin-bottom: 5px;
-      border-radius: 4px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .appointments button {
-      background-color: #d9534f;
-      border: none;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
-      padding: 5px 10px;
-    }
-
-    .appointments input {
-      margin-right: 5px;
+    .input-area button:disabled {
+      background-color: #b2dfdb;
     }
 
     .invite-button {
@@ -107,117 +112,110 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
+    .username-input, .avatar-upload {
+      margin-bottom: 20px;
+    }
+
+    .avatar-upload input {
+      margin-top: 10px;
+    }
+
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h2>Chat & Appointment Scheduler</h2>
+    <div class="chat-header">
+      <img id="userAvatar" src="https://via.placeholder.com/50" alt="User Avatar">
+      <h3 id="chatUserName">Chat</h3>
+    </div>
 
-    <!-- Chat Section -->
-    <div class="chat">
-      <div class="messages" id="messages">
-        <!-- Messages will appear here -->
-      </div>
-      <div class="input-area">
-        <input type="text" id="messageInput" placeholder="Type a message">
-        <button onclick="sendMessage()">Send</button>
-      </div>
+    <div class="messages" id="messages">
+      <!-- Messages will appear here -->
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="messageInput" placeholder="Type a message" oninput="enableSendButton()">
+      <button id="sendButton" onclick="sendMessage()" disabled>Send</button>
     </div>
 
     <!-- Invite New Chat Member -->
     <button class="invite-button" onclick="inviteMember()">Invite Another Member</button>
 
-    <!-- Appointment Section -->
-    <div class="appointments">
-      <h3>Appointments</h3>
-      <div>
-        <input type="date" id="appointmentDate">
-        <input type="time" id="appointmentTime">
-        <input type="text" id="appointmentDesc" placeholder="Appointment Description">
-        <button onclick="addAppointment()">Add Appointment</button>
-      </div>
-      <ul id="appointmentList">
-        <!-- Appointments will appear here -->
-      </ul>
+    <!-- Avatar upload -->
+    <div class="avatar-upload">
+      <label for="avatarInput">Upload Avatar:</label>
+      <input type="file" id="avatarInput" accept="image/*" onchange="updateAvatar()">
     </div>
+    
   </div>
 
   <script>
-    // Initialize storage
+    // Initialize storage for messages, users, and avatar if not already set
     if (!localStorage.getItem('messages')) {
       localStorage.setItem('messages', JSON.stringify([]));
     }
-    if (!localStorage.getItem('appointments')) {
-      localStorage.setItem('appointments', JSON.stringify([]));
+
+    if (!localStorage.getItem('username')) {
+      document.getElementById('usernameInput').style.display = 'block'; // Show name input if no name set
     }
 
-    // Send message function
+    // Set the username in localStorage
+    function setUsername() {
+      const username = document.getElementById('username').value.trim();
+      if (username !== "") {
+        localStorage.setItem('username', username); // Save username in localStorage
+        document.getElementById('usernameInput').style.display = 'none'; // Hide username input
+        updateMessages(); // Refresh the messages
+      } else {
+        alert("Please enter a name.");
+      }
+    }
+
+    // Enable Send button when there is input
+    function enableSendButton() {
+      const messageInput = document.getElementById('messageInput').value;
+      const sendButton = document.getElementById('sendButton');
+      sendButton.disabled = !messageInput.trim();
+    }
+
+    // Send message function with date and time
     function sendMessage() {
       const messageInput = document.getElementById('messageInput');
       const message = messageInput.value.trim();
-      if (message !== "") {
+      const username = localStorage.getItem('username');
+      const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const date = new Date().toLocaleDateString();
+
+      if (message !== "" && username) {
         const messages = JSON.parse(localStorage.getItem('messages'));
-        messages.push({ user: 'You', text: message });
+        messages.push({ user: username, text: message, time: timestamp, date: date, type: 'sent' });
         localStorage.setItem('messages', JSON.stringify(messages));
         messageInput.value = ''; // Clear input
+        enableSendButton(); // Disable send button if empty
         updateMessages();
       }
     }
 
-    // Update messages display
+    // Update messages display with date and time
     function updateMessages() {
       const messages = JSON.parse(localStorage.getItem('messages'));
       const messagesContainer = document.getElementById('messages');
       messagesContainer.innerHTML = '';
+
       messages.forEach(msg => {
         const msgDiv = document.createElement('div');
         msgDiv.classList.add('message');
-        msgDiv.textContent = `${msg.user}: ${msg.text}`;
+        msgDiv.classList.add(msg.type === 'sent' ? 'sent' : 'received');
+        msgDiv.innerHTML = `
+          <p>${msg.text}</p>
+          <span class="message-time">${msg.date} ${msg.time}</span>
+        `;
         messagesContainer.appendChild(msgDiv);
       });
+
       messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
-    }
-
-    // Add appointment function
-    function addAppointment() {
-      const appointmentDate = document.getElementById('appointmentDate').value;
-      const appointmentTime = document.getElementById('appointmentTime').value;
-      const appointmentDesc = document.getElementById('appointmentDesc').value.trim();
-
-      if (appointmentDate && appointmentTime && appointmentDesc) {
-        const appointments = JSON.parse(localStorage.getItem('appointments'));
-        const appointmentTimeString = `${appointmentDate} ${appointmentTime}`;
-        appointments.push({ datetime: appointmentTimeString, description: appointmentDesc });
-        localStorage.setItem('appointments', JSON.stringify(appointments));
-        document.getElementById('appointmentDesc').value = ''; // Clear input
-        document.getElementById('appointmentDate').value = ''; // Clear date
-        document.getElementById('appointmentTime').value = ''; // Clear time
-        updateAppointments();
-      } else {
-        alert("Please provide date, time, and description.");
-      }
-    }
-
-    // Update appointment display
-    function updateAppointments() {
-      const appointments = JSON.parse(localStorage.getItem('appointments'));
-      const appointmentList = document.getElementById('appointmentList');
-      appointmentList.innerHTML = '';
-      appointments.forEach((appointment, index) => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `${appointment.datetime}: ${appointment.description} 
-          <button onclick="cancelAppointment(${index})">Cancel</button>`;
-        appointmentList.appendChild(listItem);
-      });
-    }
-
-    // Cancel appointment function
-    function cancelAppointment(index) {
-      const appointments = JSON.parse(localStorage.getItem('appointments'));
-      appointments.splice(index, 1); // Remove appointment by index
-      localStorage.setItem('appointments', JSON.stringify(appointments));
-      updateAppointments(); // Refresh the appointment list
     }
 
     // Invite another chat member function
@@ -225,15 +223,37 @@
       const memberName = prompt("Enter the name of the person you're inviting to chat:");
       if (memberName) {
         const messages = JSON.parse(localStorage.getItem('messages'));
-        messages.push({ user: 'System', text: `${memberName} has been invited to join the chat.` });
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const date = new Date().toLocaleDateString();
+        messages.push({ user: 'System', text: `${memberName} has joined the chat.`, time: timestamp, date: date, type: 'received' });
         localStorage.setItem('messages', JSON.stringify(messages));
         updateMessages(); // Refresh the messages with the invitation
       }
     }
 
-    // Initial updates on load
-    updateMessages();
-    updateAppointments();
+    // Update Avatar function
+    function updateAvatar() {
+      const avatarInput = document.getElementById('avatarInput');
+      const avatarFile = avatarInput.files[0];
+      if (avatarFile) {
+        const reader = new FileReader();
+        reader.onloadend = function () {
+          document.getElementById('userAvatar').src = reader.result;
+          localStorage.setItem('avatar', reader.result); // Save the avatar to localStorage
+        };
+        reader.readAsDataURL(avatarFile);
+      }
+    }
+
+    // Load avatar from localStorage on page load
+    window.onload = function () {
+      const storedAvatar = localStorage.getItem('avatar');
+      if (storedAvatar) {
+        document.getElementById('userAvatar').src = storedAvatar;
+      }
+      updateMessages();
+    };
+
   </script>
 </body>
 </html>
