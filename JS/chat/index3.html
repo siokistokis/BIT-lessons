@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp-like Chat & Appointment Scheduler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #e5ddd5; /* WhatsApp-like background color */
+    }
+
+    .container {
+      width: 400px;
+      max-width: 100%;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .chat-header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+    }
+
+    .messages {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      padding-right: 10px;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      max-width: 80%;
+    }
+
+    .sent {
+      background-color: #dcf8c6;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .received {
+      background-color: #fff;
+      margin-right: auto;
+    }
+
+    .message-time {
+      font-size: 10px;
+      color: #777;
+      margin-top: 5px;
+    }
+
+    .input-area {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .input-area button {
+      padding: 10px;
+      background-color: #25d366; /* WhatsApp-like green */
+      border: none;
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .input-area button:disabled {
+      background-color: #b2dfdb;
+    }
+
+    .invite-button {
+      margin-top: 10px;
+      background-color: #0275d8;
+      padding: 10px 15px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .username-input {
+      margin-bottom: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="chat-header">
+      <img id="userAvatar" src="https://via.placeholder.com/50" alt="User Avatar">
+      <h3 id="chatUserName">Chat</h3>
+    </div>
+
+    <div class="messages" id="messages">
+      <!-- Messages will appear here -->
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="messageInput" placeholder="Type a message" oninput="enableSendButton()">
+      <button id="sendButton" onclick="sendMessage()" disabled>Send</button>
+    </div>
+
+    <!-- Invite New Chat Member -->
+    <button class="invite-button" onclick="inviteMember()">Invite Another Member</button>
+    
+  </div>
+
+  <script>
+    // Initialize storage for messages and users if not already set
+    if (!localStorage.getItem('messages')) {
+      localStorage.setItem('messages', JSON.stringify([]));
+    }
+
+    if (!localStorage.getItem('username')) {
+      document.getElementById('usernameInput').style.display = 'block'; // Show name input if no name set
+    }
+
+    // Set the username in localStorage
+    function setUsername() {
+      const username = document.getElementById('username').value.trim();
+      if (username !== "") {
+        localStorage.setItem('username', username); // Save username in localStorage
+        document.getElementById('usernameInput').style.display = 'none'; // Hide username input
+        updateMessages(); // Refresh the messages
+      } else {
+        alert("Please enter a name.");
+      }
+    }
+
+    // Enable Send button when there is input
+    function enableSendButton() {
+      const messageInput = document.getElementById('messageInput').value;
+      const sendButton = document.getElementById('sendButton');
+      sendButton.disabled = !messageInput.trim();
+    }
+
+    // Send message function
+    function sendMessage() {
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value.trim();
+      const username = localStorage.getItem('username');
+      const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      if (message !== "" && username) {
+        const messages = JSON.parse(localStorage.getItem('messages'));
+        messages.push({ user: username, text: message, time: timestamp, type: 'sent' });
+        localStorage.setItem('messages', JSON.stringify(messages));
+        messageInput.value = ''; // Clear input
+        enableSendButton(); // Disable send button if empty
+        updateMessages();
+      }
+    }
+
+    // Update messages display
+    function updateMessages() {
+      const messages = JSON.parse(localStorage.getItem('messages'));
+      const messagesContainer = document.getElementById('messages');
+      messagesContainer.innerHTML = '';
+
+      messages.forEach(msg => {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('message');
+        msgDiv.classList.add(msg.type === 'sent' ? 'sent' : 'received');
+        msgDiv.innerHTML = `
+          <p>${msg.text}</p>
+          <span class="message-time">${msg.time}</span>
+        `;
+        messagesContainer.appendChild(msgDiv);
+      });
+
+      messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
+    }
+
+    // Invite another chat member function
+    function inviteMember() {
+      const memberName = prompt("Enter the name of the person you're inviting to chat:");
+      if (memberName) {
+        const messages = JSON.parse(localStorage.getItem('messages'));
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        messages.push({ user: 'System', text: `${memberName} has joined the chat.`, time: timestamp, type: 'received' });
+        localStorage.setItem('messages', JSON.stringify(messages));
+        updateMessages(); // Refresh the messages with the invitation
+      }
+    }
+
+    // Initial updates on load
+    updateMessages();
+
+  </script>
+</body>
+</html>

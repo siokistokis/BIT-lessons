@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Chat & Appointment Scheduler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      width: 600px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .messages {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      margin: 5px 0;
+      padding: 8px;
+      background-color: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    .input-area {
+      display: flex;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .input-area button {
+      padding: 10px;
+      background-color: #5cb85c;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .invite-button {
+      margin-top: 10px;
+      background-color: #0275d8;
+      padding: 10px 15px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .username-input {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Chat</h2>
+
+    <!-- Username Input -->
+    <div class="username-input" id="usernameInput" style="display: none;">
+      <label for="username">Enter your name:</label>
+      <input type="text" id="username" placeholder="Your Name">
+      <button onclick="setUsername()">Set Name</button>
+    </div>
+
+    <!-- Chat Section -->
+    <div class="chat">
+      <div class="messages" id="messages">
+        <!-- Messages will appear here -->
+      </div>
+      <div class="input-area">
+        <input type="text" id="messageInput" placeholder="Type a message">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- Invite New Chat Member -->
+    <button class="invite-button" onclick="inviteMember()">Invite Another Member</button>
+    
+  </div>
+
+  <script>
+    // Initialize storage for messages and users if not already set
+    if (!localStorage.getItem('messages')) {
+      localStorage.setItem('messages', JSON.stringify([]));
+    }
+
+    if (!localStorage.getItem('username')) {
+      document.getElementById('usernameInput').style.display = 'block'; // Show name input if no name set
+    }
+
+    // Set the username in localStorage
+    function setUsername() {
+      const username = document.getElementById('username').value.trim();
+      if (username !== "") {
+        localStorage.setItem('username', username); // Save username in localStorage
+        document.getElementById('usernameInput').style.display = 'none'; // Hide username input
+        updateMessages(); // Refresh the messages
+      } else {
+        alert("Please enter a name.");
+      }
+    }
+
+    // Send message function
+    function sendMessage() {
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value.trim();
+      const username = localStorage.getItem('username');
+      if (message !== "" && username) {
+        const messages = JSON.parse(localStorage.getItem('messages'));
+        messages.push({ user: username, text: message });
+        localStorage.setItem('messages', JSON.stringify(messages));
+        messageInput.value = ''; // Clear input
+        updateMessages();
+      }
+    }
+
+    // Update messages display
+    function updateMessages() {
+      const messages = JSON.parse(localStorage.getItem('messages'));
+      const messagesContainer = document.getElementById('messages');
+      messagesContainer.innerHTML = '';
+      messages.forEach(msg => {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('message');
+        msgDiv.textContent = `${msg.user}: ${msg.text}`;
+        messagesContainer.appendChild(msgDiv);
+      });
+      messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
+    }
+
+    // Invite another chat member function
+    function inviteMember() {
+      const memberName = prompt("Enter the name of the person you're inviting to chat:");
+      if (memberName) {
+        const messages = JSON.parse(localStorage.getItem('messages'));
+        messages.push({ user: 'System', text: `${memberName} has joined the chat.` });
+        localStorage.setItem('messages', JSON.stringify(messages));
+        updateMessages(); // Refresh the messages with the invitation
+      }
+    }
+
+    // Initial updates on load
+    updateMessages();
+    
+  </script>
+</body>
+</html>
