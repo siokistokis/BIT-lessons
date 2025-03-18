@@ -1,30 +1,35 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WhatsApp-like Chat & Appointment Scheduler</title>
+  <title>Chat with Voicemail Feature</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #e5ddd5; /* WhatsApp-like background color */
+      background-color: #f7f7f7;
     }
 
     .container {
-      width: 400px;
-      max-width: 100%;
-      background: #fff;
-      padding: 20px;
+      width: 80%;
+      max-width: 800px;
+      background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     .chat-header {
@@ -33,184 +38,239 @@
       margin-bottom: 20px;
     }
 
-    .chat-header img {
+    #userAvatar {
       width: 50px;
       height: 50px;
       border-radius: 50%;
+      object-fit: cover;
       margin-right: 10px;
     }
 
-    .chat-header h3 {
-      margin: 0;
-    }
-
     .messages {
-      max-height: 300px;
+      max-height: 400px;
       overflow-y: auto;
-      margin-bottom: 10px;
-      padding-right: 10px;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     }
 
     .message {
-      margin: 10px 0;
       padding: 10px;
-      border-radius: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      background-color: #e6e6e6;
       display: inline-block;
-      max-width: 80%;
+      max-width: 70%;
+      position: relative;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     }
 
-    .sent {
+    .message.sent {
       background-color: #dcf8c6;
-      margin-left: auto;
-      text-align: right;
+      align-self: flex-end;
     }
 
-    .received {
-      background-color: #fff;
-      margin-right: auto;
+    .message.received {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      align-self: flex-start;
     }
 
     .message-time {
-      font-size: 10px;
-      color: #777;
-      margin-top: 5px;
+      font-size: 12px;
+      color: gray;
+    }
+
+    /* Styling for Delete Button */
+    .delete-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: rgb(247, 223, 223);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Voicemail button styling */
+    .voicemail-button {
+      background-color: #ff5733;
+      padding: 8px 15px;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 14px;
+      width: auto;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease; /* Add smooth scaling */
+    }
+
+    /* Hover effect with scaling */
+    .voicemail-button:hover {
+      transform: scale(1.1); /* Scale up on hover */
     }
 
     .input-area {
       display: flex;
-      align-items: center;
+      margin-top: 10px;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     }
 
     .input-area input {
       flex: 1;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ddd;
-      border-radius: 20px;
-      margin-right: 10px;
+      border-radius: 8px;
       font-size: 14px;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     }
 
     .input-area button {
-      padding: 10px;
-      background-color: #25d366; /* WhatsApp-like green */
-      border: none;
-      color: white;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .input-area button:disabled {
-      background-color: #b2dfdb;
-    }
-
-    .invite-button {
-      margin-top: 10px;
+      padding: 12px;
       background-color: #0275d8;
-      padding: 10px 15px;
+      border: none;
+      color: white;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-left: 10px;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    /* Hover effect for input button */
+    .input-area button:hover {
+      transform: scale(1.1); /* Scale up on hover */
+    }
+
+    /* Avatar Upload */
+    .upload-avatar-button {
+      margin-top: 20px;
+      padding: 8px 15px;
+      background-color: #5cb85c;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
       cursor: pointer;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
     }
 
-    .username-input, .avatar-upload {
-      margin-bottom: 20px;
+    /* Hover effect for upload avatar button */
+    .upload-avatar-button:hover {
+      transform: scale(1.1); /* Scale up on hover */
     }
 
-    .avatar-upload input {
-      margin-top: 10px;
+    .upload-avatar-input {
+      display: none;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     }
 
+    /* Scrollbar styling */
+    .messages::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .messages::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <h2>Chat</h2>
+
+    <!-- Chat Header -->
     <div class="chat-header">
       <img id="userAvatar" src="https://via.placeholder.com/50" alt="User Avatar">
       <h3 id="chatUserName">Chat</h3>
+      <button class="upload-avatar-button" onclick="document.getElementById('avatarUpload').click()">Upload Avatar</button>
+      <input type="file" id="avatarUpload" class="upload-avatar-input" accept="image/*" onchange="uploadAvatar(event)">
     </div>
 
+    <!-- Chat Messages -->
     <div class="messages" id="messages">
       <!-- Messages will appear here -->
     </div>
 
+    <!-- Message Input -->
     <div class="input-area">
       <input type="text" id="messageInput" placeholder="Type a message" oninput="enableSendButton()">
       <button id="sendButton" onclick="sendMessage()" disabled>Send</button>
     </div>
 
-    <!-- Invite New Chat Member -->
-    <button class="invite-button" onclick="inviteMember()">Invite Another Member</button>
+    <!-- Voicemail Recording Button -->
+    <button class="voicemail-button" onclick="startRecording()">Record Voicemail</button>
 
-    <!-- Avatar upload -->
-    <div class="avatar-upload">
-      <label for="avatarInput">Upload Avatar:</label>
-      <input type="file" id="avatarInput" accept="image/*" onchange="updateAvatar()">
-    </div>
-    
+    <!-- Change Name Button -->
+    <button class="voicemail-button" onclick="changeName()">Change Name</button>
+
+    <!-- Invite Friend Button -->
+    <button class="voicemail-button" onclick="inviteFriend()">Invite Friend</button>
   </div>
 
   <script>
-    // Initialize storage for messages, users, and avatar if not already set
+    // Initialize localStorage data
     if (!localStorage.getItem('messages')) {
       localStorage.setItem('messages', JSON.stringify([]));
     }
 
     if (!localStorage.getItem('username')) {
-      document.getElementById('usernameInput').style.display = 'block'; // Show name input if no name set
+      localStorage.setItem('username', "User_" + Math.floor(Math.random() * 1000));
     }
 
-    // Set the username in localStorage
-    function setUsername() {
-      const username = document.getElementById('username').value.trim();
-      if (username !== "") {
-        localStorage.setItem('username', username); // Save username in localStorage
-        document.getElementById('usernameInput').style.display = 'none'; // Hide username input
-        updateMessages(); // Refresh the messages
-      } else {
-        alert("Please enter a name.");
-      }
-    }
+    // Get current username from localStorage
+    let username = localStorage.getItem('username');
+    document.getElementById('chatUserName').textContent = username;
 
-    // Enable Send button when there is input
+    // Enable send button when there is input
     function enableSendButton() {
       const messageInput = document.getElementById('messageInput').value;
       const sendButton = document.getElementById('sendButton');
       sendButton.disabled = !messageInput.trim();
     }
 
-    // Send message function with date and time
+    // Send message function
     function sendMessage() {
       const messageInput = document.getElementById('messageInput');
       const message = messageInput.value.trim();
-      const username = localStorage.getItem('username');
-      const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const date = new Date().toLocaleDateString();
-
-      if (message !== "" && username) {
-        const messages = JSON.parse(localStorage.getItem('messages'));
-        messages.push({ user: username, text: message, time: timestamp, date: date, type: 'sent' });
-        localStorage.setItem('messages', JSON.stringify(messages));
-        messageInput.value = ''; // Clear input
-        enableSendButton(); // Disable send button if empty
-        updateMessages();
-      }
+      const timestamp = new Date().toLocaleString(); // Full Date & Time
+      const messages = JSON.parse(localStorage.getItem('messages'));
+      messages.push({ user: username, text: message, timestamp: timestamp, type: 'sent' });
+      localStorage.setItem('messages', JSON.stringify(messages));
+      messageInput.value = ''; // Clear input
+      enableSendButton(); // Disable send button if empty
+      updateMessages(); // Update message display
     }
 
-    // Update messages display with date and time
+    // Update messages display
     function updateMessages() {
       const messages = JSON.parse(localStorage.getItem('messages'));
       const messagesContainer = document.getElementById('messages');
       messagesContainer.innerHTML = '';
 
-      messages.forEach(msg => {
+      messages.forEach((msg, index) => {
         const msgDiv = document.createElement('div');
         msgDiv.classList.add('message');
         msgDiv.classList.add(msg.type === 'sent' ? 'sent' : 'received');
+
         msgDiv.innerHTML = `
           <p>${msg.text}</p>
-          <span class="message-time">${msg.date} ${msg.time}</span>
+          <span class="message-time">${msg.timestamp}</span>
+          <button class="delete-button" onclick="deleteMessage(${index})">&times;</button>
         `;
         messagesContainer.appendChild(msgDiv);
       });
@@ -218,42 +278,82 @@
       messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to bottom
     }
 
-    // Invite another chat member function
-    function inviteMember() {
-      const memberName = prompt("Enter the name of the person you're inviting to chat:");
-      if (memberName) {
-        const messages = JSON.parse(localStorage.getItem('messages'));
-        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const date = new Date().toLocaleDateString();
-        messages.push({ user: 'System', text: `${memberName} has joined the chat.`, time: timestamp, date: date, type: 'received' });
-        localStorage.setItem('messages', JSON.stringify(messages));
-        updateMessages(); // Refresh the messages with the invitation
+    // Delete message function
+    function deleteMessage(index) {
+      const messages = JSON.parse(localStorage.getItem('messages'));
+      messages.splice(index, 1); // Remove the message at the given index
+      localStorage.setItem('messages', JSON.stringify(messages));
+      updateMessages(); // Update message display
+    }
+
+    // Voicemail recording functionality (using MediaRecorder)
+    let mediaRecorder;
+    let audioChunks = [];
+
+    async function startRecording() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          mediaRecorder.ondataavailable = (event) => {
+            audioChunks.push(event.data);
+          };
+          mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
+            audio.play();
+          };
+          mediaRecorder.start();
+          alert("Recording started. Press 'Stop' to end.");
+          setTimeout(() => {
+            mediaRecorder.stop();
+          }, 5000); // Stop after 5 seconds
+        } catch (error) {
+          alert("Error accessing microphone.");
+        }
       }
     }
 
-    // Update Avatar function
-    function updateAvatar() {
-      const avatarInput = document.getElementById('avatarInput');
-      const avatarFile = avatarInput.files[0];
-      if (avatarFile) {
-        const reader = new FileReader();
-        reader.onloadend = function () {
-          document.getElementById('userAvatar').src = reader.result;
-          localStorage.setItem('avatar', reader.result); // Save the avatar to localStorage
-        };
-        reader.readAsDataURL(avatarFile);
+    // Change user name
+    function changeName() {
+      const newName = prompt("Enter your new name:");
+      if (newName) {
+        username = newName;
+        localStorage.setItem('username', newName);
+        document.getElementById('chatUserName').textContent = newName;
+      }
+    }
+
+    // Upload Avatar
+    function uploadAvatar(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        document.getElementById('userAvatar').src = reader.result;
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+        localStorage.setItem('avatar', reader.result);
+      }
+    }
+
+    // Invite Friend (simulated with prompt)
+    function inviteFriend() {
+      const email = prompt("Enter the email of the friend you want to invite:");
+      if (email) {
+        alert(`Friend invited: ${email}`);
       }
     }
 
     // Load avatar from localStorage on page load
     window.onload = function () {
-      const storedAvatar = localStorage.getItem('avatar');
-      if (storedAvatar) {
-        document.getElementById('userAvatar').src = storedAvatar;
+      const savedAvatar = localStorage.getItem('avatar');
+      if (savedAvatar) {
+        document.getElementById('userAvatar').src = savedAvatar;
       }
       updateMessages();
     };
-
   </script>
 </body>
 </html>
